@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "form-elements.css",
+    "inputFile": "form-elements.scss"
+  },
+  {
+    "outputFile": "portal/portal.css",
+    "inputFile": "portal/portal.scss"
+  }
+]

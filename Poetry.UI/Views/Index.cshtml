@@ -1,0 +1,106 @@
+﻿@using Poetry.UI.AppSupport
+@using Poetry.UI.MvcSupport
+@using System.Web.Mvc
+@inherits System.Web.Mvc.WebViewPage
+
+@{
+    var AppRepository = DependencyResolver.Current.GetService<IAppRepository>();
+    var BasePathProvider = DependencyResolver.Current.GetService<IBasePathProvider>();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Poetry</title>
+    <base href="/@BasePathProvider.BasePath/">
+    <link rel="stylesheet" type="text/css" href="portal/portal.css" />
+    <script src="portal/portal.js"></script>
+    <script>
+        var portal = new Portal();
+    </script>
+    <link rel="stylesheet" type="text/css" href="form-elements.css" />
+    <script src="form-builder/model-builder.js"></script>
+    <script src="form-builder/form-builder.js"></script>
+    <script>
+        portal.inject('formBuilder', new FormBuilder());
+        portal.inject('modelBuilder', new ModelBuilder());
+        portal.inject('propertyDefinitions', [
+            {
+                name: 'Key',
+                type: 'string'
+            },
+            {
+                name: 'Value',
+                type: 'string'
+            }
+        ]);
+        portal.inject('formElements', [
+            {
+                type: 'string',
+                create: function (propertyDefinition, get, set) {
+                    var label = document.createElement('label');
+                    label.classList.add('form-label');
+
+                    var labelText = document.createElement('div');
+                    labelText.classList.add('form-label-text');
+                    labelText.innerText = propertyDefinition.name;
+                    label.appendChild(labelText);
+
+                    var input = document.createElement('input');
+                    input.classList.add('form-input');
+                    label.appendChild(input);
+
+                    input.type = 'text';
+
+                    var value = get();
+
+                    if (typeof value != 'undefined' && typeof value != 'null') {
+                        input.value = get();
+                    }
+
+                    function update() {
+                        set(input.value);
+                    }
+
+                    input.addEventListener('change', update);
+                    input.addEventListener('keyup', update);
+
+                    return label;
+                }
+            }
+        ]);
+    </script>
+    <script>
+        portal.inject('appNames', {
+            KeyFigures: 'Key figures'
+        });
+
+        portal.injectForApp('KeyFigures', 'translations', {
+            Key: 'Key',
+            Value: 'Value',
+            KeyFigures: 'Key figures',
+            Edit: 'Edit',
+            New: 'New',
+            Close: 'Close',
+            EditKeyFigure: 'Edit key figure',
+            NewKeyFigure: 'New key figure',
+            Save: 'Save',
+            Cancel: 'Cancel'
+        });
+    </script>
+    @foreach (var app in AppRepository.GetAll())
+    {
+        foreach (var script in app.Scripts.OrderBy(s => s.Order))
+        {
+            <script src="@script.Src"></script>
+        }
+        foreach (var style in app.Styles)
+        {
+            <link rel="stylesheet" type="text/css" href="@style" />
+        }
+    }
+</head>
+<body>
+</body>
+</html>
