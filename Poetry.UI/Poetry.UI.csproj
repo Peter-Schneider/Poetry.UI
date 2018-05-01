@@ -80,10 +80,11 @@
     <Compile Include="Controllers\PoetryPortalController.cs" />
     <Compile Include="MvcSupport\BasePathProvider.cs" />
     <Compile Include="MvcSupport\IBasePathProvider.cs" />
-    <Compile Include="VirtualPathProviderSupport\EmbeddedResourceVirtualPathProvider.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathProvider.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VirtualPathProviderSupport\EmbeddedResourceVirtualFile.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualFile.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="form-builder\form-builder.js" />

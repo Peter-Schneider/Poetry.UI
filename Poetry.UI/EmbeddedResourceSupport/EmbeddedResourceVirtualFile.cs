@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 
-namespace Poetry.UI.VirtualPathProviderSupport
+namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceVirtualFile : VirtualFile
     {

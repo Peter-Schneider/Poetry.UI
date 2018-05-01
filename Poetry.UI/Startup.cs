@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Mvc;
 using System.Web.Hosting;
-using Poetry.UI.VirtualPathProviderSupport;
+using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.MvcSupport;
 using Poetry.UI.AppSupport;
 using System.Reflection;
@@ -18,24 +18,26 @@ namespace Poetry.UI
     {
         public static void AddPoetryUI(this HttpApplication application, Action<Type, object> registerSingletonInDependencyResolver, IEnumerable<Assembly> assemblies, string basePath = "Poetry")
         {
-            //RouteTable.Routes.MapRoute(
-            //    "PoetryPortal",
-            //    basePath,
-            //    new { controller = "Portal", action = "Index" },
-            //    namespaces: new string[] { "Poetry.UI.Controllers" }
-            //);
-
             RouteTable.Routes.MapRoute(
-                "PoetryStaticFiles",
-                basePath + "/{*virtualPath}",
-                new { controller = "Portal", action = "StaticFile" },
+                "PoetryPortal",
+                basePath,
+                new { controller = "PoetryPortal", action = "Index" },
                 namespaces: new string[] { "Poetry.UI.Controllers" }
             );
 
-            registerSingletonInDependencyResolver(typeof(IBasePathProvider), new BasePathProvider(basePath));
+            var basePathProvider = (IBasePathProvider)new BasePathProvider(basePath);
+
+            registerSingletonInDependencyResolver(typeof(IBasePathProvider), basePathProvider);
             registerSingletonInDependencyResolver(typeof(IAppRepository), new AppRepository(new AppCreator().Create(assemblies)));
 
-            HostingEnvironment.RegisterVirtualPathProvider(new EmbeddedResourceVirtualPathProvider(DependencyResolver.Current.GetService<IBasePathProvider>()));
+            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider);
+
+            registerSingletonInDependencyResolver(typeof(EmbeddedResourceVirtualPathProvider), vpp);
+
+            RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
+            RouteTable.Routes.RouteExistingFiles = true;
+
+            HostingEnvironment.RegisterVirtualPathProvider(vpp);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Hosting;
 
-namespace Poetry.UI.VirtualPathProviderSupport
+namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceVirtualPathProvider : VirtualPathProvider
     {
