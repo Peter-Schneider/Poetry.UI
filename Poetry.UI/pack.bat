@@ -1,0 +1,1 @@
+C:\Dev\nuget.exe pack C:\Dev\Poetry\Poetry.UI\Poetry.UI.csproj -OutputDirectory "C:\Dev\NuGetFeed"
