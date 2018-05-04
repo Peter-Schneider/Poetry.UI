@@ -1,6 +1,8 @@
 ﻿@using Poetry.UI.AppSupport
 @using Poetry.UI.MvcSupport
 @using System.Web.Mvc
+@using Newtonsoft.Json
+
 @inherits System.Web.Mvc.WebViewPage
 
 @{
@@ -72,32 +74,17 @@
         ]);
     </script>
     <script>
-        portal.inject('appNames', {
-            KeyFigures: 'Key figures'
-        });
-
-        portal.injectForApp('KeyFigures', 'translations', {
-            Key: 'Key',
-            Value: 'Value',
-            KeyFigures: 'Key figures',
-            Edit: 'Edit',
-            New: 'New',
-            Close: 'Close',
-            EditKeyFigure: 'Edit key figure',
-            NewKeyFigure: 'New key figure',
-            Save: 'Save',
-            Cancel: 'Cancel'
-        });
+        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => string.Join(" ", app.Name.Split('-').Select(n => n.Substring(0, 1).ToUpper() + n.Substring(1)))))));
     </script>
     @foreach (var app in AppRepository.GetAll())
     {
         foreach (var script in app.Scripts.OrderBy(s => s.Order))
         {
-            <script src="@script.Src"></script>
+    <script src="@script.Src"></script>
         }
         foreach (var style in app.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@style" />
+    <link rel="stylesheet" type="text/css" href="@style" />
         }
     }
 </head>
