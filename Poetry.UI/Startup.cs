@@ -13,6 +13,7 @@ using Poetry.UI.AppSupport;
 using System.Reflection;
 using Unity;
 using Unity.AspNet.Mvc;
+using Poetry.UI.Portal;
 
 namespace Poetry.UI
 {
@@ -52,7 +53,10 @@ namespace Poetry.UI
             registerSingletonInDependencyResolver(typeof(IBasePathProvider), basePathProvider);
             registerSingletonInDependencyResolver(typeof(IAppRepository), new AppRepository(new AppCreator().Create(assemblies)));
 
-            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider);
+            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
+            var embeddedResourceProvider = new EmbeddedResourceProvider(embeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly));
+
+            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
 
             registerSingletonInDependencyResolver(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 

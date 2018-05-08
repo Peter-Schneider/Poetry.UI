@@ -41,22 +41,13 @@ namespace Poetry.UI.Controllers
                 return new FileStreamResult(file.Open(), mimeType);
             }
 
-            return View($"~/{BasePathProvider.BasePath}/Views/Index.cshtml");
+            return View($"~/{BasePathProvider.BasePath}/Portal/Views/Index.cshtml");
         }
-
-        public ActionResult Test()
-        {
-            return Content("hej");
-        }
-
+        
         public ActionResult StaticFile()
         {
             var url = HttpContext.Request.Url.LocalPath;
-
-           
-
-            //virtualPath = $"/{BasePathProvider.BasePath}/{virtualPath}";
-
+            
             if (!EmbeddedResourceVirtualPathProvider.FileExists(url))
             {
                 return HttpNotFound();

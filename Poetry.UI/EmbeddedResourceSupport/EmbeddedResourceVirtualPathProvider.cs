@@ -17,16 +17,17 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceVirtualPathProvider : VirtualPathProvider
     {
-        Assembly Assembly { get; } = Assembly.GetExecutingAssembly();
         ILog Log { get; } = LogManager.GetLogger(typeof(EmbeddedResourceVirtualPathProvider));
         IBasePathProvider BasePathProvider { get; }
+        IEmbeddedResourceProvider EmbeddedResourceProvider { get; }
 
-        public EmbeddedResourceVirtualPathProvider(IBasePathProvider basePathProvider) {
+        public EmbeddedResourceVirtualPathProvider(IBasePathProvider basePathProvider, IEmbeddedResourceProvider embeddedResourceProvider) {
             BasePathProvider = basePathProvider;
+            EmbeddedResourceProvider = embeddedResourceProvider;
 
             if (Log.IsDebugEnabled)
             {
-                Log.Debug($"Embedded resources found:\n{string.Join("\n", Assembly.GetManifestResourceNames())}");
+                Log.Debug($"Embedded resources found:\n{string.Join("\n", embeddedResourceProvider.Assemblies.Select(a => a.EmbeddedResources.Select(r => $"{basePathProvider.BasePath}/{a.BasePath}/{r.Path}")))}");
             }
         }
 
@@ -48,23 +49,16 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (!path.StartsWith(prefix))
             {
-                //if (Log.IsDebugEnabled)
-                //{
-                //    Log.Debug($"Path {path} did not start with {prefix}, exiting");
-                //}
-
                 return Previous.FileExists(virtualPath);
             }
 
             path = path.Substring(prefix.Length);
 
-            var name = GetResourceName(path);
-
-            if (!Exists(name))
+            if (!Exists(path))
             {
                 if (Log.IsDebugEnabled)
                 {
-                    Log.Debug($"File {name} did not exist, exiting");
+                    Log.Debug($"File {path} did not exist, exiting");
                 }
 
                 return Previous.FileExists(virtualPath);
@@ -96,13 +90,11 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             path = path.Substring(prefix.Length);
 
-            var name = GetResourceName(path);
-
-            if (!Exists(name))
+            if (!Exists(path))
             {
                 if (Log.IsDebugEnabled)
                 {
-                    Log.Debug($"Resource {name} did not exist, exiting");
+                    Log.Debug($"Resource {path} did not exist, exiting");
                 }
 
                 return Previous.GetCacheDependency(virtualPath, virtualPathDependencies, utcStart);
@@ -139,43 +131,22 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             path = path.Substring(prefix.Length);
 
-            var name = GetResourceName(path);
-
-            if (!Exists(name))
+            if (!Exists(path))
             {
                 if (Log.IsDebugEnabled)
                 {
-                    Log.Debug($"Resource {name} did not exist, exiting");
+                    Log.Debug($"Resource {path} did not exist, exiting");
                 }
 
                 return Previous.GetFile(virtualPath);
             }
 
-            return new EmbeddedResourceVirtualFile(virtualPath, name);
+            return new EmbeddedResourceVirtualFile(virtualPath, EmbeddedResourceProvider.GetFile(path));
         }
 
-        bool Exists(string resourceName)
+        bool Exists(string path)
         {
-            using (var stream = Assembly.GetManifestResourceStream(resourceName))
-            {
-                return stream != null;
-            }
-        }
-
-        string GetResourceName(string virtualPath)
-        {
-            var segments = virtualPath.Split('/');
-            var filename = segments.Last();
-            var path = string.Join("/", segments.Reverse().Skip(1).Reverse()).Replace('/', '.').Replace('-', '_');
-
-            if(path != string.Empty)
-            {
-                path += ".";
-            }
-
-            var resourceName = $"{Assembly.GetName().Name}.{path}{filename}";
-
-            return resourceName;
+            return EmbeddedResourceProvider.GetFile(path) != null;
         }
     }
 }

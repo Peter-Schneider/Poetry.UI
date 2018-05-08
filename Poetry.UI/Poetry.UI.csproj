@@ -128,8 +128,17 @@
     <None Include="form-elements.scss" />
     <None Include="packages.config" />
     <None Include="portal\portal.scss" />
-    <EmbeddedResource Include="Views\Index.cshtml" />
     <None Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj">
+      <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>
+      <Name>Poetry.UI.EmbeddedResourceSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.Portal\Poetry.UI.Portal.csproj">
+      <Project>{6dc147ec-c432-4fce-a78d-bba69ac9be61}</Project>
+      <Name>Poetry.UI.Portal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
