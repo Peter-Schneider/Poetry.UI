@@ -7,8 +7,8 @@
     <ProjectGuid>{8C4CDA01-AB43-4A11-BE8D-778BAD23AFF8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Poetry.UI</RootNamespace>
-    <AssemblyName>Poetry.UI</AssemblyName>
+    <RootNamespace>Poetry.UI.AspNet</RootNamespace>
+    <AssemblyName>Poetry.UI.AspNet</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
