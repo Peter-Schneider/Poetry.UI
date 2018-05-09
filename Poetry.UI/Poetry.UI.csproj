@@ -92,8 +92,6 @@
     <Compile Include="AppSupport\Script.cs" />
     <Compile Include="AppSupport\ScriptAttribute.cs" />
     <Compile Include="AppSupport\StyleAttribute.cs" />
-    <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\PoetryPortalController.cs" />
     <Compile Include="MvcSupport\BasePathProvider.cs" />
     <Compile Include="MvcSupport\IBasePathProvider.cs" />
