@@ -11,28 +11,47 @@ namespace Poetry.UI.EmbeddedResourceSupport
     {
         public string GeneratePath(string resourceName)
         {
-            var remaining = new Queue<string>(resourceName.Split('.'));
-            var result = new StringBuilder();
+            var segments = resourceName.Split('.');
 
-            while (remaining.Any()) {
-                var current = remaining.Dequeue();
+            if(HasUppercaseNonSegmentedFilename(segments))
+            {
+                return 
+            }
 
-                if (result.Length > 0)
+
+
+
+
+
+
+
+
+
+
+            var builder = new StringBuilder();
+
+            while(segments.Any())
+            {
+                var segment = segments.Dequeue();
+
+                if (builder.Length > 0)
                 {
-                    if (char.IsUpper(current[0]) || remaining.Count > 1)
+                    if (char.IsUpper(segment[0]))
                     {
-                        result.Append('/');
+                        builder.Append('/');
                     }
                     else
                     {
-                        result.Append('.');
+                        builder.Append('.');
                     }
                 }
 
-                result.Append(current);
+                builder.Append(segment);
             }
 
-            return result.ToString();
+            var result = builder.ToString();
+
+            return result;
         }
     }
 }

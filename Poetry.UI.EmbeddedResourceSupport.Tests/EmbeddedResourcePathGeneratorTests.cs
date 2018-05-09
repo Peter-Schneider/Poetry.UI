@@ -26,6 +26,14 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         }
 
         [Fact]
+        public void ConvertsLowercaseNonSegmentedFilename()
+        {
+            var result = new EmbeddedResourcePathGenerator().GeneratePath("Lorem.Ipsum.dolor.txt");
+
+            Assert.EndsWith("/dolor.txt", result);
+        }
+
+        [Fact]
         public void ConvertsLowercaseSegmentedFilename()
         {
             var result = new EmbeddedResourcePathGenerator().GeneratePath("Lorem.Ipsum.dolor.sit.amet");
