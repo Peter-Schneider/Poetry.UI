@@ -98,6 +98,7 @@
     <Compile Include="MvcSupport\BasePathProvider.cs" />
     <Compile Include="MvcSupport\IBasePathProvider.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathProvider.cs" />
+    <Compile Include="PoetryConfigurator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualFile.cs" />

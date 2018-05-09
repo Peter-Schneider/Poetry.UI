@@ -14,7 +14,7 @@ namespace Website
         {
             AreaRegistration.RegisterAllAreas();
 
-            this.AddPoetryUI();
+            this.AddPoetryUI().Done();
         }
     }
 }

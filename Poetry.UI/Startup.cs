@@ -20,57 +20,18 @@ namespace Poetry.UI
 {
     public static class Startup
     {
-        public static void AddPoetryUI(this HttpApplication application)
+        /// <summary>
+        /// Add Poetry UI to your application. Don't forget calling .Done() when you're done configuring!
+        /// </summary>
+        /// <param name="application"></param>
+        /// <returns></returns>
+        public static PoetryConfigurator AddPoetryUI(this HttpApplication application)
         {
-            var container = new UnityContainer();
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-            
-            application.AddPoetryUI((t, i) => {
-                if (i is Type)
-                {
-                    container.RegisterSingleton(t, (Type)i);
-                }
-                else
-                {
-                    container.RegisterInstance(t, i);
-                }
-            }, new List<Assembly> {
-                Assembly.GetCallingAssembly()
-            },
-            "Admin");
-        }
+            var configurator = new PoetryConfigurator(new UnityContainer());
 
-        public static void AddPoetryUI(this HttpApplication application, Action<Type, object> registerSingletonInDependencyResolver, IEnumerable<Assembly> assemblies, string basePath = "Poetry")
-        {
-            RouteTable.Routes.MapRoute(
-                "PoetryPortal",
-                basePath,
-                new { controller = "PoetryPortal", action = "Index" },
-                namespaces: new string[] { "Poetry.UI.Controllers" }
-            );
+            configurator.AddAssembly(Assembly.GetCallingAssembly());
 
-            var basePathProvider = (IBasePathProvider)new BasePathProvider(basePath);
-
-            registerSingletonInDependencyResolver(typeof(IBasePathProvider), basePathProvider);
-            registerSingletonInDependencyResolver(typeof(IAppRepository), new AppRepository(new AppCreator().Create(assemblies)));
-
-            var embeddedResourcePathMatcher = new EmbeddedResourcePathMatcher();
-            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
-            var embeddedResourceProvider = new EmbeddedResourceProvider(
-                embeddedResourcePathMatcher,
-                embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()),
-                embeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly),
-                embeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly)
-            );
-
-            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
-
-            registerSingletonInDependencyResolver(typeof(EmbeddedResourceVirtualPathProvider), vpp);
-
-            RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.RouteExistingFiles = true;
-
-            HostingEnvironment.RegisterVirtualPathProvider(vpp);
+            return configurator;
         }
     }
 }
