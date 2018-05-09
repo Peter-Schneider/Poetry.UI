@@ -11,7 +11,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
     {
         public string BasePath { get; }
         public IEnumerable<EmbeddedResource> EmbeddedResources { get; }
-        ReadOnlyDictionary<string, EmbeddedResource> EmbeddedResourcesByPath { get; }
 
         public EmbeddedResourceAssembly(string basePath, params EmbeddedResource[] embeddedResources)
         {
@@ -21,13 +20,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
             }
 
             BasePath = basePath;
-            EmbeddedResources = embeddedResources;
-            EmbeddedResourcesByPath = new ReadOnlyDictionary<string, EmbeddedResource>(embeddedResources.ToDictionary(file => file.Path, file => file));
-        }
-
-        public EmbeddedResource GetFile(string path)
-        {
-            return EmbeddedResourcesByPath.ContainsKey(path) ? EmbeddedResourcesByPath[path] : null;
+            EmbeddedResources = embeddedResources.ToList().AsReadOnly();
         }
     }
 }

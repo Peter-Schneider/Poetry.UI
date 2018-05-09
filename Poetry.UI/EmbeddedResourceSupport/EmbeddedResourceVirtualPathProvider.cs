@@ -27,7 +27,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (Log.IsDebugEnabled)
             {
-                Log.Debug($"Embedded resources found:\n{string.Join("\n", embeddedResourceProvider.Assemblies.Select(a => a.EmbeddedResources.Select(r => $"{basePathProvider.BasePath}/{a.BasePath}/{r.Path}")))}");
+                Log.Debug($"Embedded resources found:\n{string.Join("\n", embeddedResourceProvider.Assemblies.Select(a => a.EmbeddedResources.Select(r => $"{basePathProvider.BasePath}/{a.BasePath}/{r.Name}")))}");
             }
         }
 

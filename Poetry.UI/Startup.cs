@@ -54,8 +54,10 @@ namespace Poetry.UI
             registerSingletonInDependencyResolver(typeof(IBasePathProvider), basePathProvider);
             registerSingletonInDependencyResolver(typeof(IAppRepository), new AppRepository(new AppCreator().Create(assemblies)));
 
-            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator(new EmbeddedResourcePathGenerator());
+            var embeddedResourcePathMatcher = new EmbeddedResourcePathMatcher();
+            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
             var embeddedResourceProvider = new EmbeddedResourceProvider(
+                embeddedResourcePathMatcher,
                 embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()),
                 embeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly),
                 embeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly)

@@ -8,11 +8,13 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceProvider : IEmbeddedResourceProvider
     {
+        IEmbeddedResourcePathMatcher EmbeddedResourcePathMatcher { get; }
         public IEnumerable<EmbeddedResourceAssembly> Assemblies { get; }
         ReadOnlyDictionary<string, EmbeddedResourceAssembly> AssembliesByBasePath { get; }
 
-        public EmbeddedResourceProvider(params EmbeddedResourceAssembly[] assemblies)
+        public EmbeddedResourceProvider(IEmbeddedResourcePathMatcher embeddedResourcePathMatcher, params EmbeddedResourceAssembly[] assemblies)
         {
+            EmbeddedResourcePathMatcher = embeddedResourcePathMatcher;
             CheckForDuplicateBasePaths(assemblies);
 
             Assemblies = assemblies.Where(a => a.BasePath != string.Empty).ToList().AsReadOnly();
@@ -50,7 +52,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             path = path.Substring(slashIndex + 1);
 
-            return assembly.GetFile(path);
+            return assembly.EmbeddedResources.Where(r => EmbeddedResourcePathMatcher.Match(path, r)).FirstOrDefault();
         }
     }
 }
