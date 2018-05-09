@@ -6,7 +6,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourcePathMatcher : IEmbeddedResourcePathMatcher
     {
-        public bool Match(string path, EmbeddedResource embeddedResource)
+        public bool Match(string path, string embeddedResourceName)
         {
             throw new NotImplementedException();
         }

@@ -21,7 +21,7 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
             var assembly = new EmbeddedResourceAssembly("lorem", file);
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
 
-            Mock.Get(matcher).Setup(m => m.Match("...", file)).Returns(true);
+            Mock.Get(matcher).Setup(m => m.Match("...", file.Name)).Returns(true);
 
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, assembly);
 
@@ -35,7 +35,7 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
             var assembly = new EmbeddedResourceAssembly("lorem", file);
 
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
-            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<EmbeddedResource>())).Returns(true);
+            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, assembly);
 
@@ -51,7 +51,7 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
             var assembly = new EmbeddedResourceAssembly("ipsum", file);
 
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
-            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<EmbeddedResource>())).Returns<string, EmbeddedResource>((p, r) => p == r.Name);
+            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<string>())).Returns<string, string>((p, n) => p == n);
 
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, new EmbeddedResourceAssembly("lorem", new EmbeddedResource("file-1", null)), assembly);
 

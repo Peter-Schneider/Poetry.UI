@@ -52,7 +52,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             path = path.Substring(slashIndex + 1);
 
-            return assembly.EmbeddedResources.Where(r => EmbeddedResourcePathMatcher.Match(path, r)).FirstOrDefault();
+            return assembly.EmbeddedResources.Where(r => EmbeddedResourcePathMatcher.Match(path, r.Name)).FirstOrDefault();
         }
     }
 }
