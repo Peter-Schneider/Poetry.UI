@@ -112,13 +112,6 @@
     <EmbeddedResource Include="form-elements.min.css">
       <DependentUpon>form-elements.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="portal\portal.css">
-      <DependentUpon>portal.scss</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="portal\portal.min.css">
-      <DependentUpon>portal.css</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="portal\portal.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="compilerconfig.json" />
@@ -127,7 +120,6 @@
     </None>
     <None Include="form-elements.scss" />
     <None Include="packages.config" />
-    <None Include="portal\portal.scss" />
     <EmbeddedResource Include="Views\Index.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
