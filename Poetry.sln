@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AspNet", "Poetry.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AppSupport", "Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj", "{D3A76A0C-5985-4480-B229-CB84FAD94C68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.Core", "Poetry.UI.Core\Poetry.UI.Core.csproj", "{5EF23959-27B9-4300-971E-5F63A1B71664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF23959-27B9-4300-971E-5F63A1B71664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF23959-27B9-4300-971E-5F63A1B71664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF23959-27B9-4300-971E-5F63A1B71664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF23959-27B9-4300-971E-5F63A1B71664}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

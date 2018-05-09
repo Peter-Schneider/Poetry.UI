@@ -1,7 +1,7 @@
 ﻿using Poetry.UI.AppSupport;
+using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
-using Poetry.UI.MvcSupport;
 using Poetry.UI.Portal;
 using Poetry.UI.TranslationSupport;
 using System;

@@ -1,4 +1,4 @@
-﻿using Poetry.UI.MvcSupport;
+﻿using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using System;
 using System.Collections.Generic;

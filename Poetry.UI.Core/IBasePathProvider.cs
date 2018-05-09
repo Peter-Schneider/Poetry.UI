@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poetry.UI.MvcSupport
+namespace Poetry.UI.Core
 {
     public interface IBasePathProvider
     {
