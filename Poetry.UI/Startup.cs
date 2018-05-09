@@ -14,6 +14,7 @@ using System.Reflection;
 using Unity;
 using Unity.AspNet.Mvc;
 using Poetry.UI.Portal;
+using Poetry.UI.FormSupport;
 
 namespace Poetry.UI
 {
@@ -56,7 +57,7 @@ namespace Poetry.UI
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator(new EmbeddedResourcePathGenerator());
             var embeddedResourceProvider = new EmbeddedResourceProvider(
                 embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()),
-                embeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly)
+                embeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly),
                 embeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly)
             );
 

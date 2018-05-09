@@ -113,6 +113,10 @@
       <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>
       <Name>Poetry.UI.EmbeddedResourceSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj">
+      <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>
+      <Name>Poetry.UI.FormSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.Portal\Poetry.UI.Portal.csproj">
       <Project>{6dc147ec-c432-4fce-a78d-bba69ac9be61}</Project>
       <Name>Poetry.UI.Portal</Name>
