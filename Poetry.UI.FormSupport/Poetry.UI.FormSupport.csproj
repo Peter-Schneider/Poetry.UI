@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\form-builder.js" />
+    <EmbeddedResource Include="Scripts\form-builder.js" />
+    <None Remove="Scripts\model-builder.js" />
+    <EmbeddedResource Include="Scripts\model-builder.js" />
+    <None Remove="Styles\form-elements.css" />
+    <EmbeddedResource Include="Styles\form-elements.css">
+      <DependentUpon>form-elements.scss</DependentUpon>
+    </EmbeddedResource>
+    <None Remove="Styles\form-elements.min.css" />
+    <EmbeddedResource Include="Styles\form-elements.min.css">
+      <DependentUpon>form-elements.css</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+  </ItemGroup>
+
+</Project>

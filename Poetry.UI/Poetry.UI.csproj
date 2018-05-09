@@ -104,21 +104,6 @@
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="form-builder\form-builder.js" />
-    <EmbeddedResource Include="form-builder\model-builder.js" />
-    <EmbeddedResource Include="form-elements.css">
-      <DependentUpon>form-elements.scss</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form-elements.min.css">
-      <DependentUpon>form-elements.css</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
-    <None Include="form-elements.scss" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Views\Index.cshtml" />
     <None Include="Web.config" />

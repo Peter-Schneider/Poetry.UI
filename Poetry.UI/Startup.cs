@@ -56,6 +56,7 @@ namespace Poetry.UI
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator(new EmbeddedResourcePathGenerator());
             var embeddedResourceProvider = new EmbeddedResourceProvider(
                 embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()),
+                embeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly)
                 embeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly)
             );
 
