@@ -120,6 +120,10 @@
       <Project>{6dc147ec-c432-4fce-a78d-bba69ac9be61}</Project>
       <Name>Poetry.UI.Portal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj">
+      <Project>{30A9C384-8B5F-4755-A8BA-5FC9F5873ACB}</Project>
+      <Name>Poetry.UI.TranslationSupport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

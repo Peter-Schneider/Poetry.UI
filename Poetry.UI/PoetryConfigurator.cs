@@ -3,6 +3,7 @@ using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.MvcSupport;
 using Poetry.UI.Portal;
+using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -65,7 +66,6 @@ namespace Poetry.UI
             var basePathProvider = (IBasePathProvider)new BasePathProvider(BasePath);
 
             Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
-            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator().Create(Assemblies)));
 
             var assemblies = new List<EmbeddedResourceAssembly>();
 
@@ -85,6 +85,8 @@ namespace Poetry.UI
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
+
+            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(embeddedResourceProvider, new XmlTranslationParser())).Create(Assemblies)));
         }
     }
 }

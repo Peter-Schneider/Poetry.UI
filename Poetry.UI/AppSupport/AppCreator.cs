@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.TranslationSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,6 +9,13 @@ namespace Poetry.UI.AppSupport //
 {
     public class AppCreator
     {
+        ITranslationRepositoryCreator TranslationRepositoryCreator { get; }
+
+        public AppCreator(ITranslationRepositoryCreator translationRepositoryCreator)
+        {
+            TranslationRepositoryCreator = translationRepositoryCreator;
+        }
+
         public IEnumerable<App> Create(IEnumerable<Assembly> assemblies)
         {
             var types = assemblies
@@ -22,7 +30,12 @@ namespace Poetry.UI.AppSupport //
                     continue;
                 }
 
-                yield return new App(attribute.Id, type.GetTypeInfo().GetCustomAttributes<ScriptAttribute>().Select(s => new Script(s.Src, s.Order)), type.GetTypeInfo().GetCustomAttributes<StyleAttribute>().Select(s => s.Href));
+                yield return new App(
+                    attribute.Id,
+                    type.GetTypeInfo().GetCustomAttributes<ScriptAttribute>().Select(s => new Script(s.Src, s.Order)),
+                    type.GetTypeInfo().GetCustomAttributes<StyleAttribute>().Select(s => s.Href),
+                    translations: TranslationRepositoryCreator.Create(type.GetTypeInfo().GetCustomAttribute<TranslationsAttribute>().Path)
+                );
             }
         }
     }

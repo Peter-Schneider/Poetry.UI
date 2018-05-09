@@ -74,7 +74,7 @@
         ]);
     </script>
     <script>
-        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => string.Join(" ", app.Name.Split('-').Select(n => n.Substring(0, 1).ToUpper() + n.Substring(1)))))));
+        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? string.Join(" ", app.Name.Split('-').Select(n => n.Substring(0, 1).ToUpper() + n.Substring(1)))))));
     </script>
     @foreach (var app in AppRepository.GetAll())
     {
