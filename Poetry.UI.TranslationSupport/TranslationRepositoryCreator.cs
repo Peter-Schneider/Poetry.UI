@@ -18,7 +18,14 @@ namespace Poetry.UI.TranslationSupport
 
         public TranslationRepository Create(string path)
         {
-            using (var read = EmbeddedResourceProvider.GetFile(path).Open())
+            var file = EmbeddedResourceProvider.GetFile(path);
+
+            if(file == null)
+            {
+                throw new Exception($"Could not find embedded resource {path}");
+            }
+
+            using (var read = file.Open())
             {
                 return new TranslationRepository(TranslationParser.Parse(read));
             }

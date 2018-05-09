@@ -30,11 +30,18 @@ namespace Poetry.UI.AppSupport //
                     continue;
                 }
 
+                var typeInfo = type.GetTypeInfo();
+
+                var scripts = typeInfo.GetCustomAttributes<ScriptAttribute>().Select(s => new Script(s.Src, s.Order));
+                var styles = typeInfo.GetCustomAttributes<StyleAttribute>().Select(s => s.Href);
+                var translationAttribute = typeInfo.GetCustomAttribute<TranslationsAttribute>();
+                var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new TranslationRepository(new Dictionary<string, Dictionary<string, string>>());
+
                 yield return new App(
                     attribute.Id,
-                    type.GetTypeInfo().GetCustomAttributes<ScriptAttribute>().Select(s => new Script(s.Src, s.Order)),
-                    type.GetTypeInfo().GetCustomAttributes<StyleAttribute>().Select(s => s.Href),
-                    translations: TranslationRepositoryCreator.Create(type.GetTypeInfo().GetCustomAttribute<TranslationsAttribute>().Path)
+                    scripts: scripts,
+                    styles: styles,
+                    translations: translations
                 );
             }
         }
