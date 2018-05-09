@@ -84,14 +84,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSupport\App.cs" />
-    <Compile Include="AppSupport\AppAttribute.cs" />
-    <Compile Include="AppSupport\AppCreator.cs" />
-    <Compile Include="AppSupport\AppRepository.cs" />
-    <Compile Include="AppSupport\IAppRepository.cs" />
-    <Compile Include="AppSupport\Script.cs" />
-    <Compile Include="AppSupport\ScriptAttribute.cs" />
-    <Compile Include="AppSupport\StyleAttribute.cs" />
     <Compile Include="Controllers\PoetryPortalController.cs" />
     <Compile Include="MvcSupport\BasePathProvider.cs" />
     <Compile Include="MvcSupport\IBasePathProvider.cs" />
@@ -108,6 +100,10 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj">
+      <Project>{d3a76a0c-5985-4480-b229-cb84fad94c68}</Project>
+      <Name>Poetry.UI.AppSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj">
       <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>
       <Name>Poetry.UI.EmbeddedResourceSupport</Name>

@@ -132,6 +132,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj">
+      <Project>{D3A76A0C-5985-4480-B229-CB84FAD94C68}</Project>
+      <Name>Poetry.UI.AppSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.AspNet\Poetry.UI.AspNet.csproj">
       <Project>{8c4cda01-ab43-4a11-be8d-778bad23aff8}</Project>
       <Name>Poetry.UI.AspNet</Name>
