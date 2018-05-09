@@ -1,31 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="compilerconfig.json" />
     <None Remove="Scripts\portal.js" />
+    <EmbeddedResource Include="Scripts\portal.js" />
     <None Remove="Styles\portal.css" />
+    <EmbeddedResource Include="Styles\portal.css">
+      <DependentUpon>portal.scss</DependentUpon>
+    </EmbeddedResource>
     <None Remove="Styles\portal.min.css" />
+    <EmbeddedResource Include="Styles\portal.min.css">
+      <DependentUpon>portal.css</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Scripts\portal.js" />
-    <EmbeddedResource Include="Styles\portal.css">
-      <DependentUpon>portal.scss</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Styles\portal.min.css">
-      <DependentUpon>portal.css</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="compilerconfig.json.defaults">
+    <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
 
 </Project>
