@@ -95,6 +95,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <EmbeddedResource Include="Views\Index.cshtml" />
+    <None Include="Views\Web.config" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
