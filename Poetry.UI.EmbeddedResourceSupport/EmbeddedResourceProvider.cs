@@ -13,8 +13,22 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
         public EmbeddedResourceProvider(params EmbeddedResourceAssembly[] assemblies)
         {
-            Assemblies = assemblies.ToList().AsReadOnly();
+            CheckForDuplicateBasePaths(assemblies);
+
+            Assemblies = assemblies.Where(a => a.BasePath != string.Empty).ToList().AsReadOnly();
             AssembliesByBasePath = new ReadOnlyDictionary<string, EmbeddedResourceAssembly>(Assemblies.ToDictionary(a => a.BasePath, a => a));
+        }
+
+        void CheckForDuplicateBasePaths(IEnumerable<EmbeddedResourceAssembly> assemblies)
+        {
+            var set = new HashSet<string>();
+
+            foreach(var basePath in assemblies.Select(a => a.BasePath)) {
+                if (!set.Add(basePath))
+                {
+                    throw new Exception($"Duplicate base paths not allowed. {basePath} appeared {assemblies.Select(a => a.BasePath).Where(p => p == basePath).Count()} times");
+                }
+            }
         }
 
         public EmbeddedResource GetFile(string path)

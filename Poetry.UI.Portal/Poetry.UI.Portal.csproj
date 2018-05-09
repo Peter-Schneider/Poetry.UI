@@ -9,7 +9,6 @@
     <None Remove="Scripts\portal.js" />
     <None Remove="Styles\portal.css" />
     <None Remove="Styles\portal.min.css" />
-    <None Remove="Views\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
     <EmbeddedResource Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Index.cshtml" />
   </ItemGroup>
 
 </Project>

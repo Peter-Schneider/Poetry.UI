@@ -41,7 +41,7 @@ namespace Poetry.UI.Controllers
                 return new FileStreamResult(file.Open(), mimeType);
             }
 
-            return View($"~/{BasePathProvider.BasePath}/Portal/Views/Index.cshtml");
+            return View($"~/{BasePathProvider.BasePath}/Core/Views/Index.cshtml");
         }
         
         public ActionResult StaticFile()

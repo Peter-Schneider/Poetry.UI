@@ -15,6 +15,11 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
         public EmbeddedResourceAssembly(string basePath, params EmbeddedResource[] embeddedResources)
         {
+            if (string.IsNullOrEmpty(basePath))
+            {
+                throw new ArgumentException(nameof(basePath));
+            }
+
             BasePath = basePath;
             EmbeddedResources = embeddedResources;
             EmbeddedResourcesByPath = new ReadOnlyDictionary<string, EmbeddedResource>(embeddedResources.ToDictionary(file => file.Path, file => file));

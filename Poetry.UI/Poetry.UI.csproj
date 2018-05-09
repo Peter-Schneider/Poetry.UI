@@ -128,6 +128,7 @@
     <None Include="form-elements.scss" />
     <None Include="packages.config" />
     <None Include="portal\portal.scss" />
+    <EmbeddedResource Include="Views\Index.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

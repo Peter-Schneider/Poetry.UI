@@ -10,19 +10,17 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         {
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider();
 
-            Assert.Null(sut.GetFile("lorem ipsum (missing file)"));
+            Assert.Null(sut.GetFile("missing-file"));
         }
 
         [Fact]
-        public void ReturnsCorrectFile()
+        public void ReturnsFile()
         {
             var file = new EmbeddedResource("ipsum", null);
             var assembly = new EmbeddedResourceAssembly("lorem", file);
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(assembly);
 
-            var result = sut.GetFile("lorem/ipsum");
-            Assert.NotNull(result);
-            Assert.Same(file, result);
+            Assert.Same(file, sut.GetFile("lorem/ipsum"));
         }
 
         [Fact]
@@ -38,28 +36,32 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         }
 
         [Fact]
-        public void SupportsMultipleAssemblies()
+        public void MultipleAssemblies()
         {
-            var file1 = new EmbeddedResource("file-1", null);
-            var assembly1 = new EmbeddedResourceAssembly("lorem", file1);
+            var file = new EmbeddedResource("file-2", null);
+            var assembly = new EmbeddedResourceAssembly("ipsum", file);
 
-            var file2 = new EmbeddedResource("file-2", null);
-            var assembly2 = new EmbeddedResourceAssembly("ipsum", file2);
-
-            var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(assembly1, assembly2);
+            var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(new EmbeddedResourceAssembly("lorem", new EmbeddedResource("file-1", null)), assembly);
 
             Assert.Null(sut.GetFile("lorem/file-2"));
             Assert.Null(sut.GetFile("ipsum/file-1"));
 
-            var result1 = sut.GetFile("lorem/file-1");
+            var result = sut.GetFile("ipsum/file-2");
 
-            Assert.NotNull(result1);
-            Assert.Same(file1, result1);
+            Assert.Same(file, result);
+        }
 
-            var result2 = sut.GetFile("ipsum/file-2");
+        [Fact]
+        public void ThrowsOnNullOrEmptyBasePath()
+        {
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(string.Empty));
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(null));
+        }
 
-            Assert.NotNull(result2);
-            Assert.Same(file2, result2);
+        [Fact]
+        public void ThrowsOnDuplicateBasePaths()
+        {
+            Assert.Throws<Exception>(() => new EmbeddedResourceProvider(new EmbeddedResourceAssembly("lorem"), new EmbeddedResourceAssembly("lorem")));
         }
     }
 }
