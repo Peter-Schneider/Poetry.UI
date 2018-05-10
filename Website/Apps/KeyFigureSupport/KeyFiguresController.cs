@@ -12,8 +12,9 @@ namespace Website.Apps.KeyFigureSupport
     [RoutePrefix("Apps/KeyFigures")]
     public class KeyFiguresController : ApiController
     {
-        List<KeyFigure> Items { get; } = new List<KeyFigure> {
+        static List<KeyFigure> Items { get; } = new List<KeyFigure> {
             new KeyFigure {
+                Id = Guid.NewGuid().ToString(),
                 Key = "Lorem",
                 Value = "Ipsum",
             }
@@ -29,7 +30,12 @@ namespace Website.Apps.KeyFigureSupport
         [HttpPost]
         public void Save([FromBody]KeyFigure item)
         {
-            var index = Items.FindIndex(i => i.Key == item.Key);
+            if(item.Id == null)
+            {
+                item.Id = Guid.NewGuid().ToString();
+            }
+
+            var index = Items.FindIndex(i => i.Id == item.Id);
 
             if (index != -1)
             {
