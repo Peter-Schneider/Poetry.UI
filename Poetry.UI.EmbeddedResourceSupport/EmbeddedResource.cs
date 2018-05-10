@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Poetry.UI.EmbeddedResourceSupport
@@ -6,17 +7,22 @@ namespace Poetry.UI.EmbeddedResourceSupport
     public class EmbeddedResource
     {
         public string Name { get; }
-        Func<Stream> OpenFunc { get; }
 
-        public EmbeddedResource(string name, Func<Stream> openFunc)
+        public EmbeddedResource(string name)
         {
             Name = name;
-            OpenFunc = openFunc;
         }
 
-        public Stream Open()
+        public override bool Equals(object obj)
         {
-            return OpenFunc();
+            var resource = obj as EmbeddedResource;
+            return resource != null &&
+                   Name == resource.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
     }
 }

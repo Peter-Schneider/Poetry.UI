@@ -17,25 +17,25 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         [Fact]
         public void ReturnsMatchingFile()
         {
-            var file = new EmbeddedResource("ipsum", null);
-            var assembly = new EmbeddedResourceAssembly("lorem", file);
+            var file = new EmbeddedResource("...");
+            var assembly = new EmbeddedResourceAssembly("name", "lorem", null, file);
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
 
-            Mock.Get(matcher).Setup(m => m.Match("...", file.Name)).Returns(true);
+            Mock.Get(matcher).Setup(m => m.Match(assembly, file, "ipsum")).Returns(true);
 
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, assembly);
 
-            Assert.Same(file, sut.GetFile("lorem/..."));
+            Assert.Same(file, sut.GetFile("lorem/ipsum"));
         }
 
         [Fact]
         public void ChecksBasePath()
         {
-            var file = new EmbeddedResource("ipsum", null);
-            var assembly = new EmbeddedResourceAssembly("lorem", file);
+            var file = new EmbeddedResource("ipsum");
+            var assembly = new EmbeddedResourceAssembly("name", "lorem", null, file);
 
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
-            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<EmbeddedResourceAssembly>(), It.IsAny<EmbeddedResource>(), It.IsAny<string>())).Returns(true);
 
             var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, assembly);
 
@@ -47,13 +47,13 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         [Fact]
         public void MultipleAssemblies()
         {
-            var file = new EmbeddedResource("file-2", null);
-            var assembly = new EmbeddedResourceAssembly("ipsum", file);
+            var file = new EmbeddedResource("file-2");
+            var assembly = new EmbeddedResourceAssembly("name", "ipsum", null, file);
 
             var matcher = Mock.Of<IEmbeddedResourcePathMatcher>();
-            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<string>(), It.IsAny<string>())).Returns<string, string>((p, n) => p == n);
+            Mock.Get(matcher).Setup(m => m.Match(It.IsAny<EmbeddedResourceAssembly>(), It.IsAny<EmbeddedResource>(), It.IsAny<string>())).Returns<EmbeddedResourceAssembly, EmbeddedResource, string>((a, r, p) => r.Name == p);
 
-            var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, new EmbeddedResourceAssembly("lorem", new EmbeddedResource("file-1", null)), assembly);
+            var sut = (IEmbeddedResourceProvider)new EmbeddedResourceProvider(matcher, new EmbeddedResourceAssembly("name", "lorem", null, new EmbeddedResource("file-1")), assembly);
 
             Assert.Null(sut.GetFile("lorem/file-2"));
             Assert.Null(sut.GetFile("ipsum/file-1"));
@@ -66,14 +66,21 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         [Fact]
         public void ThrowsOnNullOrEmptyBasePath()
         {
-            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(string.Empty));
-            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(null));
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly("name", string.Empty, null));
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly("name", null, null));
+        }
+
+        [Fact]
+        public void ThrowsOnNullOrEmptyName()
+        {
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(string.Empty, "basePath", null));
+            Assert.Throws<ArgumentException>(() => new EmbeddedResourceAssembly(null, "basePath", null));
         }
 
         [Fact]
         public void ThrowsOnDuplicateBasePaths()
         {
-            Assert.Throws<Exception>(() => new EmbeddedResourceProvider(null, new EmbeddedResourceAssembly("lorem"), new EmbeddedResourceAssembly("lorem")));
+            Assert.Throws<Exception>(() => new EmbeddedResourceProvider(null, new EmbeddedResourceAssembly("name", "lorem", null), new EmbeddedResourceAssembly("name", "lorem", null)));
         }
     }
 }

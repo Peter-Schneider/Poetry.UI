@@ -2,6 +2,6 @@
 {
     public interface IEmbeddedResourcePathMatcher
     {
-        bool Match(string path, string name);
+        bool Match(EmbeddedResourceAssembly embeddedResourceAssembly, EmbeddedResource embeddedResource, string path);
     }
 }

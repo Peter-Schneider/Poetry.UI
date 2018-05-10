@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +11,31 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceAssembly
     {
+        public string Name { get; }
         public string BasePath { get; }
+        Func<EmbeddedResource, Stream> OpenEmbeddedResourceStream { get; }
         public IEnumerable<EmbeddedResource> EmbeddedResources { get; }
 
-        public EmbeddedResourceAssembly(string basePath, params EmbeddedResource[] embeddedResources)
+        public EmbeddedResourceAssembly(string name, string basePath, Func<EmbeddedResource, Stream> openEmbeddedResourceStream, params EmbeddedResource[] embeddedResources)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException(nameof(name));
+            }
             if (string.IsNullOrEmpty(basePath))
             {
                 throw new ArgumentException(nameof(basePath));
             }
 
+            Name = name;
             BasePath = basePath;
-            EmbeddedResources = embeddedResources.ToList().AsReadOnly();
+            OpenEmbeddedResourceStream = openEmbeddedResourceStream;
+            EmbeddedResources = new HashSet<EmbeddedResource>(embeddedResources).ToImmutableHashSet();
+        }
+
+        internal Stream Open(EmbeddedResource embeddedResource)
+        {
+            return OpenEmbeddedResourceStream(embeddedResource);
         }
     }
 }

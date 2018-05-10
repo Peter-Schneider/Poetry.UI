@@ -141,7 +141,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
                 return Previous.GetFile(virtualPath);
             }
 
-            return new EmbeddedResourceVirtualFile(virtualPath, EmbeddedResourceProvider.GetFile(path));
+            return new EmbeddedResourceVirtualFile(EmbeddedResourceProvider, EmbeddedResourceProvider.GetFile(path), virtualPath);
         }
 
         bool Exists(string path)

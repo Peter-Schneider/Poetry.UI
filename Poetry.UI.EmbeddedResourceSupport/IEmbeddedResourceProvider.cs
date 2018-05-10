@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Poetry.UI.EmbeddedResourceSupport
 {
@@ -6,5 +7,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
     {
         IEnumerable<EmbeddedResourceAssembly> Assemblies { get; }
         EmbeddedResource GetFile(string path);
+        Stream Open(EmbeddedResource embeddedResource);
     }
 }

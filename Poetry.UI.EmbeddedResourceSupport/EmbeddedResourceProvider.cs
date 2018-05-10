@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -52,7 +53,14 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             path = path.Substring(slashIndex + 1);
 
-            return assembly.EmbeddedResources.Where(r => EmbeddedResourcePathMatcher.Match(path, r.Name)).FirstOrDefault();
+            return assembly.EmbeddedResources.Where(r => EmbeddedResourcePathMatcher.Match(assembly, r, path)).FirstOrDefault();
+        }
+
+        public Stream Open(EmbeddedResource embeddedResource)
+        {
+            var assembly = Assemblies.Where(a => a.EmbeddedResources.Contains(embeddedResource)).Single();
+
+            return assembly.Open(embeddedResource);
         }
     }
 }

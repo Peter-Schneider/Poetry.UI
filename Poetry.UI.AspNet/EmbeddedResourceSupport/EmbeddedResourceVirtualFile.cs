@@ -11,15 +11,17 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceVirtualFile : VirtualFile
     {
+        IEmbeddedResourceProvider EmbeddedResourceProvider { get; }
         EmbeddedResource EmbeddedResource { get; }
 
-        public EmbeddedResourceVirtualFile(string virtualPath, EmbeddedResource embeddedResource) : base(virtualPath) {
+        public EmbeddedResourceVirtualFile(IEmbeddedResourceProvider embeddedResourceProvider, EmbeddedResource embeddedResource, string virtualPath) : base(virtualPath) {
+            EmbeddedResourceProvider = embeddedResourceProvider;
             EmbeddedResource = embeddedResource;    
         }
 
         public override Stream Open()
         {
-            return EmbeddedResource.Open();
+            return EmbeddedResourceProvider.Open(EmbeddedResource);
         }
     }
 }

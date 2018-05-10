@@ -6,9 +6,19 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourcePathMatcher : IEmbeddedResourcePathMatcher
     {
-        public bool Match(string path, string name)
+        public bool Match(EmbeddedResourceAssembly embeddedResourceAssembly, EmbeddedResource embeddedResource, string path)
         {
             path = path.ToLower();
+
+            var name = embeddedResource.Name;
+
+            if(!name.StartsWith(embeddedResourceAssembly.Name + "."))
+            {
+                return false;
+            }
+
+            name = name.Substring(embeddedResourceAssembly.Name.Length + ".".Length);
+
             name = name.ToLower();
 
             if(path == name)
