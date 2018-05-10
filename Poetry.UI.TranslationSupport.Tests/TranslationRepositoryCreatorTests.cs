@@ -1,5 +1,5 @@
 ﻿using Moq;
-using Poetry.UI.EmbeddedResourceSupport;
+using Poetry.UI.FileSupport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Poetry.UI.TranslationSupport.Tests
         [Fact]
         public void ThrowsOnMissingFile()
         {
-            var sut = new TranslationRepositoryCreator(Mock.Of<IEmbeddedResourceProvider>(), null);
+            var sut = new TranslationRepositoryCreator(Mock.Of<IFileProvider>(), null);
 
             Assert.Throws<Exception>(() => sut.Create("missing-file"));
         }
