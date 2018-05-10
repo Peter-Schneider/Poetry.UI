@@ -58,7 +58,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
         public Stream Open(EmbeddedResource embeddedResource)
         {
-            var assembly = Assemblies.Where(a => a.EmbeddedResources.Contains(embeddedResource)).Single();
+            var assembly = Assemblies.Where(a => a.Contains(embeddedResource)).Single();
 
             return assembly.Open(embeddedResource);
         }

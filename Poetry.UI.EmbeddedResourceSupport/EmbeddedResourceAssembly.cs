@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -15,6 +14,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
         public string BasePath { get; }
         Func<EmbeddedResource, Stream> OpenEmbeddedResourceStream { get; }
         public IEnumerable<EmbeddedResource> EmbeddedResources { get; }
+        ISet<EmbeddedResource> EmbeddedResourcesSet { get; }
 
         public EmbeddedResourceAssembly(string name, string basePath, Func<EmbeddedResource, Stream> openEmbeddedResourceStream, params EmbeddedResource[] embeddedResources)
         {
@@ -30,10 +30,16 @@ namespace Poetry.UI.EmbeddedResourceSupport
             Name = name;
             BasePath = basePath;
             OpenEmbeddedResourceStream = openEmbeddedResourceStream;
-            EmbeddedResources = new HashSet<EmbeddedResource>(embeddedResources).ToImmutableHashSet();
+            EmbeddedResources = embeddedResources.ToList().AsReadOnly();
+            EmbeddedResourcesSet = new HashSet<EmbeddedResource>(embeddedResources);
         }
 
-        internal Stream Open(EmbeddedResource embeddedResource)
+        public bool Contains(EmbeddedResource embeddedResource)
+        {
+            return EmbeddedResources.Contains(embeddedResource);
+        }
+
+        public Stream Open(EmbeddedResource embeddedResource)
         {
             return OpenEmbeddedResourceStream(embeddedResource);
         }

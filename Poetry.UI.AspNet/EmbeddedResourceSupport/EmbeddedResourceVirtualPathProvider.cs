@@ -24,11 +24,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
         public EmbeddedResourceVirtualPathProvider(IBasePathProvider basePathProvider, IEmbeddedResourceProvider embeddedResourceProvider) {
             BasePathProvider = basePathProvider;
             EmbeddedResourceProvider = embeddedResourceProvider;
-
-            if (Log.IsDebugEnabled)
-            {
-                Log.Debug($"Embedded resources found:\n{string.Join("\n", embeddedResourceProvider.Assemblies.Select(a => a.EmbeddedResources.Select(r => $"{basePathProvider.BasePath}/{a.BasePath}/{r.Name}")))}");
-            }
         }
 
         public override bool FileExists(string virtualPath)
