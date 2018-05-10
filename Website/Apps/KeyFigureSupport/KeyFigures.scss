@@ -1,0 +1,63 @@
+﻿
+
+
+/* LIST */
+
+.list-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: 5px;
+        padding-right: 0;
+        border-bottom: solid 1px #ccc;
+        font-size: 80%;
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: normal;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 80%;
+
+        &.list-column-header {
+            width: 50%;
+        }
+
+        &.list-edit-column-header {
+            width: 1%;
+        }
+    }
+
+    td.list-edit-column {
+        padding-right: 5px;
+        line-height: 1;
+    }
+
+    tr:hover td {
+        background: #f3f3f3;
+    }
+}
+
+
+
+/* EDIT BUTTON */
+
+list-edit-button {
+    display: block;
+    padding: 4px;
+    border: none;
+    background: #0058ad;
+    color: white;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+list-edit-button:hover {
+    background: darken(#0058ad, 10%);
+}

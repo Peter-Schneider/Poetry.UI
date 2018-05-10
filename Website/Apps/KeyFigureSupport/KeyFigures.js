@@ -21,14 +21,20 @@ portal.addApp(class KeyFigures extends App {
 
 class KeyFiguresBackend {
     getAll() {
-        return fetch('/Admin/KeyFigures/GetAll', {
+        return fetch('/Apps/KeyFigures/GetAll', {
             credentials: 'include'
         })
-            .then(response => response.json());
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} (${response.statusText})`);
+                }
+
+                return response.json();
+            });
     }
 
     save(keyFigure) {
-        return fetch('/Admin/KeyFigures/Save', {
+        return fetch('/Apps/KeyFigures/Save', {
             credentials: 'include',
             method: 'POST',
             headers: {
