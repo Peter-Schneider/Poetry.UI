@@ -1,4 +1,5 @@
 ﻿using Poetry.UI.AppSupport;
+using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
@@ -86,7 +87,7 @@ namespace Poetry.UI
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
 
-            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(embeddedResourceProvider, new XmlTranslationParser())).Create(Assemblies)));
+            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser())).Create(Assemblies)));
         }
     }
 }

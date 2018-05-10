@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 
 namespace Poetry.UI.FileSupport
 {
-    public class IFileProvider
+    public interface IFileProvider
     {
+        Stream OpenFile(string path);
     }
 }
