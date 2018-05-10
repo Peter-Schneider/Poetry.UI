@@ -194,6 +194,10 @@ class App {
         this.blades.push(blade);
         this.root.appendChild(blade.root);
 
+        blade.root.scrollIntoView({
+            behavior: 'smooth'
+        });
+
         return blade;
     }
 
