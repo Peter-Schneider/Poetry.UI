@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Website.Apps.KeyFigureSupport
 {
-    [App("key-figures")]
+    [App("KeyFigures")]
     [Script("/Apps/KeyFigureSupport/KeyFigures.js")]
     [Translations("/Apps/KeyFigureSupport/lang.xml")]
     public class KeyFiguresApp
