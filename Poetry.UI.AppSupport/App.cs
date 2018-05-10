@@ -11,9 +11,9 @@ namespace Poetry.UI.AppSupport
         public string Name { get; }
         public IEnumerable<Script> Scripts { get; }
         public IEnumerable<string> Styles { get; }
-        public TranslationRepository Translations { get; }
+        public ITranslationRepository Translations { get; }
 
-        public App(string name, IEnumerable<Script> scripts, IEnumerable<string> styles, TranslationRepository translations)
+        public App(string name, IEnumerable<Script> scripts, IEnumerable<string> styles, ITranslationRepository translations)
         {
             Name = name;
             Scripts = scripts.ToList().AsReadOnly();

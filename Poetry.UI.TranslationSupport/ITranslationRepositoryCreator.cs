@@ -2,6 +2,6 @@
 {
     public interface ITranslationRepositoryCreator
     {
-        TranslationRepository Create(string path);
+        ITranslationRepository Create(string path);
     }
 }

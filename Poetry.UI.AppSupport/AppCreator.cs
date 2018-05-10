@@ -35,7 +35,7 @@ namespace Poetry.UI.AppSupport //
                 var scripts = typeInfo.GetCustomAttributes<ScriptAttribute>().Select(s => new Script(s.Src, s.Order));
                 var styles = typeInfo.GetCustomAttributes<StyleAttribute>().Select(s => s.Href);
                 var translationAttribute = typeInfo.GetCustomAttribute<TranslationsAttribute>();
-                var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new TranslationRepository(new Dictionary<string, Dictionary<string, string>>());
+                var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new EmptyTranslationRepository();
 
                 yield return new App(
                     attribute.Id,

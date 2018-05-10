@@ -16,7 +16,7 @@ namespace Poetry.UI.TranslationSupport
             TranslationParser = translationParser;
         }
 
-        public TranslationRepository Create(string path)
+        public ITranslationRepository Create(string path)
         {
             using (var read = FileProvider.OpenFile(path))
             {

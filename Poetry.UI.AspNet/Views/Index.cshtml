@@ -87,7 +87,7 @@
     <link rel="stylesheet" type="text/css" href="@style" />
         }
     <script>
-        portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll())))))));
+        portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))))))));
     </script>
     }
 </head>
