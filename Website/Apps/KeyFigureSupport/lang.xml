@@ -2,5 +2,15 @@
 <lang>
   <en>
     <name>Key figures</name>
+    <Key>Key</Key>
+    <Value>Value</Value>
+    <KeyFigures>Key figures</KeyFigures>
+    <Edit>Edit</Edit>
+    <New>New</New>
+    <Close>Close</Close>
+    <EditKeyFigure>Edit key figure</EditKeyFigure>
+    <NewKeyFigure>New key figure</NewKeyFigure>
+    <Save>Save</Save>
+    <Cancel>Cancel</Cancel>
   </en>
 </lang>
