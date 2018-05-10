@@ -74,7 +74,7 @@
         ]);
     </script>
     <script>
-        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name)));
+        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
     </script>
     @foreach (var app in AppRepository.GetAll())
     {
@@ -87,7 +87,7 @@
     <link rel="stylesheet" type="text/css" href="@style" />
         }
     <script>
-        portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))))))));
+        portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
     </script>
     }
 </head>
