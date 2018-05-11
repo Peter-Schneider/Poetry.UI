@@ -12,6 +12,20 @@
     <copyright>Copyright 2018</copyright>
   </metadata>
   <files>
+    <file src="bin\Poetry.UI.AppSupport.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.AppSupport.pdb" target="lib\net461\" />
     <file src="bin\Poetry.UI.AspNet.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.Core.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.Core.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.EmbeddedResourceSupport.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.EmbeddedResourceSupport.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.FileSupport.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.FileSupport.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.FormSupport.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.FormSupport.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.Portal.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.Portal.pdb" target="lib\net461\" />
+    <file src="bin\Poetry.UI.TranslationSupport.dll" target="lib\net461\" />
+    <file src="bin\Poetry.UI.TranslationSupport.pdb" target="lib\net461\" />
   </files>
 </package>
