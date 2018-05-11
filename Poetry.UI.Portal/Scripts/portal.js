@@ -78,6 +78,10 @@ class Portal {
     }
 
     openStartApp() {
+        if (!this.appClasses[0]) {
+            return;
+        }
+
         this.openApp(this.appClasses[0].name);
     }
 
