@@ -1,5 +1,4 @@
-﻿using log4net;
-using Poetry.UI.Core;
+﻿using Poetry.UI.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +16,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceVirtualPathProvider : VirtualPathProvider
     {
-        ILog Log { get; } = LogManager.GetLogger(typeof(EmbeddedResourceVirtualPathProvider));
         IBasePathProvider BasePathProvider { get; }
         IEmbeddedResourceProvider EmbeddedResourceProvider { get; }
 
@@ -51,11 +49,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (!Exists(path))
             {
-                if (Log.IsDebugEnabled)
-                {
-                    Log.Debug($"File {path} did not exist, exiting");
-                }
-
                 return Previous.FileExists(virtualPath);
             }
             
@@ -87,11 +80,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (!Exists(path))
             {
-                if (Log.IsDebugEnabled)
-                {
-                    Log.Debug($"Resource {path} did not exist, exiting");
-                }
-
                 return Previous.GetCacheDependency(virtualPath, virtualPathDependencies, utcStart);
             }
 
@@ -116,11 +104,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (!path.StartsWith(prefix))
             {
-                //if (Log.IsDebugEnabled)
-                //{
-                //    Log.Debug($"Path {path} did not start with {prefix}, exiting");
-                //}
-
                 return Previous.GetFile(virtualPath);
             }
 
@@ -128,11 +111,6 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
             if (!Exists(path))
             {
-                if (Log.IsDebugEnabled)
-                {
-                    Log.Debug($"Resource {path} did not exist, exiting");
-                }
-
                 return Previous.GetFile(virtualPath);
             }
 
