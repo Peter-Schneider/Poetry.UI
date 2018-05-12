@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <None Remove="Scripts\form-builder.js" />
+    <None Remove="Scripts\form-elements.js" />
     <EmbeddedResource Include="Scripts\form-builder.js" />
     <None Remove="Scripts\model-builder.js" />
+    <EmbeddedResource Include="Scripts\form-elements.js" />
     <EmbeddedResource Include="Scripts\model-builder.js" />
     <None Remove="Styles\form-elements.css" />
     <EmbeddedResource Include="Styles\form-elements.css">

@@ -24,54 +24,13 @@
     <link rel="stylesheet" type="text/css" href="Form/Styles/form-elements.css" />
     <script src="Form/Scripts/model-builder.js"></script>
     <script src="Form/Scripts/form-builder.js"></script>
+    <script src="Form/Scripts/property-definition-provider.js"></script>
+    <script src="Form/Scripts/form-elements.js"></script>
     <script>
         portal.inject('formBuilder', new FormBuilder());
         portal.inject('modelBuilder', new ModelBuilder());
-        portal.inject('propertyDefinitions', [
-            {
-                name: 'Key',
-                type: 'string'
-            },
-            {
-                name: 'Value',
-                type: 'string'
-            }
-        ]);
-        portal.inject('formElements', [
-            {
-                type: 'string',
-                create: function (propertyDefinition, get, set) {
-                    var label = document.createElement('label');
-                    label.classList.add('form-label');
-
-                    var labelText = document.createElement('div');
-                    labelText.classList.add('form-label-text');
-                    labelText.innerText = propertyDefinition.name;
-                    label.appendChild(labelText);
-
-                    var input = document.createElement('input');
-                    input.classList.add('form-input');
-                    label.appendChild(input);
-
-                    input.type = 'text';
-
-                    var value = get();
-
-                    if (typeof value != 'undefined' && typeof value != 'null') {
-                        input.value = get();
-                    }
-
-                    function update() {
-                        set(input.value);
-                    }
-
-                    input.addEventListener('change', update);
-                    input.addEventListener('keyup', update);
-
-                    return label;
-                }
-            }
-        ]);
+        portal.inject('propertyDefinitionProvider', new PropertyDefinitionProvider());
+        portal.inject('formElements', formElements);
     </script>
     <script>
         portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
@@ -80,15 +39,15 @@
     {
         foreach (var script in app.Scripts.OrderBy(s => s.Order))
         {
-    <script src="@script.Src"></script>
+            <script src="@script.Src"></script>
         }
         foreach (var style in app.Styles)
         {
-    <link rel="stylesheet" type="text/css" href="@style" />
+            <link rel="stylesheet" type="text/css" href="@style" />
         }
-    <script>
+        <script>
         portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
-    </script>
+        </script>
     }
 </head>
 <body>
