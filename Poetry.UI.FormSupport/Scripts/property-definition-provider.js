@@ -5,7 +5,7 @@
 
 class PropertyDefinitionProvider {
     getFor(id) {
-        return fetch(`Form/GetPropertyDefinitionsFor?id=${id}`, {
+        return fetch(`Form/PropertyDefinition/GetAllFor?id=${id}`, {
             credentials: 'include'
         })
             .then(response => {

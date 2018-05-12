@@ -30,4 +30,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.MvcSupport\Poetry.UI.MvcSupport.csproj" />
+  </ItemGroup>
+
 </Project>

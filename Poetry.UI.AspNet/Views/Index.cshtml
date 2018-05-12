@@ -29,8 +29,8 @@
     <script>
         portal.inject('formBuilder', new FormBuilder());
         portal.inject('modelBuilder', new ModelBuilder());
-        portal.inject('propertyDefinitionProvider', new PropertyDefinitionProvider());
         portal.inject('formElements', formElements);
+        portal.inject('propertyDefinitionProvider', new PropertyDefinitionProvider());
     </script>
     <script>
         portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
