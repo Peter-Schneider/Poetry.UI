@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.AppSupport;
 using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.MvcSupport;
+using Poetry.UI.ComponentSupport;
 using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
@@ -25,6 +26,7 @@ namespace Poetry.UI
         List<Assembly> Assemblies { get; } = new List<Assembly>();
         List<EmbeddedResourceAssembly> EmbeddedResourceAssemblies { get; } = new List<EmbeddedResourceAssembly>();
         EmbeddedResourceAssemblyCreator EmbeddedResourceAssemblyCreator { get; }
+        List<Component> Components { get; } = new List<Component>();
         
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
@@ -85,7 +87,7 @@ namespace Poetry.UI
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 
             RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(basePathProvider)));
+            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
