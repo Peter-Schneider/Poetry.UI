@@ -12,6 +12,14 @@ namespace Poetry.UI.RoutingSupport.Tests
     public class ControllerRouterTests
     {
         [Fact]
+        public void SupportsRootPath()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            new ControllerRouter(basePathProvider).Route("/");
+        }
+
+        [Fact]
         public void FindsAction()
         {
             var basePathProvider = Mock.Of<IBasePathProvider>();
