@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AppSupport", "Poe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.Core", "Poetry.UI.Core\Poetry.UI.Core.csproj", "{5EF23959-27B9-4300-971E-5F63A1B71664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.MvcSupport", "Poetry.UI.MvcSupport\Poetry.UI.MvcSupport.csproj", "{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.RoutingSupport", "Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj", "{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ComponentSupport", "Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj", "{1C6120F8-E239-4F58-A292-618825632345}"
 EndProject
