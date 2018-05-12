@@ -20,6 +20,7 @@
     <script src="Portal/Scripts/portal.js"></script>
     <script>
         var portal = new Portal();
+        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
     </script>
     <link rel="stylesheet" type="text/css" href="Form/Styles/form-elements.css" />
     <script src="Form/Scripts/model-builder.js"></script>
@@ -31,9 +32,6 @@
         portal.inject('modelBuilder', new ModelBuilder());
         portal.inject('formElements', formElements);
         portal.inject('propertyDefinitionProvider', new PropertyDefinitionProvider());
-    </script>
-    <script>
-        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
     </script>
     @foreach (var app in AppRepository.GetAll())
     {
