@@ -32,6 +32,42 @@ namespace Poetry.UI.RoutingSupport.Tests
         }
 
         [Fact]
+        public void RequiresActionAsLastSegment()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
+
+            var action = new ControllerAction("action");
+            var controller = new Controller("controller", action);
+            var component = new Component("component", controller);
+
+            var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action/something-extra");
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void MultiSegmentBasePath()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath1/basepath2");
+
+            var action = new ControllerAction("action");
+            var controller = new Controller("controller", action);
+            var component = new Component("component", controller);
+
+            var result = new ControllerRouter(basePathProvider, component).Route("basepath1/basepath2/component/controller/action");
+
+            Assert.NotNull(result);
+
+            Assert.Same(component, result.Component);
+            Assert.Same(controller, result.Controller);
+            Assert.Same(action, result.Action);
+        }
+
+        [Fact]
         public void MatchesBasePath()
         {
             var basePathProvider = Mock.Of<IBasePathProvider>();

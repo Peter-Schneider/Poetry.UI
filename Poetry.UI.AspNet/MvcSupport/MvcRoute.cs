@@ -21,17 +21,19 @@ namespace Poetry.UI.AspNet.MvcSupport
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            if(ControllerRouter.Route(httpContext.Request.Url.LocalPath) == null)
+            var result = ControllerRouter.Route(httpContext.Request.Url.LocalPath);
+
+            if (result == null)
             {
                 return null;
             }
 
-            var result = new RouteData(this, new MvcRouteHandler());
-            result.Values.Add("controller", "Mvc");
-            result.Values.Add("action", "Index");
-            result.DataTokens.Add("Namespaces", new string[] { "Poetry.UI.AspNet.MvcSupport" });
-            result.DataTokens.Add("UseNamespaceFallback", false);
-            return result;
+            var data = new RouteData(this, new MvcRouteHandler());
+            data.Values.Add("controller", "Mvc");
+            data.Values.Add("action", "Index");
+            data.DataTokens.Add("Namespaces", new string[] { "Poetry.UI.AspNet.MvcSupport" });
+            data.DataTokens.Add("UseNamespaceFallback", false);
+            return data;
         }
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
