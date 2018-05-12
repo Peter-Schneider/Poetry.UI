@@ -102,6 +102,10 @@
       <Project>{d3a76a0c-5985-4480-b229-cb84fad94c68}</Project>
       <Name>Poetry.UI.AppSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj">
+      <Project>{1C6120F8-E239-4F58-A292-618825632345}</Project>
+      <Name>Poetry.UI.ComponentSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.Core\Poetry.UI.Core.csproj">
       <Project>{5EF23959-27B9-4300-971E-5F63A1B71664}</Project>
       <Name>Poetry.UI.Core</Name>
@@ -121,6 +125,10 @@
     <ProjectReference Include="..\Poetry.UI.Portal\Poetry.UI.Portal.csproj">
       <Project>{6dc147ec-c432-4fce-a78d-bba69ac9be61}</Project>
       <Name>Poetry.UI.Portal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj">
+      <Project>{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}</Project>
+      <Name>Poetry.UI.RoutingSupport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj">
       <Project>{30A9C384-8B5F-4755-A8BA-5FC9F5873ACB}</Project>

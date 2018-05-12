@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.ControllerSupport;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Poetry.UI.ComponentSupport
@@ -12,11 +13,13 @@ namespace Poetry.UI.ComponentSupport
     /// </summary>
     public sealed class Component
     {
+        public string Id { get; }
         public IEnumerable<Controller> Controllers { get; }
 
-        public Component(IEnumerable<Controller> controllers)
+        public Component(string id, params Controller[] controllers)
         {
-            Controllers = controllers;
+            Id = id;
+            Controllers = controllers.ToList().AsReadOnly();
         }
     }
 }

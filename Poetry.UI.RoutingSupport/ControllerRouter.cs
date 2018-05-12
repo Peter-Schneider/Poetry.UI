@@ -1,22 +1,27 @@
 ﻿using Poetry.UI.ComponentSupport;
+using Poetry.UI.ControllerSupport;
+using Poetry.UI.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Poetry.UI.MvcSupport
 {
     public class ControllerRouter
     {
-        Dictionary<Component, Type> Controllers { get; }
+        IBasePathProvider BasePathProvider { get; }
+        IEnumerable<Component> Components { get; }
 
-        public ControllerRouter(Dictionary<Component, Type> controllers)
+        public ControllerRouter(IBasePathProvider basePathProvider, params Component[] components)
         {
-            Controllers = controllers;
+            BasePathProvider = basePathProvider;
+            Components = components;
         }
 
-        public object Route(string path)
+        public ControllerRouterResult Route(string path)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

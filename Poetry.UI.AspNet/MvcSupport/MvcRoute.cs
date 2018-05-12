@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.MvcSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,19 @@ namespace Poetry.UI.AspNet.MvcSupport
 {
     public class MvcRoute : RouteBase
     {
+        ControllerRouter ControllerRouter { get; }
+
+        public MvcRoute(ControllerRouter controllerRouter)
+        {
+            ControllerRouter = controllerRouter;
+        }
+
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-
+            if(ControllerRouter.Route(httpContext.Request.Url.LocalPath) == null)
+            {
+                return null;
+            }
 
             var result = new RouteData(this, new MvcRouteHandler());
             result.Values.Add("controller", "Mvc");
