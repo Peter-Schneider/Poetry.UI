@@ -84,6 +84,8 @@
     <Compile Include="Controllers\PoetryPortalController.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathProvider.cs" />
     <Compile Include="FileSupport\FileProvider.cs" />
+    <Compile Include="MvcSupport\MvcController.cs" />
+    <Compile Include="MvcSupport\MvcRoute.cs" />
     <Compile Include="PoetryConfigurator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

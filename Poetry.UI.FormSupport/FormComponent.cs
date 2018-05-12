@@ -6,7 +6,7 @@ using System.Text;
 namespace Poetry.UI.FormSupport
 {
     [Component("Form")]
-    public class FormComponent : Component
+    public class FormComponent
     {
     }
 }
