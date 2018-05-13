@@ -2,7 +2,8 @@
 
 namespace Poetry.UI.ReflectorSupport
 {
-    public class IReflector
+    public interface IReflector
     {
+        ReflectorType GetReflectorType(Type type);
     }
 }
