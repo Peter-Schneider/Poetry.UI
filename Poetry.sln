@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ControllerSupport
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.RoutingSupport.Tests", "Poetry.UI.RoutingSupport.Tests\Poetry.UI.RoutingSupport.Tests.csproj", "{E0C17335-C372-4B01-B509-8158BC2271F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ReflectionSupport", "Poetry.UI.ReflectionSupport\Poetry.UI.ReflectionSupport.csproj", "{5CCF3892-3F89-4AE5-8F0E-6C2FEB66C301}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ReflectorSupport", "Poetry.UI.ReflectorSupport\Poetry.UI.ReflectorSupport.csproj", "{5CCF3892-3F89-4AE5-8F0E-6C2FEB66C301}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ComponentSupport.Tests", "Poetry.UI.ComponentSupport.Tests\Poetry.UI.ComponentSupport.Tests.csproj", "{EF278500-B937-4ABB-8B4C-97D254C0C9B5}"
 EndProject

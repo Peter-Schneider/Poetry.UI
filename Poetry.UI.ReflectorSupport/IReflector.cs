@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Poetry.UI.ReflectionSupport
+namespace Poetry.UI.ReflectorSupport
 {
     public class IReflector
     {
