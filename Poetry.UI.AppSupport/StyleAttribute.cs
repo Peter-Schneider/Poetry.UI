@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poetry.UI.AppSupport
+namespace Poetry.UI.ScriptSupport
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class StyleAttribute : Attribute

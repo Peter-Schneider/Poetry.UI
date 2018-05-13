@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ComponentSupport.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.PortalSupport", "Poetry.UI.PortalSupport\Poetry.UI.PortalSupport.csproj", "{777956A1-CBF7-47BD-8EAA-616E71F9503F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ScriptSupport", "Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj", "{5DBF47E9-B32F-404E-9247-9F947762287B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{777956A1-CBF7-47BD-8EAA-616E71F9503F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{777956A1-CBF7-47BD-8EAA-616E71F9503F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{777956A1-CBF7-47BD-8EAA-616E71F9503F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBF47E9-B32F-404E-9247-9F947762287B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBF47E9-B32F-404E-9247-9F947762287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBF47E9-B32F-404E-9247-9F947762287B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBF47E9-B32F-404E-9247-9F947762287B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
