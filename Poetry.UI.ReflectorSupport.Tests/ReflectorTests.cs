@@ -1,4 +1,5 @@
 using Moq;
+using Poetry.UI.ReflectorSupport.ReflectorTypeSupport;
 using System;
 using Xunit;
 

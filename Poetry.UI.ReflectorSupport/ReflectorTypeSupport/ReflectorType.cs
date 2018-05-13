@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Poetry.UI.ReflectorSupport
+namespace Poetry.UI.ReflectorSupport.ReflectorTypeSupport
 {
     public class ReflectorType
     {
