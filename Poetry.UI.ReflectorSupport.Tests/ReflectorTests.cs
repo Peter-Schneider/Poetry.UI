@@ -1,6 +1,8 @@
 using Moq;
+using Poetry.UI.ReflectorSupport.ReflectorAttributeSupport;
 using Poetry.UI.ReflectorSupport.ReflectorTypeSupport;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace Poetry.UI.ReflectorSupport.Tests
@@ -18,7 +20,7 @@ namespace Poetry.UI.ReflectorSupport.Tests
         {
             var reflectorTypeCreator = Mock.Of<IReflectorTypeCreator>();
 
-            var reflectorType = new ReflectorType("type");
+            var reflectorType = new ReflectorType("type", Enumerable.Empty<ReflectorAttribute>());
 
             Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(reflectorType);
 
@@ -30,7 +32,7 @@ namespace Poetry.UI.ReflectorSupport.Tests
         {
             var reflectorTypeCreator = Mock.Of<IReflectorTypeCreator>();
 
-            Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(() => new ReflectorType("type"));
+            Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(() => new ReflectorType("type", Enumerable.Empty<ReflectorAttribute>()));
 
             var sut = new Reflector(reflectorTypeCreator);
 
