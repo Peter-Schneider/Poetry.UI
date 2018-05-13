@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.AppSupport;
 using Poetry.UI.ScriptSupport;
+using Poetry.UI.StyleSupport;
 using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;
