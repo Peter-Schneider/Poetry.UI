@@ -122,9 +122,9 @@
       <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>
       <Name>Poetry.UI.FormSupport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Poetry.UI.Portal\Poetry.UI.Portal.csproj">
-      <Project>{6dc147ec-c432-4fce-a78d-bba69ac9be61}</Project>
-      <Name>Poetry.UI.Portal</Name>
+    <ProjectReference Include="..\Poetry.UI.PortalSupport\Poetry.UI.PortalSupport.csproj">
+      <Project>{777956A1-CBF7-47BD-8EAA-616E71F9503F}</Project>
+      <Name>Poetry.UI.PortalSupport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj">
       <Project>{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}</Project>

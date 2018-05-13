@@ -6,7 +6,7 @@ using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.MvcSupport;
-using Poetry.UI.Portal;
+using Poetry.UI.PortalSupport;
 using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;

@@ -12,7 +12,6 @@ using Poetry.UI.AppSupport;
 using System.Reflection;
 using Unity;
 using Unity.AspNet.Mvc;
-using Poetry.UI.Portal;
 using Poetry.UI.FormSupport;
 
 namespace Poetry.UI

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Poetry.UI.Portal
+namespace Poetry.UI.PortalSupport
 {
     public class PortalComponent
     {
