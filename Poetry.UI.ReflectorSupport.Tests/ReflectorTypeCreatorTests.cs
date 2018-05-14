@@ -32,11 +32,11 @@ namespace Poetry.UI.ReflectorSupport.Tests
         [Fact]
         public void CallsReflectorAttributeCreator()
         {
-            var attribute = new ReflectorAttribute("attribute");
+            var attribute = new SerializableAttribute();
 
             var creator = Mock.Of<IReflectorAttributeCreator>();
 
-            Mock.Get(creator).Setup(c => c.CreateReflectorAttributes(typeof(string))).Returns(new List<ReflectorAttribute> { attribute });
+            Mock.Get(creator).Setup(c => c.CreateReflectorAttributes(typeof(string))).Returns(new List<Attribute> { attribute });
 
             var result = new ReflectorTypeCreator(creator).CreateReflectorType(typeof(string));
 

@@ -6,6 +6,6 @@ namespace Poetry.UI.ReflectorSupport.ReflectorAttributeSupport
 {
     public interface IReflectorAttributeCreator
     {
-        IEnumerable<ReflectorAttribute> CreateReflectorAttributes(Type type);
+        IEnumerable<Attribute> CreateReflectorAttributes(Type type);
     }
 }

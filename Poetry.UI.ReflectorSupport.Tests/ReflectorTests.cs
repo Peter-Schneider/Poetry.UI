@@ -20,7 +20,7 @@ namespace Poetry.UI.ReflectorSupport.Tests
         {
             var reflectorTypeCreator = Mock.Of<IReflectorTypeCreator>();
 
-            var reflectorType = new ReflectorType("type", Enumerable.Empty<ReflectorAttribute>());
+            var reflectorType = new ReflectorType("type", Enumerable.Empty<Attribute>());
 
             Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(reflectorType);
 
@@ -32,7 +32,7 @@ namespace Poetry.UI.ReflectorSupport.Tests
         {
             var reflectorTypeCreator = Mock.Of<IReflectorTypeCreator>();
 
-            Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(() => new ReflectorType("type", Enumerable.Empty<ReflectorAttribute>()));
+            Mock.Get(reflectorTypeCreator).Setup(c => c.CreateReflectorType(typeof(string))).Returns(() => new ReflectorType("type", Enumerable.Empty<Attribute>()));
 
             var sut = new Reflector(reflectorTypeCreator);
 

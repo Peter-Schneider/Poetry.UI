@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Poetry.UI.ReflectorSupport.ReflectorAttributeSupport
 {
     public class ReflectorAttributeCreator : IReflectorAttributeCreator
     {
-        public IEnumerable<ReflectorAttribute> CreateReflectorAttributes(Type type)
+        public IEnumerable<Attribute> CreateReflectorAttributes(Type type)
         {
-            throw new NotImplementedException();
+            return type.GetTypeInfo().GetCustomAttributes();
         }
     }
 }
