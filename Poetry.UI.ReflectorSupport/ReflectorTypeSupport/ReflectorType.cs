@@ -9,9 +9,9 @@ namespace Poetry.UI.ReflectorSupport.ReflectorTypeSupport
     public class ReflectorType
     {
         public string Id { get; }
-        public IEnumerable<Attribute> Attributes { get; }
+        public IEnumerable<IReflectorAttribute> Attributes { get; }
 
-        public ReflectorType(string id, IEnumerable<Attribute> attributes)
+        public ReflectorType(string id, IEnumerable<IReflectorAttribute> attributes)
         {
             Id = id;
             Attributes = attributes.ToList().AsReadOnly();
