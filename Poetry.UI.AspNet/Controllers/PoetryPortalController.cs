@@ -1,5 +1,5 @@
-﻿using Poetry.UI.Core;
-using Poetry.UI.EmbeddedResourceSupport;
+﻿using Poetry.UI.EmbeddedResourceSupport;
+using Poetry.UI.RoutingSupport;
 using System;
 using System.Collections.Generic;
 using System.IO;

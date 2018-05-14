@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AspNet", "Poetry.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AppSupport", "Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj", "{D3A76A0C-5985-4480-B229-CB84FAD94C68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.Core", "Poetry.UI.Core\Poetry.UI.Core.csproj", "{5EF23959-27B9-4300-971E-5F63A1B71664}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.RoutingSupport", "Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj", "{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ComponentSupport", "Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj", "{1C6120F8-E239-4F58-A292-618825632345}"
@@ -43,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ReflectorSupport.Tests", "Poetry.UI.ReflectorSupport.Tests\Poetry.UI.ReflectorSupport.Tests.csproj", "{F392AFF9-4D1F-4C52-A5B2-9E4EB4440A61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AttributeSupport", "Poetry.UI.AttributeSupport\Poetry.UI.AttributeSupport.csproj", "{71D7B9A5-C6B4-4FE7-881C-372B8A7C8B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AttributeSupport", "Poetry.UI.AttributeSupport\Poetry.UI.AttributeSupport.csproj", "{71D7B9A5-C6B4-4FE7-881C-372B8A7C8B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,10 +85,6 @@ Global
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A76A0C-5985-4480-B229-CB84FAD94C68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EF23959-27B9-4300-971E-5F63A1B71664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EF23959-27B9-4300-971E-5F63A1B71664}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EF23959-27B9-4300-971E-5F63A1B71664}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EF23959-27B9-4300-971E-5F63A1B71664}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}.Release|Any CPU.ActiveCfg = Release|Any CPU

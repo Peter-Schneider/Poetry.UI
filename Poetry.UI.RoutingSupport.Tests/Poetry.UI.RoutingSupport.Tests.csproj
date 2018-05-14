@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Poetry.UI.Core\Poetry.UI.Core.csproj" />
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />
   </ItemGroup>
 

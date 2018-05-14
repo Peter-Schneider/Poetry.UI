@@ -162,10 +162,6 @@
       <Project>{8c4cda01-ab43-4a11-be8d-778bad23aff8}</Project>
       <Name>Poetry.UI.AspNet</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Poetry.UI.Core\Poetry.UI.Core.csproj">
-      <Project>{5ef23959-27b9-4300-971e-5f63a1b71664}</Project>
-      <Name>Poetry.UI.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj">
       <Project>{5DBF47E9-B32F-404E-9247-9F947762287B}</Project>
       <Name>Poetry.UI.ScriptSupport</Name>

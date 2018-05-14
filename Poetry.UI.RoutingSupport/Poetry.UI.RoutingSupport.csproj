@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
-    <ProjectReference Include="..\Poetry.UI.Core\Poetry.UI.Core.csproj" />
   </ItemGroup>
 
 </Project>

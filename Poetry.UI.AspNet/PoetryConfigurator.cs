@@ -2,11 +2,11 @@
 using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.MvcSupport;
 using Poetry.UI.ComponentSupport;
-using Poetry.UI.Core;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.MvcSupport;
 using Poetry.UI.PortalSupport;
+using Poetry.UI.RoutingSupport;
 using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;
@@ -19,10 +19,10 @@ using Unity.AspNet.Mvc;
 
 namespace Poetry.UI
 {
-    public class PoetryConfigurator
+    public class PoetryConfigurator : IBasePathProvider
     {
         UnityContainer Container { get; }
-        string BasePath { get; set; } = "Admin";
+        public string BasePath { get; private set; } = "Admin";
         List<Assembly> Assemblies { get; } = new List<Assembly>();
         List<EmbeddedResourceAssembly> EmbeddedResourceAssemblies { get; } = new List<EmbeddedResourceAssembly>();
         EmbeddedResourceAssemblyCreator EmbeddedResourceAssemblyCreator { get; }
@@ -68,9 +68,7 @@ namespace Poetry.UI
                 namespaces: new string[] { "Poetry.UI.Controllers" }
             );
 
-            var basePathProvider = (IBasePathProvider)new BasePathProvider(BasePath);
-
-            Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
+            Container.RegisterInstance(typeof(IBasePathProvider), this);
 
             var assemblies = new List<EmbeddedResourceAssembly>();
 
@@ -82,12 +80,12 @@ namespace Poetry.UI
 
             var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), assemblies.ToArray());
 
-            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
+            var vpp = new EmbeddedResourceVirtualPathProvider(this, embeddedResourceProvider);
 
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 
             RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
+            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(this, Components.ToArray())));
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);

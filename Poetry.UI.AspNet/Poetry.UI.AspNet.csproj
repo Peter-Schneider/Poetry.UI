@@ -106,10 +106,6 @@
       <Project>{1C6120F8-E239-4F58-A292-618825632345}</Project>
       <Name>Poetry.UI.ComponentSupport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Poetry.UI.Core\Poetry.UI.Core.csproj">
-      <Project>{5EF23959-27B9-4300-971E-5F63A1B71664}</Project>
-      <Name>Poetry.UI.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj">
       <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>
       <Name>Poetry.UI.EmbeddedResourceSupport</Name>

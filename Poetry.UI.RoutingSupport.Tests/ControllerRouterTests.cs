@@ -1,7 +1,6 @@
 using Moq;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
-using Poetry.UI.Core;
 using Poetry.UI.MvcSupport;
 using System;
 using System.Collections.Generic;
