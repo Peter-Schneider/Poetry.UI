@@ -2,6 +2,7 @@
 using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.MvcSupport;
 using Poetry.UI.ComponentSupport;
+using Poetry.UI.ControllerSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.MvcSupport;
@@ -72,7 +73,7 @@ namespace Poetry.UI
 
             Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
 
-            var componentCreator = new ComponentCreator();
+            var componentCreator = new ComponentCreator(new ControllerCreator());
 
             Components.Add(componentCreator.Create(typeof(FormComponent)));
 
