@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.ControllerSupport\Poetry.UI.ControllerSupport.csproj" />
-    <ProjectReference Include="..\Poetry.UI.ReflectorSupport\Poetry.UI.ReflectorSupport.csproj" />
   </ItemGroup>
 
 </Project>
