@@ -68,7 +68,13 @@ namespace Poetry.UI
                 namespaces: new string[] { "Poetry.UI.Controllers" }
             );
 
-            Container.RegisterInstance(typeof(IBasePathProvider), this);
+            var basePathProvider = (IBasePathProvider)this;
+
+            Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
+
+            var componentCreator = new ComponentCreator();
+
+            Components.Add(componentCreator.Create(typeof(FormComponent)));
 
             var assemblies = new List<EmbeddedResourceAssembly>();
 
@@ -80,12 +86,12 @@ namespace Poetry.UI
 
             var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), assemblies.ToArray());
 
-            var vpp = new EmbeddedResourceVirtualPathProvider(this, embeddedResourceProvider);
+            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
 
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 
             RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(this, Components.ToArray())));
+            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
