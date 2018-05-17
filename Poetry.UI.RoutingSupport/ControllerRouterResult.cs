@@ -1,7 +1,7 @@
 ﻿using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
 
-namespace Poetry.UI.MvcSupport
+namespace Poetry.UI.RoutingSupport
 {
     public class ControllerRouterResult
     {

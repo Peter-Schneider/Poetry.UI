@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Poetry.UI.MvcSupport
+namespace Poetry.UI.RoutingSupport
 {
     public class ControllerRouter
     {

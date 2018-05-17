@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Poetry.UI.MvcSupport
+namespace Poetry.UI.ControllerSupport
 {
     public class ActionAttribute : Attribute, IAttribute
     {

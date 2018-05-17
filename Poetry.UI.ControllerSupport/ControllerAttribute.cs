@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Poetry.UI.MvcSupport
+namespace Poetry.UI.ControllerSupport
 {
     public class ControllerAttribute : Attribute, IAttribute
     {
