@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.ControllerSupport;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -8,18 +9,18 @@ namespace Poetry.UI.ComponentSupport
 {
     public class ComponentCreator
     {
-        IControllerCreator ControllerCreator { get; }
+        IComponentControllerCreator ComponentControllerCreator { get; }
 
-        public ComponentCreator(IControllerCreator controllerCreator)
+        public ComponentCreator(IComponentControllerCreator componentControllerCreator)
         {
-            ControllerCreator = controllerCreator;
+            ComponentControllerCreator = componentControllerCreator;
         }
 
         public Component Create(Type type)
         {
             var attribute = type.GetTypeInfo().GetCustomAttribute<ComponentAttribute>();
 
-            return new Component(attribute.Id);
+            return new Component(attribute.Id, ComponentControllerCreator.Create(type).ToArray());
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Poetry.UI
 
             Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
 
-            var componentCreator = new ComponentCreator(new ControllerCreator());
+            var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator()));
 
             Components.Add(componentCreator.Create(typeof(FormComponent)));
 
