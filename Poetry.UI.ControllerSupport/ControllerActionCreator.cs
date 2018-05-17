@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Poetry.UI.MvcSupport;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Poetry.UI.ControllerSupport
@@ -8,7 +11,17 @@ namespace Poetry.UI.ControllerSupport
     {
         public IEnumerable<ControllerAction> Create(Type controllerType)
         {
-            throw new NotImplementedException();
+            foreach(var method in controllerType.GetMethods())
+            {
+                var attribute = method.GetCustomAttribute<ActionAttribute>();
+
+                if(attribute == null)
+                {
+                    continue;
+                }
+
+                yield return new ControllerAction(attribute.Id);
+            }
         }
     }
 }

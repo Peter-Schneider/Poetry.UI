@@ -20,7 +20,7 @@ namespace Poetry.UI.ComponentSupport
         {
             var attribute = type.GetTypeInfo().GetCustomAttribute<ComponentAttribute>();
 
-            return new Component(attribute.Id, ComponentControllerCreator.Create(type).ToArray());
+            return new Component(attribute.Id, type.Assembly, ComponentControllerCreator.Create(type).ToArray());
         }
     }
 }

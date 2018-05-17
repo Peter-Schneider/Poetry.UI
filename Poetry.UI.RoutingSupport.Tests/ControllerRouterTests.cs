@@ -27,7 +27,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action");
 
@@ -47,7 +47,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action/something-extra");
 
@@ -63,7 +63,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath1/basepath2/component/controller/action");
 
@@ -83,7 +83,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("lorem/component/controller/action");
 
@@ -99,7 +99,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/lorem/controller/action");
 
@@ -115,7 +115,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/lorem/action");
 
@@ -131,7 +131,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action");
             var controller = new Controller("controller", action);
-            var component = new Component("component", controller);
+            var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/lorem");
 

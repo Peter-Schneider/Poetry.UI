@@ -11,6 +11,7 @@ using Poetry.UI.RoutingSupport;
 using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -25,13 +26,10 @@ namespace Poetry.UI
         UnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
         List<Assembly> Assemblies { get; } = new List<Assembly>();
-        List<EmbeddedResourceAssembly> EmbeddedResourceAssemblies { get; } = new List<EmbeddedResourceAssembly>();
-        EmbeddedResourceAssemblyCreator EmbeddedResourceAssemblyCreator { get; }
         List<Component> Components { get; } = new List<Component>();
         
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
-            EmbeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
         }
 
         public PoetryConfigurator WithBasePath(string basePath)
@@ -43,18 +41,6 @@ namespace Poetry.UI
         public PoetryConfigurator AddAssembly(Assembly assembly)
         {
             Assemblies.Add(assembly);
-            return this;
-        }
-
-        public PoetryConfigurator AddEmbeddedResourceAssembly(string basePath, Assembly assembly)
-        {
-            if (!Assemblies.Contains(assembly))
-            {
-                Assemblies.Add(assembly);
-            }
-
-            EmbeddedResourceAssemblies.Add(EmbeddedResourceAssemblyCreator.Create(basePath, assembly));
-
             return this;
         }
 
@@ -76,16 +62,15 @@ namespace Poetry.UI
             var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())));
 
             Components.Add(componentCreator.Create(typeof(FormComponent)));
+            Components.Add(componentCreator.Create(typeof(PortalComponent)));
 
-            var assemblies = new List<EmbeddedResourceAssembly>();
+            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
+            var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();
 
-            assemblies.Add(EmbeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()));
-            assemblies.Add(EmbeddedResourceAssemblyCreator.Create("Form", typeof(FormComponent).Assembly));
-            assemblies.Add(EmbeddedResourceAssemblyCreator.Create("Portal", typeof(PortalComponent).Assembly));
+            embeddedResourceAssemblies.Add(embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()));
+            embeddedResourceAssemblies.AddRange(Components.Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
 
-            assemblies.AddRange(EmbeddedResourceAssemblies);
-
-            var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), assemblies.ToArray());
+            var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), embeddedResourceAssemblies.ToArray());
 
             var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
 

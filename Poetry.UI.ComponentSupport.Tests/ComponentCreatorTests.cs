@@ -30,6 +30,7 @@ namespace Poetry.UI.ComponentSupport.Tests
 
             Assert.NotNull(result);
             Assert.Equal("lorem-ipsum", result.Id);
+            Assert.Same(typeof(MyComponentClass).Assembly, result.Assembly);
             Assert.Single(result.Controllers);
             Assert.Same(controller, result.Controllers.Single());
         }
