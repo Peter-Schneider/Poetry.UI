@@ -18,7 +18,17 @@ namespace Poetry.UI.ComponentSupport
 
         public Component Create(Type type)
         {
+            if(type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
             var attribute = type.GetTypeInfo().GetCustomAttribute<ComponentAttribute>();
+
+            if(attribute == null)
+            {
+                throw new TypeIsMissingComponentAttributeException(type);
+            }
 
             return new Component(attribute.Id, type.Assembly, ComponentControllerCreator.Create(type).ToArray());
         }

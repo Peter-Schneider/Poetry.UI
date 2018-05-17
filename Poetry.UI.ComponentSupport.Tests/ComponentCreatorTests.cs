@@ -10,6 +10,18 @@ namespace Poetry.UI.ComponentSupport.Tests
     public class ComponentCreatorTests
     {
         [Fact]
+        public void ThrowsOnNullType()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ComponentCreator(null).Create(null));
+        }
+
+        [Fact]
+        public void ThrowsIfTypeIsMissingComponentAttribute()
+        {
+            Assert.Throws<TypeIsMissingComponentAttributeException>(() => new ComponentCreator(null).Create(typeof(string)));
+        }
+
+        [Fact]
         public void CreatesComponent()
         {
             var result = new ComponentCreator(Mock.Of<IComponentControllerCreator>()).Create(typeof(MyComponentClass));
