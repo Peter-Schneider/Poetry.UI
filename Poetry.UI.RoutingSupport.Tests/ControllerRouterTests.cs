@@ -38,6 +38,26 @@ namespace Poetry.UI.RoutingSupport.Tests
         }
 
         [Fact]
+        public void FindsActionCaseInsensitive()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("Basepath");
+
+            var action = new ControllerAction("Action");
+            var controller = new Controller("Controller", action);
+            var component = new Component("Component", null, controller);
+
+            var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action");
+
+            Assert.NotNull(result);
+
+            Assert.Same(component, result.Component);
+            Assert.Same(controller, result.Controller);
+            Assert.Same(action, result.Action);
+        }
+
+        [Fact]
         public void RequiresActionAsLastSegment()
         {
             var basePathProvider = Mock.Of<IBasePathProvider>();

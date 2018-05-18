@@ -67,17 +67,17 @@ namespace Poetry.UI.RoutingSupport
 
         Component GetMatchingComponent(string id)
         {
-            return Components.FirstOrDefault(c => c.Id == id);
+            return Components.FirstOrDefault(c => c.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
         }
 
         Controller GetMatchingController(Component component, string id)
         {
-            return component.Controllers.FirstOrDefault(c => c.Id == id);
+            return component.Controllers.FirstOrDefault(c => c.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
         }
 
         ControllerAction GetMatchingAction(Controller controller, string id)
         {
-            return controller.Actions.FirstOrDefault(a => a.Id == id);
+            return controller.Actions.FirstOrDefault(a => a.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }
