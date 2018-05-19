@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Poetry.UI.ComponentSupport
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class ComponentAttribute : Attribute, IAttribute {
         public string Id { get; }
 
