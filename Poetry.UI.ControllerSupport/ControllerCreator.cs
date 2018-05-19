@@ -17,9 +17,9 @@ namespace Poetry.UI.ControllerSupport
 
         public Controller Create(Type type)
         {
-            var attribute = type.GetTypeInfo().GetCustomAttribute<ControllerAttribute>();
+            var attribute = type.GetCustomAttribute<ControllerAttribute>();
 
-            return new Controller(attribute.Id, ControllerActionCreator.Create(type).ToArray());
+            return new Controller(attribute.Id, type, ControllerActionCreator.Create(type).ToArray());
         }
     }
 }

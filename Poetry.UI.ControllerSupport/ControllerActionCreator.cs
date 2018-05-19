@@ -19,7 +19,7 @@ namespace Poetry.UI.ControllerSupport
                     continue;
                 }
 
-                yield return new ControllerAction(attribute.Id);
+                yield return new ControllerAction(attribute.Id, method);
             }
         }
     }

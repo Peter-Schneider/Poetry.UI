@@ -13,7 +13,7 @@ namespace Poetry.UI.ControllerSupport.Tests
         {
             var controllerActionCreator = Mock.Of<IControllerActionCreator>();
 
-            var controllerAction = new ControllerAction("test-action");
+            var controllerAction = new ControllerAction("test-action", null);
 
             Mock.Get(controllerActionCreator).Setup(c => c.Create(typeof(MyController))).Returns(new List<ControllerAction> { controllerAction });
 
@@ -23,6 +23,7 @@ namespace Poetry.UI.ControllerSupport.Tests
             Assert.Equal("a", result.Id);
             Assert.Single(result.Actions);
             Assert.Same(controllerAction, result.Actions.Single());
+            Assert.Same(typeof(MyController), result.Type);
         }
 
         [Controller("a")]

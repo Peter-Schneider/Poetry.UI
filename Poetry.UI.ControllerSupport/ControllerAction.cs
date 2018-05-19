@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Poetry.UI.ControllerSupport
@@ -10,10 +11,12 @@ namespace Poetry.UI.ControllerSupport
     public sealed class ControllerAction
     {
         public string Id { get; }
+        public MethodInfo Method { get; }
 
-        public ControllerAction(string id)
+        public ControllerAction(string id, MethodInfo method)
         {
             Id = id;
+            Method = method;
         }
     }
 }

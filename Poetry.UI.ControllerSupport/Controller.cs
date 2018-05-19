@@ -13,11 +13,13 @@ namespace Poetry.UI.ControllerSupport
     public sealed class Controller
     {
         public string Id { get; }
+        public Type Type { get; }
         public IEnumerable<ControllerAction> Actions { get; }
 
-        public Controller(string id, params ControllerAction[] actions)
+        public Controller(string id, Type type, params ControllerAction[] actions)
         {
             Id = id;
+            Type = type;
             Actions = actions.ToList().AsReadOnly();
         }
     }

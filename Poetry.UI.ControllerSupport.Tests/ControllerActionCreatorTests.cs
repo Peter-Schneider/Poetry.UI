@@ -15,6 +15,7 @@ namespace Poetry.UI.ControllerSupport.Tests
 
             Assert.Single(result);
             Assert.Equal("a", result.Single().Id);
+            Assert.Equal(typeof(MyController).GetMethod(nameof(MyController.Lorem)), result.Single().Method);
         }
 
         public class MyController

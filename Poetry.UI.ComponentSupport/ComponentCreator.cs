@@ -23,7 +23,7 @@ namespace Poetry.UI.ComponentSupport
                 throw new ArgumentNullException(nameof(type));
             }
 
-            var attribute = type.GetTypeInfo().GetCustomAttribute<ComponentAttribute>();
+            var attribute = type.GetCustomAttribute<ComponentAttribute>();
 
             if(attribute == null)
             {

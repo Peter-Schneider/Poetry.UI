@@ -19,7 +19,7 @@ namespace Poetry.UI.ComponentSupport.Tests
 
             var controllerCreator = Mock.Of<IControllerCreator>();
 
-            var controller = new Controller("id");
+            var controller = new Controller("id", null);
 
             Mock.Get(controllerCreator).Setup(c => c.Create(typeof(MyControllerType))).Returns(controller);
 

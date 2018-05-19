@@ -24,8 +24,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action");
@@ -44,8 +44,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("Basepath");
 
-            var action = new ControllerAction("Action");
-            var controller = new Controller("Controller", action);
+            var action = new ControllerAction("Action", null);
+            var controller = new Controller("Controller", null, action);
             var component = new Component("Component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action");
@@ -64,8 +64,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/action/something-extra");
@@ -80,8 +80,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath1/basepath2");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath1/basepath2/component/controller/action");
@@ -100,8 +100,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("lorem/component/controller/action");
@@ -116,8 +116,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/lorem/controller/action");
@@ -132,8 +132,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/lorem/action");
@@ -148,8 +148,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
 
-            var action = new ControllerAction("action");
-            var controller = new Controller("controller", action);
+            var action = new ControllerAction("action", null);
+            var controller = new Controller("controller", null, action);
             var component = new Component("component", null, controller);
 
             var result = new ControllerRouter(basePathProvider, component).Route("basepath/component/controller/lorem");
