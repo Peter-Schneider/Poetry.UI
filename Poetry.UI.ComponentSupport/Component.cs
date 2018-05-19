@@ -12,7 +12,7 @@ namespace Poetry.UI.ComponentSupport
     /// 
     /// Note: Not to be inherited by your component classes as they should be POCOs, annotated with the [Component] attribute.
     /// </summary>
-    public sealed class Component
+    public class Component
     {
         public string Id { get; }
         public Assembly Assembly { get; }
