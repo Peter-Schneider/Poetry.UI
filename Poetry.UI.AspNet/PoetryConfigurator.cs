@@ -1,6 +1,6 @@
 ﻿using Poetry.UI.AppSupport;
 using Poetry.UI.AspNet.FileSupport;
-using Poetry.UI.AspNet.MvcSupport;
+using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.EmbeddedResourceSupport;
@@ -76,7 +76,7 @@ namespace Poetry.UI
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 
             RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.Add(new MvcRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
+            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);

@@ -11,9 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Poetry.UI.AspNet.MvcSupport
+namespace Poetry.UI.AspNet.RoutingSupport
 {
-    public class MvcController : System.Web.Mvc.Controller
+    public class ControllerRoutingController : System.Web.Mvc.Controller
     {
         public ActionResult Index()
         {
