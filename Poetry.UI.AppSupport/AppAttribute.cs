@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Poetry.UI.AppSupport
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class AppAttribute : Attribute {
         public string Id { get; }
 
