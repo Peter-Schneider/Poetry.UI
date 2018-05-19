@@ -6,8 +6,4 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Poetry.UI.AttributeSupport\Poetry.UI.AttributeSupport.csproj" />
-  </ItemGroup>
-
 </Project>

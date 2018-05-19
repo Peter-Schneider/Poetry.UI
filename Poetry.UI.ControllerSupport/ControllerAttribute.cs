@@ -1,11 +1,10 @@
-﻿using Poetry.UI.AttributeSupport;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Poetry.UI.ControllerSupport
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class ControllerAttribute : Attribute, IAttribute
+    public class ControllerAttribute : Attribute
     {
         public string Id { get; }
 
@@ -13,12 +12,5 @@ namespace Poetry.UI.ControllerSupport
         {
             Id = id;
         }
-
-        public string Name => "Controller";
-
-        public Dictionary<string, string> Data => new Dictionary<string, string>
-        {
-            [nameof(Id)] = Id
-        };
     }
 }
