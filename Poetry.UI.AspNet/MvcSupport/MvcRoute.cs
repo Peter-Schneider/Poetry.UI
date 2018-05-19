@@ -33,6 +33,7 @@ namespace Poetry.UI.AspNet.MvcSupport
             data.Values.Add("action", "Index");
             data.DataTokens.Add("Namespaces", new string[] { "Poetry.UI.AspNet.MvcSupport" });
             data.DataTokens.Add("UseNamespaceFallback", false);
+            data.DataTokens.Add("PoetryRoutingResult", result);
             return data;
         }
 
