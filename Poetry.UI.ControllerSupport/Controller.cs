@@ -10,7 +10,7 @@ namespace Poetry.UI.ControllerSupport
     /// 
     /// Note: Not to be inherited by your controller classes as they should be POCOs, annotated with the [Controller] attribute.
     /// </summary>
-    public sealed class Controller
+    public class Controller
     {
         public string Id { get; }
         public Type Type { get; }
