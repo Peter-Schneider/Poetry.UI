@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Poetry.UI.ControllerSupport
 {
+    [AttributeUsage(AttributeTargets.Method)]
     public class ActionAttribute : Attribute, IAttribute
     {
         public string Id { get; }
