@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Poetry.UI.ControllerSupport
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class ControllerAttribute : Attribute, IAttribute
     {
         public string Id { get; }
