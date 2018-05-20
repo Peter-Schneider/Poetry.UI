@@ -8,16 +8,16 @@
 
   <ItemGroup>
     <None Remove="Scripts\form-builder.js" />
-    <None Remove="Scripts\form-elements.js" />
+    <None Remove="Scripts\form-field-provider.js" />
+    <None Remove="Scripts\form-field-types.js" />
     <EmbeddedResource Include="Scripts\form-builder.js" />
-    <None Remove="Scripts\model-builder.js" />
-    <EmbeddedResource Include="Scripts\form-elements.js" />
-    <EmbeddedResource Include="Scripts\model-builder.js" />
+    <EmbeddedResource Include="Scripts\form-field-types.js" />
     <None Remove="Styles\form-elements.css" />
     <EmbeddedResource Include="Styles\form-elements.css">
       <DependentUpon>form-elements.scss</DependentUpon>
     </EmbeddedResource>
     <None Remove="Styles\form-elements.min.css" />
+    <EmbeddedResource Include="Scripts\form-field-provider.js" />
     <EmbeddedResource Include="Styles\form-elements.min.css">
       <DependentUpon>form-elements.css</DependentUpon>
     </EmbeddedResource>

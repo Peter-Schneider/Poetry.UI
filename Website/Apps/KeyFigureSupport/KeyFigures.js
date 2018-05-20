@@ -177,15 +177,14 @@ class ListKeyFigures extends Blade {
 /* EDIT KEY FIGURE */
 
 class EditKeyFigure extends Blade {
-    constructor(app, translations, backend, modelBuilder, formBuilder, propertyDefinitions, formElements) {
+    constructor(app, translations, backend, formBuilder, formFieldTypes, formFieldProvider) {
         super();
 
         this.translations = translations;
         this.backend = backend;
-        this.modelBuilder = modelBuilder;
         this.formBuilder = formBuilder;
-        this.propertyDefinitions = propertyDefinitions;
-        this.formElements = formElements;
+        this.formFieldTypes = formFieldTypes;
+        this.formFieldProvider = formFieldProvider;
 
         var heading = document.createElement('h1');
         heading.classList.add('heading');
@@ -220,16 +219,19 @@ class EditKeyFigure extends Blade {
     }
 
     open(keyFigure) {
-        this.model = this.modelBuilder.build(keyFigure);
+        this.model = keyFigure;
 
-        var form = this.formBuilder.build(this.model, this.propertyDefinitions, this.formElements);
+        this.formFieldProvider.getFor('key-figure')
+            .then(formFields => {
+                var form = this.formBuilder.build(this.model, formFields, this.formFieldTypes, this.translations);
 
-        this.formRoot.appendChild(form);
+                this.formRoot.appendChild(form);
 
-        if (keyFigure) {
-            this.heading.innerText = this.translations.EditKeyFigure;
-        } else {
-            this.heading.innerText = this.translations.NewKeyFigure;
-        }
+                if (keyFigure) {
+                    this.heading.innerText = this.translations.EditKeyFigure;
+                } else {
+                    this.heading.innerText = this.translations.NewKeyFigure;
+                }
+            });
     }
 }

@@ -1,9 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -16,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Poetry.UI.ControllerSupport\Poetry.UI.ControllerSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,15 +23,13 @@
         portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
     </script>
     <link rel="stylesheet" type="text/css" href="Form/Styles/form-elements.css" />
-    <script src="Form/Scripts/model-builder.js"></script>
     <script src="Form/Scripts/form-builder.js"></script>
-    <script src="Form/Scripts/property-definition-provider.js"></script>
-    <script src="Form/Scripts/form-elements.js"></script>
+    <script src="Form/Scripts/form-field-types.js"></script>
+    <script src="Form/Scripts/form-field-provider.js"></script>
     <script>
         portal.inject('formBuilder', new FormBuilder());
-        portal.inject('modelBuilder', new ModelBuilder());
-        portal.inject('formElements', formElements);
-        portal.inject('propertyDefinitionProvider', new PropertyDefinitionProvider());
+        portal.inject('formFieldTypes', formFieldTypes);
+        portal.inject('formFieldProvider', new FormFieldProvider());
     </script>
     @foreach (var app in AppRepository.GetAll())
     {

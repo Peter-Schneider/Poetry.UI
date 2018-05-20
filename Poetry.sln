@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ControllerSupport.Tests", "Poetry.UI.ControllerSupport.Tests\Poetry.UI.ControllerSupport.Tests.csproj", "{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.FormSupport.Tests", "Poetry.UI.FormSupport.Tests\Poetry.UI.FormSupport.Tests.csproj", "{61D650D0-5BBC-4B28-9549-8CB1BFA73144}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D650D0-5BBC-4B28-9549-8CB1BFA73144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D650D0-5BBC-4B28-9549-8CB1BFA73144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D650D0-5BBC-4B28-9549-8CB1BFA73144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D650D0-5BBC-4B28-9549-8CB1BFA73144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

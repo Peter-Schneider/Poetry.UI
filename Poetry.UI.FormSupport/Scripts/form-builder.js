@@ -4,23 +4,17 @@
 /* FORM BUILDER */
 
 class FormBuilder {
-    build(target, propertyDefinitions, formElements) {
+    build(target, formFields, formFieldTypes, translations) {
         var container = document.createElement('div');
 
-        propertyDefinitions.forEach(propertyDefinition => {
-            formElements.forEach(formElement => {
-                if (formElement.type != propertyDefinition.type) {
-                    return;
-                }
+        formFields.forEach(formField => {
+            var formFieldType = formFieldTypes[formField.Type];
 
-                container.appendChild(this.createFormElement(target, propertyDefinition, formElement));
-            });
+            formField.Name = translations[formField.Id] || formField.Label || formField.Id;
+
+            container.appendChild(formFieldType.createControl(formField, () => target[formField.Id], value => target[formField.Id] = value));
         });
 
         return container;
-    }
-
-    createFormElement(target, propertyDefinition, formElement) {
-        return formElement.create(propertyDefinition, () => target[propertyDefinition.name], value => { if (target[propertyDefinition.name] != value) { target[propertyDefinition.name] = value } });
     }
 }

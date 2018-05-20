@@ -5,6 +5,7 @@ using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
+using Poetry.UI.FormSupport.FormFieldSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.RoutingSupport;
 using Poetry.UI.TranslationSupport;
@@ -61,6 +62,8 @@ namespace Poetry.UI
             var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())));
 
             Components.Add(componentCreator.Create(typeof(FormComponent)));
+            Container.RegisterInstance(typeof(IFormFieldProvider), new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
+
             Components.Add(componentCreator.Create(typeof(PortalComponent)));
 
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();

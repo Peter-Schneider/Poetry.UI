@@ -1,14 +1,14 @@
-﻿var formElements = {};
+﻿var formFieldTypes = {};
 
-formElements['string'] = {
+formFieldTypes['string'] = {
     type: 'string',
-    create: function (propertyDefinition, get, set) {
+    createControl: function (field, get, set) {
         var label = document.createElement('label');
         label.classList.add('form-label');
 
         var labelText = document.createElement('div');
         labelText.classList.add('form-label-text');
-        labelText.innerText = propertyDefinition.name;
+        labelText.innerText = field.Name;
         label.appendChild(labelText);
 
         var input = document.createElement('input');

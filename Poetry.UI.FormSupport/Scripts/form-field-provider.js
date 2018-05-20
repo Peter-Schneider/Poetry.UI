@@ -1,11 +1,11 @@
 ﻿
 
 
-/* PROPERTY DEFINITION PROVIDER */
+/* FORM FIELD PROVIDER */
 
-class PropertyDefinitionProvider {
-    getFor(id) {
-        return fetch(`Form/PropertyDefinition/GetAllFor?id=${id}`, {
+class FormFieldProvider {
+    getFor(formId) {
+        return fetch(`Form/Field/GetAllForForm?id=${formId}`, {
             credentials: 'include'
         })
             .then(response => {
