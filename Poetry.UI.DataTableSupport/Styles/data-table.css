@@ -1,0 +1,27 @@
+﻿/* LIST */
+.list-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse; }
+  .list-table th,
+  .list-table td {
+    padding: 5px;
+    padding-right: 0;
+    border-bottom: solid 1px #ccc;
+    font-size: 80%;
+    vertical-align: top; }
+  .list-table th {
+    font-weight: normal;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 80%; }
+    .list-table th.list-column-header {
+      width: 50%; }
+    .list-table th.list-edit-column-header {
+      width: 1%; }
+  .list-table td.list-edit-column {
+    padding-right: 5px;
+    line-height: 1; }
+  .list-table tr:hover td {
+    background: #f3f3f3; }
+

@@ -1,0 +1,43 @@
+﻿
+
+
+/* LIST */
+
+.list-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: 5px;
+        padding-right: 0;
+        border-bottom: solid 1px #ccc;
+        font-size: 80%;
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: normal;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 80%;
+
+        &.list-column-header {
+            width: 50%;
+        }
+
+        &.list-edit-column-header {
+            width: 1%;
+        }
+    }
+
+    td.list-edit-column {
+        padding-right: 5px;
+        line-height: 1;
+    }
+
+    tr:hover td {
+        background: #f3f3f3;
+    }
+}

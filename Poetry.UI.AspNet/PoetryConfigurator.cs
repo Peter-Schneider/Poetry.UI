@@ -8,6 +8,7 @@ using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.RoutingSupport;
+using Poetry.UI.TableSupport;
 using Poetry.UI.TranslationSupport;
 using System;
 using System.Collections.Generic;
@@ -61,10 +62,10 @@ namespace Poetry.UI
 
             var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())));
 
+            Components.Add(componentCreator.Create(typeof(PortalComponent)));
             Components.Add(componentCreator.Create(typeof(FormComponent)));
             Container.RegisterInstance(typeof(IFormFieldProvider), new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
-
-            Components.Add(componentCreator.Create(typeof(PortalComponent)));
+            Components.Add(componentCreator.Create(typeof(DataTableComponent)));
 
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
             var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();

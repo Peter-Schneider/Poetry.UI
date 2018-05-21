@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\data-table.js" />
+    <None Remove="Styles\data-table.css" />
+    <EmbeddedResource Include="Styles\data-table.css">
+      <DependentUpon>data-table.scss</DependentUpon>
+    </EmbeddedResource>
+    <None Remove="Styles\data-table.min.css" />
+    <EmbeddedResource Include="Styles\data-table.min.css">
+      <DependentUpon>data-table.css</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.StyleSupport\Poetry.UI.StyleSupport.csproj" />
+  </ItemGroup>
+
+</Project>

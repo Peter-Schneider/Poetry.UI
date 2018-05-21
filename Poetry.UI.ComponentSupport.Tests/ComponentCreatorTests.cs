@@ -1,4 +1,5 @@
 using Moq;
+using Poetry.UI.AppSupport;
 using Poetry.UI.ControllerSupport;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,23 @@ namespace Poetry.UI.ComponentSupport.Tests
         public void CallsControllerCreator()
         {
             var controller = new Controller("my-controller", null);
+
+            var componentControllerCreator = Mock.Of<IComponentControllerCreator>();
+            Mock.Get(componentControllerCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Controller> { controller });
+
+            var result = new ComponentCreator(componentControllerCreator).Create(typeof(MyComponentClass));
+
+            Assert.NotNull(result);
+            Assert.Equal("lorem-ipsum", result.Id);
+            Assert.Same(typeof(MyComponentClass).Assembly, result.Assembly);
+            Assert.Single(result.Controllers);
+            Assert.Same(controller, result.Controllers.Single());
+        }
+
+        [Fact]
+        public void CallsScriptCreator()
+        {
+            var controller = new Script("my-controller");
 
             var componentControllerCreator = Mock.Of<IComponentControllerCreator>();
             Mock.Get(componentControllerCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Controller> { controller });
