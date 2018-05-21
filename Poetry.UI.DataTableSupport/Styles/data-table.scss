@@ -3,7 +3,7 @@
 
 /* LIST */
 
-.list-table {
+.data-table {
     width: 100%;
     margin-bottom: 20px;
     border-collapse: collapse;
@@ -23,16 +23,16 @@
         text-transform: uppercase;
         font-size: 80%;
 
-        &.list-column-header {
+        &.data-table-column-header {
             width: 50%;
         }
 
-        &.list-edit-column-header {
+        &.data-table-edit-column-header {
             width: 1%;
         }
     }
 
-    td.list-edit-column {
+    td.data-table-edit-column {
         padding-right: 5px;
         line-height: 1;
     }

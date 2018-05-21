@@ -10,7 +10,7 @@ class DataTable {
         this.backend = backend;
         this.translations = translations;
 
-        this.root = document.createElement('key-figures-list');
+        this.root = document.createElement('data-table');
 
         this.update();
     }
@@ -20,7 +20,7 @@ class DataTable {
             .getAll()
             .then(keyFigures => {
                 var table = document.createElement('table');
-                table.classList.add('list-table');
+                table.classList.add('data-table');
 
                 var columns = ['Key', 'Value'];
 
@@ -32,14 +32,14 @@ class DataTable {
 
                 columns.forEach(name => {
                     var columnHeader = document.createElement('th');
-                    columnHeader.classList.add('list-column-header');
+                    columnHeader.classList.add('data-table-column-header');
                     columnHeaderRow.appendChild(columnHeader);
 
                     columnHeader.innerText = this.translations[name];
                 });
 
                 var editColumnHeader = document.createElement('th');
-                editColumnHeader.classList.add('list-edit-column-header');
+                editColumnHeader.classList.add('data-table-edit-column-header');
                 columnHeaderRow.appendChild(editColumnHeader);
 
                 var tableBody = document.createElement('tbody');
@@ -57,10 +57,10 @@ class DataTable {
                     });
 
                     var editCell = document.createElement('td');
-                    editCell.classList.add('list-edit-column');
+                    editCell.classList.add('data-table-edit-column');
                     keyFiguresTableRow.appendChild(editCell);
 
-                    var edit = document.createElement('list-edit-button');
+                    var edit = document.createElement('data-table-edit-button');
                     edit.tabIndex = 0;
                     edit.innerText = this.translations.Edit;
                     edit.addEventListener('click', event => {
