@@ -39,9 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ControllerSupport.Tests", "Poetry.UI.ControllerSupport.Tests\Poetry.UI.ControllerSupport.Tests.csproj", "{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.FormSupport.Tests", "Poetry.UI.FormSupport.Tests\Poetry.UI.FormSupport.Tests.csproj", "{61D650D0-5BBC-4B28-9549-8CB1BFA73144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.FormSupport.Tests", "Poetry.UI.FormSupport.Tests\Poetry.UI.FormSupport.Tests.csproj", "{61D650D0-5BBC-4B28-9549-8CB1BFA73144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DataTableSupport", "Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj", "{614BECA8-F319-428B-AD6A-03A3CED13AA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DataTableSupport", "Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj", "{614BECA8-F319-428B-AD6A-03A3CED13AA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ScriptSupport.Tests", "Poetry.UI.ScriptSupport.Tests\Poetry.UI.ScriptSupport.Tests.csproj", "{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{614BECA8-F319-428B-AD6A-03A3CED13AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{614BECA8-F319-428B-AD6A-03A3CED13AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{614BECA8-F319-428B-AD6A-03A3CED13AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

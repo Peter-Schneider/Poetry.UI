@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Reflection;
 
 namespace Poetry.UI.ScriptSupport
 {
@@ -8,7 +9,7 @@ namespace Poetry.UI.ScriptSupport
     {
         public IEnumerable<Script> Create(Type ownerType)
         {
-            throw new NotImplementedException();
+            return ownerType.GetCustomAttributes<ScriptAttribute>().Select(a => new Script(a.Path)).ToList();
         }
     }
 }
