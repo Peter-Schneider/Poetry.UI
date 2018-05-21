@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Reflection;
 
 namespace Poetry.UI.StyleSupport
 {
@@ -8,7 +9,7 @@ namespace Poetry.UI.StyleSupport
     {
         public IEnumerable<Style> Create(Type ownerType)
         {
-            throw new NotImplementedException();
+            return ownerType.GetCustomAttributes<StyleAttribute>().Select(a => new Style(a.Path)).ToList();
         }
     }
 }
