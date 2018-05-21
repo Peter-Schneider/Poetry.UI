@@ -1,5 +1,6 @@
 ﻿@using Poetry.UI.AppSupport
 @using Poetry.UI.RoutingSupport
+@using Poetry.UI.ComponentSupport
 @using System.Web.Mvc
 @using Newtonsoft.Json
 
@@ -7,6 +8,7 @@
 
 @{
     var AppRepository = DependencyResolver.Current.GetService<IAppRepository>();
+    var ComponentRepository = DependencyResolver.Current.GetService<IComponentRepository>();
     var BasePathProvider = DependencyResolver.Current.GetService<IBasePathProvider>();
 }
 
@@ -16,35 +18,36 @@
     <meta charset="utf-8" />
     <title>Poetry</title>
     <base href="/@BasePathProvider.BasePath/">
-    <link rel="stylesheet" type="text/css" href="Portal/Styles/portal.css" />
-    <script src="Portal/Scripts/portal.js"></script>
-    <script>
-        var portal = new Portal();
-        portal.inject('appNames', @Html.Raw(JsonConvert.SerializeObject(AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name))));
-    </script>
-    <link rel="stylesheet" type="text/css" href="Form/Styles/form-elements.css" />
-    <script src="Form/Scripts/form-builder.js"></script>
-    <script src="Form/Scripts/form-field-types.js"></script>
-    <script src="Form/Scripts/form-field-provider.js"></script>
-    <script>
-        portal.inject('formBuilder', new FormBuilder());
-        portal.inject('formFieldTypes', formFieldTypes);
-        portal.inject('formFieldProvider', new FormFieldProvider());
-    </script>
+    @foreach (var component in ComponentRepository.GetAll())
+    {
+        foreach (var script in component.Scripts)
+        {
+    <script src="@component.Id/@script.Path"></script>
+        }
+        foreach (var style in component.Styles)
+        {
+    <link rel="stylesheet" type="text/css" href="@component.Id/@style.Path" />
+        }
+    }
     @foreach (var app in AppRepository.GetAll())
     {
         foreach (var script in app.Scripts)
         {
-            <script src="@script.Path"></script>
+    <script src="@script.Path"></script>
         }
         foreach (var style in app.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@style.Path" />
+    <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
-        <script>
-        portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
-        </script>
+    <script>
+    portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
+    </script>
     }
+    <script>
+        var injections = injections || [];
+
+        injections.forEach(injection => portal.inject(injection[0], injection[1]));
+    </script>
 </head>
 <body>
 </body>

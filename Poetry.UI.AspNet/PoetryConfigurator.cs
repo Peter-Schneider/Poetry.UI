@@ -29,7 +29,6 @@ namespace Poetry.UI
         UnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
         List<Assembly> Assemblies { get; } = new List<Assembly>();
-        List<Component> Components { get; } = new List<Component>();
         
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
@@ -64,16 +63,21 @@ namespace Poetry.UI
 
             var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())), new ScriptCreator(), new StyleCreator());
 
-            Components.Add(componentCreator.Create(typeof(PortalComponent)));
-            Components.Add(componentCreator.Create(typeof(FormComponent)));
+            var components = new List<Component>();
+
+            components.Add(componentCreator.Create(typeof(PortalComponent)));
+            components.Add(componentCreator.Create(typeof(FormComponent)));
+            components.Add(componentCreator.Create(typeof(DataTableComponent)));
+
+            Container.RegisterInstance(typeof(IComponentRepository), new ComponentRepository(components));
+
             Container.RegisterInstance(typeof(IFormFieldProvider), new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
-            Components.Add(componentCreator.Create(typeof(DataTableComponent)));
 
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
             var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();
 
             embeddedResourceAssemblies.Add(embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()));
-            embeddedResourceAssemblies.AddRange(Components.Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
+            embeddedResourceAssemblies.AddRange(components.Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
 
             var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), embeddedResourceAssemblies.ToArray());
 
@@ -82,7 +86,7 @@ namespace Poetry.UI
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
 
             RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
-            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, Components.ToArray())));
+            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, components.ToArray())));
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);

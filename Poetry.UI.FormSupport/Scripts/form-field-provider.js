@@ -17,3 +17,7 @@ class FormFieldProvider {
             });
     }
 }
+
+var injections = injections || [];
+
+injections.push(['formFieldProvider', new FormFieldProvider()]);

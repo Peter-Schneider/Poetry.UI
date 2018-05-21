@@ -18,3 +18,7 @@ class FormBuilder {
         return container;
     }
 }
+
+var injections = injections || [];
+
+injections.push(['formBuilder', new FormBuilder()]);

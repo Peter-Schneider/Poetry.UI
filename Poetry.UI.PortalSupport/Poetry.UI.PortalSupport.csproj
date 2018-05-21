@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\app.js" />
+    <None Remove="Scripts\blade.js" />
+    <None Remove="Scripts\container.js" />
     <None Remove="Scripts\portal.js" />
+    <EmbeddedResource Include="Scripts\app.js" />
+    <EmbeddedResource Include="Scripts\blade.js" />
+    <EmbeddedResource Include="Scripts\container.js" />
     <EmbeddedResource Include="Scripts\portal.js" />
     <None Remove="Styles\portal.css" />
     <EmbeddedResource Include="Styles\portal.css">
@@ -27,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
   </ItemGroup>
 

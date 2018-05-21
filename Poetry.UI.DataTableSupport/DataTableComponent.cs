@@ -5,7 +5,7 @@ using System;
 
 namespace Poetry.UI.TableSupport
 {
-    [Component("data-table")]
+    [Component("DataTable")]
     [Script("Scripts/data-table.js")]
     [Style("Styles/data-table.css")]
     public class DataTableComponent

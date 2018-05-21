@@ -33,3 +33,7 @@ formFieldTypes['string'] = {
         return label;
     }
 };
+
+var injections = injections || [];
+
+injections.push(['formFieldTypes', formFieldTypes]);

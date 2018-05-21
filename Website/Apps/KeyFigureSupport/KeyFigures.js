@@ -58,7 +58,7 @@ class ListKeyFigures extends Blade {
         heading.innerText = translations.KeyFigures;
         this.root.appendChild(heading);
 
-        var keyFiguresList = container.resolve(KeyFiguresList, { blade: this });
+        var keyFiguresList = container.resolve(DataTable, { blade: this });
         this.root.appendChild(keyFiguresList.root);
 
         var newKeyFigure = document.createElement('portal-button');
