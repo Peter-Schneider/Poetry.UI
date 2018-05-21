@@ -32,7 +32,7 @@ namespace Poetry.UI.AppSupport //
                     continue;
                 }
 
-                var scripts = CustomAttributeExtensions.GetCustomAttributes<ScriptAttribute>(type).Select(s => new Script(s.Src, s.Order));
+                var scripts = CustomAttributeExtensions.GetCustomAttributes<ScriptAttribute>(type).Select(s => new Script(s.Src));
                 var styles = CustomAttributeExtensions.GetCustomAttributes<StyleAttribute>(type).Select(s => s.Href);
                 var translationAttribute = CustomAttributeExtensions.GetCustomAttribute<TranslationsAttribute>(type);
                 var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new EmptyTranslationRepository();

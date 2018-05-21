@@ -10,17 +10,10 @@ namespace Poetry.UI.ScriptSupport
     public class ScriptAttribute : Attribute
     {
         public string Src { get; }
-        public int Order { get; }
 
         public ScriptAttribute(string src)
         {
             Src = src;
-        }
-
-        public ScriptAttribute(string src, int order)
-        {
-            Src = src;
-            Order = order;
         }
     }
 }

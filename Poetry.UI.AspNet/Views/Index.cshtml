@@ -33,7 +33,7 @@
     </script>
     @foreach (var app in AppRepository.GetAll())
     {
-        foreach (var script in app.Scripts.OrderBy(s => s.Order))
+        foreach (var script in app.Scripts)
         {
             <script src="@script.Src"></script>
         }
