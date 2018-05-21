@@ -39,7 +39,7 @@
         }
         foreach (var style in app.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@style" />
+            <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
         <script>
         portal.injectForApp('@app.Name', 'translations', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));

@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ControllerSupport;
 using Poetry.UI.ScriptSupport;
+using Poetry.UI.StyleSupport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,15 @@ namespace Poetry.UI.ComponentSupport
         public Assembly Assembly { get; }
         public IEnumerable<Controller> Controllers { get; }
         public IEnumerable<Script> Scripts { get; }
+        public IEnumerable<Style> Styles { get; }
 
-        public Component(string id, Assembly assembly, IEnumerable<Controller> controllers, IEnumerable<Script> scripts)
+        public Component(string id, Assembly assembly, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
         {
             Id = id;
             Assembly = assembly;
             Controllers = controllers.ToList().AsReadOnly();
             Scripts = scripts.ToList().AsReadOnly();
+            Styles = styles.ToList().AsReadOnly();
         }
     }
 }

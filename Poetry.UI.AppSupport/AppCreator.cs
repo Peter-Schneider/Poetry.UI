@@ -12,10 +12,14 @@ namespace Poetry.UI.AppSupport //
     public class AppCreator
     {
         ITranslationRepositoryCreator TranslationRepositoryCreator { get; }
+        IScriptCreator ScriptCreator { get; }
+        IStyleCreator StyleCreator { get; }
 
-        public AppCreator(ITranslationRepositoryCreator translationRepositoryCreator)
+        public AppCreator(ITranslationRepositoryCreator translationRepositoryCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
         {
             TranslationRepositoryCreator = translationRepositoryCreator;
+            ScriptCreator = scriptCreator;
+            StyleCreator = styleCreator;
         }
 
         public IEnumerable<App> Create(IEnumerable<Assembly> assemblies)
@@ -32,15 +36,13 @@ namespace Poetry.UI.AppSupport //
                     continue;
                 }
 
-                var scripts = CustomAttributeExtensions.GetCustomAttributes<ScriptAttribute>(type).Select(s => new Script(s.Path));
-                var styles = CustomAttributeExtensions.GetCustomAttributes<StyleAttribute>(type).Select(s => s.Href);
                 var translationAttribute = CustomAttributeExtensions.GetCustomAttribute<TranslationsAttribute>(type);
                 var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new EmptyTranslationRepository();
 
                 yield return new App(
                     attribute.Id,
-                    scripts: scripts,
-                    styles: styles,
+                    scripts: ScriptCreator.Create(type),
+                    styles: StyleCreator.Create(type),
                     translations: translations
                 );
             }

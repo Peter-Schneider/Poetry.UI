@@ -9,11 +9,11 @@ namespace Poetry.UI.StyleSupport
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class StyleAttribute : Attribute
     {
-        public string Href { get; }
+        public string Path { get; }
 
-        public StyleAttribute(string href)
+        public StyleAttribute(string path)
         {
-            Href = href;
+            Path = path;
         }
     }
 }

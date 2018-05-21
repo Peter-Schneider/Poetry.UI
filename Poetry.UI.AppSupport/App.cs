@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Poetry.UI.StyleSupport;
 
 namespace Poetry.UI.AppSupport
 {
@@ -11,10 +12,10 @@ namespace Poetry.UI.AppSupport
     {
         public string Name { get; }
         public IEnumerable<Script> Scripts { get; }
-        public IEnumerable<string> Styles { get; }
+        public IEnumerable<Style> Styles { get; }
         public ITranslationRepository Translations { get; }
 
-        public App(string name, IEnumerable<Script> scripts, IEnumerable<string> styles, ITranslationRepository translations)
+        public App(string name, IEnumerable<Script> scripts, IEnumerable<Style> styles, ITranslationRepository translations)
         {
             Name = name;
             Scripts = scripts.ToList().AsReadOnly();

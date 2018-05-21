@@ -138,6 +138,10 @@
       <Project>{5DBF47E9-B32F-404E-9247-9F947762287B}</Project>
       <Name>Poetry.UI.ScriptSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.StyleSupport\Poetry.UI.StyleSupport.csproj">
+      <Project>{76F32798-95AE-49A4-9233-64F4BDADF82E}</Project>
+      <Name>Poetry.UI.StyleSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj">
       <Project>{30A9C384-8B5F-4755-A8BA-5FC9F5873ACB}</Project>
       <Name>Poetry.UI.TranslationSupport</Name>

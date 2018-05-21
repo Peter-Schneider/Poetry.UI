@@ -9,6 +9,7 @@ using Poetry.UI.FormSupport.FormFieldSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.RoutingSupport;
 using Poetry.UI.ScriptSupport;
+using Poetry.UI.StyleSupport;
 using Poetry.UI.TableSupport;
 using Poetry.UI.TranslationSupport;
 using System;
@@ -61,7 +62,7 @@ namespace Poetry.UI
 
             Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
 
-            var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())), new ScriptCreator());
+            var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())), new ScriptCreator(), new StyleCreator());
 
             Components.Add(componentCreator.Create(typeof(PortalComponent)));
             Components.Add(componentCreator.Create(typeof(FormComponent)));
@@ -86,7 +87,7 @@ namespace Poetry.UI
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
 
-            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser())).Create(Assemblies)));
+            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
         }
     }
 }
