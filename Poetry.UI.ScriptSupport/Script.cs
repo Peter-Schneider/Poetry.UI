@@ -1,4 +1,4 @@
-﻿namespace Poetry.UI.AppSupport
+﻿namespace Poetry.UI.ScriptSupport
 {
     public class Script
     {

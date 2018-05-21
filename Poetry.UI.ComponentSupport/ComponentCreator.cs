@@ -1,4 +1,5 @@
 ﻿using Poetry.UI.ControllerSupport;
+using Poetry.UI.ScriptSupport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace Poetry.UI.ComponentSupport
     public class ComponentCreator
     {
         IComponentControllerCreator ComponentControllerCreator { get; }
+        IScriptCreator ScriptCreator { get; }
 
-        public ComponentCreator(IComponentControllerCreator componentControllerCreator)
+        public ComponentCreator(IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator)
         {
             ComponentControllerCreator = componentControllerCreator;
+            ScriptCreator = scriptCreator;
         }
 
         public Component Create(Type type)
@@ -30,7 +33,7 @@ namespace Poetry.UI.ComponentSupport
                 throw new TypeIsMissingComponentAttributeException(type);
             }
 
-            return new Component(attribute.Id, type.Assembly, ComponentControllerCreator.Create(type).ToArray());
+            return new Component(attribute.Id, type.Assembly, ComponentControllerCreator.Create(type), ScriptCreator.Create(type));
         }
     }
 }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.ControllerSupport\Poetry.UI.ControllerSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj" />
   </ItemGroup>
 
 </Project>
