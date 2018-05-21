@@ -9,11 +9,11 @@ namespace Poetry.UI.ScriptSupport
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class ScriptAttribute : Attribute
     {
-        public string Src { get; }
+        public string Path { get; }
 
-        public ScriptAttribute(string src)
+        public ScriptAttribute(string path)
         {
-            Src = src;
+            Path = path;
         }
     }
 }

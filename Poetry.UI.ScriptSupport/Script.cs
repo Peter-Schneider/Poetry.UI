@@ -2,11 +2,11 @@
 {
     public class Script
     {
-        public string Src { get; }
+        public string Path { get; }
 
-        public Script(string src)
+        public Script(string path)
         {
-            Src = src;
+            Path = path;
         }
     }
 }
