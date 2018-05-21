@@ -66,7 +66,7 @@ class ListKeyFigures extends Blade {
         newKeyFigure.innerText = translations.New;
         newKeyFigure.addEventListener('click', () => {
             app.closeBladesAfter(this);
-            var editKeyFigureBlade = app.openBlade('EditKeyFigure');
+            var editKeyFigureBlade = app.openBlade('EditKeyFigure', {});
             editKeyFigureBlade.addEventListener('close', message => {
                 if (message == 'saved') {
                     keyFiguresList.update();
@@ -99,6 +99,7 @@ class EditKeyFigure extends Blade {
         this.formBuilder = formBuilder;
         this.formFieldTypes = formFieldTypes;
         this.formFieldProvider = formFieldProvider;
+        this.formFields = this.formFieldProvider.getFor('key-figure');
 
         var heading = document.createElement('h1');
         heading.classList.add('heading');
@@ -135,7 +136,7 @@ class EditKeyFigure extends Blade {
     open(keyFigure) {
         this.model = keyFigure;
 
-        this.formFieldProvider.getFor('key-figure')
+        this.formFields
             .then(formFields => {
                 var form = this.formBuilder.build(this.model, formFields, this.formFieldTypes, this.translations);
 
