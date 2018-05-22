@@ -55,7 +55,7 @@ class ListKeyFigures extends Blade {
 
         keyFiguresList.appendTo(this.root);
 
-        new PortalButton(translations.New, () => {
+        var newKeyFigure = () => {
             app.closeBladesAfter(this);
             var editKeyFigureBlade = app.openBlade('EditKeyFigure');
             editKeyFigureBlade.addEventListener('close', message => {
@@ -63,12 +63,16 @@ class ListKeyFigures extends Blade {
                     keyFiguresList.update();
                 }
             });
-        }).appendTo(this.root);
+        };
 
-        new PortalButton(translations.Close, () => {
+        new PortalButton(translations.New, newKeyFigure).appendTo(this.root);
+
+        var close = () => {
             app.closeBladesAfter(this);
             app.closeBlade(this);
-        }).appendTo(this.root);
+        };
+
+        new PortalButton(translations.Close, close).appendTo(this.root);
     }
 }
 
