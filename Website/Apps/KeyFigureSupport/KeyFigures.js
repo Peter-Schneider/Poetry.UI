@@ -72,10 +72,7 @@ class ListKeyFigures extends Blade {
         );
         this.root.appendChild(keyFiguresList.root);
 
-        var newKeyFigure = document.createElement('portal-button');
-        newKeyFigure.tabIndex = 0;
-        newKeyFigure.innerText = translations.New;
-        newKeyFigure.addEventListener('click', () => {
+        new PortalButton(translations.New, () => {
             app.closeBladesAfter(this);
             var editKeyFigureBlade = app.openBlade('EditKeyFigure');
             editKeyFigureBlade.addEventListener('close', message => {
@@ -83,17 +80,12 @@ class ListKeyFigures extends Blade {
                     keyFiguresList.update();
                 }
             });
-        });
-        this.root.appendChild(newKeyFigure);
+        }).appendTo(this.root);
 
-        var close = document.createElement('portal-button');
-        close.tabIndex = 0;
-        close.innerText = translations.Close;
-        close.addEventListener('click', () => {
+        new PortalButton(translations.Close, () => {
             app.closeBladesAfter(this);
             app.closeBlade(this);
-        });
-        this.root.appendChild(close);
+        }).appendTo(this.root);
     }
 }
 
@@ -118,25 +110,8 @@ class EditKeyFigure extends Blade {
         this.root.appendChild(formRoot);
         this.formRoot = formRoot;
 
-        var cancel = document.createElement('portal-button');
-        cancel.tabIndex = 0;
-        cancel.innerText = translations.Cancel;
-        cancel.addEventListener('click', () => {
-            app.closeBlade(this);
-        });
-        this.root.appendChild(cancel);
-
-        var save = document.createElement('portal-button');
-        save.tabIndex = 0;
-        save.innerText = translations.Save;
-        save.addEventListener('click', () => {
-            this.backend
-                .save(this.model)
-                .then(() => {
-                    app.closeBlade(this, 'saved');
-                });
-        });
-        this.root.appendChild(save);
+        new PortalButton(translations.Cancel, () => app.closeBlade(this)).appendTo(this.root);
+        new PortalButton(translations.Save, () => this.backend.save(this.model).then(() => app.closeBlade(this, 'saved'))).appendTo(this.root);
     }
 
     open(keyFigure) {
