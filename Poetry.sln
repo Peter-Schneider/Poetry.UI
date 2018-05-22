@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DependencyInjecti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DataTableSupport.Tests", "Poetry.UI.DataTableSupport.Tests\Poetry.UI.DataTableSupport.Tests.csproj", "{EB922566-4656-4D16-A5AD-9BB696C62D54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AppSupport.Tests", "Poetry.UI.AppSupport.Tests\Poetry.UI.AppSupport.Tests.csproj", "{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

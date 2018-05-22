@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj" />
   </ItemGroup>
 
 </Project>
