@@ -8,7 +8,7 @@ portal.addApp(class KeyFigures extends App {
         super();
 
         container.inject('app', this);
-        container.inject('backend', container.resolve(KeyFiguresBackend));
+        container.inject('backend', new KeyFiguresBackend());
 
         this.addBlade(ListKeyFigures);
         this.addBlade(EditKeyFigure);
