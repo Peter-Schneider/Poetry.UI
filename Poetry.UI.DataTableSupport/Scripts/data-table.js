@@ -77,4 +77,8 @@ class DataTable {
                 elements.forEach(n => this.root.appendChild(n));
             });
     }
+
+    appendTo(element) {
+        element.appendChild(this.root);
+    }
 }

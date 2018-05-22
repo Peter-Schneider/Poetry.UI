@@ -52,7 +52,8 @@ class ListKeyFigures extends Blade {
                 element.appendChild(edit);
             }
         );
-        this.root.appendChild(keyFiguresList.root);
+
+        keyFiguresList.appendTo(this.root);
 
         new PortalButton(translations.New, () => {
             app.closeBladesAfter(this);
