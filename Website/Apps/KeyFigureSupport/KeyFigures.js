@@ -8,7 +8,6 @@ portal.addApp(class KeyFigures extends App {
         super();
 
         container.inject('app', this);
-        container.inject('backend', new KeyFiguresBackend());
 
         this.addBlade(ListKeyFigures);
         this.addBlade(EditKeyFigure);
@@ -17,27 +16,10 @@ portal.addApp(class KeyFigures extends App {
 
 
 
-/* BACKEND */
-
-class KeyFiguresBackend {
-    save(keyFigure) {
-        return fetch('/Apps/KeyFigures/Save', {
-            credentials: 'include',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(keyFigure)
-        });
-    }
-}
-
-
-
 /* LIST KEY FIGURES */
 
 class ListKeyFigures extends Blade {
-    constructor(app, container, translations, keyFiguresList) {
+    constructor(app, translations, keyFiguresList) {
         super();
 
         new PortalHeading(translations.KeyFigures).appendTo(this.root);
@@ -94,11 +76,10 @@ class ListKeyFigures extends Blade {
 /* EDIT KEY FIGURE */
 
 class EditKeyFigure extends Blade {
-    constructor(app, translations, backend, formBuilder, formFieldTypes, formFieldProvider) {
+    constructor(app, translations, formBuilder, formFieldTypes, formFieldProvider) {
         super();
 
         this.translations = translations;
-        this.backend = backend;
         this.formBuilder = formBuilder;
         this.formFieldTypes = formFieldTypes;
         this.formFieldProvider = formFieldProvider;
@@ -110,8 +91,19 @@ class EditKeyFigure extends Blade {
         this.root.appendChild(formRoot);
         this.formRoot = formRoot;
 
+        var save = keyFigure => {
+            return fetch('/Apps/KeyFigures/Save', {
+                credentials: 'include',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(keyFigure)
+            });
+        }
+
         new PortalButton(translations.Cancel, () => app.closeBlade(this)).appendTo(this.root);
-        new PortalButton(translations.Save, () => this.backend.save(this.model).then(() => app.closeBlade(this, 'saved'))).appendTo(this.root);
+        new PortalButton(translations.Save, () => save(this.model).then(() => app.closeBlade(this, 'saved'))).appendTo(this.root);
     }
 
     open(keyFigure) {
