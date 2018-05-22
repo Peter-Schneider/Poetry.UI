@@ -118,6 +118,7 @@
     <Compile Include="Apps\KeyFigureSupport\KeyFigureDataTableBackend.cs" />
     <Compile Include="Apps\KeyFigureSupport\KeyFiguresApp.cs" />
     <Compile Include="Apps\KeyFigureSupport\KeyFiguresController.cs" />
+    <Compile Include="Controllers\KeyFigureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,6 +147,8 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <Content Include="Views\KeyFigure\Index.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj">

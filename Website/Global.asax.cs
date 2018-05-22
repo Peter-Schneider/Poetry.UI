@@ -18,6 +18,12 @@ namespace Website
             GlobalConfiguration.Configuration.EnsureInitialized();
 
             this.AddPoetryUI().Done();
+
+            RouteTable.Routes.MapRoute(
+                "KeyFigure",
+                "KeyFigure/{id}",
+                new { controller = "KeyFigure", action = "Index" }
+            );
         }
     }
 }

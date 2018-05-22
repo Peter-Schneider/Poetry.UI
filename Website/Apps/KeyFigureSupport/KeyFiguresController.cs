@@ -17,6 +17,26 @@ namespace Website.Apps.KeyFigureSupport
                 Id = Guid.NewGuid().ToString(),
                 Key = "Lorem",
                 Value = "Ipsum",
+            },
+            new KeyFigure {
+                Id = Guid.NewGuid().ToString(),
+                Key = "Dolor",
+                Value = "Sit amet",
+            },
+            new KeyFigure {
+                Id = Guid.NewGuid().ToString(),
+                Key = "Adipiscing",
+                Value = "Elit",
+            },
+            new KeyFigure {
+                Id = Guid.NewGuid().ToString(),
+                Key = "Pellentesque",
+                Value = "Cursus",
+            },
+            new KeyFigure {
+                Id = Guid.NewGuid().ToString(),
+                Key = "Dictum",
+                Value = "Erat",
             }
         };
 
