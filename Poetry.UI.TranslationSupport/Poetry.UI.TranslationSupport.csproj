@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\translation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\translation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.FileSupport\Poetry.UI.FileSupport.csproj" />
   </ItemGroup>
 

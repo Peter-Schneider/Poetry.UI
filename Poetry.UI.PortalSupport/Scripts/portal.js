@@ -7,8 +7,6 @@ class Portal {
     constructor() {
         this.appClasses = [];
         this.apps = [];
-        this.container = new Container();
-        this.appContainers = [];
         this.root = document.createElement('portal');
         this.appNames = fetch('Portal/App/GetNames', { credentials: 'include' })
             .then(response => {
@@ -33,12 +31,6 @@ class Portal {
 
     addApp(appClass) {
         this.appClasses.push(appClass);
-
-        if (!this.appContainers[appClass.name]) {
-            this.appContainers[appClass.name] = new Container(this.container);
-        }
-
-        this.injectForApp(appClass.name, 'container', this.appContainers[appClass.name]);
 
         var item = document.createElement('portal-nav-item');
 
@@ -72,11 +64,9 @@ class Portal {
 
         var appClass = this.appClasses.find(appClass => appClass.name == name);
 
-        var app = this.appContainers[name].resolve(appClass);
+        var app = new appClass();
 
         this.apps.push(app);
-
-        app.container = this.appContainers[name];
 
         this.root.appendChild(app.root);
 
@@ -89,18 +79,6 @@ class Portal {
         }
 
         this.openApp(this.appClasses[0].name);
-    }
-
-    inject(key, value) {
-        this.container.inject(key, value);
-    }
-
-    injectForApp(appName, key, value) {
-        if (!this.appContainers[appName]) {
-            this.appContainers[appName] = new Container(this.container);
-        }
-
-        this.appContainers[appName].inject(key, value);
     }
 }
 

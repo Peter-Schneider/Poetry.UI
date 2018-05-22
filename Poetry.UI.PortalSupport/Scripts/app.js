@@ -4,8 +4,7 @@
 /* APP */
 
 class App {
-    constructor(container) {
-        this.container = container;
+    constructor() {
         this.name = this.constructor.name;
         this.bladeClasses = [];
         this.blades = [];
@@ -23,7 +22,7 @@ class App {
             throw 'Blade not found';
         }
 
-        var blade = this.container.resolve(bladeClass);
+        var blade = new bladeClass(this);
 
         blade.open(data);
 
