@@ -19,7 +19,7 @@ portal.addApp(class KeyFigures extends App {
 /* LIST KEY FIGURES */
 
 class ListKeyFigures extends Blade {
-    constructor(app, translations, keyFiguresList) {
+    constructor(app, translations) {
         super();
 
         new PortalHeading(translations.KeyFigures).appendTo(this.root);
