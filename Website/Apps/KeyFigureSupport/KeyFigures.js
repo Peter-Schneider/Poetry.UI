@@ -40,10 +40,7 @@ class ListKeyFigures extends Blade {
     constructor(app, container, translations, keyFiguresList) {
         super();
 
-        var heading = document.createElement('h1');
-        heading.className = 'heading';
-        heading.innerText = translations.KeyFigures;
-        this.root.appendChild(heading);
+        new PortalHeading(translations.KeyFigures).appendTo(this.root);
 
         var blade = this;
 
@@ -80,7 +77,7 @@ class ListKeyFigures extends Blade {
         newKeyFigure.innerText = translations.New;
         newKeyFigure.addEventListener('click', () => {
             app.closeBladesAfter(this);
-            var editKeyFigureBlade = app.openBlade('EditKeyFigure', {});
+            var editKeyFigureBlade = app.openBlade('EditKeyFigure');
             editKeyFigureBlade.addEventListener('close', message => {
                 if (message == 'saved') {
                     keyFiguresList.update();
@@ -114,13 +111,8 @@ class EditKeyFigure extends Blade {
         this.formFieldTypes = formFieldTypes;
         this.formFieldProvider = formFieldProvider;
         this.formFields = this.formFieldProvider.getFor('key-figure');
-
-        var heading = document.createElement('h1');
-        heading.classList.add('heading');
-        heading.classList.add('edit-key-figure');
-        this.root.appendChild(heading);
-
-        this.heading = heading;
+        
+        this.heading = new PortalHeading(translations.KeyFigures).appendTo(this.root);
 
         var formRoot = document.createElement('div');
         this.root.appendChild(formRoot);
@@ -148,7 +140,7 @@ class EditKeyFigure extends Blade {
     }
 
     open(keyFigure) {
-        this.model = keyFigure;
+        this.model = keyFigure || {};
 
         this.formFields
             .then(formFields => {
@@ -157,9 +149,9 @@ class EditKeyFigure extends Blade {
                 this.formRoot.appendChild(form);
 
                 if (keyFigure) {
-                    this.heading.innerText = this.translations.EditKeyFigure;
+                    this.heading.setText(this.translations.EditKeyFigure);
                 } else {
-                    this.heading.innerText = this.translations.NewKeyFigure;
+                    this.heading.setText(this.translations.NewKeyFigure);
                 }
             });
     }
