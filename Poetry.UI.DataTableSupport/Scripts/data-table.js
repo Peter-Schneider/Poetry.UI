@@ -10,13 +10,43 @@ class DataTable {
         this.createColumns = createColumns;
         this.createActionButton = createActionButton;
 
+        this.page = 1;
+
         this.root = document.createElement('data-table');
+
+        var table = document.createElement('table');
+        table.classList.add('data-table');
+        this.root.appendChild(table);
+
+        var tableHeader = document.createElement('thead');
+        table.appendChild(tableHeader);
+
+        var columnHeaderRow = document.createElement('tr');
+        tableHeader.appendChild(columnHeaderRow);
+
+        columnNames.forEach(name => {
+            var columnHeader = document.createElement('th');
+            columnHeader.style.width = (Math.floor(100 / columnNames.length * 100) / 100) + '%';
+            columnHeaderRow.appendChild(columnHeader);
+
+            columnHeader.innerText = name;
+        });
+
+        var editColumnHeader = document.createElement('th');
+        editColumnHeader.style.width = '1%';
+        columnHeaderRow.appendChild(editColumnHeader);
+
+        this.tableBody = document.createElement('tbody');
+        table.appendChild(this.tableBody);
+
+        this.paging = document.createElement('data-table-paging');
+        this.root.appendChild(this.paging);
 
         this.update();
     }
 
     update() {
-        fetch(`DataTable/Backend/GetAll?provider=${this.provider}`, { credentials: 'include' })
+        fetch(`DataTable/Backend/GetAll?provider=${this.provider}&page=${this.page}`, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`DataTable backend returned ${response.status} (${response.statusText})`);
@@ -25,33 +55,13 @@ class DataTable {
                 return response.json();
             })
             .then(response => {
-                var table = document.createElement('table');
-                table.classList.add('data-table');
-
-                var tableHeader = document.createElement('thead');
-                table.appendChild(tableHeader);
-
-                var columnHeaderRow = document.createElement('tr');
-                tableHeader.appendChild(columnHeaderRow);
-
-                this.columnNames.forEach(name => {
-                    var columnHeader = document.createElement('th');
-                    columnHeader.classList.add('data-table-column-header');
-                    columnHeaderRow.appendChild(columnHeader);
-
-                    columnHeader.innerText = name;
-                });
-
-                var editColumnHeader = document.createElement('th');
-                editColumnHeader.classList.add('data-table-edit-column-header');
-                columnHeaderRow.appendChild(editColumnHeader);
-
-                var tableBody = document.createElement('tbody');
-                table.appendChild(tableBody);
+                while (this.tableBody.lastChild) {
+                    this.tableBody.removeChild(this.tableBody.lastChild);
+                }
 
                 response.Items.forEach(item => {
                     var row = document.createElement('tr');
-                    tableBody.appendChild(row);
+                    this.tableBody.appendChild(row);
 
                     this.createColumns.forEach(callback => {
                         var cell = document.createElement('td');
@@ -69,12 +79,22 @@ class DataTable {
                     }
                 });
 
-                return [table];
-            })
-            .then(elements => {
-                this.root.childNodes.forEach(n => this.root.removeChild(n));
+                while (this.paging.lastChild) {
+                    this.paging.removeChild(this.paging.lastChild);
+                }
 
-                elements.forEach(n => this.root.appendChild(n));
+                for (var i = 1; i <= response.PageCount; i++) {
+                    var page = document.createElement('a');
+                    page.classList.add('portal-small-button');
+                    page.innerText = i;
+                    (function (dataTable, i) {
+                        page.addEventListener('click', () => {
+                            dataTable.page = i;
+                            dataTable.update();
+                        });
+                    })(this, i);
+                    this.paging.appendChild(page);
+                }
             });
     }
 

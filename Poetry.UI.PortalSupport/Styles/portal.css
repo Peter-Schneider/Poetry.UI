@@ -101,14 +101,40 @@ blade.fullscreen {
   font-size: 22px; }
 
 /* BUTTON */
-portal-button {
+portal-button,
+.portal-button {
   padding: 5px 10px;
   border: none;
   background: #0058ad;
   color: white;
   cursor: pointer; }
-  portal-button + portal-button {
+  portal-button + portal-button,
+  .portal-button + portal-button, portal-button +
+  .portal-button,
+  .portal-button +
+  .portal-button {
     margin-left: 10px; }
-  portal-button:hover {
+  portal-button:hover,
+  .portal-button:hover {
+    background: #003e7a; }
+
+/* SMALL BUTTON */
+portal-small-button,
+.portal-small-button {
+  display: inline-block;
+  padding: 4px;
+  background: #0058ad;
+  color: white;
+  cursor: pointer;
+  line-height: 1;
+  text-transform: uppercase; }
+  portal-small-button + portal-small-button,
+  .portal-small-button + portal-small-button, portal-small-button +
+  .portal-small-button,
+  .portal-small-button +
+  .portal-small-button {
+    margin-left: 5px; }
+  portal-small-button:hover,
+  .portal-small-button:hover {
     background: #003e7a; }
 

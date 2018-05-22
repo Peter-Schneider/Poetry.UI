@@ -37,7 +37,7 @@ class ListKeyFigures extends Blade {
                 (dataTable, element, item) => element.innerText = item.Value
             ],
             (dataTable, element, item) => {
-                var edit = document.createElement('data-table-edit-button');
+                var edit = document.createElement('portal-small-button');
                 edit.tabIndex = 0;
                 edit.innerText = app.translations.get('Edit');
                 edit.addEventListener('click', event => {
@@ -52,7 +52,7 @@ class ListKeyFigures extends Blade {
                 element.appendChild(edit);
 
                 var link = document.createElement('a');
-                link.classList.add('data-table-edit-button');
+                link.classList.add('portal-small-button');
                 link.innerText = app.translations.get('Open');
                 link.setAttribute('href', `/KeyFigure/${item.Id}`);
                 link.setAttribute('target', '_blank');

@@ -146,7 +146,8 @@ blade.fullscreen {
 
 /* BUTTON */
 
-portal-button {
+portal-button,
+.portal-button {
     padding: 5px 10px;
     border: none;
     background: #0058ad;
@@ -156,7 +157,30 @@ portal-button {
     & + & {
         margin-left: 10px;
     }
-    
+
+    &:hover {
+        background: darken(#0058ad, 10%);
+    }
+}
+
+
+
+/* SMALL BUTTON */
+
+portal-small-button,
+.portal-small-button {
+    display: inline-block;
+    padding: 4px;
+    background: #0058ad;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    text-transform: uppercase;
+
+    & + & {
+        margin-left: 5px;
+    }
+
     &:hover {
         background: darken(#0058ad, 10%);
     }
