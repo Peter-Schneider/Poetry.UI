@@ -12,19 +12,13 @@ namespace Website.Apps.KeyFigureSupport
     [RoutePrefix("Apps/KeyFigures")]
     public class KeyFiguresController : ApiController
     {
-        static List<KeyFigure> Items { get; } = new List<KeyFigure> {
+        public static List<KeyFigure> Items { get; } = new List<KeyFigure> {
             new KeyFigure {
                 Id = Guid.NewGuid().ToString(),
                 Key = "Lorem",
                 Value = "Ipsum",
             }
         };
-
-        [Route("GetAll")]
-        public IEnumerable<KeyFigure> GetAll()
-        {
-            return Items;
-        }
 
         [Route("Save")]
         [HttpPost]

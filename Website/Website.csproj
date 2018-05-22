@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\KeyFigureSupport\KeyFigure.cs" />
+    <Compile Include="Apps\KeyFigureSupport\KeyFigureDataTableBackend.cs" />
     <Compile Include="Apps\KeyFigureSupport\KeyFiguresApp.cs" />
     <Compile Include="Apps\KeyFigureSupport\KeyFiguresController.cs" />
     <Compile Include="Global.asax.cs">
@@ -124,12 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Apps\KeyFigureSupport\KeyFigures.js" />
-    <EmbeddedResource Include="Apps\KeyFigureSupport\KeyFigures.css">
-      <DependentUpon>KeyFigures.scss</DependentUpon>
-    </EmbeddedResource>
-    <Content Include="Apps\KeyFigureSupport\KeyFigures.min.css">
-      <DependentUpon>KeyFigures.css</DependentUpon>
-    </Content>
     <Content Include="Apps\KeyFigureSupport\lang.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -146,7 +141,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Apps\KeyFigureSupport\KeyFigures.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -161,6 +155,10 @@
     <ProjectReference Include="..\Poetry.UI.AspNet\Poetry.UI.AspNet.csproj">
       <Project>{8c4cda01-ab43-4a11-be8d-778bad23aff8}</Project>
       <Name>Poetry.UI.AspNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj">
+      <Project>{614BECA8-F319-428B-AD6A-03A3CED13AA3}</Project>
+      <Name>Poetry.UI.DataTableSupport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj">
       <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>

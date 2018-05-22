@@ -1,8 +1,10 @@
 ﻿using Poetry.UI.AppSupport;
+using Poetry.UI.AspNet.DependencyInjectionSupport;
 using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
@@ -50,6 +52,8 @@ namespace Poetry.UI
         {
             DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
 
+            Container.RegisterInstance(typeof(IInstantiator), new Instantiator());
+
             RouteTable.Routes.MapRoute(
                 "PoetryPortal",
                 BasePath,
@@ -72,6 +76,7 @@ namespace Poetry.UI
             Container.RegisterInstance(typeof(IComponentRepository), new ComponentRepository(components));
 
             Container.RegisterInstance(typeof(IFormFieldProvider), new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
+            Container.RegisterInstance(typeof(DataTableSupport.BackendSupport.IBackendProvider), new DataTableSupport.BackendSupport.BackendProvider(new DataTableSupport.BackendSupport.BackendCreator(new Instantiator()).Create(new DataTableSupport.BackendSupport.BackendTypeProvider().GetTypes(Assemblies))));
 
             var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
             var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();

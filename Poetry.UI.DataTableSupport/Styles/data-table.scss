@@ -1,7 +1,7 @@
 ﻿
 
 
-/* LIST */
+/* TABLE */
 
 .data-table {
     width: 100%;
@@ -40,4 +40,24 @@
     tr:hover td {
         background: #f3f3f3;
     }
+}
+
+
+
+/* EDIT BUTTON */
+
+data-table-edit-button {
+    display: block;
+    padding: 4px;
+    border: none;
+    background: #0058ad;
+    color: white;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+data-table-edit-button:hover {
+    background: darken(#0058ad, 10%);
 }

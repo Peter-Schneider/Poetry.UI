@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PoetryPortalController.cs" />
+    <Compile Include="DependencyInjectionSupport\Instantiator.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathProvider.cs" />
     <Compile Include="FileSupport\FileProvider.cs" />
     <Compile Include="RoutingSupport\ControllerRoutingController.cs" />
@@ -113,6 +114,10 @@
     <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj">
       <Project>{614BECA8-F319-428B-AD6A-03A3CED13AA3}</Project>
       <Name>Poetry.UI.DataTableSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj">
+      <Project>{21537C52-3FA2-48FC-81A8-30033EDB28C9}</Project>
+      <Name>Poetry.UI.DependencyInjectionSupport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj">
       <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>

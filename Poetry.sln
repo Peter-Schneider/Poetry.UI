@@ -43,9 +43,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.FormSupport.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DataTableSupport", "Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj", "{614BECA8-F319-428B-AD6A-03A3CED13AA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ScriptSupport.Tests", "Poetry.UI.ScriptSupport.Tests\Poetry.UI.ScriptSupport.Tests.csproj", "{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ScriptSupport.Tests", "Poetry.UI.ScriptSupport.Tests\Poetry.UI.ScriptSupport.Tests.csproj", "{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.StyleSupport.Tests", "Poetry.UI.StyleSupport.Tests\Poetry.UI.StyleSupport.Tests.csproj", "{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport.Tests", "Poetry.UI.StyleSupport.Tests\Poetry.UI.StyleSupport.Tests.csproj", "{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DependencyInjectionSupport", "Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj", "{21537C52-3FA2-48FC-81A8-30033EDB28C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DataTableSupport.Tests", "Poetry.UI.DataTableSupport.Tests\Poetry.UI.DataTableSupport.Tests.csproj", "{EB922566-4656-4D16-A5AD-9BB696C62D54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,14 @@ Global
 		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB922566-4656-4D16-A5AD-9BB696C62D54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,6 @@ namespace Website.Apps.KeyFigureSupport
 {
     [App("KeyFigures")]
     [Script("/Apps/KeyFigureSupport/KeyFigures.js")]
-    [Style("/Apps/KeyFigureSupport/KeyFigures.css")]
     [Translations("/Apps/KeyFigureSupport/lang.xml")]
     public class KeyFiguresApp
     {

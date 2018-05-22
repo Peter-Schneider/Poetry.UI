@@ -20,19 +20,6 @@ portal.addApp(class KeyFigures extends App {
 /* BACKEND */
 
 class KeyFiguresBackend {
-    getAll() {
-        return fetch('/Apps/KeyFigures/GetAll', {
-            credentials: 'include'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`${response.status} (${response.statusText})`);
-                }
-
-                return response.json();
-            });
-    }
-
     save(keyFigure) {
         return fetch('/Apps/KeyFigures/Save', {
             credentials: 'include',
@@ -58,7 +45,34 @@ class ListKeyFigures extends Blade {
         heading.innerText = translations.KeyFigures;
         this.root.appendChild(heading);
 
-        var keyFiguresList = container.resolve(DataTable, { blade: this });
+        var blade = this;
+
+        var keyFiguresList = new DataTable(
+            'key-figure',
+            [
+                translations.Key,
+                translations.Value
+            ],
+            [
+                (dataTable, element, item) => element.innerText = item.Key,
+                (dataTable, element, item) => element.innerText = item.Value
+            ],
+            (dataTable, element, item) => {
+                var edit = document.createElement('data-table-edit-button');
+                edit.tabIndex = 0;
+                edit.innerText = translations.Edit;
+                edit.addEventListener('click', event => {
+                    app.closeBladesAfter(blade);
+                    var editKeyFigureBlade = app.openBlade('EditKeyFigure', item);
+                    editKeyFigureBlade.addEventListener('close', message => {
+                        if (message == 'saved') {
+                            dataTable.update();
+                        }
+                    });
+                });
+                element.appendChild(edit);
+            }
+        );
         this.root.appendChild(keyFiguresList.root);
 
         var newKeyFigure = document.createElement('portal-button');

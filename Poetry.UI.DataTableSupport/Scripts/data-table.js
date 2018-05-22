@@ -4,11 +4,11 @@
 /* DATA TABLE */
 
 class DataTable {
-    constructor(app, blade, backend, translations) {
-        this.app = app;
-        this.blade = blade;
-        this.backend = backend;
-        this.translations = translations;
+    constructor(provider, columnNames, createColumns, createActionButton) {
+        this.provider = provider;
+        this.columnNames = columnNames;
+        this.createColumns = createColumns;
+        this.createActionButton = createActionButton;
 
         this.root = document.createElement('data-table');
 
@@ -16,13 +16,17 @@ class DataTable {
     }
 
     update() {
-        this.backend
-            .getAll()
-            .then(keyFigures => {
+        fetch(`DataTable/Backend/GetAll?provider=${this.provider}`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`DataTable backend returned ${response.status} (${response.statusText})`);
+                }
+
+                return response.json();
+            })
+            .then(response => {
                 var table = document.createElement('table');
                 table.classList.add('data-table');
-
-                var columns = ['Key', 'Value'];
 
                 var tableHeader = document.createElement('thead');
                 table.appendChild(tableHeader);
@@ -30,12 +34,12 @@ class DataTable {
                 var columnHeaderRow = document.createElement('tr');
                 tableHeader.appendChild(columnHeaderRow);
 
-                columns.forEach(name => {
+                this.columnNames.forEach(name => {
                     var columnHeader = document.createElement('th');
                     columnHeader.classList.add('data-table-column-header');
                     columnHeaderRow.appendChild(columnHeader);
 
-                    columnHeader.innerText = this.translations[name];
+                    columnHeader.innerText = name;
                 });
 
                 var editColumnHeader = document.createElement('th');
@@ -45,34 +49,24 @@ class DataTable {
                 var tableBody = document.createElement('tbody');
                 table.appendChild(tableBody);
 
-                keyFigures.forEach(row => {
-                    var keyFiguresTableRow = document.createElement('tr');
-                    tableBody.appendChild(keyFiguresTableRow);
+                response.Items.forEach(item => {
+                    var row = document.createElement('tr');
+                    tableBody.appendChild(row);
 
-                    columns.forEach(name => {
+                    this.createColumns.forEach(callback => {
                         var cell = document.createElement('td');
-                        keyFiguresTableRow.appendChild(cell);
+                        row.appendChild(cell);
 
-                        cell.innerText = row[name];
+                        callback(this, cell, item);
                     });
 
                     var editCell = document.createElement('td');
                     editCell.classList.add('data-table-edit-column');
-                    keyFiguresTableRow.appendChild(editCell);
+                    row.appendChild(editCell);
 
-                    var edit = document.createElement('data-table-edit-button');
-                    edit.tabIndex = 0;
-                    edit.innerText = this.translations.Edit;
-                    edit.addEventListener('click', event => {
-                        this.app.closeBladesAfter(this.blade);
-                        var editKeyFigureBlade = this.app.openBlade('EditKeyFigure', row);
-                        editKeyFigureBlade.addEventListener('close', message => {
-                            if (message == 'saved') {
-                                this.update();
-                            }
-                        });
-                    });
-                    editCell.appendChild(edit);
+                    if (this.createActionButton) {
+                        this.createActionButton(this, editCell, item);
+                    }
                 });
 
                 return [table];
