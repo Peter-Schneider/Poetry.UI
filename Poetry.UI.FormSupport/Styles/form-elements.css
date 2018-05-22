@@ -1,6 +1,5 @@
 ﻿/* LABEL */
 .form-label {
-  display: block;
   margin-bottom: 20px;
   font-size: 80%;
   text-transform: uppercase; }
@@ -15,8 +14,7 @@
   width: 100%;
   height: 32px;
   padding: 5px;
-  border: solid 1px #ccc;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
+  border: solid 1px #ccc; }
   .form-input:hover, .form-input:focus {
     background: #f3f3f3; }
 
