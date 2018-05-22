@@ -50,6 +50,14 @@ class ListKeyFigures extends Blade {
                     });
                 });
                 element.appendChild(edit);
+
+                var link = document.createElement('a');
+                link.classList.add('data-table-edit-button');
+                link.innerText = translations.Open;
+                link.setAttribute('href', `/KeyFigures/${item.Id}`);
+                link.setAttribute('target', '_blank');
+                element.appendChild(link);
+
             }
         );
 
