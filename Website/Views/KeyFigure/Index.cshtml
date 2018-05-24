@@ -1,4 +1,6 @@
-﻿@model Website.Apps.KeyFigureSupport.KeyFigure
+﻿@using Poetry.UI.AspNet.PageEditingSupport
+
+@model Website.Apps.KeyFigureSupport.KeyFigure
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +10,6 @@
 </head>
 <body>
     <h1>A key-value pair with Id @Model.Id</h1>
-    @Html.DisplayFor(m => m.Key): @Html.DisplayFor(m => m.Value)
+    @Html.PropertyFor(m => m.Key): @Html.PropertyFor(m => m.Value)
 </body>
 </html>

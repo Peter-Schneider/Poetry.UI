@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.AppSupport;
 using Poetry.UI.AspNet.DependencyInjectionSupport;
 using Poetry.UI.AspNet.FileSupport;
+using Poetry.UI.AspNet.PageEditingSupport;
 using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
@@ -8,6 +9,7 @@ using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
+using Poetry.UI.PageEditingSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.RoutingSupport;
 using Poetry.UI.ScriptSupport;
@@ -96,6 +98,8 @@ namespace Poetry.UI
             RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
+
+            Container.RegisterType(typeof(IModeProvider), typeof(ModeProvider));
 
             Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
         }

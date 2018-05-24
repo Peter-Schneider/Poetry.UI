@@ -47,11 +47,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ScriptSupport.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport.Tests", "Poetry.UI.StyleSupport.Tests\Poetry.UI.StyleSupport.Tests.csproj", "{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DependencyInjectionSupport", "Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj", "{21537C52-3FA2-48FC-81A8-30033EDB28C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DependencyInjectionSupport", "Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj", "{21537C52-3FA2-48FC-81A8-30033EDB28C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.DataTableSupport.Tests", "Poetry.UI.DataTableSupport.Tests\Poetry.UI.DataTableSupport.Tests.csproj", "{EB922566-4656-4D16-A5AD-9BB696C62D54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DataTableSupport.Tests", "Poetry.UI.DataTableSupport.Tests\Poetry.UI.DataTableSupport.Tests.csproj", "{EB922566-4656-4D16-A5AD-9BB696C62D54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AppSupport.Tests", "Poetry.UI.AppSupport.Tests\Poetry.UI.AppSupport.Tests.csproj", "{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AppSupport.Tests", "Poetry.UI.AppSupport.Tests\Poetry.UI.AppSupport.Tests.csproj", "{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.PageEditingSupport", "Poetry.UI.PageEditingSupport\Poetry.UI.PageEditingSupport.csproj", "{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA0BFF72-8510-4A71-AEFF-A2ECD0D3BBE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
