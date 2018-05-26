@@ -3,12 +3,12 @@ using System;
 
 namespace Poetry.UI.PageEditingSupport
 {
-    public class PrefixProvider
+    public class PathPrefixProvider
     {
         IBasePathProvider BasePathProvider { get; }
         public string Prefix { get; }
 
-        public PrefixProvider(IBasePathProvider basePathProvider)
+        public PathPrefixProvider(IBasePathProvider basePathProvider)
         {
             BasePathProvider = basePathProvider;
 
