@@ -54,7 +54,7 @@ namespace Poetry.UI
         {
             DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
 
-            Container.RegisterInstance(typeof(IInstantiator), new Instantiator());
+            Container.RegisterType<IInstantiator, Instantiator>();
 
             RouteTable.Routes.MapRoute(
                 "PoetryPortal",
