@@ -56,6 +56,8 @@ class App {
         blade.close(data);
         this.root.removeChild(blade.root);
         this.blades.splice(index, 1);
+
+        return this;
     }
 
     closeBladesAfter(blade) {
@@ -74,5 +76,7 @@ class App {
             this.root.removeChild(b.root);
         });
         this.blades.splice(index + 1);
+
+        return this;
     }
 }
