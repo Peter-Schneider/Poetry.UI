@@ -107,7 +107,7 @@ namespace Poetry.UI
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
 
-            Container.RegisterType(typeof(IModeProvider), typeof(ModeProvider));
+            Container.RegisterType<IModeProvider, ModeProvider>();
 
             Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
         }
