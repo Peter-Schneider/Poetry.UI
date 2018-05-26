@@ -83,6 +83,7 @@ namespace Poetry.UI
             components.Add(componentCreator.Create(typeof(FormComponent)));
             components.Add(componentCreator.Create(typeof(DataTableComponent)));
             components.Add(componentCreator.Create(typeof(TranslationComponent)));
+            components.Add(componentCreator.Create(typeof(PageEditingComponent)));
 
             Container.RegisterInstance(typeof(IComponentRepository), new ComponentRepository(components));
 
