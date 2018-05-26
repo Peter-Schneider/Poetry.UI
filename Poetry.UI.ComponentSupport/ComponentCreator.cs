@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Poetry.UI.ComponentSupport
 {
-    public class ComponentCreator
+    public class ComponentCreator : IComponentCreator
     {
         IComponentControllerCreator ComponentControllerCreator { get; }
         IScriptCreator ScriptCreator { get; }

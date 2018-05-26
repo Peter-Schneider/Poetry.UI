@@ -67,7 +67,15 @@ namespace Poetry.UI
 
             Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
 
-            var componentCreator = new ComponentCreator(new ComponentControllerCreator(new ComponentControllerTypeProvider(), new ControllerCreator(new ControllerActionCreator())), new ScriptCreator(), new StyleCreator());
+            Container.RegisterType<IStyleCreator, StyleCreator>();
+            Container.RegisterType<IScriptCreator, ScriptCreator>();
+            Container.RegisterType<IControllerActionCreator, ControllerActionCreator>();
+            Container.RegisterType<IControllerCreator, ControllerCreator>();
+            Container.RegisterType<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
+            Container.RegisterType<IComponentControllerCreator, ComponentControllerCreator>();
+            Container.RegisterType<IComponentCreator, ComponentCreator>();
+
+            var componentCreator = Container.Resolve<IComponentCreator>();
 
             var components = new List<Component>();
 
