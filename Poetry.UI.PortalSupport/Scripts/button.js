@@ -14,13 +14,19 @@ class PortalButton {
         }
     }
 
-    appendTo(element) {
-        element.appendChild(this.element);
+    addClass(value, test) {
+        if (test) {
+            this.element.classList.add(value);
+        } else {
+            this.element.classList.remove(value);
+        }
 
         return this;
     }
 
-    setText(text) {
-        this.element.innerText = text;
+    appendTo(element) {
+        element.appendChild(this.element);
+
+        return this;
     }
 }

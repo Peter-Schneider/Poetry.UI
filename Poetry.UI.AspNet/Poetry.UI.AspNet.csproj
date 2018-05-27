@@ -88,7 +88,7 @@
     <Compile Include="PageEditingSupport\InitializePageEditingModule.cs" />
     <Compile Include="PageEditingSupport\ModeProvider.cs" />
     <Compile Include="PageEditingSupport\PageEditingModule.cs" />
-    <Compile Include="PageEditingSupport\TemplateHelpers.cs" />
+    <Compile Include="PageEditingSupport\HtmlHelperExtensions.cs" />
     <Compile Include="RoutingSupport\ControllerRoutingController.cs" />
     <Compile Include="RoutingSupport\ControllerRoute.cs" />
     <Compile Include="PoetryConfigurator.cs" />

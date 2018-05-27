@@ -12,7 +12,7 @@ namespace Poetry.UI.PageEditingSupport
         {
             BasePathProvider = basePathProvider;
 
-            Prefix = $"/{BasePathProvider.BasePath}/PageEditing/";
+            Prefix = $"/{BasePathProvider.BasePath}/PageEditing/EditPage/";
         }
     }
 }

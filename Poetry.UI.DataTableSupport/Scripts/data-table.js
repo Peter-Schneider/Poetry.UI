@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../../Poetry.UI.PortalSupport/Scripts/button.js"/>
+
 
 
 /* DATA TABLE */
@@ -12,11 +13,16 @@ class DataTable {
 
         this.page = 1;
 
-        this.root = document.createElement('data-table');
+        this.element = document.createElement('data-table');
+
+        this.tableOuterMinHeight = 0;
+        this.tableOuter = document.createElement('div');
+        this.tableOuter.classList.add('data-table-outer');
+        this.element.appendChild(this.tableOuter);
 
         var table = document.createElement('table');
         table.classList.add('data-table');
-        this.root.appendChild(table);
+        this.tableOuter.appendChild(table);
 
         var tableHeader = document.createElement('thead');
         table.appendChild(tableHeader);
@@ -40,7 +46,7 @@ class DataTable {
         table.appendChild(this.tableBody);
 
         this.paging = document.createElement('data-table-paging');
-        this.root.appendChild(this.paging);
+        this.element.appendChild(this.paging);
 
         this.update();
     }
@@ -55,6 +61,9 @@ class DataTable {
                 return response.json();
             })
             .then(response => {
+                this.tableOuterMinHeight = Math.max(this.tableOuter.offsetHeight, this.tableOuterMinHeight);
+                this.tableOuter.style.minHeight = this.tableOuterMinHeight + 'px';
+
                 while (this.tableBody.lastChild) {
                     this.tableBody.removeChild(this.tableBody.lastChild);
                 }
@@ -84,21 +93,17 @@ class DataTable {
                 }
 
                 for (var i = 1; i <= response.PageCount; i++) {
-                    var page = document.createElement('a');
-                    page.classList.add('portal-small-button');
-                    page.innerText = i;
-                    (function (dataTable, i) {
-                        page.addEventListener('click', () => {
-                            dataTable.page = i;
+                    (function (dataTable, page) {
+                        new PortalButton(page, () => {
+                            dataTable.page = page;
                             dataTable.update();
-                        });
+                        }).addClass('portal-button-active', page == dataTable.page).appendTo(dataTable.paging);
                     })(this, i);
-                    this.paging.appendChild(page);
                 }
             });
     }
 
     appendTo(element) {
-        element.appendChild(this.root);
+        element.appendChild(this.element);
     }
 }

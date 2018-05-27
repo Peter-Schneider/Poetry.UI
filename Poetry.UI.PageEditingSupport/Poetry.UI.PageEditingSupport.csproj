@@ -1,8 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\page-editor.js" />
+    <None Remove="Scripts\window-message-manager.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\page-editor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Styles\page-editor.css" />
+    <EmbeddedResource Include="Scripts\window-message-manager.js" />
+    <EmbeddedResource Include="Styles\page-editor.css">
+      <DependentUpon>page-editor.scss</DependentUpon>
+    </EmbeddedResource>
+    <None Remove="Styles\page-editor.min.css" />
+    <EmbeddedResource Include="Styles\page-editor.min.css">
+      <DependentUpon>page-editor.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\target-page-editor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />

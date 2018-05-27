@@ -1,0 +1,85 @@
+﻿
+
+
+/* COLORS */
+
+$green: #7fba00;
+$bright-blue: #00bcf2;
+$dark-gray: #252525;
+$gray: #bbb;
+$light-gray: #f1f1f1;
+
+
+
+/* PAGE EDITOR */
+
+page-editor {
+    overflow-y: auto;
+    flex-grow: 1;
+    position: relative;
+    display: block;
+}
+
+.page-editor-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    border: none;
+}
+
+
+
+/* PROPERTIES */
+
+.property {
+    position: absolute;
+    pointer-events: none;
+}
+
+.property-border {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: solid 1px $bright-blue;
+}
+
+.property.hover {
+    z-index: 10;
+}
+
+.property.hover .property-border {
+    border: solid 2px $green;
+}
+
+.property-title {
+    display: none;
+    position: absolute;
+    left: 0px;
+    bottom: 100%;
+    margin-bottom: -2px;
+    padding: 0px 4px 2px;
+    background: $green;
+    color: white;
+    font-size: 14px;
+}
+
+.property.hover .property-title {
+    display: block;
+}
+
+
+
+/* PROPERTY BLUR DETECTOR */
+
+.property-blur-detector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

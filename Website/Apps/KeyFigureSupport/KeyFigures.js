@@ -1,4 +1,9 @@
-﻿
+﻿///<reference path="../../../Poetry.UI.PortalSupport/Scripts/app.js"/>
+///<reference path="../../../Poetry.UI.PortalSupport/Scripts/blade.js"/>
+///<reference path="../../../Poetry.UI.PortalSupport/Scripts/button.js"/>
+///<reference path="../../../Poetry.UI.PageEditingSupport/Scripts/page-editor.js"/>
+///<reference path="../../../Poetry.UI.TranslationSupport/Scripts/translation.js"/>
+
 
 
 /* APP */
@@ -10,6 +15,7 @@ portal.addApp(class KeyFigures extends App {
         this.translations = translations.scopeTo('KeyFigures');
 
         this.addBlade(ListKeyFigures);
+        this.addBlade(EditKeyFigurePage);
         this.addBlade(EditKeyFigure);
     }
 });
@@ -22,71 +28,54 @@ class ListKeyFigures extends Blade {
     constructor(app) {
         super();
 
-        new PortalHeading(app.translations.get('KeyFigures')).appendTo(this.root);
+        this.setTitle(app.translations.get('KeyFigures'));
 
-        var blade = this;
+        var dataTable;
 
-        var keyFiguresList = new DataTable(
-            'key-figure',
-            [
-                app.translations.get('Key'),
-                app.translations.get('Value')
-            ],
-            [
-                (dataTable, element, item) => element.innerText = item.Key,
-                (dataTable, element, item) => element.innerText = item.Value
-            ],
-            (dataTable, element, item) => {
-                var edit = document.createElement('portal-small-button');
-                edit.tabIndex = 0;
-                edit.innerText = app.translations.get('Edit');
-                edit.addEventListener('click', event => {
-                    app.closeBladesAfter(blade);
-                    var editKeyFigureBlade = app.openBlade('EditKeyFigure', item);
-                    editKeyFigureBlade.addEventListener('close', message => {
-                        if (message == 'saved') {
-                            dataTable.update();
-                        }
-                    });
-                });
-                element.appendChild(edit);
-
-                var link = document.createElement('a');
-                link.classList.add('portal-small-button');
-                link.innerText = app.translations.get('Open');
-                link.setAttribute('href', `/KeyFigure/${item.Id}`);
-                link.setAttribute('target', '_blank');
-                element.appendChild(link);
-
-            }
+        this.setToolbar(
+            new PortalButton(app.translations.get('New'), () => app.closeBladesAfter(this).openBlade('EditKeyFigure').onClose(message => dataTable.update())),
         );
 
-        keyFiguresList.appendTo(this.root);
-
-        var newKeyFigure = () => {
-            app.closeBladesAfter(this);
-            var editKeyFigureBlade = app.openBlade('EditKeyFigure');
-            editKeyFigureBlade.addEventListener('close', message => {
-                if (message == 'saved') {
-                    keyFiguresList.update();
-                }
-            });
-        };
-
-        new PortalButton(app.translations.get('New'), newKeyFigure).appendTo(this.root);
-
-        var close = () => {
-            app.closeBladesAfter(this);
-            app.closeBlade(this);
-        };
-
-        new PortalButton(app.translations.get('Close'), close).appendTo(this.root);
+        this.setContent(
+            dataTable = new DataTable(
+                'key-figure',
+                [
+                    app.translations.get('Key'),
+                    app.translations.get('Value'),
+                ],
+                [
+                    (dataTable, element, item) => element.innerText = item.Key,
+                    (dataTable, element, item) => element.innerText = item.Value,
+                ],
+                (dataTable, element, item) => {
+                    new PortalButton(app.translations.get('Edit'), () => app.closeBladesAfter(this).openBlade('EditKeyFigure', item).onClose(message => dataTable.update())).appendTo(element);
+                    new PortalButton(app.translations.get('Open'), () => app.closeBladesAfter(this).openBlade('EditKeyFigurePage', item, `/KeyFigure/${item.Id}`)).appendTo(element);
+                },
+            )
+        );
     }
 }
 
 
 
 /* EDIT KEY FIGURE */
+
+class EditKeyFigurePage extends Blade {
+    constructor(app) {
+        super(true);
+
+        this.app = app;
+    }
+
+    open(keyFigure, url) {
+        this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key)
+        this.setCustomContent(new PageEditor(keyFigure, url));
+    }
+}
+
+
+
+/* NEW KEY FIGURE */
 
 class EditKeyFigure extends Blade {
     constructor(app) {
@@ -98,11 +87,7 @@ class EditKeyFigure extends Blade {
         this.formFieldProvider = new FormFieldProvider();
         this.formFields = this.formFieldProvider.getFor('key-figure');
         
-        this.heading = new PortalHeading(app.translations.get('KeyFigures')).appendTo(this.root);
-
-        var formRoot = document.createElement('div');
-        this.root.appendChild(formRoot);
-        this.formRoot = formRoot;
+        this.setTitle(app.translations.get('NewKeyFigure'));
 
         var save = keyFigure => {
             return fetch('/Apps/KeyFigures/Save', {
@@ -115,24 +100,18 @@ class EditKeyFigure extends Blade {
             });
         }
 
-        new PortalButton(app.translations.get('Cancel'), () => app.closeBlade(this)).appendTo(this.root);
-        new PortalButton(app.translations.get('Save'), () => save(this.model).then(() => app.closeBlade(this, 'saved'))).appendTo(this.root);
+        this.setContent();
+
+        this.setToolbar(
+            new PortalButton(app.translations.get('Save'), () => save(this.model).then(() => app.closeBlade(this, 'saved'))),
+            new PortalButton(app.translations.get('Cancel'), () => app.closeBlade(this)),
+        );
     }
 
     open(keyFigure) {
         this.model = keyFigure || {};
 
         this.formFields
-            .then(formFields => {
-                var form = this.formBuilder.build(this.model, formFields, this.formFieldTypes, this.app.translations);
-
-                this.formRoot.appendChild(form);
-
-                if (keyFigure) {
-                    this.heading.setText(this.app.translations.get('EditKeyFigure'));
-                } else {
-                    this.heading.setText(this.app.translations.get('NewKeyFigure'));
-                }
-            });
+            .then(formFields => this.setContent(this.formBuilder.build(this.model, formFields, this.formFieldTypes, this.app.translations)));
     }
 }

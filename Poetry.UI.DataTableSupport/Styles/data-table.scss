@@ -1,23 +1,30 @@
 ﻿
 
 
+/* VARIABLES */
+
+$padding-base: 0.25rem;
+$small-font: 0.9rem;
+
+
+
 /* TABLE */
 
 .data-table {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 
     th,
     td {
-        padding: 5px;
+        padding: $padding-base;
         padding-right: 0;
         border-bottom: solid 1px #ccc;
-        font-size: 80%;
+        font-size: $small-font;
     }
 
     th {
         text-transform: uppercase;
-        font-size: 80%;
+        font-size: $small-font;
     }
 
     tr:hover td {
@@ -26,13 +33,15 @@
 }
 
 .data-table-edit-column {
-    padding-right: 5px !important;
+    padding: 0 !important;
     line-height: 1;
+    text-align: right;
     white-space: nowrap;
 }
 
 data-table-paging {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     text-align: center;
+    font-size: 0.8rem;
 }

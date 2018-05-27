@@ -8,14 +8,14 @@ class App {
         this.name = this.constructor.name;
         this.bladeClasses = [];
         this.blades = [];
-        this.root = document.createElement('app');
+        this.element = document.createElement('app');
     }
 
     addBlade(blade) {
         this.bladeClasses.push(blade);
     }
 
-    openBlade(name, data) {
+    openBlade(name, ...parameters) {
         var bladeClass = this.bladeClasses.find(b => b.name == name);
 
         if (!bladeClass) {
@@ -24,12 +24,14 @@ class App {
 
         var blade = new bladeClass(this);
 
-        blade.open(data);
+        blade.app = this;
+
+        blade.open(...parameters);
 
         this.blades.push(blade);
-        this.root.appendChild(blade.root);
+        this.element.appendChild(blade.element);
 
-        blade.root.scrollIntoView({
+        blade.element.scrollIntoView({
             behavior: 'smooth'
         });
 
@@ -54,7 +56,7 @@ class App {
         this.closeBladesAfter(blade);
 
         blade.close(data);
-        this.root.removeChild(blade.root);
+        this.element.removeChild(blade.element);
         this.blades.splice(index, 1);
 
         return this;
@@ -73,7 +75,7 @@ class App {
 
         this.blades.slice(index + 1).reverse().forEach(b => {
             b.close();
-            this.root.removeChild(b.root);
+            this.element.removeChild(b.element);
         });
         this.blades.splice(index + 1);
 

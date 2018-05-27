@@ -7,7 +7,7 @@ class Portal {
     constructor() {
         this.appClasses = [];
         this.apps = [];
-        this.root = document.createElement('portal');
+        this.element = document.createElement('portal');
         this.appNames = fetch('Portal/App/GetNames', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
@@ -17,7 +17,7 @@ class Portal {
                 return response.json();
             });
 
-        var bootstrap = () => { document.body.appendChild(this.root); this.openStartApp(); }
+        var bootstrap = () => { document.body.appendChild(this.element); this.openStartApp(); }
 
         if (document.readyState != 'loading') {
             bootstrap();
@@ -26,7 +26,7 @@ class Portal {
         }
 
         this.nav = document.createElement('portal-nav');
-        this.root.appendChild(this.nav);
+        this.element.appendChild(this.nav);
     }
 
     addApp(appClass) {
@@ -68,7 +68,7 @@ class Portal {
 
         this.apps.push(app);
 
-        this.root.appendChild(app.root);
+        this.element.appendChild(app.element);
 
         app.openStartBlade();
     }
