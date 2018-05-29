@@ -10,6 +10,10 @@ class FormBuilder {
         formFields.forEach(formField => {
             var formFieldType = formFieldTypes[formField.Type];
 
+            if (!formFieldType) {
+                throw new Error(`Form field type ${formField.Type} not found`);
+            }
+
             formField.Name = translations[formField.Id] || formField.Label || formField.Id;
 
             root.appendChild(formFieldType.createControl(formField, () => target[formField.Id], value => target[formField.Id] = value));
