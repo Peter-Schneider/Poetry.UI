@@ -14,7 +14,6 @@
   <files>
     <file src="bin\Poetry.UI.AppSupport.dll" target="lib\net461\" />
     <file src="bin\Poetry.UI.AppSupport.pdb" target="lib\net461\" />
-    <file src="bin\Poetry.UI.AspNet.dll" target="lib\net461\" />
     <file src="bin\Poetry.UI.AspNet.pdb" target="lib\net461\" />
     <file src="bin\Poetry.UI.ComponentSupport.dll" target="lib\net461\" />
     <file src="bin\Poetry.UI.ComponentSupport.pdb" target="lib\net461\" />
