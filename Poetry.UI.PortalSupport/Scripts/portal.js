@@ -35,42 +35,35 @@ class Portal {
         var item = document.createElement('portal-nav-item');
 
         item.innerText = '...';
+        item.setAttribute('app-id', appClass.name);
+        item.addEventListener('click', () => this.openApp(appClass.name));
+
         this.appNames.then(translations => item.innerText = translations[appClass.name] ? translations[appClass.name] : appClass.name);
 
         this.nav.appendChild(item);
-
-        (() => {
-            var portal = this;
-
-            item.addEventListener('click', function () {
-                item.classList.add('active');
-                portal.openApp(appClass.name);
-            });
-        })();
     }
 
     openApp(name) {
-        var openApp = this.apps.find(app => app.name == name);
+        [...this.nav.children].forEach(c => c.classList.remove('active'));
+        [...this.element.querySelectorAll('app')].forEach(a => this.element.removeChild(a));
 
-        if (openApp) {
-            if (openApp.blades.length) {
-                return;
-            }
+        var app = this.apps.find(a => a.name == name);
 
-            openApp.openStartBlade();
+        if (!app) {
+            var appClass = this.appClasses.find(c => c.name == name);
 
-            return;
+            var app = new appClass();
+
+            this.apps.push(app);
         }
 
-        var appClass = this.appClasses.find(appClass => appClass.name == name);
-
-        var app = new appClass();
-
-        this.apps.push(app);
+        this.nav.querySelector(`[app-id="${name}"]`).classList.add('active');
 
         this.element.appendChild(app.element);
 
-        app.openStartBlade();
+        if (!app.blades.length) {
+            app.openStartBlade();
+        }
     }
 
     openStartApp() {
