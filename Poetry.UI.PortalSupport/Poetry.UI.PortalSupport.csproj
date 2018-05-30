@@ -10,10 +10,12 @@
     <None Remove="Scripts\app.js" />
     <None Remove="Scripts\blade.js" />
     <None Remove="Scripts\button.js" />
+    <None Remove="Scripts\link-button.js" />
     <None Remove="Scripts\portal.js" />
     <EmbeddedResource Include="Scripts\app.js" />
     <EmbeddedResource Include="Scripts\blade.js" />
     <EmbeddedResource Include="Scripts\button.js" />
+    <EmbeddedResource Include="Scripts\link-button.js" />
     <EmbeddedResource Include="Scripts\portal.js" />
     <None Remove="Styles\portal.css" />
     <EmbeddedResource Include="Styles\portal.css">

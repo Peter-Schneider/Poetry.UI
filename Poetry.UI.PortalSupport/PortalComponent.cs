@@ -10,6 +10,7 @@ namespace Poetry.UI.PortalSupport
     [Script("Scripts/app.js")]
     [Script("Scripts/blade.js")]
     [Script("Scripts/button.js")]
+    [Script("Scripts/link-button.js")]
     [Style("Styles/portal.css")]
     public class PortalComponent
     {
