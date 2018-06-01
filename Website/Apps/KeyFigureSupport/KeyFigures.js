@@ -26,7 +26,7 @@ portal.addApp(new class extends App {
 
 class ListKeyFigures extends Blade {
     constructor(app) {
-        super(app);
+        super();
 
         this.setTitle(app.translations.get('KeyFigures'));
 
@@ -62,7 +62,7 @@ class ListKeyFigures extends Blade {
 
 class EditKeyFigurePage extends Blade {
     constructor(app, keyFigure, url) {
-        super(app, true);
+        super(true);
 
         this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key)
         this.setCustomContent(new PageEditor(keyFigure, url));
@@ -75,7 +75,7 @@ class EditKeyFigurePage extends Blade {
 
 class EditKeyFigure extends Blade {
     constructor(app, keyFigure) {
-        super(app);
+        super();
 
         this.formBuilder = new FormBuilder;
         this.formFieldTypes = formFieldTypes;
@@ -105,6 +105,6 @@ class EditKeyFigure extends Blade {
         this.model = keyFigure || {};
 
         this.formFields
-            .then(formFields => this.setContent(this.formBuilder.build(this.model, formFields, this.formFieldTypes, this.app.translations)));
+            .then(formFields => this.setContent(this.formBuilder.build(this.model, formFields, this.formFieldTypes, app.translations)));
     }
 }

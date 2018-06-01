@@ -4,12 +4,7 @@
 /* BLADE */
 
 class Blade {
-    constructor(app, fullscreen) {
-        if (!app) {
-            throw new Error('app must be provided when instantiating blade');
-        }
-
-        this.app = app;
+    constructor(fullscreen) {
         this.element = document.createElement('blade');
 
         if (fullscreen) {
@@ -28,10 +23,9 @@ class Blade {
             this.titleText = document.createElement('blade-title-text');
             this.title.appendChild(this.titleText);
 
-            var close = document.createElement('blade-title-close');
-            close.setAttribute('tabindex', 0);
-            close.addEventListener('click', () => this.app.closeBladesAfter(this).closeBlade(this));
-            this.title.appendChild(close);
+            if (this.closeButton) {
+                this.title.appendChild(this.closeButton);
+            }
 
             this.element.appendChild(this.title);
         }
@@ -142,6 +136,15 @@ class Blade {
     close(data) {
         if (this.onCloseCallback) {
             this.onCloseCallback(data);
+        }
+    }
+
+    addCloseButton(app) {
+        this.closeButton = document.createElement('blade-title-close');
+        this.closeButton.setAttribute('tabindex', 0);
+        this.closeButton.addEventListener('click', () => this.app.closeBladesAfter(this).closeBlade(this));
+        if (this.title) {
+            this.title.appendChild(this.closeButton);
         }
     }
 }
