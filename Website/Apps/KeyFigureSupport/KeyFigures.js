@@ -28,7 +28,7 @@ class ListKeyFigures extends Blade {
     constructor(app) {
         super();
 
-        this.setTitle(app.translations.get('KeyFigures'));
+        this.setTitle(app.translations.get('KeyFigures'), new BladeCloseButton(app, this));
 
         var dataTable;
 
@@ -64,7 +64,7 @@ class EditKeyFigurePage extends Blade {
     constructor(app, keyFigure, url) {
         super(true);
 
-        this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key)
+        this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key, new BladeCloseButton(app, this))
         this.setCustomContent(new PageEditor(keyFigure, url));
     }
 }
@@ -82,7 +82,7 @@ class EditKeyFigure extends Blade {
         this.formFieldProvider = new FormFieldProvider();
         this.formFields = this.formFieldProvider.getFor('key-figure');
         
-        this.setTitle(app.translations.get('NewKeyFigure'));
+        this.setTitle(app.translations.get('NewKeyFigure'), new BladeCloseButton(app, this));
 
         var save = keyFigure => {
             return fetch('/Apps/KeyFigures/Save', {
