@@ -4,7 +4,7 @@
 /* BLADE */
 
 class Blade {
-    constructor(fullscreen) {
+    constructor() {
         this.element = document.createElement('blade');
         this.containers = {};
     }
