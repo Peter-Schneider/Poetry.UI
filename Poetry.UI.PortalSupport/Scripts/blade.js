@@ -62,10 +62,6 @@ class Blade {
         this.setItems('blade-custom-content', items);
     }
 
-    open(data) {
-
-    }
-
     onClose(callback) {
         this.onCloseCallback = callback;
 
