@@ -6,28 +6,11 @@
 class App {
     constructor(name) {
         this.name = name;
-        this.bladeClasses = [];
         this.blades = [];
         this.element = document.createElement('app');
     }
 
-    addBlade(blade) {
-        this.bladeClasses.push(blade);
-    }
-
-    openBlade(name, ...parameters) {
-        var bladeClass = this.bladeClasses.find(b => b.name == name);
-
-        if (!bladeClass) {
-            throw 'Blade not found';
-        }
-
-        var blade = new bladeClass(this);
-
-        blade.app = this;
-
-        blade.open(...parameters);
-
+    openBlade(blade) {
         this.blades.push(blade);
         this.element.appendChild(blade.element);
 
@@ -36,10 +19,6 @@ class App {
         });
 
         return blade;
-    }
-
-    openStartBlade() {
-        this.openBlade(this.bladeClasses[0].name);
     }
 
     closeBlade(blade, data) {

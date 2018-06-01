@@ -13,18 +13,10 @@ portal.addApp(new class extends App {
         super('KeyFigures');
 
         this.translations = translations.scopeTo('KeyFigures');
-
-        setTimeout(() => {
-            this.addBlade(ListKeyFigures);
-            this.addBlade(EditKeyFigurePage);
-            this.addBlade(EditKeyFigure);
-        }, 1);
     }
 
     open() {
-        setTimeout(() => {
-            this.openBlade('ListKeyFigures');
-        }, 1);
+        this.openBlade(new ListKeyFigures(this));
     }
 });
 
@@ -34,14 +26,14 @@ portal.addApp(new class extends App {
 
 class ListKeyFigures extends Blade {
     constructor(app) {
-        super();
+        super(app);
 
         this.setTitle(app.translations.get('KeyFigures'));
 
         var dataTable;
 
         this.setToolbar(
-            new PortalButton(app.translations.get('New'), () => app.closeBladesAfter(this).openBlade('EditKeyFigure').onClose(message => dataTable.update())),
+            new PortalButton(app.translations.get('New'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigure(app)).onClose(message => dataTable.update())),
         );
 
         this.setContent(
@@ -56,8 +48,8 @@ class ListKeyFigures extends Blade {
                     (dataTable, element, item) => element.innerText = item.Value,
                 ],
                 (dataTable, element, item) => {
-                    new PortalButton(app.translations.get('Edit'), () => app.closeBladesAfter(this).openBlade('EditKeyFigure', item).onClose(message => dataTable.update())).appendTo(element);
-                    new PortalButton(app.translations.get('Open'), () => app.closeBladesAfter(this).openBlade('EditKeyFigurePage', item, `/KeyFigure/${item.Id}`)).appendTo(element);
+                    new PortalButton(app.translations.get('Edit'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigure(app, item)).onClose(message => dataTable.update())).appendTo(element);
+                    new PortalButton(app.translations.get('Open'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigurePage(app, item, `/KeyFigure/${item.Id}`))).appendTo(element);
                 },
             )
         );
@@ -69,13 +61,9 @@ class ListKeyFigures extends Blade {
 /* EDIT KEY FIGURE */
 
 class EditKeyFigurePage extends Blade {
-    constructor(app) {
-        super(true);
+    constructor(app, keyFigure, url) {
+        super(app, true);
 
-        this.app = app;
-    }
-
-    open(keyFigure, url) {
         this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key)
         this.setCustomContent(new PageEditor(keyFigure, url));
     }
@@ -86,10 +74,9 @@ class EditKeyFigurePage extends Blade {
 /* NEW KEY FIGURE */
 
 class EditKeyFigure extends Blade {
-    constructor(app) {
-        super();
+    constructor(app, keyFigure) {
+        super(app);
 
-        this.app = app;
         this.formBuilder = new FormBuilder;
         this.formFieldTypes = formFieldTypes;
         this.formFieldProvider = new FormFieldProvider();
@@ -114,9 +101,7 @@ class EditKeyFigure extends Blade {
             new PortalButton(app.translations.get('Save'), () => save(this.model).then(() => app.closeBlade(this, 'saved'))),
             new PortalButton(app.translations.get('Cancel'), () => app.closeBlade(this)),
         );
-    }
 
-    open(keyFigure) {
         this.model = keyFigure || {};
 
         this.formFields

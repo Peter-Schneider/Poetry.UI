@@ -4,8 +4,12 @@
 /* BLADE */
 
 class Blade {
-    constructor(fullscreen) {
-        this.name = this.constructor.name;
+    constructor(app, fullscreen) {
+        if (!app) {
+            throw new Error('app must be provided when instantiating blade');
+        }
+
+        this.app = app;
         this.element = document.createElement('blade');
 
         if (fullscreen) {
