@@ -62,9 +62,11 @@ class ListKeyFigures extends Blade {
 
 class EditKeyFigurePage extends Blade {
     constructor(app, keyFigure, url) {
-        super(true);
+        super();
 
-        this.setTitle(this.app.translations.get('Edit') + ' ' + keyFigure.Key, new BladeCloseButton(app, this))
+        this.setFullscreen(true);
+
+        this.setTitle(app.translations.get('Edit') + ' ' + keyFigure.Key, new BladeCloseButton(app, this))
         this.setCustomContent(new PageEditor(keyFigure, url));
     }
 }

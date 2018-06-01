@@ -6,12 +6,17 @@
 class Blade {
     constructor(fullscreen) {
         this.element = document.createElement('blade');
+        this.containers = {};
+    }
 
-        if (fullscreen) {
+    setFullscreen(value) {
+        if (value) {
             this.element.classList.add('blade-fullscreen');
+        } else {
+            this.element.classList.remove('blade-fullscreen');
         }
 
-        this.containers = {};
+        return this;
     }
 
     setItems(id, items) {
