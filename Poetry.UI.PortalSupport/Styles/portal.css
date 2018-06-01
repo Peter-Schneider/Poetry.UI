@@ -135,11 +135,11 @@ blade-toolbar {
     margin-left: 0.5rem; }
     blade-toolbar > *:first-child {
       margin-left: 0; }
-  blade-toolbar.under-content {
-    padding-top: 1rem;
-    padding-bottom: 3rem;
+  blade-content + blade-toolbar {
+    flex-grow: 1;
     border-top: solid 1px #ccc;
-    border-bottom: none; }
+    border-bottom: none;
+    align-items: baseline; }
 
 /* CONTENT */
 blade-content {

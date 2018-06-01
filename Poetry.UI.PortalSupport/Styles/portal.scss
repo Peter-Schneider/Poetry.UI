@@ -198,11 +198,11 @@ blade-toolbar {
         }
     }
 
-    &.under-content {
-        padding-top: 1rem;
-        padding-bottom: 3rem;
+    blade-content + & {
+        flex-grow: 1;
         border-top: solid 1px #ccc;
         border-bottom: none;
+        align-items: baseline;
     }
 }
 
