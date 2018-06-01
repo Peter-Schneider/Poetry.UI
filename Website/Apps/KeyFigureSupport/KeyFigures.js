@@ -64,7 +64,7 @@ class EditKeyFigurePage extends Blade {
     constructor(app, keyFigure, url) {
         super();
 
-        this.setFullscreen(true);
+        this.setFullscreen();
 
         this.setTitle(app.translations.get('Edit') + ' ' + keyFigure.Key, new BladeCloseButton(app, this))
         this.setCustomContent(new PageEditor(keyFigure, url));

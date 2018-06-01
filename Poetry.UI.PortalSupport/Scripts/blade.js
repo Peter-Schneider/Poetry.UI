@@ -9,14 +9,8 @@ class Blade {
         this.containers = {};
     }
 
-    setFullscreen(value) {
-        if (value) {
-            this.element.classList.add('blade-fullscreen');
-        } else {
-            this.element.classList.remove('blade-fullscreen');
-        }
-
-        return this;
+    setFullscreen() {
+        this.element.classList.add('blade-fullscreen');
     }
 
     setItems(id, items) {
