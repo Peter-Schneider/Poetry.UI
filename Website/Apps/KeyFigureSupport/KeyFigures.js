@@ -33,7 +33,7 @@ class ListKeyFigures extends Blade {
         var dataTable;
 
         this.setToolbar(
-            new PortalButton(app.translations.get('New'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigure(app)).onClose(message => dataTable.update())),
+            new PortalButton(app.translations.get('New'), () => app.openBlade(new EditKeyFigure(app), this).onClose(message => dataTable.update())),
         );
 
         this.setContent(
@@ -48,8 +48,8 @@ class ListKeyFigures extends Blade {
                     (dataTable, element, item) => element.innerText = item.Value,
                 ],
                 (dataTable, element, item) => {
-                    new PortalButton(app.translations.get('Edit'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigure(app, item)).onClose(message => dataTable.update())).appendTo(element);
-                    new PortalButton(app.translations.get('Open'), () => app.closeBladesAfter(this).openBlade(new EditKeyFigurePage(app, item, `/KeyFigure/${item.Id}`))).appendTo(element);
+                    new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditKeyFigure(app, item).onClose(message => dataTable.update()), this)).appendTo(element);
+                    new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditKeyFigurePage(app, item, `/KeyFigure/${item.Id}`), this)).appendTo(element);
                 },
             )
         );

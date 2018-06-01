@@ -10,15 +10,25 @@ class App {
         this.element = document.createElement('app');
     }
 
-    openBlade(blade) {
-        this.blades.push(blade);
-        this.element.appendChild(blade.element);
+    openBlade(blade, parentBlade) {
+        var open = () => {
+            this.blades.push(blade);
+            this.element.appendChild(blade.element);
 
-        blade.element.scrollIntoView({
-            behavior: 'smooth'
-        });
+            blade.element.scrollIntoView({
+                behavior: 'smooth'
+            });
 
-        return blade;
+            return new FadeInEffect(blade.element);
+        }
+
+        var bladesAfterParentBlade = parentBlade ? this.blades.slice(this.blades.indexOf(parentBlade) + 1) : [];
+
+        if (bladesAfterParentBlade.length) {
+            return this.closeBlade(bladesAfterParentBlade[0]).then(open);
+        } else {
+            return open();
+        }
     }
 
     closeBlade(blade, data) {
@@ -32,32 +42,23 @@ class App {
             throw 'Blade not found';
         }
 
-        this.closeBladesAfter(blade);
+        var done;
+        var promise = new Promise(resolve => done = resolve);
 
-        blade.close(data);
-        this.element.removeChild(blade.element);
-        this.blades.splice(index, 1);
+        this.blades.slice(index).reverse().forEach((b, i) => {
+            new FadeOutEffect(b.element, i * 200).onComplete(() => {
+                this.element.removeChild(b.element);
+                this.blades.splice(this.blades.indexOf(b), 1);
 
-        return this;
-    }
-
-    closeBladesAfter(blade) {
-        if (!blade) {
-            throw 'No blade specified';
-        }
-
-        var index = this.blades.indexOf(blade);
-
-        if (index == -1) {
-            throw 'Blade not found';
-        }
-
-        this.blades.slice(index + 1).reverse().forEach(b => {
-            b.close();
-            this.element.removeChild(b.element);
+                if (i == index) {
+                    b.triggerOnClose(data);
+                    done();
+                } else {
+                    b.triggerOnClose();
+                }
+            });
         });
-        this.blades.splice(index + 1);
 
-        return this;
+        return promise;
     }
 }
