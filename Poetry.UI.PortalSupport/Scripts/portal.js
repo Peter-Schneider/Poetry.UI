@@ -5,7 +5,6 @@
 
 class Portal {
     constructor() {
-        this.appClasses = [];
         this.apps = [];
         this.element = document.createElement('portal');
         this.appNames = fetch('Portal/App/GetNames', { credentials: 'include' })
@@ -29,49 +28,37 @@ class Portal {
         this.element.appendChild(this.nav);
     }
 
-    addApp(appClass) {
-        this.appClasses.push(appClass);
-
+    addApp(app) {
+        this.apps.push(app);
+        
         var item = document.createElement('portal-nav-item');
 
         item.innerText = '...';
-        item.setAttribute('app-id', appClass.name);
-        item.addEventListener('click', () => this.openApp(appClass.name));
+        item.setAttribute('app-id', app.name);
+        item.addEventListener('click', () => this.openApp(app));
 
-        this.appNames.then(translations => item.innerText = translations[appClass.name] ? translations[appClass.name] : appClass.name);
+        this.appNames.then(translations => item.innerText = translations[app.name] ? translations[app.name] : app.name);
 
         this.nav.appendChild(item);
     }
 
-    openApp(name) {
+    openApp(app) {
         [...this.nav.children].forEach(c => c.classList.remove('active'));
         [...this.element.querySelectorAll('app')].forEach(a => this.element.removeChild(a));
 
-        var app = this.apps.find(a => a.name == name);
-
-        if (!app) {
-            var appClass = this.appClasses.find(c => c.name == name);
-
-            var app = new appClass();
-
-            this.apps.push(app);
-        }
-
-        this.nav.querySelector(`[app-id="${name}"]`).classList.add('active');
+        this.nav.querySelector(`[app-id="${app.name}"]`).classList.add('active');
 
         this.element.appendChild(app.element);
 
-        if (!app.blades.length) {
-            app.openStartBlade();
-        }
+        app.open();
     }
 
     openStartApp() {
-        if (!this.appClasses[0]) {
+        if (!this.apps.length) {
             return;
         }
 
-        this.openApp(this.appClasses[0].name);
+        this.openApp(this.apps[0]);
     }
 }
 

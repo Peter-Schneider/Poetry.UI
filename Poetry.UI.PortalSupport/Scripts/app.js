@@ -4,8 +4,8 @@
 /* APP */
 
 class App {
-    constructor() {
-        this.name = this.constructor.name;
+    constructor(name) {
+        this.name = name;
         this.bladeClasses = [];
         this.blades = [];
         this.element = document.createElement('app');

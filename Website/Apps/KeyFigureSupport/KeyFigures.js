@@ -8,15 +8,23 @@
 
 /* APP */
 
-portal.addApp(class KeyFigures extends App {
+portal.addApp(new class extends App {
     constructor() {
-        super();
+        super('KeyFigures');
 
         this.translations = translations.scopeTo('KeyFigures');
 
-        this.addBlade(ListKeyFigures);
-        this.addBlade(EditKeyFigurePage);
-        this.addBlade(EditKeyFigure);
+        setTimeout(() => {
+            this.addBlade(ListKeyFigures);
+            this.addBlade(EditKeyFigurePage);
+            this.addBlade(EditKeyFigure);
+        }, 1);
+    }
+
+    open() {
+        setTimeout(() => {
+            this.openBlade('ListKeyFigures');
+        }, 1);
     }
 });
 
