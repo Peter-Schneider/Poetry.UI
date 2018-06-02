@@ -11,6 +11,10 @@ portal.addApp(new class extends App {
     }
 
     open() {
+        if (this.blades.length) {
+            return;
+        }
+
         this.openBlade(new ListCategories(this));
     }
 });
