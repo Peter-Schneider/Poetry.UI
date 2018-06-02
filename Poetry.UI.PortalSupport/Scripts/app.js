@@ -10,6 +10,10 @@ class App {
         this.element = document.createElement('app');
     }
 
+    open() {
+
+    }
+
     openBlade(blade, parentBlade) {
         var done;
         var promise = new Promise(resolve => done = resolve);
