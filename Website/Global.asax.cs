@@ -20,9 +20,21 @@ namespace Website
             this.AddPoetryUI().Done();
 
             RouteTable.Routes.MapRoute(
-                "KeyFigure",
-                "KeyFigure/{id}",
-                new { controller = "KeyFigure", action = "Index" }
+                name: "Default",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            RouteTable.Routes.MapRoute(
+                name: "ViewCategory",
+                url: "{category}",
+                defaults: new { controller = "Category", action = "Index" }
+            );
+
+            RouteTable.Routes.MapRoute(
+                name: "ViewProduct",
+                url: "{category}/{product}",
+                defaults: new { controller = "Product", action = "Index" }
             );
         }
     }

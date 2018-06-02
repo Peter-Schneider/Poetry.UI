@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+  <en>
+    <name>Products</name>
+    <AllProducts>All products</AllProducts>
+    <ArticleNo>Article no</ArticleNo>
+    <Name>Name</Name>
+    <Description>Description</Description>
+    <CategoryId>Category</CategoryId>
+    <Price>Price</Price>
+    <Open>Open</Open>
+    <Edit>Edit</Edit>
+    <New>New</New>
+    <Close>Close</Close>
+    <Save>Save</Save>
+    <Cancel>Cancel</Cancel>
+  </en>
+</translations>

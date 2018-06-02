@@ -1,0 +1,15 @@
+﻿@using Website.CategorySupport
+@using Website.RoutingSupport
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>Kategorier:</p>
+
+<ul>
+    @foreach (var category in CategoryRepository.GetAll())
+    {
+        <li><a href="@UrlProvider.GetUrl(category)">@category.Name</a></li>
+    }
+</ul>

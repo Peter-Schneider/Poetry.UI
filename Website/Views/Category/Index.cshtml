@@ -1,0 +1,21 @@
+﻿@using Website.CategorySupport
+@using Website.ProductSupport
+@using Website.RoutingSupport
+@using Poetry.UI.AspNet.PageEditingSupport
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Category
+
+<h1>@Html.PropertyFor(m => m.Name) (<a href="/Admin">Edit</a>)</h1>
+
+<p>Produkter:</p>
+
+<ul>
+    @foreach (var product in ProductRepository.GetAll().Where(p => p.CategoryId == Model.Id))
+    {
+        <li><a href="@UrlProvider.GetUrl(product)">@product.Name</a></li>
+    }
+</ul>
