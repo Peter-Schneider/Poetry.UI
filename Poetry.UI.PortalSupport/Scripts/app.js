@@ -11,6 +11,9 @@ class App {
     }
 
     openBlade(blade, parentBlade) {
+        var done;
+        var promise = new Promise(resolve => done = resolve);
+
         var open = () => {
             this.blades.push(blade);
             this.element.appendChild(blade.element);
@@ -19,7 +22,7 @@ class App {
                 behavior: 'smooth'
             });
 
-            return new FadeInEffect(blade.element);
+            new FadeInEffect(blade.element).onComplete(done);
         }
 
         var bladesAfterParentBlade = parentBlade ? this.blades.slice(this.blades.indexOf(parentBlade) + 1) : [];
@@ -29,6 +32,8 @@ class App {
         } else {
             return open();
         }
+
+        return promise;
     }
 
     closeBlade(blade, data) {

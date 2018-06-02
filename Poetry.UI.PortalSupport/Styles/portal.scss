@@ -74,6 +74,7 @@ portal {
 /* MAIN NAV */
 
 portal-nav {
+    z-index: 1;
     display: block;
     background: #252525;
     flex: 0 0 200px;
@@ -123,6 +124,7 @@ $small-font: 0.9rem;
 blade {
     box-sizing: border-box;
     flex: 0 0 25rem;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     border-right: solid 2px #bbb;
