@@ -45,12 +45,12 @@ class App {
         var done;
         var promise = new Promise(resolve => done = resolve);
 
-        this.blades.slice(index).reverse().forEach((b, i) => {
+        this.blades.slice(index).reverse().forEach((b, i, array) => {
             new FadeOutEffect(b.element, i * 200).onComplete(() => {
                 this.element.removeChild(b.element);
                 this.blades.splice(this.blades.indexOf(b), 1);
 
-                if (i == index) {
+                if (i == array.length - 1) {
                     b.triggerOnClose(data);
                     done();
                 } else {
