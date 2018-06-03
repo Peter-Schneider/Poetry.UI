@@ -37,7 +37,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
                 path = path.Substring("~".Length);
             }
 
-            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
+            if (!path.StartsWith(Prefix, StringComparison.InvariantCultureIgnoreCase) || !path.EndsWith(Suffix, StringComparison.InvariantCultureIgnoreCase))
             {
                 return Previous.FileExists(virtualPath);
             }
@@ -61,7 +61,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
                 path = path.Substring("~".Length);
             }
 
-            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
+            if (!path.StartsWith(Prefix, StringComparison.InvariantCultureIgnoreCase) || !path.EndsWith(Suffix, StringComparison.InvariantCultureIgnoreCase))
             {
                 return Previous.GetCacheDependency(virtualPath, virtualPathDependencies, utcStart);
             }
@@ -85,7 +85,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
                 path = path.Substring("~".Length);
             }
 
-            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
+            if (!path.StartsWith(Prefix, StringComparison.InvariantCultureIgnoreCase) || !path.EndsWith(Suffix, StringComparison.InvariantCultureIgnoreCase))
             {
                 return Previous.GetFile(virtualPath);
             }

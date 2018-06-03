@@ -30,7 +30,7 @@ namespace Poetry.UI.AspNet.EmbeddedResourceSupport
         {
             var path = context.Request.Path;
 
-            if (!path.StartsWith(Prefix))
+            if (!path.StartsWith(Prefix, StringComparison.InvariantCultureIgnoreCase))
             {
                 throw new Exception($"This handler should only be used within the Portal basepath ({Prefix})");
             }
