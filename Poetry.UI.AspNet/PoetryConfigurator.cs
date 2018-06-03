@@ -51,7 +51,7 @@ namespace Poetry.UI
 
         public PoetryConfigurator WithBasePath(string basePath)
         {
-            BasePath = basePath;
+            BasePath = basePath.Trim('/');
             return this;
         }
 
