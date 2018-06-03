@@ -12,6 +12,8 @@
     <copyright>Copyright 2018</copyright>
   </metadata>
   <files>
+    <file src="ContentFiles\web.config.install.xdt" target="content\" />
+    <file src="ContentFiles\web.config.uninstall.xdt" target="content\" />
     <file src="bin\Poetry.UI.AppSupport.dll" target="lib\net461\" />
     <file src="bin\Poetry.UI.AppSupport.pdb" target="lib\net461\" />
     <file src="bin\Poetry.UI.AspNet.pdb" target="lib\net461\" />
