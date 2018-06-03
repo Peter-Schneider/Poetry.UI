@@ -31,7 +31,7 @@ using Unity.AspNet.Mvc;
 
 namespace Poetry.UI
 {
-    public class PoetryConfigurator : IBasePathProvider
+    public class PoetryConfigurator
     {
         UnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
@@ -88,7 +88,7 @@ namespace Poetry.UI
                 namespaces: new string[] { "Poetry.UI.Controllers" }
             );
 
-            Container.RegisterInstance<IBasePathProvider>(this);
+            Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
 
             Container.RegisterType<IStyleCreator, StyleCreator>();
             Container.RegisterType<IScriptCreator, ScriptCreator>();
