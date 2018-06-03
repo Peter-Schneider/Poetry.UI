@@ -8,6 +8,10 @@ class FormBuilder {
         var root = document.createElement('div');
 
         formFields.forEach(formField => {
+            if (!formField.AutoGenerate) {
+                return;
+            }
+
             var formFieldType = formFieldTypes[formField.Type];
 
             if (!formFieldType) {

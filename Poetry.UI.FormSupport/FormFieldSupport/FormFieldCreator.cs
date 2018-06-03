@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Text;
 
 namespace Poetry.UI.FormSupport.FormFieldSupport
@@ -17,7 +19,11 @@ namespace Poetry.UI.FormSupport.FormFieldSupport
                     continue;
                 }
 
-                result.Add(new FormField(property.Name, GetTypeName(property.PropertyType)));
+                var display = property.GetCustomAttribute<DisplayAttribute>();
+
+                var autoGenerate = display?.AutoGenerateField ?? true;
+
+                result.Add(new FormField(property.Name, GetTypeName(property.PropertyType), autoGenerate));
             }
 
             return result;

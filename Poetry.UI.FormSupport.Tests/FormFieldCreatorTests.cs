@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.FormSupport.FormFieldSupport;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Xunit;
@@ -61,9 +62,25 @@ namespace Poetry.UI.FormSupport.Tests
             Assert.Equal("boolean", result.Single().Type);
         }
 
+        [Fact]
+        public void SupportsAutoGenerate()
+        {
+            var result = new FormFieldCreator().Create(typeof(MyForm));
+
+            Assert.True(result.Single(f => f.Id == nameof(MyForm.NormalProperty)).AutoGenerate);
+            Assert.False(result.Single(f => f.Id == nameof(MyForm.AutoGenerateFalse)).AutoGenerate);
+        }
+
         public class GenericForm<T>
         {
             public T MyProperty { get; set; }
+        }
+
+        public class MyForm
+        {
+            public string NormalProperty { get; set; }
+            [Display(AutoGenerateField = false)]
+            public string AutoGenerateFalse { get; set; }
         }
     }
 }

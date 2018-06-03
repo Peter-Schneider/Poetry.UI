@@ -8,11 +8,13 @@ namespace Poetry.UI.FormSupport.FormFieldSupport
     {
         public string Id { get; }
         public string Type { get; }
+        public bool AutoGenerate { get; }
 
-        public FormField(string id, string type)
+        public FormField(string id, string type, bool autoGenerate)
         {
             Id = id;
             Type = type;
+            AutoGenerate = autoGenerate;
         }
     }
 }
