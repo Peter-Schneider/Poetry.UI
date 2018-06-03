@@ -4,6 +4,7 @@ using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.PageEditingSupport;
 using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
+using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
@@ -74,13 +75,15 @@ namespace Poetry.UI
             Container.RegisterType<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
             Container.RegisterType<IComponentControllerCreator, ComponentControllerCreator>();
             Container.RegisterType<IComponentCreator, ComponentCreator>();
+            Container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
+            Container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();
 
             var componentCreator = Container.Resolve<IComponentCreator>();
 
             var components = new List<Component>();
 
-            components.Add(componentCreator.Create(typeof(PortalComponent)));
             components.Add(componentCreator.Create(typeof(FormComponent)));
+            components.Add(componentCreator.Create(typeof(PortalComponent)));
             components.Add(componentCreator.Create(typeof(DataTableComponent)));
             components.Add(componentCreator.Create(typeof(TranslationComponent)));
             components.Add(componentCreator.Create(typeof(PageEditingComponent)));

@@ -1,6 +1,7 @@
 ﻿@using Poetry.UI.AppSupport
 @using Poetry.UI.RoutingSupport
 @using Poetry.UI.ComponentSupport
+@using Poetry.UI.ComponentSupport.DependencySupport
 @using System.Web.Mvc
 @using Newtonsoft.Json
 
@@ -8,6 +9,7 @@
 
 @{
     var AppRepository = DependencyResolver.Current.GetService<IAppRepository>();
+    var ComponentDependencySorter = DependencyResolver.Current.GetService<IComponentDependencySorter>();
     var ComponentRepository = DependencyResolver.Current.GetService<IComponentRepository>();
     var BasePathProvider = DependencyResolver.Current.GetService<IBasePathProvider>();
 }
@@ -18,30 +20,30 @@
     <meta charset="utf-8" />
     <title>Poetry</title>
     <base href="/@BasePathProvider.BasePath/">
-    @foreach (var component in ComponentRepository.GetAll())
+    @foreach (var component in ComponentDependencySorter.Sort(ComponentRepository.GetAll()))
     {
         foreach (var script in component.Scripts)
         {
-    <script src="@component.Id/@script.Path"></script>
+            <script src="@component.Id/@script.Path"></script>
         }
         foreach (var style in component.Styles)
         {
-    <link rel="stylesheet" type="text/css" href="@component.Id/@style.Path" />
+            <link rel="stylesheet" type="text/css" href="@component.Id/@style.Path" />
         }
     }
     @foreach (var app in AppRepository.GetAll())
     {
         foreach (var script in app.Scripts)
         {
-    <script src="@script.Path"></script>
+            <script src="@script.Path"></script>
         }
         foreach (var style in app.Styles)
         {
-    <link rel="stylesheet" type="text/css" href="@style.Path" />
+            <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
-    <script>
+        <script>
         translations.add('@app.Name', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
-    </script>
+        </script>
     }
 </head>
 <body>

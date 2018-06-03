@@ -18,14 +18,16 @@ namespace Poetry.UI.ComponentSupport
     {
         public string Id { get; }
         public Assembly Assembly { get; }
+        public IEnumerable<string> Dependencies { get; }
         public IEnumerable<Controller> Controllers { get; }
         public IEnumerable<Script> Scripts { get; }
         public IEnumerable<Style> Styles { get; }
 
-        public Component(string id, Assembly assembly, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
+        public Component(string id, Assembly assembly, IEnumerable<string> dependencies, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
         {
             Id = id;
             Assembly = assembly;
+            Dependencies = dependencies.ToList().AsReadOnly();
             Controllers = controllers.ToList().AsReadOnly();
             Scripts = scripts.ToList().AsReadOnly();
             Styles = styles.ToList().AsReadOnly();

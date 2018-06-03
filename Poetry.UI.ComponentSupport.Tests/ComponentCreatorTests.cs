@@ -1,4 +1,5 @@
 using Moq;
+using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
@@ -14,19 +15,19 @@ namespace Poetry.UI.ComponentSupport.Tests
         [Fact]
         public void ThrowsOnNullType()
         {
-            Assert.Throws<ArgumentNullException>(() => new ComponentCreator(null, null, null).Create(null));
+            Assert.Throws<ArgumentNullException>(() => new ComponentCreator(null, null, null, null).Create(null));
         }
 
         [Fact]
         public void ThrowsIfTypeIsMissingComponentAttribute()
         {
-            Assert.Throws<TypeIsMissingComponentAttributeException>(() => new ComponentCreator(null, null, null).Create(typeof(string)));
+            Assert.Throws<TypeIsMissingComponentAttributeException>(() => new ComponentCreator(null, null, null, null).Create(typeof(string)));
         }
 
         [Fact]
         public void CreatesComponent()
         {
-            var result = new ComponentCreator(Mock.Of<IComponentControllerCreator>(), Mock.Of<IScriptCreator>(), Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
+            var result = new ComponentCreator(Mock.Of<IComponentDependencyCreator>(), Mock.Of<IComponentControllerCreator>(), Mock.Of<IScriptCreator>(), Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
 
             Assert.NotNull(result);
             Assert.Equal("lorem-ipsum", result.Id);
@@ -40,7 +41,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var componentControllerCreator = Mock.Of<IComponentControllerCreator>();
             Mock.Get(componentControllerCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Controller> { controller });
 
-            var result = new ComponentCreator(componentControllerCreator, Mock.Of<IScriptCreator>(), Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
+            var result = new ComponentCreator(Mock.Of<IComponentDependencyCreator>(), componentControllerCreator, Mock.Of<IScriptCreator>(), Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
 
             Assert.Equal("lorem-ipsum", result.Id);
             Assert.Same(typeof(MyComponentClass).Assembly, result.Assembly);
@@ -56,7 +57,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var scriptCreator = Mock.Of<IScriptCreator>();
             Mock.Get(scriptCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Script> { script });
 
-            var result = new ComponentCreator(Mock.Of<IComponentControllerCreator>(), scriptCreator, Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
+            var result = new ComponentCreator(Mock.Of<IComponentDependencyCreator>(), Mock.Of<IComponentControllerCreator>(), scriptCreator, Mock.Of<IStyleCreator>()).Create(typeof(MyComponentClass));
 
             Assert.Single(result.Scripts);
             Assert.Same(script, result.Scripts.Single());
@@ -70,7 +71,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var styleCreator = Mock.Of<IStyleCreator>();
             Mock.Get(styleCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Style> { style });
 
-            var result = new ComponentCreator(Mock.Of<IComponentControllerCreator>(), Mock.Of<IScriptCreator>(), styleCreator).Create(typeof(MyComponentClass));
+            var result = new ComponentCreator(Mock.Of<IComponentDependencyCreator>(), Mock.Of<IComponentControllerCreator>(), Mock.Of<IScriptCreator>(), styleCreator).Create(typeof(MyComponentClass));
 
             Assert.Single(result.Styles);
             Assert.Same(style, result.Styles.Single());

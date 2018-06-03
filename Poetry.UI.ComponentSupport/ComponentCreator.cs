@@ -1,4 +1,5 @@
-﻿using Poetry.UI.ControllerSupport;
+﻿using Poetry.UI.ComponentSupport.DependencySupport;
+using Poetry.UI.ControllerSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -11,12 +12,14 @@ namespace Poetry.UI.ComponentSupport
 {
     public class ComponentCreator : IComponentCreator
     {
+        IComponentDependencyCreator ComponentDependencyCreator { get; }
         IComponentControllerCreator ComponentControllerCreator { get; }
         IScriptCreator ScriptCreator { get; }
         IStyleCreator StyleCreator { get; }
 
-        public ComponentCreator(IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
+        public ComponentCreator(IComponentDependencyCreator componentDependencyCreator, IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
         {
+            ComponentDependencyCreator = componentDependencyCreator;
             ComponentControllerCreator = componentControllerCreator;
             ScriptCreator = scriptCreator;
             StyleCreator = styleCreator;
@@ -36,7 +39,7 @@ namespace Poetry.UI.ComponentSupport
                 throw new TypeIsMissingComponentAttributeException(type);
             }
 
-            return new Component(attribute.Id, type.Assembly, ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type));
+            return new Component(attribute.Id, type.Assembly, ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type));
         }
     }
 }
