@@ -22,6 +22,16 @@ namespace Poetry.UI.RoutingSupport.Tests
         }
 
         [Fact]
+        public void SupportsStringValueCaseInsensitive()
+        {
+            var value = "lorem-ipsum";
+
+            var result = new MethodParameterValueProvider(new Dictionary<string, string> { ["ParameteR"] = value }, () => null).GetValue(typeof(TypeWithParameterMethod<string>).GetMethod("Method").GetParameters().Single());
+
+            Assert.Equal(value, result);
+        }
+
+        [Fact]
         public void SupportsIntValue()
         {
             var value = 693;

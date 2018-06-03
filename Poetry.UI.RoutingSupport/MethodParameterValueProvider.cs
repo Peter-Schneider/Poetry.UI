@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace Poetry.UI.RoutingSupport
 
         public MethodParameterValueProvider(IDictionary<string, string> queryString, Func<string> requestBody)
         {
-            QueryString = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(queryString));
+            QueryString = new ReadOnlyDictionary<string, string>(queryString.ToDictionary(p => p.Key.ToLower(), p => p.Value));
             RequestBody = requestBody;
         }
 
@@ -27,24 +28,26 @@ namespace Poetry.UI.RoutingSupport
                 return JsonConvert.DeserializeObject(RequestBody(), parameter.ParameterType);
             }
 
-            if (!QueryString.ContainsKey(parameter.Name))
+            var name = parameter.Name.ToLower();
+
+            if (!QueryString.ContainsKey(name))
             {
                 return null;
             }
 
             if (parameter.ParameterType == typeof(string))
             {
-                return QueryString[parameter.Name];
+                return QueryString[name];
             }
 
             if (parameter.ParameterType == typeof(int))
             {
-                return int.Parse(QueryString[parameter.Name], CultureInfo.InvariantCulture);
+                return int.Parse(QueryString[name], CultureInfo.InvariantCulture);
             }
 
             if (parameter.ParameterType == typeof(double))
             {
-                return double.Parse(QueryString[parameter.Name], CultureInfo.InvariantCulture);
+                return double.Parse(QueryString[name], CultureInfo.InvariantCulture);
             }
 
             return null;
