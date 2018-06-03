@@ -16,7 +16,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
         public IEnumerable<EmbeddedResource> EmbeddedResources { get; }
         ISet<EmbeddedResource> EmbeddedResourcesSet { get; }
 
-        public EmbeddedResourceAssembly(string name, string basePath, Func<EmbeddedResource, Stream> openEmbeddedResourceStream, params EmbeddedResource[] embeddedResources)
+        public EmbeddedResourceAssembly(string name, string basePath, Func<EmbeddedResource, Stream> openEmbeddedResourceStream, IEnumerable<EmbeddedResource> embeddedResources)
         {
             if (string.IsNullOrEmpty(name))
             {

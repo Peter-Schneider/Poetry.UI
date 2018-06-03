@@ -12,34 +12,38 @@ namespace Poetry.UI.ComponentSupport
 {
     public class ComponentCreator : IComponentCreator
     {
+        IComponentTypeProvider ComponentTypeProvider { get; }
         IComponentDependencyCreator ComponentDependencyCreator { get; }
         IComponentControllerCreator ComponentControllerCreator { get; }
         IScriptCreator ScriptCreator { get; }
         IStyleCreator StyleCreator { get; }
 
-        public ComponentCreator(IComponentDependencyCreator componentDependencyCreator, IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
+        public ComponentCreator(IComponentTypeProvider componentTypeProvider, IComponentDependencyCreator componentDependencyCreator, IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
         {
+            ComponentTypeProvider = componentTypeProvider;
             ComponentDependencyCreator = componentDependencyCreator;
             ComponentControllerCreator = componentControllerCreator;
             ScriptCreator = scriptCreator;
             StyleCreator = styleCreator;
         }
 
-        public Component Create(Type type)
+        public IEnumerable<Component> Create()
         {
-            if(type == null)
+            var result = new List<Component>();
+
+            foreach (var type in ComponentTypeProvider.GetTypes())
             {
-                throw new ArgumentNullException(nameof(type));
+                var attribute = type.GetCustomAttribute<ComponentAttribute>();
+
+                if (attribute == null)
+                {
+                    continue;
+                }
+
+                result.Add(new Component(attribute.Id, type.Assembly, ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type)));
             }
 
-            var attribute = type.GetCustomAttribute<ComponentAttribute>();
-
-            if(attribute == null)
-            {
-                throw new TypeIsMissingComponentAttributeException(type);
-            }
-
-            return new Component(attribute.Id, type.Assembly, ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type));
+            return result;
         }
     }
 }

@@ -8,15 +8,15 @@ using System.Text;
 
 namespace Poetry.UI.RoutingSupport
 {
-    public class ControllerRouter
+    public class ControllerRouter : IControllerRouter
     {
         IBasePathProvider BasePathProvider { get; }
-        IEnumerable<Component> Components { get; }
+        IComponentRepository ComponentRepository { get; }
 
-        public ControllerRouter(IBasePathProvider basePathProvider, IEnumerable<Component> components)
+        public ControllerRouter(IBasePathProvider basePathProvider, IComponentRepository componentRepository)
         {
             BasePathProvider = basePathProvider;
-            Components = components.ToList().AsReadOnly();
+            ComponentRepository = componentRepository;
         }
 
         public ControllerRouterResult Route(string path)
@@ -45,7 +45,7 @@ namespace Poetry.UI.RoutingSupport
                 return null;
             }
 
-            foreach(var component in Components.Where(c => c.Id.Equals(componentId, StringComparison.InvariantCultureIgnoreCase)))
+            foreach(var component in ComponentRepository.GetAll().Where(c => c.Id.Equals(componentId, StringComparison.InvariantCultureIgnoreCase)))
             {
                 foreach(var controller in component.Controllers.Where(c => c.Id.Equals(controllerId, StringComparison.InvariantCultureIgnoreCase)))
                 {

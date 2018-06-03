@@ -1,4 +1,5 @@
 ﻿using Poetry.UI.ComponentSupport;
+using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -11,6 +12,7 @@ namespace Poetry.UI.PageEditingSupport
     [Script("Scripts/page-editor.js")]
     [Script("Scripts/window-message-manager.js")]
     [Style("Styles/page-editor.css")]
+    [Dependency("Portal")]
     public class PageEditingComponent
     {
     }

@@ -17,7 +17,7 @@ namespace Poetry.UI.RoutingSupport.Tests
         {
             var basePathProvider = Mock.Of<IBasePathProvider>();
 
-            new ControllerRouter(basePathProvider, Enumerable.Empty<Component>()).Route("/");
+            new ControllerRouter(basePathProvider, Mock.Of<IComponentRepository>()).Route("/");
         }
 
         [Fact]
@@ -31,7 +31,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -51,7 +55,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("Controller", null, action);
             var component = new Component("Component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -72,7 +80,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
             var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { decoyComponent, component }).Route("basepath/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { decoyComponent, component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -94,7 +106,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var decoyController = new Controller("controller", null, new ControllerAction[0]);
             var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { decoyController }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { decoyComponent, component }).Route("basepath/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { decoyComponent, component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -114,7 +130,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/component/controller/action/something-extra");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action/something-extra");
 
             Assert.Null(result);
         }
@@ -130,7 +150,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath1/basepath2/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath1/basepath2/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -150,7 +174,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("lorem/component/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("lorem/component/controller/action");
 
             Assert.Null(result);
         }
@@ -166,7 +194,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/lorem/controller/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/lorem/controller/action");
 
             Assert.Null(result);
         }
@@ -182,7 +214,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/component/lorem/action");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/lorem/action");
 
             Assert.Null(result);
         }
@@ -198,7 +234,11 @@ namespace Poetry.UI.RoutingSupport.Tests
             var controller = new Controller("controller", null, action);
             var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
 
-            var result = new ControllerRouter(basePathProvider, new List<Component> { component }).Route("basepath/component/controller/lorem");
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
+
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/lorem");
 
             Assert.Null(result);
         }

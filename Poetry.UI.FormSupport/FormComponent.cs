@@ -1,4 +1,5 @@
 ﻿using Poetry.UI.ComponentSupport;
+using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -12,6 +13,7 @@ namespace Poetry.UI.FormSupport
     [Script("Scripts/form-field-provider.js")]
     [Script("Scripts/form-field-types.js")]
     [Style("Styles/form-elements.css")]
+    [Dependency("Portal")]
     public class FormComponent
     {
     }

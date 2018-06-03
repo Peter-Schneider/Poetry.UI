@@ -9,9 +9,9 @@ namespace Poetry.UI.ComponentSupport
     {
         IEnumerable<Component> Components { get; }
 
-        public ComponentRepository(IEnumerable<Component> components)
+        public ComponentRepository(IComponentCreator componentCreator)
         {
-            Components = components.ToList().AsReadOnly();
+            Components = componentCreator.Create();
         }
 
         public IEnumerable<Component> GetAll()

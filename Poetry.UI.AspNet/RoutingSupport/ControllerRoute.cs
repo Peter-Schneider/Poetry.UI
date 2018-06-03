@@ -12,9 +12,9 @@ namespace Poetry.UI.AspNet.RoutingSupport
 {
     public class ControllerRoute : RouteBase
     {
-        ControllerRouter ControllerRouter { get; }
+        IControllerRouter ControllerRouter { get; }
 
-        public ControllerRoute(ControllerRouter controllerRouter)
+        public ControllerRoute(IControllerRouter controllerRouter)
         {
             ControllerRouter = controllerRouter;
         }

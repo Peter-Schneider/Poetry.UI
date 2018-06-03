@@ -157,6 +157,10 @@
       <Project>{8c4cda01-ab43-4a11-be8d-778bad23aff8}</Project>
       <Name>Poetry.UI.AspNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj">
+      <Project>{1C6120F8-E239-4F58-A292-618825632345}</Project>
+      <Name>Poetry.UI.ComponentSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj">
       <Project>{614BECA8-F319-428B-AD6A-03A3CED13AA3}</Project>
       <Name>Poetry.UI.DataTableSupport</Name>

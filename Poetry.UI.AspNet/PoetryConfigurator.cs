@@ -33,7 +33,15 @@ namespace Poetry.UI
     {
         UnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
-        List<Assembly> Assemblies { get; } = new List<Assembly>();
+        List<Assembly> Assemblies { get; } = new List<Assembly>
+        {
+            typeof(PoetryConfigurator).Assembly,
+            typeof(FormComponent).Assembly,
+            typeof(DataTableComponent).Assembly,
+            typeof(PageEditingComponent).Assembly,
+            typeof(TranslationComponent).Assembly,
+            typeof(PortalComponent).Assembly,
+        };
         
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
@@ -64,9 +72,7 @@ namespace Poetry.UI
                 namespaces: new string[] { "Poetry.UI.Controllers" }
             );
 
-            var basePathProvider = (IBasePathProvider)this;
-
-            Container.RegisterInstance(typeof(IBasePathProvider), basePathProvider);
+            Container.RegisterInstance<IBasePathProvider>(this);
 
             Container.RegisterType<IStyleCreator, StyleCreator>();
             Container.RegisterType<IScriptCreator, ScriptCreator>();
@@ -77,45 +83,30 @@ namespace Poetry.UI
             Container.RegisterType<IComponentCreator, ComponentCreator>();
             Container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
             Container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();
+            Container.RegisterInstance<IComponentTypeProvider>(new ComponentTypeProvider(Assemblies));
 
-            var componentCreator = Container.Resolve<IComponentCreator>();
-
-            var components = new List<Component>();
-
-            components.Add(componentCreator.Create(typeof(FormComponent)));
-            components.Add(componentCreator.Create(typeof(PortalComponent)));
-            components.Add(componentCreator.Create(typeof(DataTableComponent)));
-            components.Add(componentCreator.Create(typeof(TranslationComponent)));
-            components.Add(componentCreator.Create(typeof(PageEditingComponent)));
-
-            Container.RegisterInstance(typeof(IComponentRepository), new ComponentRepository(components));
+            Container.RegisterType<IComponentRepository, ComponentRepository>();
 
             Container.RegisterType<IObjectIdentifier, ObjectIdentifier>();
             Container.RegisterType<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
-            Container.RegisterInstance(typeof(IFormFieldProvider), new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
-            Container.RegisterInstance(typeof(DataTableSupport.BackendSupport.IBackendProvider), new DataTableSupport.BackendSupport.BackendProvider(new DataTableSupport.BackendSupport.BackendCreator(new Instantiator()).Create(new DataTableSupport.BackendSupport.BackendTypeProvider().GetTypes(Assemblies))));
+            Container.RegisterInstance<IFormFieldProvider>(new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
+            Container.RegisterInstance<DataTableSupport.BackendSupport.IBackendProvider>(new DataTableSupport.BackendSupport.BackendProvider(new DataTableSupport.BackendSupport.BackendCreator(new Instantiator()).Create(new DataTableSupport.BackendSupport.BackendTypeProvider().GetTypes(Assemblies))));
 
-            var embeddedResourceAssemblyCreator = new EmbeddedResourceAssemblyCreator();
-            var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();
+            Container.RegisterType<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();
+            Container.RegisterType<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
+            Container.RegisterType<IEmbeddedResourcePathMatcher, EmbeddedResourcePathMatcher>();
+            Container.RegisterType<IEmbeddedResourceProvider, EmbeddedResourceProvider>();
+            Container.RegisterType<EmbeddedResourceVirtualPathViewProvider, EmbeddedResourceVirtualPathViewProvider>();
 
-            embeddedResourceAssemblies.Add(embeddedResourceAssemblyCreator.Create("Core", Assembly.GetExecutingAssembly()));
-            embeddedResourceAssemblies.AddRange(components.Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
+            HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
 
-            var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), embeddedResourceAssemblies.ToArray());
+            Container.RegisterType<IControllerRouter, ControllerRouter>();
 
-            Container.RegisterInstance<IEmbeddedResourceProvider>(embeddedResourceProvider);
-
-            var vpp = new EmbeddedResourceVirtualPathViewProvider(basePathProvider, embeddedResourceProvider);
-
-            Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathViewProvider), vpp);
-
-            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, components)));
-
-            HostingEnvironment.RegisterVirtualPathProvider(vpp);
+            RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
 
             Container.RegisterType<IModeProvider, ModeProvider>();
 
-            Container.RegisterInstance(typeof(IAppRepository), new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
+            Container.RegisterInstance<IAppRepository>(new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
         }
     }
 }

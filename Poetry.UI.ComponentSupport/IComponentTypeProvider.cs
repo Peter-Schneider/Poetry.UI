@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Poetry.UI.ComponentSupport
 {
-    public interface IComponentCreator
+    public interface IComponentTypeProvider
     {
-        IEnumerable<Component> Create();
+        IEnumerable<Type> GetTypes();
     }
 }

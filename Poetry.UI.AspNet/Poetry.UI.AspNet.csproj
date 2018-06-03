@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PoetryPortalController.cs" />
+    <Compile Include="CoreComponent.cs" />
     <Compile Include="DependencyInjectionSupport\Instantiator.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceHandler.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathViewProvider.cs" />

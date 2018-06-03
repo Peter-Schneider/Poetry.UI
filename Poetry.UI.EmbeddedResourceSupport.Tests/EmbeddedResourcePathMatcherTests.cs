@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -10,19 +11,19 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         [Fact]
         public void RejectsDifferentAssemblyNames()
         {
-            Assert.False(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("1234.Lorem"), "Lorem"));
+            Assert.False(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("1234.Lorem"), "Lorem"));
         }
 
         [Fact]
         public void MatchesAssemblyNames()
         {
-            Assert.True(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem"), "Lorem"));
+            Assert.True(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem"), "Lorem"));
         }
 
         [Fact]
         public void RejectsDifferentPaths()
         {
-            Assert.False(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem"), "Ipsum"));
+            Assert.False(new EmbeddedResourcePathMatcher().Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem"), "Ipsum"));
         }
 
         [Fact]
@@ -30,9 +31,9 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         {
             var sut = new EmbeddedResourcePathMatcher();
 
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem/Ipsum.Dolor.hej"));
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem.Ipsum/Dolor.hej"));
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem.Ipsum.Dolor/hej"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem/Ipsum.Dolor.hej"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem.Ipsum/Dolor.hej"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem.Ipsum.Dolor.hej"), "Lorem.Ipsum.Dolor/hej"));
         }
 
         [Fact]
@@ -40,7 +41,7 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         {
             var sut = new EmbeddedResourcePathMatcher();
 
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.LoremIpsum"), "loreMipsuM"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.LoremIpsum"), "loreMipsuM"));
         }
 
         [Fact]
@@ -48,8 +49,8 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         {
             var sut = new EmbeddedResourcePathMatcher();
 
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem_Ipsum"), "Lorem-Ipsum"));
-            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null), new EmbeddedResource("name.Lorem-Ipsum"), "Lorem_Ipsum"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem_Ipsum"), "Lorem-Ipsum"));
+            Assert.True(sut.Match(new EmbeddedResourceAssembly("name", "basePath", null, Enumerable.Empty<EmbeddedResource>()), new EmbeddedResource("name.Lorem-Ipsum"), "Lorem_Ipsum"));
         }
     }
 }
