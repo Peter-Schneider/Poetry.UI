@@ -83,19 +83,20 @@
   <ItemGroup>
     <Compile Include="Controllers\PoetryPortalController.cs" />
     <Compile Include="DependencyInjectionSupport\Instantiator.cs" />
-    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathProvider.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceHandler.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathViewProvider.cs" />
     <Compile Include="FileSupport\FileProvider.cs" />
     <Compile Include="PageEditingSupport\InitializePageEditingModule.cs" />
     <Compile Include="PageEditingSupport\ModeProvider.cs" />
     <Compile Include="PageEditingSupport\PageEditingModule.cs" />
     <Compile Include="PageEditingSupport\HtmlHelperExtensions.cs" />
+    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceModule.cs" />
     <Compile Include="RoutingSupport\ControllerRoutingController.cs" />
     <Compile Include="RoutingSupport\ControllerRoute.cs" />
     <Compile Include="PoetryConfigurator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualFile.cs" />
-    <Compile Include="EmbeddedResourceSupport\EmbeddedResourceRoute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -160,5 +161,6 @@
       <Name>Poetry.UI.TranslationSupport</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -103,13 +103,13 @@ namespace Poetry.UI
 
             var embeddedResourceProvider = new EmbeddedResourceProvider(new EmbeddedResourcePathMatcher(), embeddedResourceAssemblies.ToArray());
 
-            var vpp = new EmbeddedResourceVirtualPathProvider(basePathProvider, embeddedResourceProvider);
+            Container.RegisterInstance<IEmbeddedResourceProvider>(embeddedResourceProvider);
 
-            Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathProvider), vpp);
+            var vpp = new EmbeddedResourceVirtualPathViewProvider(basePathProvider, embeddedResourceProvider);
 
-            RouteTable.Routes.Add(new EmbeddedResourceRoute(vpp));
+            Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathViewProvider), vpp);
+
             RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, components.ToArray())));
-            RouteTable.Routes.RouteExistingFiles = true;
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
 

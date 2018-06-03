@@ -15,49 +15,16 @@ namespace Poetry.UI.Controllers
     public class PoetryPortalController : Controller
     {
         IBasePathProvider BasePathProvider { get; }
-        EmbeddedResourceVirtualPathProvider EmbeddedResourceVirtualPathProvider { get; }
+        EmbeddedResourceVirtualPathViewProvider EmbeddedResourceVirtualPathProvider { get; }
 
-        public PoetryPortalController(IBasePathProvider basePathProvider, EmbeddedResourceVirtualPathProvider embeddedResourceVirtualPathProvider)
+        public PoetryPortalController(IBasePathProvider basePathProvider)
         {
             BasePathProvider = basePathProvider;
-            EmbeddedResourceVirtualPathProvider = embeddedResourceVirtualPathProvider;
         }
 
-        public ActionResult Index(string url = null)
+        public ActionResult Index()
         {
-            if(url != null)
-            {
-                var virtualPath = $"/{BasePathProvider.BasePath}/{url}";
-
-                if (!EmbeddedResourceVirtualPathProvider.FileExists(virtualPath))
-                {
-                    return HttpNotFound();
-                }
-
-                var file = EmbeddedResourceVirtualPathProvider.GetFile(virtualPath);
-
-                var mimeType = MimeMapping.GetMimeMapping(Path.GetExtension(virtualPath));
-
-                return new FileStreamResult(file.Open(), mimeType);
-            }
-
             return View($"~/{BasePathProvider.BasePath}/Core/Views/Index.cshtml");
-        }
-        
-        public ActionResult StaticFile()
-        {
-            var url = HttpContext.Request.Url.LocalPath;
-            
-            if (!EmbeddedResourceVirtualPathProvider.FileExists(url))
-            {
-                return HttpNotFound();
-            }
-
-            var file = EmbeddedResourceVirtualPathProvider.GetFile(url);
-
-            var mimeType = MimeMapping.GetMimeMapping(Path.GetExtension(url));
-
-            return new FileStreamResult(file.Open(), mimeType);
         }
     }
 }

@@ -14,13 +14,17 @@ using System.Web.Hosting;
 
 namespace Poetry.UI.EmbeddedResourceSupport
 {
-    public class EmbeddedResourceVirtualPathProvider : VirtualPathProvider
+    public class EmbeddedResourceVirtualPathViewProvider : VirtualPathProvider
     {
         IBasePathProvider BasePathProvider { get; }
+        string Prefix { get; }
+        string Suffix { get; }
         IEmbeddedResourceProvider EmbeddedResourceProvider { get; }
 
-        public EmbeddedResourceVirtualPathProvider(IBasePathProvider basePathProvider, IEmbeddedResourceProvider embeddedResourceProvider) {
+        public EmbeddedResourceVirtualPathViewProvider(IBasePathProvider basePathProvider, IEmbeddedResourceProvider embeddedResourceProvider) {
             BasePathProvider = basePathProvider;
+            Prefix = $"/{BasePathProvider.BasePath}/";
+            Suffix = ".cshtml";
             EmbeddedResourceProvider = embeddedResourceProvider;
         }
 
@@ -28,24 +32,17 @@ namespace Poetry.UI.EmbeddedResourceSupport
         {
             var path = virtualPath;
 
-            if (path.StartsWith("~/"))
+            if (path.StartsWith("~"))
             {
-                path = path.Substring("~/".Length);
+                path = path.Substring("~".Length);
             }
 
-            if (path.StartsWith("/"))
-            {
-                path = path.Substring("/".Length);
-            }
-
-            var prefix = $"{BasePathProvider.BasePath}/";
-
-            if (!path.StartsWith(prefix))
+            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
             {
                 return Previous.FileExists(virtualPath);
             }
 
-            path = path.Substring(prefix.Length);
+            path = path.Substring(Prefix.Length);
 
             if (!Exists(path))
             {
@@ -59,24 +56,17 @@ namespace Poetry.UI.EmbeddedResourceSupport
         {
             var path = virtualPath;
 
-            if (path.StartsWith("~/"))
+            if (path.StartsWith("~"))
             {
-                path = path.Substring("~/".Length);
+                path = path.Substring("~".Length);
             }
 
-            if (path.StartsWith("/"))
-            {
-                path = path.Substring("/".Length);
-            }
-
-            var prefix = $"{BasePathProvider.BasePath}/";
-
-            if (!path.StartsWith(prefix))
+            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
             {
                 return Previous.GetCacheDependency(virtualPath, virtualPathDependencies, utcStart);
             }
 
-            path = path.Substring(prefix.Length);
+            path = path.Substring(Prefix.Length);
 
             if (!Exists(path))
             {
@@ -90,24 +80,17 @@ namespace Poetry.UI.EmbeddedResourceSupport
         {
             var path = virtualPath;
 
-            if (path.StartsWith("~/"))
+            if (path.StartsWith("~"))
             {
-                path = path.Substring("~/".Length);
+                path = path.Substring("~".Length);
             }
 
-            if (path.StartsWith("/"))
-            {
-                path = path.Substring("/".Length);
-            }
-
-            var prefix = $"{BasePathProvider.BasePath}/";
-
-            if (!path.StartsWith(prefix))
+            if (!path.StartsWith(Prefix) || !path.EndsWith(Suffix))
             {
                 return Previous.GetFile(virtualPath);
             }
 
-            path = path.Substring(prefix.Length);
+            path = path.Substring(Prefix.Length);
 
             if (!Exists(path))
             {
