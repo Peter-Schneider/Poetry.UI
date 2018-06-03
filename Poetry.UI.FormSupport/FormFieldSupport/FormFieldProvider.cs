@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace Poetry.UI.FormSupport.FormFieldSupport
@@ -9,9 +10,9 @@ namespace Poetry.UI.FormSupport.FormFieldSupport
     {
         IDictionary<string, IEnumerable<FormField>> FormFieldsByFormId { get; }
 
-        public FormFieldProvider(Dictionary<string, IEnumerable<FormField>> formFieldsByFormId)
+        public FormFieldProvider(IFormCreator formCreator)
         {
-            FormFieldsByFormId = new ReadOnlyDictionary<string, IEnumerable<FormField>>(new Dictionary<string, IEnumerable<FormField>>(formFieldsByFormId));
+            FormFieldsByFormId = new ReadOnlyDictionary<string, IEnumerable<FormField>>(formCreator.Create().ToDictionary(f => f.Id, f => f.Fields));
         }
 
         public IEnumerable<FormField> GetAllFor(string formId)

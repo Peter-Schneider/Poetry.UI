@@ -1,3 +1,4 @@
+using Moq;
 using Poetry.UI.FormSupport.FormFieldSupport;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,23 @@ namespace Poetry.UI.FormSupport.Tests
             var key = "lorem-ipsum";
             var value = Enumerable.Empty<FormField>();
 
-            var result = new FormFieldProvider(new Dictionary<string, IEnumerable<FormField>> { [key] = value }).GetAllFor(key);
+            var formCreator = Mock.Of<IFormCreator>();
 
-            Assert.Same(value, result);
+            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { new Form(key, value) });
+
+            var result = new FormFieldProvider(formCreator).GetAllFor(key);
+
+            Assert.Equal(value, result);
         }
 
         [Fact]
         public void ReturnsNullIfMissing()
         {
-            Assert.Null(new FormFieldProvider(new Dictionary<string, IEnumerable<FormField>>()).GetAllFor("lorem-ipsum"));
+            var formCreator = Mock.Of<IFormCreator>();
+
+            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { });
+
+            Assert.Null(new FormFieldProvider(formCreator).GetAllFor("lorem-ipsum"));
         }
     }
 }

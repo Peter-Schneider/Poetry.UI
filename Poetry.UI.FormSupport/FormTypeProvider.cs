@@ -6,11 +6,18 @@ using System.Text;
 
 namespace Poetry.UI.FormSupport
 {
-    public class FormTypeProvider
+    public class FormTypeProvider : IFormTypeProvider
     {
-        public IEnumerable<Type> GetTypes(params Assembly[] assemblies)
+        IEnumerable<Assembly> Assemblies { get; }
+
+        public FormTypeProvider(IEnumerable<Assembly> assemblies)
         {
-            return assemblies.SelectMany(a => a.GetTypes()).Where(t => t.GetCustomAttribute<FormAttribute>() != null);
+            Assemblies = assemblies.ToList().AsReadOnly();
+        }
+
+        public IEnumerable<Type> GetTypes()
+        {
+            return Assemblies.SelectMany(a => a.GetTypes()).Where(t => t.GetCustomAttribute<FormAttribute>() != null);
         }
     }
 }

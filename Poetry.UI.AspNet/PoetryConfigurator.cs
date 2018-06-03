@@ -89,7 +89,11 @@ namespace Poetry.UI
 
             Container.RegisterType<IObjectIdentifier, ObjectIdentifier>();
             Container.RegisterType<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
-            Container.RegisterInstance<IFormFieldProvider>(new FormFieldProvider(new FormCreator(new FormFieldCreator()).Create(new FormTypeProvider().GetTypes(Assemblies.ToArray()).ToArray()).ToDictionary(f => f.Id, f => f.Fields)));
+            Container.RegisterType<IFormFieldCreator, FormFieldCreator>();
+            Container.RegisterInstance<IFormTypeProvider>(new FormTypeProvider(Assemblies));
+            Container.RegisterType<IFormCreator, FormCreator>();
+
+            Container.RegisterType<IFormFieldProvider, FormFieldProvider>();
             Container.RegisterInstance<DataTableSupport.BackendSupport.IBackendProvider>(new DataTableSupport.BackendSupport.BackendProvider(new DataTableSupport.BackendSupport.BackendCreator(new Instantiator()).Create(new DataTableSupport.BackendSupport.BackendTypeProvider().GetTypes(Assemblies))));
 
             Container.RegisterType<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();

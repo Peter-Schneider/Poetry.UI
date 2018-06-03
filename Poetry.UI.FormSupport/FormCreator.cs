@@ -6,20 +6,22 @@ using System.Text;
 
 namespace Poetry.UI.FormSupport
 {
-    public class FormCreator
+    public class FormCreator : IFormCreator
     {
         IFormFieldCreator FormFieldCreator { get; }
+        IFormTypeProvider FormTypeProvider { get; }
 
-        public FormCreator(IFormFieldCreator formFieldCreator)
+        public FormCreator(IFormFieldCreator formFieldCreator, IFormTypeProvider formTypeProvider)
         {
             FormFieldCreator = formFieldCreator;
+            FormTypeProvider = formTypeProvider;
         }
 
-        public IEnumerable<Form> Create(params Type[] types)
+        public IEnumerable<Form> Create()
         {
             var result = new List<Form>();
 
-            foreach(var type in types)
+            foreach(var type in FormTypeProvider.GetTypes())
             {
                 var attribute = type.GetCustomAttribute<FormAttribute>();
 

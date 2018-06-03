@@ -12,7 +12,7 @@ namespace Poetry.UI.FormSupport.Tests
         [Fact]
         public void GetsTypes()
         {
-            var result = new FormTypeProvider().GetTypes(Assembly.GetExecutingAssembly());
+            var result = new FormTypeProvider(new List<Assembly> { Assembly.GetExecutingAssembly() }).GetTypes();
 
             Assert.Single(result);
             Assert.Equal(typeof(MyForm), result.Single());
