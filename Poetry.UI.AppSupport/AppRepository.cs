@@ -9,9 +9,9 @@ namespace Poetry.UI.AppSupport
     {
         IEnumerable<App> Apps { get; }
 
-        public AppRepository(IEnumerable<App> apps)
+        public AppRepository(IAppCreator appCreator)
         {
-            Apps = apps;
+            Apps = appCreator.Create();
         }
 
         public IEnumerable<App> GetAll()

@@ -9,6 +9,7 @@ using Poetry.UI.ControllerSupport;
 using Poetry.UI.DataTableSupport.BackendSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
+using Poetry.UI.FileSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
 using Poetry.UI.PageEditingSupport;
@@ -113,7 +114,14 @@ namespace Poetry.UI
 
             Container.RegisterType<IModeProvider, ModeProvider>();
 
-            Container.RegisterInstance<IAppRepository>(new AppRepository(new AppCreator(new TranslationRepositoryCreator(new FileProvider(), new XmlTranslationParser()), new ScriptCreator(), new StyleCreator()).Create(Assemblies)));
+            Container.RegisterInstance<IAppTypeProvider>(new AppTypeProvider(Assemblies));
+            Container.RegisterType<IFileProvider, FileProvider>();
+            Container.RegisterType<ITranslationParser, XmlTranslationParser>();
+            Container.RegisterType<ITranslationRepositoryCreator, TranslationRepositoryCreator>();
+            Container.RegisterType<IScriptCreator, ScriptCreator>();
+            Container.RegisterType<IStyleCreator, StyleCreator>();
+            Container.RegisterType<IAppCreator, AppCreator>();
+            Container.RegisterType<IAppRepository, AppRepository>();
         }
     }
 }

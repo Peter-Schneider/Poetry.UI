@@ -9,32 +9,26 @@ using System.Threading.Tasks;
 
 namespace Poetry.UI.AppSupport //
 {
-    public class AppCreator
+    public class AppCreator : IAppCreator
     {
+        IAppTypeProvider AppTypeProvider { get; }
         ITranslationRepositoryCreator TranslationRepositoryCreator { get; }
         IScriptCreator ScriptCreator { get; }
         IStyleCreator StyleCreator { get; }
 
-        public AppCreator(ITranslationRepositoryCreator translationRepositoryCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
+        public AppCreator(IAppTypeProvider appTypeProvider, ITranslationRepositoryCreator translationRepositoryCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
         {
+            AppTypeProvider = appTypeProvider;
             TranslationRepositoryCreator = translationRepositoryCreator;
             ScriptCreator = scriptCreator;
             StyleCreator = styleCreator;
         }
 
-        public IEnumerable<App> Create(IEnumerable<Assembly> assemblies)
+        public IEnumerable<App> Create()
         {
-            var types = assemblies
-                    .SelectMany(a => a.ExportedTypes);
-
-            foreach (var type in types)
+            foreach (var type in AppTypeProvider.GetTypes())
             {
                 var attribute = CustomAttributeExtensions.GetCustomAttribute<AppAttribute>(type);
-
-                if (attribute == null)
-                {
-                    continue;
-                }
 
                 var translationAttribute = CustomAttributeExtensions.GetCustomAttribute<TranslationsAttribute>(type);
                 var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new EmptyTranslationRepository();
