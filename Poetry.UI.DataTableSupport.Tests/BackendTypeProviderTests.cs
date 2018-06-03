@@ -12,7 +12,7 @@ namespace Poetry.UI.DataTableSupport.Tests
         [Fact]
         public void GetsTypes()
         {
-            var result = new BackendTypeProvider().GetTypes(new List<Assembly> { Assembly.GetExecutingAssembly() });
+            var result = new BackendTypeProvider(new List<Assembly> { Assembly.GetExecutingAssembly() }).GetTypes();
 
             Assert.Single(result);
             Assert.Equal(typeof(MyDataTableBackend), result.Single());

@@ -6,11 +6,18 @@ using System.Text;
 
 namespace Poetry.UI.DataTableSupport.BackendSupport
 {
-    public class BackendTypeProvider
+    public class BackendTypeProvider : IBackendTypeProvider
     {
-        public IEnumerable<Type> GetTypes(IEnumerable<Assembly> assemblies)
+        IEnumerable<Assembly> Assemblies { get; }
+
+        public BackendTypeProvider(IEnumerable<Assembly> assemblies)
         {
-            return assemblies.SelectMany(a => a.GetTypes().Where(t => t.Name.EndsWith("DataTableBackend")).Where(t => t.GetCustomAttribute<DataTableBackendAttribute>() != null));
+            Assemblies = assemblies;
+        }
+
+        public IEnumerable<Type> GetTypes()
+        {
+            return Assemblies.SelectMany(a => a.GetTypes().Where(t => t.Name.EndsWith("DataTableBackend")).Where(t => t.GetCustomAttribute<DataTableBackendAttribute>() != null));
         }
     }
 }

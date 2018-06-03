@@ -6,6 +6,7 @@ using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.DataTableSupport.BackendSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
@@ -94,7 +95,9 @@ namespace Poetry.UI
             Container.RegisterType<IFormCreator, FormCreator>();
             Container.RegisterType<IFormFieldProvider, FormFieldProvider>();
 
-            Container.RegisterInstance<DataTableSupport.BackendSupport.IBackendProvider>(new DataTableSupport.BackendSupport.BackendProvider(new DataTableSupport.BackendSupport.BackendCreator(new Instantiator()).Create(new DataTableSupport.BackendSupport.BackendTypeProvider().GetTypes(Assemblies))));
+            Container.RegisterInstance<IBackendTypeProvider>(new BackendTypeProvider(Assemblies));
+            Container.RegisterType<IBackendCreator, BackendCreator>();
+            Container.RegisterType<IBackendProvider, BackendProvider>();
 
             Container.RegisterType<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();
             Container.RegisterType<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();

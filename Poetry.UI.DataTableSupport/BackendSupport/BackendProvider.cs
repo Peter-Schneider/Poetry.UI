@@ -9,9 +9,9 @@ namespace Poetry.UI.DataTableSupport.BackendSupport
     {
         IDictionary<string, IBackend> Backends { get; }
 
-        public BackendProvider(IDictionary<string, IBackend> backends)
+        public BackendProvider(IBackendCreator backendCreator)
         {
-            Backends = new ReadOnlyDictionary<string, IBackend>(new Dictionary<string, IBackend>(backends));
+            Backends = new ReadOnlyDictionary<string, IBackend>(new Dictionary<string, IBackend>(backendCreator.Create()));
         }
 
         public IBackend GetFor(string id)
