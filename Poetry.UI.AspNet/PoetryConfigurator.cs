@@ -44,7 +44,7 @@ namespace Poetry.UI
             typeof(TranslationComponent).Assembly,
             typeof(PortalComponent).Assembly,
         };
-        
+
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
         }
@@ -58,6 +58,20 @@ namespace Poetry.UI
         public PoetryConfigurator AddAssembly(Assembly assembly)
         {
             Assemblies.Add(assembly);
+            return this;
+        }
+
+        public PoetryConfigurator InjectType<T1, T2>() where T2 : T1
+        {
+            Container.RegisterType<T1, T2>();
+
+            return this;
+        }
+
+        public PoetryConfigurator InjectInstance<T>(T instance)
+        {
+            Container.RegisterInstance<T>(instance);
+
             return this;
         }
 
