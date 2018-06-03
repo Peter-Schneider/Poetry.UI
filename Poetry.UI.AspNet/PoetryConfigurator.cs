@@ -109,7 +109,7 @@ namespace Poetry.UI
 
             Container.RegisterInstance(typeof(EmbeddedResourceVirtualPathViewProvider), vpp);
 
-            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, components.ToArray())));
+            RouteTable.Routes.Add(new ControllerRoute(new ControllerRouter(basePathProvider, components)));
 
             HostingEnvironment.RegisterVirtualPathProvider(vpp);
 

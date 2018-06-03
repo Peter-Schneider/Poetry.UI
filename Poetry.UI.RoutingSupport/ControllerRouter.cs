@@ -13,10 +13,10 @@ namespace Poetry.UI.RoutingSupport
         IBasePathProvider BasePathProvider { get; }
         IEnumerable<Component> Components { get; }
 
-        public ControllerRouter(IBasePathProvider basePathProvider, params Component[] components)
+        public ControllerRouter(IBasePathProvider basePathProvider, IEnumerable<Component> components)
         {
             BasePathProvider = basePathProvider;
-            Components = components;
+            Components = components.ToList().AsReadOnly();
         }
 
         public ControllerRouterResult Route(string path)
@@ -36,48 +36,30 @@ namespace Poetry.UI.RoutingSupport
                 }
             }
 
-            var component = GetMatchingComponent(pathSegments.Dequeue());
-
-            if(component == null)
-            {
-                return null;
-            }
-
-            var controller = GetMatchingController(component, pathSegments.Dequeue());
-
-            if(controller == null)
-            {
-                return null;
-            }
-
-            var action = GetMatchingAction(controller, pathSegments.Dequeue());
-
-            if (action == null)
-            {
-                return null;
-            }
+            var componentId = pathSegments.Dequeue();
+            var controllerId = pathSegments.Dequeue();
+            var actionId = pathSegments.Dequeue();
 
             if (pathSegments.Any())
             {
                 return null;
             }
 
-            return new ControllerRouterResult(component, controller, action);
-        }
+            foreach(var component in Components.Where(c => c.Id.Equals(componentId, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                foreach(var controller in component.Controllers.Where(c => c.Id.Equals(controllerId, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    var action = controller.Actions.FirstOrDefault(a => a.Id.Equals(actionId, StringComparison.InvariantCultureIgnoreCase));
 
-        Component GetMatchingComponent(string id)
-        {
-            return Components.FirstOrDefault(c => c.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
-        }
+                    if(action != null)
+                    {
+                        return new ControllerRouterResult(component, controller, action);
+                    }
+                }
+            }
 
-        Controller GetMatchingController(Component component, string id)
-        {
-            return component.Controllers.FirstOrDefault(c => c.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
-        }
+            return null;
 
-        ControllerAction GetMatchingAction(Controller controller, string id)
-        {
-            return controller.Actions.FirstOrDefault(a => a.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }
