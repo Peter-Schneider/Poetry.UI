@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.FileSupport;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Poetry.UI.TranslationSupport
@@ -22,7 +23,7 @@ namespace Poetry.UI.TranslationSupport
             {
                 if (read == null)
                 {
-                    throw new Exception($"Could not find embedded resource {path}");
+                    throw new FileNotFoundException(path);
                 }
 
                 return new TranslationRepository(TranslationParser.Parse(read));

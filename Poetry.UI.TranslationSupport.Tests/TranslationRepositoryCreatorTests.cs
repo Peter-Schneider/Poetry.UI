@@ -2,6 +2,7 @@
 using Poetry.UI.FileSupport;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace Poetry.UI.TranslationSupport.Tests
         {
             var sut = new TranslationRepositoryCreator(Mock.Of<IFileProvider>(), null);
 
-            Assert.Throws<Exception>(() => sut.Create("missing-file"));
+            Assert.Throws<FileNotFoundException>(() => sut.Create("missing-file"));
         }
     }
 }
