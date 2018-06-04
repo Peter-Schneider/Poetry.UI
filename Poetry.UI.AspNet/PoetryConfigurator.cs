@@ -36,7 +36,7 @@ namespace Poetry.UI
 {
     public class PoetryConfigurator
     {
-        UnityContainer Container { get; }
+        IUnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
@@ -47,6 +47,7 @@ namespace Poetry.UI
             new AssemblyWrapper(typeof(TranslationComponent).Assembly),
             new AssemblyWrapper(typeof(PortalComponent).Assembly),
         };
+        List<Action<IUnityContainer>> ContainerOverrides { get; } = new List<Action<IUnityContainer>>();
 
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
@@ -66,14 +67,21 @@ namespace Poetry.UI
 
         public PoetryConfigurator InjectType<T1, T2>() where T2 : T1
         {
-            Container.RegisterType<T1, T2>();
+            ContainerOverrides.Add(c => c.RegisterType<T1, T2>());
+
+            return this;
+        }
+
+        public PoetryConfigurator InjectSingleton<T1, T2>() where T2 : T1
+        {
+            ContainerOverrides.Add(c => c.RegisterSingleton<T1, T2>());
 
             return this;
         }
 
         public PoetryConfigurator InjectInstance<T>(T instance)
         {
-            Container.RegisterInstance<T>(instance);
+            ContainerOverrides.Add(c => c.RegisterInstance(instance));
 
             return this;
         }
@@ -140,6 +148,11 @@ namespace Poetry.UI
             Container.RegisterType<IStyleCreator, StyleCreator>();
             Container.RegisterType<IAppCreator, AppCreator>();
             Container.RegisterType<IAppRepository, AppRepository>();
+
+            foreach(var containerOverride in ContainerOverrides)
+            {
+                containerOverride(Container);
+            }
         }
     }
 }
