@@ -215,7 +215,8 @@ blade-toolbar {
 /* CONTENT */
 
 blade-content {
-    flex-grow: 1;
+    flex: 1 1 auto;
+    overflow: auto;
     display: block;
     padding: $padding-base;
     background: white;
