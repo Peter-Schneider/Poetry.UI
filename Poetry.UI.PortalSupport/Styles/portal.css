@@ -101,6 +101,7 @@ blade {
 
 /* TITLE */
 blade-title {
+  flex: 0 0 auto;
   display: flex;
   background: #252525; }
 
