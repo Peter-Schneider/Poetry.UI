@@ -1,6 +1,8 @@
-﻿using Poetry.UI.AppSupport;
+﻿using Microsoft.Extensions.Logging;
+using Poetry.UI.AppSupport;
 using Poetry.UI.AspNet.DependencyInjectionSupport;
 using Poetry.UI.AspNet.FileSupport;
+using Poetry.UI.AspNet.LoggerSupport;
 using Poetry.UI.AspNet.PageEditingSupport;
 using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
@@ -80,6 +82,7 @@ namespace Poetry.UI
         {
             DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
 
+            Container.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
             Container.RegisterType<IInstantiator, Instantiator>();
 
             RouteTable.Routes.MapRoute(
