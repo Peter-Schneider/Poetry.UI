@@ -32,7 +32,7 @@ class ListCategories extends Blade {
         var dataTable;
 
         this.setToolbar(
-            new PortalButton(app.translations.get('New'), () => app.openBlade(new EditCategory(app).onClose(message => dataTable.update(), this))),
+            new PortalButton(app.translations.get('New'), () => app.openBlade(new EditCategory(app).onClose(message => dataTable.update()), this)),
         );
 
         this.setContent(
