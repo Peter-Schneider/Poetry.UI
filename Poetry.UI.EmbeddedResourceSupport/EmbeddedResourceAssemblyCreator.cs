@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.ReflectionSupport;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,13 +11,13 @@ namespace Poetry.UI.EmbeddedResourceSupport
 {
     public class EmbeddedResourceAssemblyCreator : IEmbeddedResourceAssemblyCreator
     {
-        public EmbeddedResourceAssembly Create(string basePath, Assembly assembly)
+        public EmbeddedResourceAssembly Create(string basePath, AssemblyWrapper assembly)
         {
             return new EmbeddedResourceAssembly(
-                name: assembly.GetName().Name, 
+                name: assembly.Assembly.GetName().Name, 
                 basePath: basePath,
-                openEmbeddedResourceStream: r => assembly.GetManifestResourceStream(r.Name),
-                embeddedResources: assembly.GetManifestResourceNames().Select(resourceName => new EmbeddedResource(resourceName)).ToArray()
+                openEmbeddedResourceStream: r => assembly.Assembly.GetManifestResourceStream(r.Name),
+                embeddedResources: assembly.Assembly.GetManifestResourceNames().Select(resourceName => new EmbeddedResource(resourceName)).ToArray()
             );
         }
     }

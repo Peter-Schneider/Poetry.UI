@@ -14,6 +14,7 @@ using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
 using Poetry.UI.PageEditingSupport;
 using Poetry.UI.PortalSupport;
+using Poetry.UI.ReflectionSupport;
 using Poetry.UI.RoutingSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
@@ -35,14 +36,14 @@ namespace Poetry.UI
     {
         UnityContainer Container { get; }
         public string BasePath { get; private set; } = "Admin";
-        List<Assembly> Assemblies { get; } = new List<Assembly>
+        List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
-            typeof(PoetryConfigurator).Assembly,
-            typeof(FormComponent).Assembly,
-            typeof(DataTableComponent).Assembly,
-            typeof(PageEditingComponent).Assembly,
-            typeof(TranslationComponent).Assembly,
-            typeof(PortalComponent).Assembly,
+            new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
+            new AssemblyWrapper(typeof(FormComponent).Assembly),
+            new AssemblyWrapper(typeof(DataTableComponent).Assembly),
+            new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
+            new AssemblyWrapper(typeof(TranslationComponent).Assembly),
+            new AssemblyWrapper(typeof(PortalComponent).Assembly),
         };
 
         public PoetryConfigurator(UnityContainer container) {
@@ -57,7 +58,7 @@ namespace Poetry.UI
 
         public PoetryConfigurator AddAssembly(Assembly assembly)
         {
-            Assemblies.Add(assembly);
+            Assemblies.Add(new AssemblyWrapper(assembly));
             return this;
         }
 

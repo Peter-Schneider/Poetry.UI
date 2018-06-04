@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.ReflectionSupport;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Poetry.UI.ComponentSupport.Tests
         [Fact]
         public void GetsTypes()
         {
-            Assert.Equal(new List<Type> { typeof(MyComponentClass) }, new ComponentTypeProvider(new List<Assembly> { typeof(MyComponentClass).Assembly }).GetTypes());
+            Assert.Equal(new List<Type> { typeof(MyComponentClass) }, new ComponentTypeProvider(new List<AssemblyWrapper> { new AssemblyWrapper(new List<Type> { typeof(MyComponentClass) }) }).GetTypes());
         }
     }
 }

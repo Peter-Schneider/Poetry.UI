@@ -1,4 +1,5 @@
 ﻿using Poetry.UI.ControllerSupport;
+using Poetry.UI.ReflectionSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -17,13 +18,13 @@ namespace Poetry.UI.ComponentSupport
     public class Component
     {
         public string Id { get; }
-        public Assembly Assembly { get; }
+        public AssemblyWrapper Assembly { get; }
         public IEnumerable<string> Dependencies { get; }
         public IEnumerable<Controller> Controllers { get; }
         public IEnumerable<Script> Scripts { get; }
         public IEnumerable<Style> Styles { get; }
 
-        public Component(string id, Assembly assembly, IEnumerable<string> dependencies, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
+        public Component(string id, AssemblyWrapper assembly, IEnumerable<string> dependencies, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
         {
             Id = id;
             Assembly = assembly;

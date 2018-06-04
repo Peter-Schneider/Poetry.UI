@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.ReflectionSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -40,7 +41,7 @@ namespace Poetry.UI.ComponentSupport
                     continue;
                 }
 
-                result.Add(new Component(attribute.Id, type.Assembly, ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type)));
+                result.Add(new Component(attribute.Id, new AssemblyWrapper(type.Assembly), ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type)));
             }
 
             return result;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.ReflectionSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +13,7 @@ namespace Poetry.UI.FormSupport.Tests
         [Fact]
         public void GetsTypes()
         {
-            var result = new FormTypeProvider(new List<Assembly> { Assembly.GetExecutingAssembly() }).GetTypes();
+            var result = new FormTypeProvider(new List<AssemblyWrapper> { new AssemblyWrapper(new List<Type> { typeof(MyForm) }) }).GetTypes();
 
             Assert.Single(result);
             Assert.Equal(typeof(MyForm), result.Single());

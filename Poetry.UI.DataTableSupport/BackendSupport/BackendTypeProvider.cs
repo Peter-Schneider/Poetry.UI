@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.ReflectionSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,16 +9,16 @@ namespace Poetry.UI.DataTableSupport.BackendSupport
 {
     public class BackendTypeProvider : IBackendTypeProvider
     {
-        IEnumerable<Assembly> Assemblies { get; }
+        IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public BackendTypeProvider(IEnumerable<Assembly> assemblies)
+        public BackendTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
         {
             Assemblies = assemblies;
         }
 
         public IEnumerable<Type> GetTypes()
         {
-            return Assemblies.SelectMany(a => a.GetTypes().Where(t => t.Name.EndsWith("DataTableBackend")).Where(t => t.GetCustomAttribute<DataTableBackendAttribute>() != null));
+            return Assemblies.SelectMany(a => a.Types.Where(t => t.Name.EndsWith("DataTableBackend")).Where(t => t.GetCustomAttribute<DataTableBackendAttribute>() != null));
         }
     }
 }

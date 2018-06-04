@@ -152,6 +152,10 @@
       <Project>{777956A1-CBF7-47BD-8EAA-616E71F9503F}</Project>
       <Name>Poetry.UI.PortalSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.ReflectionSupport\Poetry.UI.ReflectionSupport.csproj">
+      <Project>{4E5ABABE-EFEA-41A4-A145-96E0E3A3A34A}</Project>
+      <Name>Poetry.UI.ReflectionSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj">
       <Project>{41A3EA23-B08E-4ECA-A4DE-EC8DF911A247}</Project>
       <Name>Poetry.UI.RoutingSupport</Name>

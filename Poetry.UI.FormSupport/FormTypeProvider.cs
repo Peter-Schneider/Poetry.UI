@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poetry.UI.ReflectionSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,16 +9,16 @@ namespace Poetry.UI.FormSupport
 {
     public class FormTypeProvider : IFormTypeProvider
     {
-        IEnumerable<Assembly> Assemblies { get; }
+        IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public FormTypeProvider(IEnumerable<Assembly> assemblies)
+        public FormTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
         {
             Assemblies = assemblies.ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetTypes()
         {
-            return Assemblies.SelectMany(a => a.GetTypes()).Where(t => t.GetCustomAttribute<FormAttribute>() != null);
+            return Assemblies.SelectMany(a => a.Types).Where(t => t.GetCustomAttribute<FormAttribute>() != null);
         }
     }
 }

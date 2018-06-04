@@ -40,7 +40,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var result = new ComponentCreator(componentTypeProvider, Mock.Of<IComponentDependencyCreator>(), componentControllerCreator, Mock.Of<IScriptCreator>(), Mock.Of<IStyleCreator>()).Create().Single();
 
             Assert.Equal("lorem-ipsum", result.Id);
-            Assert.Same(typeof(MyComponentClass).Assembly, result.Assembly);
+            Assert.Same(typeof(MyComponentClass).Assembly, result.Assembly.Assembly);
             Assert.Single(result.Controllers);
             Assert.Same(controller, result.Controllers.Single());
         }
