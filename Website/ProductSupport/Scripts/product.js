@@ -36,21 +36,20 @@ class ListProducts extends Blade {
         );
 
         this.setContent(
-            dataTable = new DataTable(
-                'product',
-                [
-                    app.translations.get('ArticleNo'),
-                    app.translations.get('Name'),
-                ],
-                [
-                    (dataTable, element, item) => element.innerText = item.Item.ArticleNo,
-                    (dataTable, element, item) => element.innerText = item.Item.Name,
-                ],
-                (dataTable, element, item) => {
-                    new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditProduct(app, item.Item).onClose(message => dataTable.update()), this)).appendTo(element);
-                    new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this)).appendTo(element);
-                },
-            )
+            dataTable = new DataTable()
+                .setBackend('product')
+                .addColumn(item => item.Item.ArticleNo)
+                .setHeader(element => app.translations.get('ArticleNo'))
+                .setSorting('ArticleNo', true)
+                .done()
+                .addColumn(item => item.Item.Name)
+                .setHeader(element => app.translations.get('Name'))
+                .setSorting('Name', true)
+                .done()
+                .addActionColumn((item, dataTable) => new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditProduct(app, item.Item).onClose(message => dataTable.update()), this)))
+                .done()
+                .addActionColumn(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this)))
+                .done()
         );
     }
 }

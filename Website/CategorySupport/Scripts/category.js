@@ -36,21 +36,19 @@ class ListCategories extends Blade {
         );
 
         this.setContent(
-            dataTable = new DataTable(
-                'category',
-                [
-                    app.translations.get('Name'),
-                    app.translations.get('UrlSegment'),
-                ],
-                [
-                    (dataTable, element, item) => element.innerText = item.Item.Name,
-                    (dataTable, element, item) => element.innerText = item.Url,
-                ],
-                (dataTable, element, item) => {
-                    new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditCategory(app, item.Item).onClose(message => dataTable.update()), this)).appendTo(element);
-                    new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditCategoryOnPage(app, item.Item, item.Url), this)).appendTo(element);
-                },
-            )
+            dataTable = new DataTable()
+                .setBackend('category')
+                .addColumn(item => item.Item.Name)
+                .setHeader(element => app.translations.get('Name'))
+                .setSorting('Name', true)
+                .done()
+                .addColumn(item => item.Url)
+                .setHeader(element => app.translations.get('UrlSegment'))
+                .done()
+                .addActionColumn((item, dataTable) => new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditCategory(app, item.Item).onClose(message => dataTable.update()), this)))
+                .done()
+                .addActionColumn(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditCategoryOnPage(app, item.Item, item.Url), this)))
+                .done()
         );
     }
 }
