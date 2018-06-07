@@ -17,10 +17,22 @@ namespace Website.CategorySupport
 
         public Result GetAll(Query query)
         {
+            var items = CategoryRepository.GetAll();
+            var sortBy = (Func<Category, object>)(c => TypeAccessor[c, query.SortBy ?? "Name"]);
+
+            if (query.SortDirection == SortDirection.Descending)
+            {
+                items = items.OrderByDescending(sortBy);
+            }
+            else
+            {
+                items = items.OrderBy(sortBy);
+            }
+
             return new Result(
                 PageSize,
-                CategoryRepository.GetAll().OrderBy(c => TypeAccessor[c, query.SortBy ?? "Name"]).Skip(PageSize * (query.Page - 1)).Take(PageSize).Select(item => new { Item = item, Url = UrlProvider.GetUrl(item) }),
-                CategoryRepository.GetAll().Count()
+                items.Skip(PageSize * (query.Page - 1)).Take(PageSize).Select(item => new { Item = item, Url = UrlProvider.GetUrl(item) }),
+                items.Count()
             );
         }
     }

@@ -16,9 +16,11 @@ namespace Poetry.UI.DataTableSupport.BackendSupport
         }
 
         [Action("GetAll")]
-        public Result GetAll(string provider, int page, string sortBy)
+        public Result GetAll(string provider, int page, string sortBy, string sortDirection)
         {
-            return BackendProvider.GetFor(provider).GetAll(new Query(page, sortBy));
+            var direction = sortDirection == "ascending" ? (SortDirection?)SortDirection.Ascending : sortDirection == "descending" ? (SortDirection?)SortDirection.Descending : null;
+
+            return BackendProvider.GetFor(provider).GetAll(new Query(page, sortBy, direction));
         }
     }
 }

@@ -51,7 +51,7 @@ class DataTable {
     }
 
     update() {
-        var sort = this.sortBy ? `&sortby=${this.sortBy}&direction=${this.sortDirection}` : '';
+        var sort = this.sortBy ? `&sortby=${this.sortBy}&sortdirection=${this.sortDirection}` : '';
 
         fetch(`DataTable/Backend/GetAll?provider=${this.backend}&page=${this.page}${sort}`, { credentials: 'include' })
             .then(response => {

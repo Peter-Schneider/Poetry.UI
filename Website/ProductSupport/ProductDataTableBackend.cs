@@ -18,10 +18,22 @@ namespace Website.ProductSupport
 
         public Result GetAll(Query query)
         {
+            var items = ProductRepository.GetAll();
+            var sortBy = (Func<Product, object>)(c => TypeAccessor[c, query.SortBy ?? "Name"]);
+
+            if (query.SortDirection == SortDirection.Descending)
+            {
+                items = items.OrderByDescending(sortBy);
+            }
+            else
+            {
+                items = items.OrderBy(sortBy);
+            }
+
             return new Result(
                 PageSize,
-                ProductRepository.GetAll().OrderBy(c => TypeAccessor[c, query.SortBy ?? "Name"]).Skip(PageSize * (query.Page - 1)).Take(PageSize).Select(item => new { Item = item, Url = UrlProvider.GetUrl(item) }),
-                ProductRepository.GetAll().Count()
+                items.Skip(PageSize * (query.Page - 1)).Take(PageSize).Select(item => new { Item = item, Url = UrlProvider.GetUrl(item) }),
+                items.Count()
             );
         }
     }
