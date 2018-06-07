@@ -3,10 +3,12 @@
     public class Query
     {
         public int Page { get; }
+        public string SortBy { get; }
 
-        public Query(int page)
+        public Query(int page, string sortBy)
         {
             Page = page;
+            SortBy = sortBy;
         }
     }
 }

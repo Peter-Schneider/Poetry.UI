@@ -16,9 +16,9 @@ namespace Poetry.UI.DataTableSupport.BackendSupport
         }
 
         [Action("GetAll")]
-        public Result GetAll(string provider, int page)
+        public Result GetAll(string provider, int page, string sortBy)
         {
-            return BackendProvider.GetFor(provider).GetAll(new Query(page));
+            return BackendProvider.GetFor(provider).GetAll(new Query(page, sortBy));
         }
     }
 }
