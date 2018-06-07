@@ -38,18 +38,10 @@ class ListProducts extends Blade {
         this.setContent(
             dataTable = new DataTable()
                 .setBackend('product')
-                .addColumn(item => item.Item.ArticleNo)
-                .setHeader(element => app.translations.get('ArticleNo'))
-                .setSorting('ArticleNo', true)
-                .done()
-                .addColumn(item => item.Item.Name)
-                .setHeader(element => app.translations.get('Name'))
-                .setSorting('Name', true)
-                .done()
-                .addActionColumn((item, dataTable) => new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditProduct(app, item.Item).onClose(message => dataTable.update()), this)))
-                .done()
-                .addActionColumn(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this)))
-                .done()
+                .addColumn(c => c.setContent(item => item.Item.ArticleNo).setHeader(element => app.translations.get('ArticleNo')).setSorting('ArticleNo', true))
+                .addColumn(c => c.setContent(item => item.Item.Name).setHeader(element => app.translations.get('Name')).setSorting('Name', true))
+                .addColumn(c => c.setActionColumn().setContent((item, dataTable) => new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditProduct(app, item.Item).onClose(message => dataTable.update()), this))))
+                .addColumn(c => c.setActionColumn().setContent(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this))))
         );
     }
 }

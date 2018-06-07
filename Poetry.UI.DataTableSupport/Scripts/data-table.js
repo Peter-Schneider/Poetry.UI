@@ -40,12 +40,14 @@ class DataTable {
         return this;
     }
 
-    addColumn(generator) {
-        return new DataTableColumn(this).setContent(generator);
-    }
+    addColumn(callback) {
+        var column = new DataTableColumn();
 
-    addActionColumn(generator) {
-        return new DataTableColumn(this).setActionColumn().setContent(generator);
+        callback(column);
+
+        this.columns.push(column);
+
+        return this;
     }
 
     update() {
@@ -133,10 +135,6 @@ class DataTable {
 /* COLUMN */
 
 class DataTableColumn {
-    constructor(dataTable) {
-        this.dataTable = dataTable;
-    }
-
     setActionColumn() {
         this.actionColumn = true;
 
@@ -159,12 +157,6 @@ class DataTableColumn {
         this.sorting = name;
 
         return this;
-    }
-
-    done() {
-        this.dataTable.columns.push(this);
-
-        return this.dataTable;
     }
 }
 
