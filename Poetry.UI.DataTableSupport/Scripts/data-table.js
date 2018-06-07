@@ -51,7 +51,9 @@ class DataTable {
     }
 
     update() {
-        fetch(`DataTable/Backend/GetAll?provider=${this.backend}&page=${this.page}`, { credentials: 'include' })
+        var sort = this.sortBy ? `&sortby=${this.sortBy}&direction=${this.sortDirection}` : '';
+
+        fetch(`DataTable/Backend/GetAll?provider=${this.backend}&page=${this.page}${sort}`, { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`DataTable backend returned ${response.status} (${response.statusText})`);
@@ -77,6 +79,36 @@ class DataTable {
                                 text.innerText = result;
                                 element.appendChild(text);
                             }
+                        }
+
+                        if (column.sorting) {
+                            var sorter = document.createElement('data-table-sorter');
+
+                            sorter.addEventListener('click', () => {
+                                [...this.columnHeaderRow.querySelectorAll('data-table-sorter')].forEach(e => e.classList.remove('active', 'descending'));
+                                sorter.classList.add('active');
+
+                                if (this.sortBy != column.sorting) {
+                                    this.sortBy = column.sorting;
+                                    this.sortDirection = 'ascending';
+
+                                    sorter.classList.remove('descending');
+
+                                    this.update();
+
+                                    return;
+                                }
+
+                                this.sortDirection = this.sortDirection == 'ascending' ? 'descending' : 'ascending';
+
+                                if (this.sortDirection == 'descending') {
+                                    sorter.classList.add('descending');
+                                }
+
+                                this.update();
+                            });
+
+                            element.appendChild(sorter);
                         }
 
                         this.columnHeaderRow.appendChild(element);
