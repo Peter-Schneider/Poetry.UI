@@ -215,6 +215,7 @@ blade-toolbar {
 /* CONTENT */
 
 blade-content {
+    position: relative;
     flex: 1 1 auto;
     overflow: auto;
     display: block;
@@ -227,6 +228,7 @@ blade-content {
 /* CUSTOM CONTENT */
 
 blade-custom-content {
+    position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
