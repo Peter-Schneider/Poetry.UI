@@ -7,13 +7,16 @@
   .data-table td {
     padding: 0.25rem;
     padding-right: 0;
-    border-bottom: solid 1px #ccc;
-    font-size: 0.9rem; }
-  .data-table th {
-    text-transform: uppercase;
-    font-size: 0.9rem; }
+    border-bottom: solid 1px #ccc; }
   .data-table tr:hover td {
     background: #f3f3f3; }
+
+data-table-header-text {
+  text-transform: uppercase;
+  font-size: 0.9rem; }
+
+data-table-text {
+  font-size: 0.9rem; }
 
 .data-table-edit-column {
   padding: 0 !important;
