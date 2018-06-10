@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\context-menu.js" />
+    <None Remove="Styles\context-menu.css" />
+    <EmbeddedResource Include="Styles\context-menu.css">
+      <DependentUpon>context-menu.scss</DependentUpon>
+    </EmbeddedResource>
+    <None Remove="Styles\context-menu.min.css" />
+    <EmbeddedResource Include="Styles\context-menu.min.css">
+      <DependentUpon>context-menu.css</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+  </ItemGroup>
+
+</Project>

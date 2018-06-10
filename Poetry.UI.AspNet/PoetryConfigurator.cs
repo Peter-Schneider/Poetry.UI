@@ -7,6 +7,7 @@ using Poetry.UI.AspNet.PageEditingSupport;
 using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ComponentSupport.DependencySupport;
+using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DataTableSupport.BackendSupport;
 using Poetry.UI.DependencyInjectionSupport;
@@ -41,6 +42,7 @@ namespace Poetry.UI
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
             new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
+            new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
             new AssemblyWrapper(typeof(FormComponent).Assembly),
             new AssemblyWrapper(typeof(DataTableComponent).Assembly),
             new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
