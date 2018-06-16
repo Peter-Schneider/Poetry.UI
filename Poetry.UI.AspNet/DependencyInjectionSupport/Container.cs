@@ -21,5 +21,10 @@ namespace Poetry.UI.AspNet.DependencyInjectionSupport
         {
             UnityContainer.RegisterType<T1, T2>();
         }
+
+        public void RegisterType(Type from, Type to)
+        {
+            UnityContainer.RegisterType(from, to);
+        }
     }
 }
