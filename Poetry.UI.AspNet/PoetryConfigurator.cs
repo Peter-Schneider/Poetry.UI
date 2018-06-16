@@ -90,18 +90,8 @@ namespace Poetry.UI
 
         public void Done()
         {
-            DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
-
             Container.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
             Container.RegisterType<IInstantiator, Instantiator>();
-
-            RouteTable.Routes.MapRoute(
-                "PoetryPortal",
-                BasePath,
-                new { controller = "PoetryPortal", action = "Index" },
-                namespaces: new string[] { "Poetry.UI.Controllers" }
-            );
-
             Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
             Container.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
@@ -122,16 +112,22 @@ namespace Poetry.UI
             }
 
             Container.RegisterType<IModeProvider, ModeProvider>();
-
-            HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
-            RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
-
             Container.RegisterType<IFileProvider, FileProvider>();
 
             foreach(var containerOverride in ContainerOverrides)
             {
                 containerOverride(Container);
             }
+
+            DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
+            RouteTable.Routes.MapRoute(
+                "PoetryPortal",
+                BasePath,
+                new { controller = "PoetryPortal", action = "Index" },
+                namespaces: new string[] { "Poetry.UI.Controllers" }
+            );
+            HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
+            RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
         }
     }
 }
