@@ -8,5 +8,6 @@ namespace Poetry.UI.DependencyInjectionSupport
     {
         void RegisterType<T1, T2>() where T2 : T1;
         void RegisterType(Type from, Type to);
+        void RegisterInstance<T>(T instance);
     }
 }
