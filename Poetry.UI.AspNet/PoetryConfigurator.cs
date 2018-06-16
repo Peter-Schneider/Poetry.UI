@@ -103,6 +103,7 @@ namespace Poetry.UI
             );
 
             Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
+            Container.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
             var poetryContainer = new Container(Container);
 
@@ -115,25 +116,16 @@ namespace Poetry.UI
             new RoutingSupportDependencyInjector().InjectDependencies(poetryContainer);
             new AppSupportDependencyInjector().InjectDependencies(poetryContainer);
 
-            Container.RegisterInstance<IDependencyInjectorTypeProvider>(new DependencyInjectorTypeProvider(Assemblies));
-            
-            Container.RegisterInstance<IComponentTypeProvider>(new ComponentTypeProvider(Assemblies));
-
             foreach(var injector in Container.Resolve<IDependencyInjectorProvider>().GetAll())
             {
                 injector.InjectDependencies(poetryContainer);
             }
-
-            Container.RegisterInstance<IFormTypeProvider>(new FormTypeProvider(Assemblies));
-
-            Container.RegisterInstance<IBackendTypeProvider>(new BackendTypeProvider(Assemblies));
 
             Container.RegisterType<IModeProvider, ModeProvider>();
 
             HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
             RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
 
-            Container.RegisterInstance<IAppTypeProvider>(new AppTypeProvider(Assemblies));
             Container.RegisterType<IFileProvider, FileProvider>();
 
             foreach(var containerOverride in ContainerOverrides)

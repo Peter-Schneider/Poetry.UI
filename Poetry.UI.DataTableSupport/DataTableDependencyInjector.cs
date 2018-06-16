@@ -11,6 +11,7 @@ namespace Poetry.UI.DataTableSupport
     {
         public void InjectDependencies(IContainer container)
         {
+            container.RegisterType<IBackendTypeProvider, BackendTypeProvider>();
             container.RegisterType<IBackendCreator, BackendCreator>();
             container.RegisterType<IBackendProvider, BackendProvider>();
         }

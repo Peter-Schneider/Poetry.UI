@@ -11,9 +11,9 @@ namespace Poetry.UI.DataTableSupport.BackendSupport
     {
         IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public BackendTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
+        public BackendTypeProvider(IAssemblyProvider assemblyProvider)
         {
-            Assemblies = assemblies;
+            Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetTypes()

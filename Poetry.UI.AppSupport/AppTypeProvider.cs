@@ -11,9 +11,9 @@ namespace Poetry.UI.AppSupport
     {
         IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public AppTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
+        public AppTypeProvider(IAssemblyProvider assemblyProvider)
         {
-            Assemblies = assemblies.ToList().AsReadOnly();
+            Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetTypes()

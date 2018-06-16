@@ -11,9 +11,9 @@ namespace Poetry.UI.ComponentSupport
     {
         IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public ComponentTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
+        public ComponentTypeProvider(IAssemblyProvider assemblyProvider)
         {
-            Assemblies = assemblies.ToList().AsReadOnly();
+            Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetTypes()

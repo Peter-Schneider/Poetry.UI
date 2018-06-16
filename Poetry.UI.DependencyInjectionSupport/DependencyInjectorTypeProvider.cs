@@ -11,9 +11,9 @@ namespace Poetry.UI.DependencyInjectionSupport
     {
         IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public DependencyInjectorTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
+        public DependencyInjectorTypeProvider(IAssemblyProvider assemblyProvider)
         {
-            Assemblies = assemblies;
+            Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetAll()

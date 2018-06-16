@@ -11,9 +11,9 @@ namespace Poetry.UI.FormSupport
     {
         IEnumerable<AssemblyWrapper> Assemblies { get; }
 
-        public FormTypeProvider(IEnumerable<AssemblyWrapper> assemblies)
+        public FormTypeProvider(IAssemblyProvider assemblyProvider)
         {
-            Assemblies = assemblies.ToList().AsReadOnly();
+            Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
         public IEnumerable<Type> GetTypes()

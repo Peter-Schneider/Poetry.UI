@@ -8,6 +8,7 @@ namespace Poetry.UI.DependencyInjectionSupport
     {
         public void InjectDependencies(IContainer container)
         {
+            container.RegisterType<IDependencyInjectorTypeProvider, DependencyInjectorTypeProvider>();
             container.RegisterType<IDependencyInjectorCreator, DependencyInjectorCreator>();
             container.RegisterType<IDependencyInjectorProvider, DependencyInjectorProvider>();
         }

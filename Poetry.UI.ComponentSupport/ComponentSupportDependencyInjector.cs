@@ -12,6 +12,7 @@ namespace Poetry.UI.ComponentSupport
         {
             container.RegisterType<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
             container.RegisterType<IComponentControllerCreator, ComponentControllerCreator>();
+            container.RegisterType<IComponentTypeProvider, ComponentTypeProvider>();
             container.RegisterType<IComponentCreator, ComponentCreator>();
             container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
             container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();

@@ -12,7 +12,7 @@ namespace Poetry.UI.ComponentSupport.Tests
         [Fact]
         public void GetsTypes()
         {
-            Assert.Equal(new List<Type> { typeof(MyComponentClass) }, new ComponentTypeProvider(new List<AssemblyWrapper> { new AssemblyWrapper(new List<Type> { typeof(MyComponentClass) }) }).GetTypes());
+            Assert.Equal(new List<Type> { typeof(MyComponentClass) }, new ComponentTypeProvider(new AssemblyProvider(new List<AssemblyWrapper> { new AssemblyWrapper(new List<Type> { typeof(MyComponentClass) }) })).GetTypes());
         }
     }
 }
