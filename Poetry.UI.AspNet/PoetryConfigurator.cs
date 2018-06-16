@@ -81,9 +81,9 @@ namespace Poetry.UI
             return this;
         }
 
-        public PoetryConfigurator InjectInstance<T>(T instance) where T : class
+        public PoetryConfigurator InjectSingleton<T>(T instance) where T : class
         {
-            ContainerOverrides.Add(c => c.RegisterInstance(instance));
+            ContainerOverrides.Add(c => c.RegisterSingleton(instance));
 
             return this;
         }
@@ -94,8 +94,8 @@ namespace Poetry.UI
 
             poetryContainer.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
             poetryContainer.RegisterType<IInstantiator, Instantiator>();
-            poetryContainer.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
-            poetryContainer.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
+            poetryContainer.RegisterSingleton<IBasePathProvider>(new BasePathProvider(BasePath));
+            poetryContainer.RegisterSingleton<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
             poetryContainer.RegisterType<IFileProvider, FileProvider>();
             poetryContainer.RegisterType<IModeProvider, ModeProvider>();
