@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Poetry.UI.AppSupport;
+using Poetry.UI.AspNet;
 using Poetry.UI.AspNet.DependencyInjectionSupport;
 using Poetry.UI.AspNet.FileSupport;
 using Poetry.UI.AspNet.LoggerSupport;
@@ -97,8 +98,7 @@ namespace Poetry.UI
             poetryContainer.RegisterSingleton<IBasePathProvider>(new BasePathProvider(BasePath));
             poetryContainer.RegisterSingleton<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
-            poetryContainer.RegisterType<IFileProvider, FileProvider>();
-            poetryContainer.RegisterType<IModeProvider, ModeProvider>();
+            new AspNetSpecificDependencyInjector().InjectDependencies(poetryContainer);
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
             new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
