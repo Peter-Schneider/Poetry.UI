@@ -95,6 +95,9 @@ namespace Poetry.UI
             Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
             Container.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
+            Container.RegisterType<IModeProvider, ModeProvider>();
+            Container.RegisterType<IFileProvider, FileProvider>();
+
             var poetryContainer = new Container(Container);
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
@@ -110,9 +113,6 @@ namespace Poetry.UI
             {
                 injector.InjectDependencies(poetryContainer);
             }
-
-            Container.RegisterType<IModeProvider, ModeProvider>();
-            Container.RegisterType<IFileProvider, FileProvider>();
 
             foreach(var containerOverride in ContainerOverrides)
             {
