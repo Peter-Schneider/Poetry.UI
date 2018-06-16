@@ -41,7 +41,7 @@ class ListProducts extends Blade {
                 .addColumn(c => c.setHeader(element => app.translations.get('ArticleNo')).setContent(item => item.Item.ArticleNo).setSorting('ArticleNo', true))
                 .addColumn(c => c.setHeader(element => app.translations.get('Name')).setContent(item => item.Item.Name).setSorting('Name', true))
                 .addColumn(c => c.setActionColumn().setContent((item, dataTable) => new PortalButton(app.translations.get('Edit'), () => app.openBlade(new EditProduct(app, item.Item).onClose(message => dataTable.update()), this))))
-                .addColumn(c => c.setActionColumn().setHeader(dataTable => new ContextMenu().addItem(i => i.setText('Copy as Excel').onClick(() => new DataTableCopyAsTabSeparated(dataTable).copy().then(() => alert('Copied to clipboard')))).setContent(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this))))
+                .addColumn(c => c.setActionColumn().setHeader(dataTable => new ContextMenu().addItem(i => i.setText('Copy as Excel').onClick(() => new DataTableCopyAsTabSeparated(dataTable).copy().then(() => alert('Copied to clipboard'))))).setContent(item => new PortalButton(app.translations.get('Open'), () => app.openBlade(new EditProductOnPage(app, item.Item, item.Url), this))))
         );
     }
 }
