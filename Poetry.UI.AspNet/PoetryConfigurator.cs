@@ -49,7 +49,7 @@ namespace Poetry.UI
             new AssemblyWrapper(typeof(TranslationComponent).Assembly),
             new AssemblyWrapper(typeof(PortalComponent).Assembly),
         };
-        List<Action<IUnityContainer>> ContainerOverrides { get; } = new List<Action<IUnityContainer>>();
+        List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 
         public PoetryConfigurator(UnityContainer container) {
             Container = container;
@@ -90,15 +90,15 @@ namespace Poetry.UI
 
         public void Done()
         {
-            Container.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
-            Container.RegisterType<IInstantiator, Instantiator>();
-            Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
-            Container.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
-
-            Container.RegisterType<IFileProvider, FileProvider>();
-            Container.RegisterType<IModeProvider, ModeProvider>();
-
             var poetryContainer = new Container(Container);
+
+            poetryContainer.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
+            poetryContainer.RegisterType<IInstantiator, Instantiator>();
+            poetryContainer.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
+            poetryContainer.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
+
+            poetryContainer.RegisterType<IFileProvider, FileProvider>();
+            poetryContainer.RegisterType<IModeProvider, ModeProvider>();
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
             new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
@@ -116,7 +116,7 @@ namespace Poetry.UI
 
             foreach(var containerOverride in ContainerOverrides)
             {
-                containerOverride(Container);
+                containerOverride(poetryContainer);
             }
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
