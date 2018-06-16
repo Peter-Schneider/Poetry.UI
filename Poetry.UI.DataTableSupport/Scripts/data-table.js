@@ -33,7 +33,7 @@ class DataTable {
     }
 
     setBackend(name) {
-        this.backend = name;
+        this.backend = new DataTableBackend(name);
 
         this.update();
 
@@ -51,16 +51,11 @@ class DataTable {
     }
 
     update() {
-        var sort = this.sortBy ? `&sortby=${this.sortBy}&sortdirection=${this.sortDirection}` : '';
-
-        fetch(`DataTable/Backend/GetAll?provider=${this.backend}&page=${this.page}${sort}`, { credentials: 'include' })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`DataTable backend returned ${response.status} (${response.statusText})`);
-                }
-
-                return response.json();
-            })
+        this.backend.load({
+            page: this.page,
+            sortBy: this.sortBy,
+            sortDirection: this.sortDirection,
+        })
             .then(response => {
                 if (!this.columnHeaderRow.children.length) {
                     this.columns.forEach(column => {
@@ -159,6 +154,29 @@ class DataTable {
 
     appendTo(element) {
         element.appendChild(this.element);
+    }
+}
+
+
+
+/* BACKEND */
+
+class DataTableBackend {
+    constructor(name) {
+        this.name = name;
+    }
+
+    load(query) {
+        var sort = query.sortBy ? `&sortby=${query.sortBy}&sortdirection=${query.sortDirection}` : '';
+
+        return fetch(`DataTable/Backend/GetAll?provider=${this.name}&page=${query.page}${sort}`, { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`DataTable backend returned ${response.status} (${response.statusText})`);
+                }
+
+                return response.json();
+            });
     }
 }
 
