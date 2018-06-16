@@ -75,13 +75,19 @@ class ContextMenuItem {
 
     setText(text) {
         this.element.innerText = text;
+
+        return this;
     }
 
     onClick(callback) {
         this.element.addEventListener('click', callback);
+
+        return this;
     }
 
     appendTo(element) {
         element.appendChild(this.element);
+
+        return this;
     }
 }
