@@ -128,8 +128,6 @@ namespace Poetry.UI
 
             Container.RegisterInstance<IBackendTypeProvider>(new BackendTypeProvider(Assemblies));
 
-            Container.RegisterType<EmbeddedResourceVirtualPathViewProvider, EmbeddedResourceVirtualPathViewProvider>();
-
             Container.RegisterType<IModeProvider, ModeProvider>();
 
             HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
