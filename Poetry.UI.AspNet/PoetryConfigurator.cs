@@ -95,8 +95,8 @@ namespace Poetry.UI
             Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
             Container.RegisterInstance<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
-            Container.RegisterType<IModeProvider, ModeProvider>();
             Container.RegisterType<IFileProvider, FileProvider>();
+            Container.RegisterType<IModeProvider, ModeProvider>();
 
             var poetryContainer = new Container(Container);
 
