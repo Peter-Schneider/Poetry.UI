@@ -67,21 +67,21 @@ namespace Poetry.UI
             return this;
         }
 
-        public PoetryConfigurator InjectType<T1, T2>() where T2 : T1
+        public PoetryConfigurator InjectType<T1, T2>() where T1 : class where T2 : class, T1
         {
             ContainerOverrides.Add(c => c.RegisterType<T1, T2>());
 
             return this;
         }
 
-        public PoetryConfigurator InjectSingleton<T1, T2>() where T2 : T1
+        public PoetryConfigurator InjectSingleton<T1, T2>() where T1 : class where T2 : class, T1
         {
             ContainerOverrides.Add(c => c.RegisterSingleton<T1, T2>());
 
             return this;
         }
 
-        public PoetryConfigurator InjectInstance<T>(T instance)
+        public PoetryConfigurator InjectInstance<T>(T instance) where T : class
         {
             ContainerOverrides.Add(c => c.RegisterInstance(instance));
 
