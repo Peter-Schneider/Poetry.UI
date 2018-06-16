@@ -104,52 +104,39 @@ namespace Poetry.UI
 
             Container.RegisterInstance<IBasePathProvider>(new BasePathProvider(BasePath));
 
-            Container.RegisterType<IStyleCreator, StyleCreator>();
-            Container.RegisterType<IScriptCreator, ScriptCreator>();
-            Container.RegisterType<IControllerActionCreator, ControllerActionCreator>();
-            Container.RegisterType<IControllerCreator, ControllerCreator>();
-            Container.RegisterType<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
-            Container.RegisterType<IComponentControllerCreator, ComponentControllerCreator>();
-            Container.RegisterType<IComponentCreator, ComponentCreator>();
-            Container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
-            Container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();
+            var poetryContainer = new Container(Container);
+
+            new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new ComponentSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new EmbeddedResourceSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new RoutingSupportDependencyInjector().InjectDependencies(poetryContainer);
+            new AppSupportDependencyInjector().InjectDependencies(poetryContainer);
+
+            Container.RegisterInstance<IDependencyInjectorTypeProvider>(new DependencyInjectorTypeProvider(Assemblies));
+            
             Container.RegisterInstance<IComponentTypeProvider>(new ComponentTypeProvider(Assemblies));
 
-            Container.RegisterType<IComponentRepository, ComponentRepository>();
+            foreach(var injector in Container.Resolve<IDependencyInjectorProvider>().GetAll())
+            {
+                injector.InjectDependencies(poetryContainer);
+            }
 
-            Container.RegisterType<IObjectIdentifier, ObjectIdentifier>();
-            Container.RegisterType<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
-            Container.RegisterType<IFormFieldCreator, FormFieldCreator>();
             Container.RegisterInstance<IFormTypeProvider>(new FormTypeProvider(Assemblies));
-            Container.RegisterType<IFormCreator, FormCreator>();
-            Container.RegisterType<IFormFieldProvider, FormFieldProvider>();
 
             Container.RegisterInstance<IBackendTypeProvider>(new BackendTypeProvider(Assemblies));
-            Container.RegisterType<IBackendCreator, BackendCreator>();
-            Container.RegisterType<IBackendProvider, BackendProvider>();
 
-            Container.RegisterType<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();
-            Container.RegisterType<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
-            Container.RegisterType<IEmbeddedResourcePathMatcher, EmbeddedResourcePathMatcher>();
-            Container.RegisterType<IEmbeddedResourceProvider, EmbeddedResourceProvider>();
             Container.RegisterType<EmbeddedResourceVirtualPathViewProvider, EmbeddedResourceVirtualPathViewProvider>();
-
-            HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
-
-            Container.RegisterType<IControllerRouter, ControllerRouter>();
-
-            RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
 
             Container.RegisterType<IModeProvider, ModeProvider>();
 
+            HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
+            RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
+
             Container.RegisterInstance<IAppTypeProvider>(new AppTypeProvider(Assemblies));
             Container.RegisterType<IFileProvider, FileProvider>();
-            Container.RegisterType<ITranslationParser, XmlTranslationParser>();
-            Container.RegisterType<ITranslationRepositoryCreator, TranslationRepositoryCreator>();
-            Container.RegisterType<IScriptCreator, ScriptCreator>();
-            Container.RegisterType<IStyleCreator, StyleCreator>();
-            Container.RegisterType<IAppCreator, AppCreator>();
-            Container.RegisterType<IAppRepository, AppRepository>();
 
             foreach(var containerOverride in ContainerOverrides)
             {

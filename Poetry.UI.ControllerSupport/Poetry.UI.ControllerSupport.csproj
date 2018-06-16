@@ -6,4 +6,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj" />
+  </ItemGroup>
+
 </Project>
