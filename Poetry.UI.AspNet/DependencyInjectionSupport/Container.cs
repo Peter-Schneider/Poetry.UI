@@ -31,5 +31,10 @@ namespace Poetry.UI.AspNet.DependencyInjectionSupport
         {
             UnityContainer.RegisterInstance<T>(instance);
         }
+
+        public void RegisterSingleton<T1, T2>() where T2 : T1
+        {
+            UnityContainer.RegisterSingleton<T1, T2>();
+        }
     }
 }
