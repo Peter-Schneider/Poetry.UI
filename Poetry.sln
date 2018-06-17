@@ -57,7 +57,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.PageEditingSuppor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ReflectionSupport", "Poetry.UI.ReflectionSupport\Poetry.UI.ReflectionSupport.csproj", "{4E5ABABE-EFEA-41A4-A145-96E0E3A3A34A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.ContextMenuSupport", "Poetry.UI.ContextMenuSupport\Poetry.UI.ContextMenuSupport.csproj", "{AB286D1A-6232-4C6D-AE59-983D775FD64A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ContextMenuSupport", "Poetry.UI.ContextMenuSupport\Poetry.UI.ContextMenuSupport.csproj", "{AB286D1A-6232-4C6D-AE59-983D775FD64A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AspNetCore", "Poetry.UI.AspNetCore\Poetry.UI.AspNetCore.csproj", "{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.AspNetCore", "Website.AspNetCore\Website.AspNetCore.csproj", "{2E1DB9CE-0973-45E0-B531-369CA6C14A32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +181,14 @@ Global
 		{AB286D1A-6232-4C6D-AE59-983D775FD64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB286D1A-6232-4C6D-AE59-983D775FD64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB286D1A-6232-4C6D-AE59-983D775FD64A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E1DB9CE-0973-45E0-B531-369CA6C14A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1DB9CE-0973-45E0-B531-369CA6C14A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1DB9CE-0973-45E0-B531-369CA6C14A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1DB9CE-0973-45E0-B531-369CA6C14A32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,41 @@
+﻿@using Website.CategorySupport;
+@using Website.RoutingSupport
+@using Poetry.UI.AspNetCore.PageEditingSupport
+
+@inject CategoryRepository CategoryRepository
+@inject UrlProvider UrlProvider
+
+@model Website.ProductSupport.Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Name (<a href="/Admin">Edit</a>)</h1>
+
+@{
+    var category = CategoryRepository.GetAll().FirstOrDefault(c => c.Id == Model.CategoryId);
+}
+
+<table>
+    <tr>
+        <th>Artikelnr</th>
+        <td>@Html.PropertyFor(m => m.ArticleNo)</td>
+    </tr>
+    <tr>
+        <th>Namn</th>
+        <td>@Html.PropertyFor(m => m.Name)</td>
+    </tr>
+    <tr>
+        <th>Kategori</th>
+        <td><a href="@UrlProvider.GetUrl(category)">@category.Name</a></td>
+    </tr>
+    <tr>
+        <th>Beskrivning</th>
+        <td>@Html.PropertyFor(m => m.Description)</td>
+    </tr>
+    <tr>
+        <th>Pris</th>
+        <td>@Html.PropertyFor(m => m.Price)</td>
+    </tr>
+</table>

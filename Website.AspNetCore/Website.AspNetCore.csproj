@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="wwwroot\CategorySupport\Scripts\category.js" />
+    <None Remove="CategorySupport\translations.xml" />
+    <None Remove="wwwroot\ProductSupport\Scripts\product.js" />
+    <None Remove="ProductSupport\translations.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CategorySupport\translations.xml" />
+    <Content Include="ProductSupport\translations.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastMember.NetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AspNetCore\Poetry.UI.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>

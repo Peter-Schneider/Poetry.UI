@@ -1,0 +1,46 @@
+﻿@using Poetry.UI.AppSupport
+@using Poetry.UI.RoutingSupport
+@using Poetry.UI.ComponentSupport
+@using Poetry.UI.ComponentSupport.DependencySupport
+@using Newtonsoft.Json
+
+@inject IAppRepository AppRepository
+@inject IComponentDependencySorter ComponentDependencySorter
+@inject IComponentRepository ComponentRepository
+@inject IBasePathProvider BasePathProvider
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Poetry</title>
+    <base href="/@BasePathProvider.BasePath/">
+    @foreach (var component in ComponentDependencySorter.Sort(ComponentRepository.GetAll()))
+    {
+        foreach (var script in component.Scripts)
+        {
+            <script src="@component.Id/@script.Path"></script>
+        }
+        foreach (var style in component.Styles)
+        {
+            <link rel="stylesheet" type="text/css" href="@component.Id/@style.Path" />
+        }
+    }
+    @foreach (var app in AppRepository.GetAll())
+    {
+        foreach (var script in app.Scripts)
+        {
+            <script src="@script.Path"></script>
+        }
+        foreach (var style in app.Styles)
+        {
+            <link rel="stylesheet" type="text/css" href="@style.Path" />
+        }
+        <script>
+        translations.add('@app.Name', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
+        </script>
+    }
+</head>
+<body>
+</body>
+</html>
