@@ -12,7 +12,7 @@ namespace Poetry.UI.AspNet.PageEditingSupport
     public class PageEditingModule : IHttpModule
     {
         IModeProvider ModeProvider { get; set; }
-        PathPrefixProvider PrefixProvider { get; set; }
+        IPathPrefixProvider PrefixProvider { get; set; }
 
         public void Init(HttpApplication context)
         {
@@ -23,7 +23,7 @@ namespace Poetry.UI.AspNet.PageEditingSupport
         {
             if (PrefixProvider == null)
             {
-                PrefixProvider = DependencyResolver.Current.GetService<PathPrefixProvider>();
+                PrefixProvider = DependencyResolver.Current.GetService<IPathPrefixProvider>();
             }
             if (ModeProvider == null)
             {

@@ -12,6 +12,7 @@ namespace Poetry.UI.PageEditingSupport
         {
             container.RegisterType<IObjectIdentifier, ObjectIdentifier>();
             container.RegisterType<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
+            container.RegisterType<IPathPrefixProvider, PathPrefixProvider>();
         }
     }
 }
