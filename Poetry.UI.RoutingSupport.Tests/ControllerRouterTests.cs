@@ -256,5 +256,21 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             new ControllerRouter(basePathProvider, componentRepository).Route("base");
         }
+
+        [Fact]
+        public void DoesNotThrowIfUrlSegmentsAreTooFewToYieldComponentControllerAndActionParameters()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("basepath");
+
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component>());
+
+            new ControllerRouter(basePathProvider, componentRepository).Route("basepath");
+            new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component");
+            new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller");
+        }
     }
 }

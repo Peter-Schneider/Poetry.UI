@@ -36,6 +36,11 @@ namespace Poetry.UI.RoutingSupport
                 }
             }
 
+            if(pathSegments.Count < 3)
+            {
+                return null;
+            }
+
             var componentId = pathSegments.Dequeue();
             var controllerId = pathSegments.Dequeue();
             var actionId = pathSegments.Dequeue();
