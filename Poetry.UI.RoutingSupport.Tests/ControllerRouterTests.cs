@@ -35,7 +35,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -59,7 +59,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -84,7 +84,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { decoyComponent, component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -110,7 +110,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { decoyComponent, component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -134,7 +134,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/action/something-extra");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/action/something-extra");
 
             Assert.Null(result);
         }
@@ -154,7 +154,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath1/basepath2/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath1/basepath2/component/controller/action");
 
             Assert.NotNull(result);
 
@@ -178,7 +178,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("lorem/component/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/lorem/component/controller/action");
 
             Assert.Null(result);
         }
@@ -198,7 +198,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/lorem/controller/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/lorem/controller/action");
 
             Assert.Null(result);
         }
@@ -218,7 +218,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/lorem/action");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/lorem/action");
 
             Assert.Null(result);
         }
@@ -238,7 +238,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component> { component });
 
-            var result = new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller/lorem");
+            var result = new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller/lorem");
 
             Assert.Null(result);
         }
@@ -254,7 +254,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component>());
 
-            new ControllerRouter(basePathProvider, componentRepository).Route("base");
+            new ControllerRouter(basePathProvider, componentRepository).Route("/base");
         }
 
         [Fact]
@@ -268,9 +268,9 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component>());
 
-            new ControllerRouter(basePathProvider, componentRepository).Route("basepath");
-            new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component");
-            new ControllerRouter(basePathProvider, componentRepository).Route("basepath/component/controller");
+            new ControllerRouter(basePathProvider, componentRepository).Route("/basepath");
+            new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component");
+            new ControllerRouter(basePathProvider, componentRepository).Route("/basepath/component/controller");
         }
     }
 }
