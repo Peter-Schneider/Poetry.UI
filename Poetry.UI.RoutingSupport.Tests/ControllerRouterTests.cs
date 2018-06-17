@@ -242,5 +242,19 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             Assert.Null(result);
         }
+
+        [Fact]
+        public void DoesNotThrowIfMoreBasePathSegmentsThanUrlSegmentsAndFirstSegmentsMatch()
+        {
+            var basePathProvider = Mock.Of<IBasePathProvider>();
+
+            Mock.Get(basePathProvider).SetupGet(p => p.BasePath).Returns("base/path");
+
+            var componentRepository = Mock.Of<IComponentRepository>();
+
+            Mock.Get(componentRepository).Setup(r => r.GetAll()).Returns(new List<Component>());
+
+            new ControllerRouter(basePathProvider, componentRepository).Route("base");
+        }
     }
 }

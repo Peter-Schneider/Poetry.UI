@@ -30,7 +30,7 @@ namespace Poetry.UI.RoutingSupport
 
             foreach(var basePathSegment in BasePathProvider.BasePath.ToLower().Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                if(pathSegments.Dequeue() != basePathSegment)
+                if(!pathSegments.Any() || pathSegments.Dequeue() != basePathSegment)
                 {
                     return null;
                 }
