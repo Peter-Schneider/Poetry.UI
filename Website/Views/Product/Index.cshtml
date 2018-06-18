@@ -16,23 +16,23 @@
 
 <table>
     <tr>
-        <th>Artikelnr</th>
+        <th>Article No</th>
         <td>@Html.PropertyFor(m => m.ArticleNo)</td>
     </tr>
     <tr>
-        <th>Namn</th>
+        <th>Name</th>
         <td>@Html.PropertyFor(m => m.Name)</td>
     </tr>
     <tr>
-        <th>Kategori</th>
+        <th>Category</th>
         <td><a href="@UrlProvider.GetUrl(category)">@category.Name</a></td>
     </tr>
     <tr>
-        <th>Beskrivning</th>
+        <th>Description</th>
         <td>@Html.PropertyFor(m => m.Description)</td>
     </tr>
     <tr>
-        <th>Pris</th>
+        <th>Price</th>
         <td>@Html.PropertyFor(m => m.Price)</td>
     </tr>
 </table>

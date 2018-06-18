@@ -14,7 +14,7 @@
 
 <h1>@Html.PropertyFor(m => m.Name) (<a href="/Admin">Edit</a>)</h1>
 
-<p>Produkter:</p>
+<p>Products:</p>
 
 <ul>
     @foreach (var product in ProductRepository.GetAll().Where(p => p.CategoryId == Model.Id))
