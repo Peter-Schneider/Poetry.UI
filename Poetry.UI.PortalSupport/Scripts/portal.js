@@ -16,7 +16,7 @@ class Portal {
                 return response.json();
             });
 
-        var bootstrap = () => { document.body.appendChild(this.element); this.openStartApp(); }
+        var bootstrap = () => { document.body.appendChild(this.element); }
 
         if (document.readyState != 'loading') {
             bootstrap();
