@@ -1,4 +1,5 @@
-﻿using Poetry.UI.ScriptSupport;
+﻿using Poetry.UI.ReflectionSupport;
+using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using Poetry.UI.TranslationSupport;
 using System;
@@ -35,6 +36,7 @@ namespace Poetry.UI.AppSupport //
 
                 yield return new App(
                     attribute.Id,
+                    new AssemblyWrapper(type.Assembly),
                     scripts: ScriptCreator.Create(type),
                     styles: StyleCreator.Create(type),
                     translations: translations
