@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
   </ItemGroup>
 
