@@ -75,7 +75,11 @@ Then, in your consumer app, make sure you do the following at startup:
     .AddAssembly(typeof(LoremIpsumApp).Assembly)
     .Done()
 
-That’s about it. You can also supply your own API controllers for AJAX requests, make data table backends, forms mapping to POCOs, your own form field types, provide on page editing, and more.
+And 🎻 viola:
+
+![Screenshot of the resulting LoremIpsum app](Docs/lorem-ipsum.png)
+
+You can also supply your own API controllers for AJAX requests, make data table backends, forms mapping to POCOs, your own form field types, provide on page editing, and more.
 
 Installation
 ------------
