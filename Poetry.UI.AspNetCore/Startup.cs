@@ -36,8 +36,6 @@ namespace Poetry.UI.AspNetCore
         {
             var configurator = new PoetryConfigurator(serviceCollection);
 
-            configurator.AddAssembly(Assembly.GetCallingAssembly());
-
             return configurator;
         }
 

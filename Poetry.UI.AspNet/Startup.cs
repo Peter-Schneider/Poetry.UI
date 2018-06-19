@@ -27,8 +27,6 @@ namespace Poetry.UI
         {
             var configurator = new PoetryConfigurator(new UnityContainer());
 
-            configurator.AddAssembly(Assembly.GetCallingAssembly());
-
             return configurator;
         }
     }
