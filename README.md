@@ -12,11 +12,15 @@ Poetry UI is a home for your reusable functionality. It’s a web *portal* for *
 Here’s how it works
 -----------
 
-You make Apps: Import jobs, management dialogs, you name it.
+Everything is based on Components. Components are essentially assemblies annotated with an ID. They can include embedded Scripts and Styles.
 
-We make Components: Data tables, scaffolded forms, context menus. (you can make some yourself, too)
+Some components are built-in: Data tables, scaffolded forms, context menus.
 
-With Poetry UI, you can make specific functionality packages targeted for .NET Framework and .NET Core simultaneously.
+You make Apps. Import jobs, management dialogs, you name it.
+
+They need to belong to a Component. (ie. same project)
+
+Your components and apps will then run on both .NET Core and .NET Framework.
 
 Workflow
 --------
@@ -25,9 +29,18 @@ To create a new “LoremIpsum” App, you create a new Class Library:
 
 ![Screenshot of the Visual Studio dialog when creating a Class Library](Docs/class-library.png)
 
-Then, define a new class LoremIpsumComponent that will inform Poetry about your component.
+Define a LoremIpsumComponent class that will inform Poetry about your UI component.
 
-It needs to look something like this:
+It should look something like this:
+
+    [Component("LoremIpsum")]
+    public class LoremIpsumComponent
+    {
+    }
+
+Then we make an LoremIpsumApp class.
+
+Something like this will do:
 
     [App("LoremIpsum")]
     [Script("Scripts/lorem-ipsum.js")]
@@ -72,14 +85,14 @@ Create `/Scripts/lorem-ipsum.js` and insert something like this:
 Then, in your consumer app, make sure you do the following at startup:
 
     .AddPoetryUI()
-    .AddAssembly(typeof(LoremIpsumApp).Assembly)
+    .AddAssembly(typeof(LoremIpsumComponent).Assembly)
     .Done()
 
 And 🎻 viola:
 
 ![Screenshot of the resulting LoremIpsum app](Docs/lorem-ipsum.png)
 
-You can also supply your own API controllers for AJAX requests, make data table backends, forms mapping to POCOs, your own form field types, provide on page editing, and more.
+You can also supply your own API controllers for AJAX requests, make data table backends, forms mapping to POCOs, your own form field types, provide *on page editing*, and more.
 
 Installation
 ------------
