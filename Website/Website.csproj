@@ -176,10 +176,6 @@
       <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>
       <Name>Poetry.UI.FormSupport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj">
-      <Project>{5DBF47E9-B32F-404E-9247-9F947762287B}</Project>
-      <Name>Poetry.UI.ScriptSupport</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj">
       <Project>{30a9c384-8b5f-4755-a8ba-5fc9f5873acb}</Project>
       <Name>Poetry.UI.TranslationSupport</Name>

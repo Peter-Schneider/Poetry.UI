@@ -27,7 +27,6 @@
     <ProjectReference Include="..\Poetry.UI.PageEditingSupport\Poetry.UI.PageEditingSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.PortalSupport\Poetry.UI.PortalSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />
-    <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj" />
   </ItemGroup>
 
 </Project>

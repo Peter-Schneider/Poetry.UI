@@ -14,7 +14,6 @@
     <ProjectReference Include="..\Poetry.UI.ControllerSupport\Poetry.UI.ControllerSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ReflectionSupport\Poetry.UI.ReflectionSupport.csproj" />
-    <ProjectReference Include="..\Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj" />
   </ItemGroup>
 
 </Project>
