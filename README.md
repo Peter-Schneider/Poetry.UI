@@ -4,7 +4,7 @@ Consistent, modular, cross-platform, responsive management dialog UI.
 
 Poetry UI is a home for your reusable functionality. It’s a web *portal* for *apps*, consisting of *blades*.
 
-Highlights:
+**Highlights:**
 
 * Runtimes for both .NET Framework and .NET Core
 * Written in modern, vanilla JS (no 💔 IE)
