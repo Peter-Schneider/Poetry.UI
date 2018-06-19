@@ -42,7 +42,7 @@ namespace Poetry.UI.AppSupport //
                     yield return new App(
                         attribute.Id,
                         new AssemblyWrapper(type.Assembly),
-                        scripts: ScriptCreator.Create(type),
+                        scripts: ScriptCreator.Create(component.Id, type),
                         styles: StyleCreator.Create(type),
                         translations: translations
                     );

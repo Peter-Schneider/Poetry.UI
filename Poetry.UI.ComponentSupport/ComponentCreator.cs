@@ -44,7 +44,7 @@ namespace Poetry.UI.ComponentSupport
                     continue;
                 }
 
-                result.Add(new Component(attribute.Id, new AssemblyWrapper(type.Assembly), ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(type), StyleCreator.Create(type)));
+                result.Add(new Component(attribute.Id, new AssemblyWrapper(type.Assembly), ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(attribute.Id, type), StyleCreator.Create(type)));
             }
 
             if (Logger.IsEnabled(LogLevel.Information))

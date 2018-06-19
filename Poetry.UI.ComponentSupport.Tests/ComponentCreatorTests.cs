@@ -56,7 +56,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var script = new Script("my-controller");
 
             var scriptCreator = Mock.Of<IScriptCreator>();
-            Mock.Get(scriptCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Script> { script });
+            Mock.Get(scriptCreator).Setup(c => c.Create("lorem-ipsum", typeof(MyComponentClass))).Returns(new List<Script> { script });
 
             var result = new ComponentCreator(Mock.Of<ILogger<ComponentCreator>>(), componentTypeProvider, Mock.Of<IComponentDependencyCreator>(), Mock.Of<IComponentControllerCreator>(), scriptCreator, Mock.Of<IStyleCreator>()).Create().Single();
 
