@@ -2,6 +2,7 @@
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
+using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Poetry.UI.ComponentSupport
             container.RegisterSingleton<IComponentDependencySorter, ComponentDependencySorter>();
             container.RegisterSingleton<IComponentRepository, ComponentRepository>();
             container.RegisterSingleton<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
+            container.RegisterSingleton<IScriptCreator, ScriptCreator>();
             container.RegisterSingleton<IStyleCreator, StyleCreator>();
         }
     }
