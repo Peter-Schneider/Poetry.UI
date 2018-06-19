@@ -32,59 +32,13 @@ namespace Poetry.UI.AspNetCore
 {
     public static class Startup
     {
-        public static void AddPoetryUI(this IServiceCollection services)
+        public static PoetryConfigurator AddPoetryUI(this IServiceCollection serviceCollection)
         {
-            var BasePath = "Admin";
-            var Assemblies = new List<AssemblyWrapper>
-            {
-                new AssemblyWrapper(Assembly.GetCallingAssembly()),
-                new AssemblyWrapper(typeof(Startup).Assembly),
-                new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
-                new AssemblyWrapper(typeof(FormComponent).Assembly),
-                new AssemblyWrapper(typeof(DataTableComponent).Assembly),
-                new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
-                new AssemblyWrapper(typeof(TranslationComponent).Assembly),
-                new AssemblyWrapper(typeof(PortalComponent).Assembly),
-            };
+            var configurator = new PoetryConfigurator(serviceCollection);
 
-            var poetryContainer = new Container(services);
+            configurator.AddAssembly(Assembly.GetCallingAssembly());
 
-            poetryContainer.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
-            poetryContainer.RegisterSingleton<IInstantiator, Instantiator>();
-            poetryContainer.RegisterSingleton<IBasePathProvider>(new BasePathProvider(BasePath));
-            poetryContainer.RegisterSingleton<IAssemblyProvider>(new AssemblyProvider(Assemblies));
-
-            poetryContainer.RegisterSingleton<IFileProvider, FileProvider>();
-            poetryContainer.RegisterSingleton<IModeProvider, ModeProvider>();
-
-            new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new ComponentSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new EmbeddedResourceSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new RoutingSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new AppSupportDependencyInjector().InjectDependencies(poetryContainer);
-
-            var serviceProvider = services.BuildServiceProvider();
-
-            foreach (var injector in serviceProvider.GetService<IDependencyInjectorProvider>().GetAll())
-            {
-                injector.InjectDependencies(poetryContainer);
-            }
-
-            //foreach (var containerOverride in ContainerOverrides)
-            //{
-            //    containerOverride(poetryContainer);
-            //}
-
-            var t = serviceProvider.GetService<Microsoft.Extensions.FileProviders.IFileProvider>();
-
-            var instantiator = new Instantiator(serviceProvider);
-            
-            services.Configure<RazorViewEngineOptions>(opts =>
-                opts.FileProviders.Add((EmbeddedFileProvider)instantiator.Instantiate(typeof(EmbeddedFileProvider)))
-            );
+            return configurator;
         }
 
         public static void UsePoetryUI(this IApplicationBuilder app)
