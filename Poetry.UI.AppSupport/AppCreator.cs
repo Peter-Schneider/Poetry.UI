@@ -43,7 +43,7 @@ namespace Poetry.UI.AppSupport //
                         attribute.Id,
                         new AssemblyWrapper(type.Assembly),
                         scripts: ScriptCreator.Create(component.Id, type),
-                        styles: StyleCreator.Create(type),
+                        styles: StyleCreator.Create(component.Id, type),
                         translations: translations
                     );
                 }

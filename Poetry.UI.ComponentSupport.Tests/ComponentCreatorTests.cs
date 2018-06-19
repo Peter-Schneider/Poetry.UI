@@ -74,7 +74,7 @@ namespace Poetry.UI.ComponentSupport.Tests
             var style = new Style("my-controller");
 
             var styleCreator = Mock.Of<IStyleCreator>();
-            Mock.Get(styleCreator).Setup(c => c.Create(typeof(MyComponentClass))).Returns(new List<Style> { style });
+            Mock.Get(styleCreator).Setup(c => c.Create("lorem-ipsum", typeof(MyComponentClass))).Returns(new List<Style> { style });
 
             var result = new ComponentCreator(Mock.Of<ILogger<ComponentCreator>>(), componentTypeProvider, Mock.Of<IComponentDependencyCreator>(), Mock.Of<IComponentControllerCreator>(), Mock.Of<IScriptCreator>(), styleCreator).Create().Single();
 

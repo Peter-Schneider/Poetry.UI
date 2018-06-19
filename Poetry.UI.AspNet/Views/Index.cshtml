@@ -28,7 +28,7 @@
         }
         foreach (var style in component.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@component.Id/@style.Path" />
+            <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
     }
     @foreach (var app in AppRepository.GetAll())

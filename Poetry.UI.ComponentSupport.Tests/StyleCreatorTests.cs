@@ -9,10 +9,10 @@ namespace Poetry.UI.StyleSupport.Tests
         [Fact]
         public void CreatesScripts()
         {
-            var result = new StyleCreator().Create(typeof(StyleOwner));
+            var result = new StyleCreator().Create("prefix", typeof(StyleOwner));
 
             Assert.Single(result);
-            Assert.Equal("lorem-ipsum", result.Single().Path);
+            Assert.Equal("prefix/lorem-ipsum", result.Single().Path);
         }
 
         [Style("lorem-ipsum")]

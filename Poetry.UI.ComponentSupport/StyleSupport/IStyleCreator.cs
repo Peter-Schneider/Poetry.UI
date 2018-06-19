@@ -6,6 +6,6 @@ namespace Poetry.UI.StyleSupport
 {
     public interface IStyleCreator
     {
-        IEnumerable<Style> Create(Type ownerType);
+        IEnumerable<Style> Create(string componentId, Type ownerType);
     }
 }
