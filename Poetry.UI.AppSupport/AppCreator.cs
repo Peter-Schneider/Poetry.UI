@@ -37,7 +37,7 @@ namespace Poetry.UI.AppSupport //
                     var attribute = CustomAttributeExtensions.GetCustomAttribute<AppAttribute>(type);
 
                     var translationAttribute = CustomAttributeExtensions.GetCustomAttribute<TranslationsAttribute>(type);
-                    var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(translationAttribute.Path) : new EmptyTranslationRepository();
+                    var translations = translationAttribute != null ? TranslationRepositoryCreator.Create(component.Id + "/" + translationAttribute.Path) : new EmptyTranslationRepository();
 
                     yield return new App(
                         attribute.Id,

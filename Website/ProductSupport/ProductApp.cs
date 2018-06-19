@@ -10,7 +10,7 @@ namespace Website.ProductSupport
 {
     [App("Product")]
     [Script("/ProductSupport/Scripts/product.js")]
-    [Translations("Website/ProductSupport/translations.xml")]
+    [Translations("ProductSupport/translations.xml")]
     public class ProductApp
     {
     }
