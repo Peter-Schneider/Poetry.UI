@@ -6,8 +6,8 @@ Poetry UI is a home for your reusable functionality. It’s a web *portal* for *
 
 Highlights:
 
-Runtimes for both .NET Framework and .NET Core
-Written in modern, vanilla JS (no 💔 IE)
+* Runtimes for both .NET Framework and .NET Core
+* Written in modern, vanilla JS (no 💔 IE)
 
 Here’s how it works
 -----------
