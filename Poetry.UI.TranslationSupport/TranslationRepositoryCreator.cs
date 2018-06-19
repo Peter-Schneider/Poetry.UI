@@ -1,4 +1,4 @@
-﻿using Poetry.UI.FileSupport;
+﻿using Poetry.UI.EmbeddedResourceSupport;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,24 +8,26 @@ namespace Poetry.UI.TranslationSupport
 {
     public class TranslationRepositoryCreator : ITranslationRepositoryCreator
     {
-        IFileProvider FileProvider { get; }
+        IEmbeddedResourceProvider EmbeddedResourceProvider { get; }
         ITranslationParser TranslationParser { get; }
 
-        public TranslationRepositoryCreator(IFileProvider fileProvider, ITranslationParser translationParser)
+        public TranslationRepositoryCreator(IEmbeddedResourceProvider embeddedResourceProvider, ITranslationParser translationParser)
         {
-            FileProvider = fileProvider;
+            EmbeddedResourceProvider = embeddedResourceProvider;
             TranslationParser = translationParser;
         }
 
         public ITranslationRepository Create(string path)
         {
-            using (var read = FileProvider.OpenFile(path))
-            {
-                if (read == null)
-                {
-                    throw new FileNotFoundException(path);
-                }
+            var file = EmbeddedResourceProvider.GetFile(path);
 
+            if (file == null)
+            {
+                throw new FileNotFoundException(path);
+            }
+
+            using (var read = EmbeddedResourceProvider.Open(file))
+            {
                 return new TranslationRepository(TranslationParser.Parse(read));
             }
         }

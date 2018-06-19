@@ -11,7 +11,6 @@ using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
-using Poetry.UI.FileSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.PageEditingSupport;
 using Poetry.UI.PortalSupport;
@@ -91,7 +90,6 @@ namespace Poetry.UI.AspNetCore
             poetryContainer.RegisterSingleton<IBasePathProvider>(new BasePathProvider(BasePath));
             poetryContainer.RegisterSingleton<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
-            poetryContainer.RegisterSingleton<IFileProvider, FileProvider>();
             poetryContainer.RegisterSingleton<IModeProvider, ModeProvider>();
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);

@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.TranslationSuppor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.TranslationSupport.Tests", "Poetry.UI.TranslationSupport.Tests\Poetry.UI.TranslationSupport.Tests.csproj", "{26670E31-3048-43E1-A46B-A918E5FD7795}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.FileSupport", "Poetry.UI.FileSupport\Poetry.UI.FileSupport.csproj", "{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AspNet", "Poetry.UI.AspNet\Poetry.UI.AspNet.csproj", "{8C4CDA01-AB43-4A11-BE8D-778BAD23AFF8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AppSupport", "Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj", "{D3A76A0C-5985-4480-B229-CB84FAD94C68}"
@@ -59,9 +57,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ReflectionSupport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ContextMenuSupport", "Poetry.UI.ContextMenuSupport\Poetry.UI.ContextMenuSupport.csproj", "{AB286D1A-6232-4C6D-AE59-983D775FD64A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poetry.UI.AspNetCore", "Poetry.UI.AspNetCore\Poetry.UI.AspNetCore.csproj", "{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.AspNetCore", "Poetry.UI.AspNetCore\Poetry.UI.AspNetCore.csproj", "{1AF7E496-33C9-471B-BAE9-C27F4E0BD029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website.AspNetCore", "Website.AspNetCore\Website.AspNetCore.csproj", "{2E1DB9CE-0973-45E0-B531-369CA6C14A32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website.AspNetCore", "Website.AspNetCore\Website.AspNetCore.csproj", "{2E1DB9CE-0973-45E0-B531-369CA6C14A32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,10 +91,6 @@ Global
 		{26670E31-3048-43E1-A46B-A918E5FD7795}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26670E31-3048-43E1-A46B-A918E5FD7795}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26670E31-3048-43E1-A46B-A918E5FD7795}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C4CDA01-AB43-4A11-BE8D-778BAD23AFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C4CDA01-AB43-4A11-BE8D-778BAD23AFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C4CDA01-AB43-4A11-BE8D-778BAD23AFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU

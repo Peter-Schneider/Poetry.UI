@@ -26,7 +26,7 @@ namespace Website.AspNetCore
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPoetryUI().Done();
+            services.AddPoetryUI().AddAssembly(typeof(WebsiteComponent).Assembly).Done();
             services.AddMvc();
             services.AddTransient<UrlProvider, UrlProvider>();
             services.AddTransient<CategoryRepository, CategoryRepository>();

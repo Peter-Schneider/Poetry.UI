@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="CategorySupport\translations.xml" />
-    <Content Include="ProductSupport\translations.xml" />
+    <EmbeddedResource Include="CategorySupport\translations.xml" />
+    <EmbeddedResource Include="ProductSupport\translations.xml" />
   </ItemGroup>
 
   <ItemGroup>

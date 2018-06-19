@@ -10,7 +10,7 @@ namespace Website.CategorySupport
 {
     [App("Category")]
     [Script("/CategorySupport/Scripts/category.js")]
-    [Translations("/CategorySupport/translations.xml")]
+    [Translations("Website/CategorySupport/translations.xml")]
     public class CategoryApp
     {
     }

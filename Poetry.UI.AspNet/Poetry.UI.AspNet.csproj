@@ -129,7 +129,6 @@
     <Compile Include="DependencyInjectionSupport\Instantiator.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceHandler.cs" />
     <Compile Include="EmbeddedResourceSupport\EmbeddedResourceVirtualPathViewProvider.cs" />
-    <Compile Include="FileSupport\FileProvider.cs" />
     <Compile Include="LoggerSupport\DefaultLogger.cs" />
     <Compile Include="PageEditingSupport\InitializePageEditingModule.cs" />
     <Compile Include="PageEditingSupport\ModeProvider.cs" />
@@ -179,10 +178,6 @@
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj">
       <Project>{a1afbddc-d9c5-4203-bae0-3e2e895273af}</Project>
       <Name>Poetry.UI.EmbeddedResourceSupport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Poetry.UI.FileSupport\Poetry.UI.FileSupport.csproj">
-      <Project>{49A3F99C-AAA3-42E0-85BD-F6999BE6A96E}</Project>
-      <Name>Poetry.UI.FileSupport</Name>
     </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj">
       <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>

@@ -132,13 +132,14 @@
     <Compile Include="ProductSupport\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingSupport\UrlProvider.cs" />
+    <Compile Include="WebsiteComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CategorySupport\Scripts\category.js" />
-    <Content Include="CategorySupport\translations.xml" />
+    <EmbeddedResource Include="CategorySupport\translations.xml" />
     <Content Include="Global.asax" />
     <Content Include="ProductSupport\Scripts\product.js" />
-    <Content Include="ProductSupport\translations.xml" />
+    <EmbeddedResource Include="ProductSupport\translations.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup />

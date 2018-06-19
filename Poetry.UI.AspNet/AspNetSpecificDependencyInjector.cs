@@ -1,7 +1,5 @@
-﻿using Poetry.UI.AspNet.FileSupport;
-using Poetry.UI.AspNet.PageEditingSupport;
+﻿using Poetry.UI.AspNet.PageEditingSupport;
 using Poetry.UI.DependencyInjectionSupport;
-using Poetry.UI.FileSupport;
 using Poetry.UI.PageEditingSupport;
 using System;
 using System.Collections.Generic;
@@ -15,7 +13,6 @@ namespace Poetry.UI.AspNet
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterSingleton<IFileProvider, FileProvider>();
             container.RegisterSingleton<IModeProvider, ModeProvider>();
         }
     }

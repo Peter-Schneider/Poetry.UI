@@ -17,7 +17,7 @@ namespace Website
             GlobalConfiguration.Configuration.MapHttpAttributeRoutes();
             GlobalConfiguration.Configuration.EnsureInitialized();
 
-            this.AddPoetryUI().Done();
+            this.AddPoetryUI().AddAssembly(typeof(WebsiteComponent).Assembly).Done();
 
             RouteTable.Routes.MapRoute(
                 name: "Default",
