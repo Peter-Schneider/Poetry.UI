@@ -9,9 +9,9 @@ namespace Poetry.UI.EmbeddedResourceSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();
-            container.RegisterType<IEmbeddedResourcePathMatcher, EmbeddedResourcePathMatcher>();
-            container.RegisterType<IEmbeddedResourceProvider, EmbeddedResourceProvider>();
+            container.RegisterSingleton<IEmbeddedResourceAssemblyCreator, EmbeddedResourceAssemblyCreator>();
+            container.RegisterSingleton<IEmbeddedResourcePathMatcher, EmbeddedResourcePathMatcher>();
+            container.RegisterSingleton<IEmbeddedResourceProvider, EmbeddedResourceProvider>();
         }
     }
 }

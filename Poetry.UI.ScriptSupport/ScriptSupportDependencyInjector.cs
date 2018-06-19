@@ -9,7 +9,7 @@ namespace Poetry.UI.ScriptSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IScriptCreator, ScriptCreator>();
+            container.RegisterSingleton<IScriptCreator, ScriptCreator>();
         }
     }
 }

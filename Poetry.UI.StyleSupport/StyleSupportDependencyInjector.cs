@@ -9,7 +9,7 @@ namespace Poetry.UI.StyleSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IStyleCreator, StyleCreator>();
+            container.RegisterSingleton<IStyleCreator, StyleCreator>();
         }
     }
 }

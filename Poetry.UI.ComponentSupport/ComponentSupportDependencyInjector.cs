@@ -12,14 +12,14 @@ namespace Poetry.UI.ComponentSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
-            container.RegisterType<IComponentControllerCreator, ComponentControllerCreator>();
-            container.RegisterType<IComponentTypeProvider, ComponentTypeProvider>();
-            container.RegisterType<IComponentCreator, ComponentCreator>();
-            container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
-            container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();
-            container.RegisterType<IComponentRepository, ComponentRepository>();
-            container.RegisterType<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
+            container.RegisterSingleton<IComponentControllerTypeProvider, ComponentControllerTypeProvider>();
+            container.RegisterSingleton<IComponentControllerCreator, ComponentControllerCreator>();
+            container.RegisterSingleton<IComponentTypeProvider, ComponentTypeProvider>();
+            container.RegisterSingleton<IComponentCreator, ComponentCreator>();
+            container.RegisterSingleton<IComponentDependencyCreator, ComponentDependencyCreator>();
+            container.RegisterSingleton<IComponentDependencySorter, ComponentDependencySorter>();
+            container.RegisterSingleton<IComponentRepository, ComponentRepository>();
+            container.RegisterSingleton<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
         }
     }
 }

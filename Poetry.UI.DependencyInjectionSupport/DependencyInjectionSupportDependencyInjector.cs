@@ -8,9 +8,9 @@ namespace Poetry.UI.DependencyInjectionSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IDependencyInjectorTypeProvider, DependencyInjectorTypeProvider>();
-            container.RegisterType<IDependencyInjectorCreator, DependencyInjectorCreator>();
-            container.RegisterType<IDependencyInjectorProvider, DependencyInjectorProvider>();
+            container.RegisterSingleton<IDependencyInjectorTypeProvider, DependencyInjectorTypeProvider>();
+            container.RegisterSingleton<IDependencyInjectorCreator, DependencyInjectorCreator>();
+            container.RegisterSingleton<IDependencyInjectorProvider, DependencyInjectorProvider>();
         }
     }
 }

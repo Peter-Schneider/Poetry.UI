@@ -11,10 +11,10 @@ namespace Poetry.UI.FormSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IFormTypeProvider, FormTypeProvider>();
-            container.RegisterType<IFormFieldCreator, FormFieldCreator>();
-            container.RegisterType<IFormCreator, FormCreator>();
-            container.RegisterType<IFormFieldProvider, FormFieldProvider>();
+            container.RegisterSingleton<IFormTypeProvider, FormTypeProvider>();
+            container.RegisterSingleton<IFormFieldCreator, FormFieldCreator>();
+            container.RegisterSingleton<IFormCreator, FormCreator>();
+            container.RegisterSingleton<IFormFieldProvider, FormFieldProvider>();
         }
     }
 }

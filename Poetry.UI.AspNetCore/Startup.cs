@@ -50,12 +50,12 @@ namespace Poetry.UI.AspNetCore
             var poetryContainer = new Container(services);
 
             poetryContainer.RegisterType(typeof(ILogger<>), typeof(DefaultLogger<>));
-            poetryContainer.RegisterType<IInstantiator, Instantiator>();
+            poetryContainer.RegisterSingleton<IInstantiator, Instantiator>();
             poetryContainer.RegisterSingleton<IBasePathProvider>(new BasePathProvider(BasePath));
             poetryContainer.RegisterSingleton<IAssemblyProvider>(new AssemblyProvider(Assemblies));
 
-            poetryContainer.RegisterType<IFileProvider, FileProvider>();
-            poetryContainer.RegisterType<IModeProvider, ModeProvider>();
+            poetryContainer.RegisterSingleton<IFileProvider, FileProvider>();
+            poetryContainer.RegisterSingleton<IModeProvider, ModeProvider>();
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
             new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);

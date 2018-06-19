@@ -9,8 +9,8 @@ namespace Poetry.UI.ControllerSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IControllerActionCreator, ControllerActionCreator>();
-            container.RegisterType<IControllerCreator, ControllerCreator>();
+            container.RegisterSingleton<IControllerActionCreator, ControllerActionCreator>();
+            container.RegisterSingleton<IControllerCreator, ControllerCreator>();
         }
     }
 }

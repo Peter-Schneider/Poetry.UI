@@ -9,9 +9,9 @@ namespace Poetry.UI.AppSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IAppTypeProvider, AppTypeProvider>();
-            container.RegisterType<IAppCreator, AppCreator>();
-            container.RegisterType<IAppRepository, AppRepository>();
+            container.RegisterSingleton<IAppTypeProvider, AppTypeProvider>();
+            container.RegisterSingleton<IAppCreator, AppCreator>();
+            container.RegisterSingleton<IAppRepository, AppRepository>();
         }
     }
 }

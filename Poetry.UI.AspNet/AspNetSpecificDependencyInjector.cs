@@ -15,8 +15,8 @@ namespace Poetry.UI.AspNet
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IFileProvider, FileProvider>();
-            container.RegisterType<IModeProvider, ModeProvider>();
+            container.RegisterSingleton<IFileProvider, FileProvider>();
+            container.RegisterSingleton<IModeProvider, ModeProvider>();
         }
     }
 }

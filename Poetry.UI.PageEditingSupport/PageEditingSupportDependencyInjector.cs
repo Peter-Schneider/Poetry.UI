@@ -10,9 +10,9 @@ namespace Poetry.UI.PageEditingSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IObjectIdentifier, ObjectIdentifier>();
-            container.RegisterType<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
-            container.RegisterType<IPathPrefixProvider, PathPrefixProvider>();
+            container.RegisterSingleton<IObjectIdentifier, ObjectIdentifier>();
+            container.RegisterSingleton<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
+            container.RegisterSingleton<IPathPrefixProvider, PathPrefixProvider>();
         }
     }
 }

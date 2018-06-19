@@ -10,8 +10,8 @@ namespace Poetry.UI.TranslationSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<ITranslationParser, XmlTranslationParser>();
-            container.RegisterType<ITranslationRepositoryCreator, TranslationRepositoryCreator>();
+            container.RegisterSingleton<ITranslationParser, XmlTranslationParser>();
+            container.RegisterSingleton<ITranslationRepositoryCreator, TranslationRepositoryCreator>();
         }
     }
 }

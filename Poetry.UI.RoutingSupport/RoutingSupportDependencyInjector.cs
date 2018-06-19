@@ -9,7 +9,7 @@ namespace Poetry.UI.RoutingSupport
     {
         public void InjectDependencies(IContainer container)
         {
-            container.RegisterType<IControllerRouter, ControllerRouter>();
+            container.RegisterSingleton<IControllerRouter, ControllerRouter>();
         }
     }
 }
