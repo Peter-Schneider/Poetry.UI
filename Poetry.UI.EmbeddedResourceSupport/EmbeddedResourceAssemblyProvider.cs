@@ -1,5 +1,4 @@
-﻿using Poetry.UI.AppSupport;
-using Poetry.UI.ComponentSupport;
+﻿using Poetry.UI.ComponentSupport;
 using Poetry.UI.ReflectionSupport;
 using System;
 using System.Collections.Generic;
@@ -12,12 +11,11 @@ namespace Poetry.UI.EmbeddedResourceSupport
     {
         IEnumerable<EmbeddedResourceAssembly> EmbeddedResourceAssemblies { get; }
 
-        public EmbeddedResourceAssemblyProvider(IComponentRepository componentRepository, IAppRepository appRepository, IEmbeddedResourceAssemblyCreator embeddedResourceAssemblyCreator)
+        public EmbeddedResourceAssemblyProvider(IComponentRepository componentRepository, IEmbeddedResourceAssemblyCreator embeddedResourceAssemblyCreator)
         {
             var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();
 
             embeddedResourceAssemblies.AddRange(componentRepository.GetAll().Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
-            embeddedResourceAssemblies.AddRange(appRepository.GetAll().Select(c => embeddedResourceAssemblyCreator.Create(c.Name, c.Assembly)));
 
             EmbeddedResourceAssemblies = embeddedResourceAssemblies.AsReadOnly();
         }
