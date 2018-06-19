@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.DependencyInjectionSupport;
+using Poetry.UI.EmbeddedResourceSupport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Poetry.UI.ComponentSupport
             container.RegisterType<IComponentDependencyCreator, ComponentDependencyCreator>();
             container.RegisterType<IComponentDependencySorter, ComponentDependencySorter>();
             container.RegisterType<IComponentRepository, ComponentRepository>();
+            container.RegisterType<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
         }
     }
 }
