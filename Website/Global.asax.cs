@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Website.DomainObjects;
 
 namespace Website
 {
@@ -17,7 +18,7 @@ namespace Website
             GlobalConfiguration.Configuration.MapHttpAttributeRoutes();
             GlobalConfiguration.Configuration.EnsureInitialized();
 
-            this.AddPoetryUI().AddAssembly(typeof(WebsiteComponent).Assembly).Done();
+            this.AddPoetryUI().AddAssembly(typeof(DomainObjectsComponent).Assembly).Done();
 
             RouteTable.Routes.MapRoute(
                 name: "Default",

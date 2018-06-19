@@ -1,5 +1,4 @@
 ﻿@using Website.CategorySupport;
-@using Website.RoutingSupport
 @using Poetry.UI.AspNet.PageEditingSupport
 
 @model Website.ProductSupport.Product
@@ -11,7 +10,7 @@
 <h1>@Model.Name (<a href="/Admin">Edit</a>)</h1>
 
 @{
-    var category = CategoryRepository.GetAll().FirstOrDefault(c => c.Id == Model.CategoryId);
+    var category = DependencyResolver.Current.GetService<ICategoryRepository>().GetAll().FirstOrDefault(c => c.Id == Model.CategoryId);
 }
 
 <table>
@@ -25,7 +24,7 @@
     </tr>
     <tr>
         <th>Category</th>
-        <td><a href="@UrlProvider.GetUrl(category)">@category.Name</a></td>
+        <td><a href="@(DependencyResolver.Current.GetService<ICategoryUrlProvider>().GetUrl(category))">@category.Name</a></td>
     </tr>
     <tr>
         <th>Description</th>

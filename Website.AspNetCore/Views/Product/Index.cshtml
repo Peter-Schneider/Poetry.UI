@@ -1,9 +1,8 @@
 ﻿@using Website.CategorySupport;
-@using Website.RoutingSupport
 @using Poetry.UI.AspNetCore.PageEditingSupport
 
-@inject CategoryRepository CategoryRepository
-@inject UrlProvider UrlProvider
+@inject ICategoryRepository CategoryRepository
+@inject ICategoryUrlProvider CategoryUrlProvider
 
 @model Website.ProductSupport.Product
 
@@ -28,7 +27,7 @@
     </tr>
     <tr>
         <th>Category</th>
-        <td><a href="@UrlProvider.GetUrl(category)">@category.Name</a></td>
+        <td><a href="@CategoryUrlProvider.GetUrl(category)">@category.Name</a></td>
     </tr>
     <tr>
         <th>Description</th>

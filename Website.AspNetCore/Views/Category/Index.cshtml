@@ -1,10 +1,9 @@
 ﻿@using Website.CategorySupport
 @using Website.ProductSupport
-@using Website.RoutingSupport
 @using Poetry.UI.AspNetCore.PageEditingSupport
 
-@inject ProductRepository ProductRepository
-@inject UrlProvider UrlProvider
+@inject IProductRepository ProductRepository
+@inject IProductUrlProvider ProductUrlProvider
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,6 +18,6 @@
 <ul>
     @foreach (var product in ProductRepository.GetAll().Where(p => p.CategoryId == Model.Id))
     {
-        <li><a href="@UrlProvider.GetUrl(product)">@product.Name</a></li>
+        <li><a href="@ProductUrlProvider.GetUrl(product)">@product.Name</a></li>
     }
 </ul>

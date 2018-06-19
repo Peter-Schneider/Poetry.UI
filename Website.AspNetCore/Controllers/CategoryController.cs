@@ -9,9 +9,9 @@ namespace Website.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryRepository CategoryRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
 
-        public CategoryController(CategoryRepository categoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
             CategoryRepository = categoryRepository;
         }

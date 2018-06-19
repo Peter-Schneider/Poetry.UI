@@ -1,6 +1,5 @@
 ﻿@using Website.CategorySupport
 @using Website.ProductSupport
-@using Website.RoutingSupport
 @using Poetry.UI.AspNet.PageEditingSupport
 
 @{
@@ -14,8 +13,8 @@
 <p>Products:</p>
 
 <ul>
-    @foreach (var product in ProductRepository.GetAll().Where(p => p.CategoryId == Model.Id))
+    @foreach (var product in DependencyResolver.Current.GetService<IProductRepository>().GetAll().Where(p => p.CategoryId == Model.Id))
     {
-        <li><a href="@UrlProvider.GetUrl(product)">@product.Name</a></li>
+        <li><a href="@(DependencyResolver.Current.GetService<IProductUrlProvider>().GetUrl(product))">@product.Name</a></li>
     }
 </ul>

@@ -10,8 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Poetry.UI.AspNetCore;
 using Website.CategorySupport;
+using Website.DomainObjects;
 using Website.ProductSupport;
-using Website.RoutingSupport;
 
 namespace Website.AspNetCore
 {
@@ -26,13 +26,10 @@ namespace Website.AspNetCore
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPoetryUI().AddAssembly(typeof(WebsiteComponent).Assembly).Done();
+            services.AddPoetryUI().AddAssembly(typeof(DomainObjectsComponent).Assembly).Done();
             services.AddMvc();
-            services.AddTransient<UrlProvider, UrlProvider>();
-            services.AddTransient<CategoryRepository, CategoryRepository>();
-            services.AddTransient<ProductRepository, ProductRepository>();
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

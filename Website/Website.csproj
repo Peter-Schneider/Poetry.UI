@@ -114,41 +114,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategorySupport\Category.cs" />
-    <Compile Include="CategorySupport\CategoryApiController.cs" />
-    <Compile Include="CategorySupport\CategoryApp.cs" />
-    <Compile Include="CategorySupport\CategoryDataTableBackend.cs" />
-    <Compile Include="CategorySupport\CategoryRepository.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ProductSupport\Product.cs" />
-    <Compile Include="ProductSupport\ProductApiController.cs" />
-    <Compile Include="ProductSupport\ProductApp.cs" />
-    <Compile Include="ProductSupport\ProductDataTableBackend.cs" />
-    <Compile Include="ProductSupport\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoutingSupport\UrlProvider.cs" />
-    <Compile Include="WebsiteComponent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CategorySupport\Scripts\category.js" />
-    <EmbeddedResource Include="CategorySupport\translations.xml" />
     <Content Include="Global.asax" />
-    <Content Include="ProductSupport\Scripts\product.js" />
-    <EmbeddedResource Include="ProductSupport\translations.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="CategorySupport\Data\2935d87d-926a-4648-bf85-88b1b03b0c10.json" />
-    <Content Include="CategorySupport\Data\329c72eb-a97e-4f48-91aa-9c5069ebd4f5.json" />
     <None Include="packages.config" />
-    <Content Include="ProductSupport\Data\30197f1f-7cf3-4ea0-9a86-b489263a2658.json" />
-    <Content Include="ProductSupport\Data\fbd746ce-8e17-4d11-82e4-5c8abf532777.json" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -179,6 +159,10 @@
     <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj">
       <Project>{30a9c384-8b5f-4755-a8ba-5fc9f5873acb}</Project>
       <Name>Poetry.UI.TranslationSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Website.DomainObjects\Website.DomainObjects.csproj">
+      <Project>{61e4630b-05b0-4bf1-9760-fe39f60d8f14}</Project>
+      <Name>Website.DomainObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

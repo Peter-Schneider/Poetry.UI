@@ -1,17 +1,17 @@
-﻿using Website.ProductSupport;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
+using Website.ProductSupport;
 
 namespace Website.Controllers
 {
     public class ProductController : Controller
     {
-        ProductRepository ProductRepository { get; }
+        IProductRepository ProductRepository { get; }
 
-        public ProductController(ProductRepository productRepository)
+        public ProductController(IProductRepository productRepository)
         {
             ProductRepository = productRepository;
         }

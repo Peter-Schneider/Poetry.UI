@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CategorySupport\Scripts\category.js" />
+    <None Remove="CategorySupport\translations.xml" />
+    <None Remove="ProductSupport\Scripts\product.js" />
+    <None Remove="translations.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CategorySupport\Scripts\category.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CategorySupport\translations.xml" />
+    <EmbeddedResource Include="ProductSupport\Scripts\product.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ProductSupport\translations.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastMember" Version="1.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.TranslationSupport\Poetry.UI.TranslationSupport.csproj" />
+  </ItemGroup>
+
+</Project>

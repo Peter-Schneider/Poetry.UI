@@ -6,14 +6,7 @@
 
   <ItemGroup>
     <None Remove="wwwroot\CategorySupport\Scripts\category.js" />
-    <None Remove="CategorySupport\translations.xml" />
     <None Remove="wwwroot\ProductSupport\Scripts\product.js" />
-    <None Remove="ProductSupport\translations.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="CategorySupport\translations.xml" />
-    <EmbeddedResource Include="ProductSupport\translations.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.AspNetCore\Poetry.UI.AspNetCore.csproj" />
+    <ProjectReference Include="..\Website.DomainObjects\Website.DomainObjects.csproj" />
   </ItemGroup>
 
 </Project>
