@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Poetry.UI.ComponentSupport
+namespace Poetry.UI.ControllerSupport
 {
     public class ComponentControllerTypeProvider : IComponentControllerTypeProvider
     {

@@ -1,9 +1,8 @@
-﻿using Poetry.UI.ControllerSupport;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Poetry.UI.ComponentSupport
+namespace Poetry.UI.ControllerSupport
 {
     public interface IComponentControllerCreator
     {

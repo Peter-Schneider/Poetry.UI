@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Poetry.UI.ComponentSupport
+namespace Poetry.UI.ControllerSupport
 {
     public interface IComponentControllerTypeProvider
     {

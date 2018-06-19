@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Poetry.UI.ControllerSupport;
 
-namespace Poetry.UI.ComponentSupport
+namespace Poetry.UI.ControllerSupport
 {
     public class ComponentControllerCreator : IComponentControllerCreator
     {
