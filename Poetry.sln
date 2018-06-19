@@ -33,8 +33,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.PortalSupport", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ScriptSupport", "Poetry.UI.ScriptSupport\Poetry.UI.ScriptSupport.csproj", "{5DBF47E9-B32F-404E-9247-9F947762287B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport", "Poetry.UI.StyleSupport\Poetry.UI.StyleSupport.csproj", "{76F32798-95AE-49A4-9233-64F4BDADF82E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ControllerSupport.Tests", "Poetry.UI.ControllerSupport.Tests\Poetry.UI.ControllerSupport.Tests.csproj", "{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.FormSupport.Tests", "Poetry.UI.FormSupport.Tests\Poetry.UI.FormSupport.Tests.csproj", "{61D650D0-5BBC-4B28-9549-8CB1BFA73144}"
@@ -42,8 +40,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DataTableSupport", "Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj", "{614BECA8-F319-428B-AD6A-03A3CED13AA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.ScriptSupport.Tests", "Poetry.UI.ScriptSupport.Tests\Poetry.UI.ScriptSupport.Tests.csproj", "{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.StyleSupport.Tests", "Poetry.UI.StyleSupport.Tests\Poetry.UI.StyleSupport.Tests.csproj", "{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poetry.UI.DependencyInjectionSupport", "Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj", "{21537C52-3FA2-48FC-81A8-30033EDB28C9}"
 EndProject
@@ -127,10 +123,6 @@ Global
 		{5DBF47E9-B32F-404E-9247-9F947762287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBF47E9-B32F-404E-9247-9F947762287B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DBF47E9-B32F-404E-9247-9F947762287B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76F32798-95AE-49A4-9233-64F4BDADF82E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76F32798-95AE-49A4-9233-64F4BDADF82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76F32798-95AE-49A4-9233-64F4BDADF82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76F32798-95AE-49A4-9233-64F4BDADF82E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5A8B98F-08F3-4974-97E9-E5FEB6CAD74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,10 +139,6 @@ Global
 		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F2C42A1-931D-4E41-A06B-9629AE5DCD2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F4EACFA-406B-4720-91BF-D5AEA7ADEB56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21537C52-3FA2-48FC-81A8-30033EDB28C9}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -93,7 +93,6 @@ namespace Poetry.UI.AspNetCore
             poetryContainer.RegisterSingleton<IModeProvider, ModeProvider>();
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ComponentSupportDependencyInjector().InjectDependencies(poetryContainer);
             new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);

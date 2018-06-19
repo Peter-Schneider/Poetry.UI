@@ -99,7 +99,6 @@ namespace Poetry.UI
             new AspNetSpecificDependencyInjector().InjectDependencies(poetryContainer);
 
             new ScriptSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new StyleSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ComponentSupportDependencyInjector().InjectDependencies(poetryContainer);
             new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);
