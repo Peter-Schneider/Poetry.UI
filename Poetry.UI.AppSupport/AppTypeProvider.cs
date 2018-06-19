@@ -1,4 +1,5 @@
-﻿using Poetry.UI.ReflectionSupport;
+﻿using Poetry.UI.ComponentSupport;
+using Poetry.UI.ReflectionSupport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Poetry.UI.AppSupport
             Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
-        public IEnumerable<Type> GetTypes()
+        public IEnumerable<Type> GetTypes(Component component)
         {
-            return Assemblies.SelectMany(a => a.Types).Where(t => CustomAttributeExtensions.GetCustomAttribute<AppAttribute>(t) != null);
+            return component.Assembly.Types.Where(t => CustomAttributeExtensions.GetCustomAttribute<AppAttribute>(t) != null);
         }
     }
 }
