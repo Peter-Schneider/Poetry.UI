@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poetry.UI.AspNetCore.FileSupport
+namespace Poetry.UI.AspNetCore.EmbeddedResourceSupport
 {
     public class StaticFilesMiddleware
     {

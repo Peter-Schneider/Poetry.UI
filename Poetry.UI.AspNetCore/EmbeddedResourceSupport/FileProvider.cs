@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Poetry.UI.AspNetCore.FileSupport
+namespace Poetry.UI.AspNetCore.EmbeddedResourceSupport
 {
     public class FileProvider : IFileProvider
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Poetry.UI.AppSupport;
 using Poetry.UI.AspNetCore.DependencyInjectionSupport;
-using Poetry.UI.AspNetCore.FileSupport;
+using Poetry.UI.AspNetCore.EmbeddedResourceSupport;
 using Poetry.UI.AspNetCore.LoggerSupport;
 using Poetry.UI.AspNetCore.PageEditingSupport;
 using Poetry.UI.AspNetCore.RoutingSupport;
