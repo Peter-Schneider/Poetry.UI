@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />
   </ItemGroup>
 

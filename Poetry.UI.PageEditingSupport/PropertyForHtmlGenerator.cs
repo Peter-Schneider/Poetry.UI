@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Poetry.UI.FormSupport;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -9,19 +11,26 @@ namespace Poetry.UI.PageEditingSupport
     {
         IObjectIdentifier ObjectIdentifier { get; }
         IPropertyExpressionMetaDataProvider PropertyExpressionMetaDataProvider { get; }
+        IFormProvider FormProvider { get; }
 
-        public PropertyForHtmlGenerator(IObjectIdentifier objectIdentifier, IPropertyExpressionMetaDataProvider propertyExpressionMetaDataProvider)
+        public PropertyForHtmlGenerator(IObjectIdentifier objectIdentifier, IPropertyExpressionMetaDataProvider propertyExpressionMetaDataProvider, IFormProvider formProvider)
         {
             ObjectIdentifier = objectIdentifier;
             PropertyExpressionMetaDataProvider = propertyExpressionMetaDataProvider;
+            FormProvider = formProvider;
         }
 
         public string GenerateHtml(object model, Expression expression, string contents)
         {
             var metaData = PropertyExpressionMetaDataProvider.GetFor(expression);
 
+            var instance = metaData.OwnerObject ?? model;
+            var instanceType = instance.GetType();
+
+            var form = FormProvider.GetAll().SingleOrDefault(f => f.Type == instanceType);
+
             return 
-                $"<span class=\"poetry-page-editing-property\" property-name=\"{metaData.PropertyName}\" object-id=\"{ObjectIdentifier.GetId(metaData.OwnerObject ?? model)}\">" +
+                $"<span class=\"poetry-page-editing-property\" form-id=\"{form.Id}\" property-name=\"{metaData.PropertyName}\" object-id=\"{ObjectIdentifier.GetId(instance)}\">" +
                 contents +
                 "</span>";
         }
