@@ -9,26 +9,17 @@ namespace Poetry.UI.FormSupport
     public class FormCreator : IFormCreator
     {
         IFormFieldCreator FormFieldCreator { get; }
-        IFormTypeProvider FormTypeProvider { get; }
 
-        public FormCreator(IFormFieldCreator formFieldCreator, IFormTypeProvider formTypeProvider)
+        public FormCreator(IFormFieldCreator formFieldCreator)
         {
             FormFieldCreator = formFieldCreator;
-            FormTypeProvider = formTypeProvider;
         }
 
-        public IEnumerable<Form> Create()
+        public Form Create(Type type)
         {
-            var result = new List<Form>();
+            var attribute = type.GetCustomAttribute<FormAttribute>();
 
-            foreach(var type in FormTypeProvider.GetTypes())
-            {
-                var attribute = type.GetCustomAttribute<FormAttribute>();
-
-                result.Add(new Form(attribute.Id, type, FormFieldCreator.Create(type)));
-            }
-
-            return result;
+            return new Form(attribute.Id, type, FormFieldCreator.Create(type));
         }
     }
 }
