@@ -21,7 +21,11 @@ class WindowMessageManager {
     }
 
     on(name, callback) {
-        this.callbacks[name] = function (event) {
+        if (!this.callbacks[name]) {
+            this.callbacks[name] = [];
+        }
+
+        var func = function (event) {
             if (event.data.indexOf(name) == -1) {
                 return;
             }
@@ -35,11 +39,18 @@ class WindowMessageManager {
             callback(data.data);
         };
 
-        window.addEventListener('message', this.callbacks[name], false);
+        this.callbacks[name].push({
+            func,
+            callback,
+        });
+
+        window.addEventListener('message', func, false);
     }
 
     off(name, callback) {
-        window.removeEventListener('message', this.callbacks[name], false);
-        delete this.callbacks[name];
+        var item = this.callbacks[name].find(i => i.callback === callback);
+        
+        window.removeEventListener('message', item.func, false);
+        this.callbacks[name].splice(this.callbacks[name].indexOf(item), 1);
     }
 }
