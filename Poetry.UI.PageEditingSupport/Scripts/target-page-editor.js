@@ -192,15 +192,17 @@ if (document.readyState != 'loading') {
 function updateDocumentHeight() {
     var messageManager = new WindowMessageManager();
 
-    var update = throttle(() => {
-        messageManager.send('updateDocumentHeight', { documentHeight: document.documentElement.scrollHeight });
-
-        setTimeout(update, 1000);
-    });
-
-    update();
+    var update = throttle(() => messageManager.send('updateDocumentHeight', { documentHeight: document.documentElement.scrollHeight }));
 
     window.addEventListener('resize', update, true);
+
+    var updateTimeout = () => {
+        update();
+
+        setTimeout(updateTimeout, 1000);
+    };
+
+    updateTimeout();
 }
 
 if (document.readyState != 'loading') {
