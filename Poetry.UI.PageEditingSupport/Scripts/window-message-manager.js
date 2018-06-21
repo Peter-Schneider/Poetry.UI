@@ -26,4 +26,9 @@ class WindowMessageManager {
 
         window.addEventListener('message', this.callbacks[name], false);
     }
+
+    off(name, callback) {
+        window.removeEventListener('message', this.callbacks[name], false);
+        delete this.callbacks[name];
+    }
 }
