@@ -15,8 +15,7 @@ namespace Poetry.UI.AspNet.PageEditingSupport
     public static class HtmlHelperExtensions
     {
         static IModeProvider ModeProvider { get; set; }
-        static IPropertyExpressionMetaDataProvider PropertyExpressionMetaDataProvider { get; set; }
-        static IObjectIdentifier ObjectIdentifier { get; set; }
+        static IPropertyForHtmlGenerator PropertyForHtmlGenerator { get; set; }
 
         public static MvcHtmlString PropertyFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression)
         {
@@ -32,19 +31,12 @@ namespace Poetry.UI.AspNet.PageEditingSupport
                 return result;
             }
 
-            if (ObjectIdentifier == null)
+            if (PropertyForHtmlGenerator == null)
             {
-                ObjectIdentifier = DependencyResolver.Current.GetService<IObjectIdentifier>();
+                PropertyForHtmlGenerator = DependencyResolver.Current.GetService<IPropertyForHtmlGenerator>();
             }
 
-            if (PropertyExpressionMetaDataProvider == null)
-            {
-                PropertyExpressionMetaDataProvider = DependencyResolver.Current.GetService<IPropertyExpressionMetaDataProvider>();
-            }
-
-            var metaData = PropertyExpressionMetaDataProvider.GetFor(expression);
-
-            return MvcHtmlString.Create($"<span class=\"poetry-page-editing-property\" property-name=\"{metaData.PropertyName}\" object-id=\"{ObjectIdentifier.GetId(metaData.OwnerObject ?? html.ViewData.Model)}\">{result}</span>");
+            return new MvcHtmlString(PropertyForHtmlGenerator.GenerateHtml(html.ViewData.Model, expression, result.ToString()));
         }
 
         static IBasePathProvider BasePathProvider { get; set; }

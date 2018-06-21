@@ -4,16 +4,17 @@ using Poetry.UI.PageEditingSupport;
 using Poetry.UI.RoutingSupport;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace Poetry.UI.AspNetCore.PageEditingSupport
 {
     public static class HtmlHelperExtensions
     {
         static IModeProvider ModeProvider { get; set; }
-        static IPropertyExpressionMetaDataProvider PropertyExpressionMetaDataProvider { get; set; }
-        static IObjectIdentifier ObjectIdentifier { get; set; }
+        static IPropertyForHtmlGenerator PropertyForHtmlGenerator { get; set; }
 
         public static IHtmlContent PropertyFor<TModel, TValue>(this IHtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression)
         {
@@ -29,25 +30,20 @@ namespace Poetry.UI.AspNetCore.PageEditingSupport
                 return result;
             }
 
-            if (ObjectIdentifier == null)
+            if (PropertyForHtmlGenerator == null)
             {
-                ObjectIdentifier = (IObjectIdentifier)html.ViewContext.HttpContext.RequestServices.GetService(typeof(IObjectIdentifier));
+                PropertyForHtmlGenerator = (IPropertyForHtmlGenerator)html.ViewContext.HttpContext.RequestServices.GetService(typeof(IPropertyForHtmlGenerator));
             }
 
-            if (PropertyExpressionMetaDataProvider == null)
+            string resultString;
+
+            using (var writer = new StringWriter())
             {
-                PropertyExpressionMetaDataProvider = (IPropertyExpressionMetaDataProvider)html.ViewContext.HttpContext.RequestServices.GetService(typeof(IPropertyExpressionMetaDataProvider));
+                result.WriteTo(writer, HtmlEncoder.Default);
+                resultString = writer.ToString();
             }
 
-            var metaData = PropertyExpressionMetaDataProvider.GetFor(expression);
-
-            var listHtml = new HtmlContentBuilder();
-
-            listHtml.AppendHtml($"<span class=\"poetry-page-editing-property\" property-name=\"{metaData.PropertyName}\" object-id=\"{ObjectIdentifier.GetId(metaData.OwnerObject ?? html.ViewData.Model)}\">");
-            listHtml.AppendHtml(result);
-            listHtml.AppendHtml("</span>");
-
-            return listHtml;
+            return new HtmlString(PropertyForHtmlGenerator.GenerateHtml(html.ViewData.Model, expression, resultString));
         }
 
         static IBasePathProvider BasePathProvider { get; set; }

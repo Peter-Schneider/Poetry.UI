@@ -13,6 +13,7 @@ namespace Poetry.UI.PageEditingSupport
             container.RegisterSingleton<IObjectIdentifier, ObjectIdentifier>();
             container.RegisterSingleton<IPropertyExpressionMetaDataProvider, PropertyExpressionMetaDataProvider>();
             container.RegisterSingleton<IPathPrefixProvider, PathPrefixProvider>();
+            container.RegisterSingleton<IPropertyForHtmlGenerator, PropertyForHtmlGenerator>();
         }
     }
 }
