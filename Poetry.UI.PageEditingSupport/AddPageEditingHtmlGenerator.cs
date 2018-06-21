@@ -16,7 +16,8 @@ namespace Poetry.UI.PageEditingSupport
 
         public string GenerateHtml()
         {
-            return 
+            return
+                $"<link rel=\"stylesheet\" type=\"text/css\" href=\"/{BasePathProvider.BasePath}/PageEditing/Styles/target-page-editor.css\" />" +
                 $"<script src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/window-message-manager.js?target-page\"></script>" +
                 $"<script src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/target-page-editor.js\"></script>";
         }

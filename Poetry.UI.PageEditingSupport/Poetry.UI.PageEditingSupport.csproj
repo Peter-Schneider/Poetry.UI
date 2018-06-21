@@ -24,6 +24,14 @@
       <DependentUpon>page-editor.css</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\target-page-editor.js" />
+    <None Remove="Styles\target-page-editor.css" />
+    <EmbeddedResource Include="Styles\target-page-editor.css">
+      <DependentUpon>target-page-editor.scss</DependentUpon>
+    </EmbeddedResource>
+    <None Remove="Styles\target-page-editor.min.css" />
+    <EmbeddedResource Include="Styles\target-page-editor.min.css">
+      <DependentUpon>target-page-editor.css</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

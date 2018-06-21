@@ -2,5 +2,9 @@
   {
     "outputFile": "Styles/page-editor.css",
     "inputFile": "Styles/page-editor.scss"
+  },
+  {
+    "outputFile": "Styles/target-page-editor.css",
+    "inputFile": "Styles/target-page-editor.scss"
   }
 ]
