@@ -9,6 +9,15 @@ class WindowMessageManager {
         this.callbacks = {};
     }
 
+    send(name, data) {
+        var message = JSON.stringify({
+            action: name,
+            data: data,
+        });
+
+        parent.postMessage(message, '*');
+    }
+
     on(name, callback) {
         this.callbacks[name] = function (event) {
             if (event.data.indexOf(name) == -1) {
@@ -21,7 +30,7 @@ class WindowMessageManager {
                 return;
             }
 
-            callback(data);
+            callback(data.data);
         };
 
         window.addEventListener('message', this.callbacks[name], false);

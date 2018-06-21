@@ -21,6 +21,8 @@ function getProperty(element) {
 /* HOVER EVENT LISTENER */
 
 function addHoverEventListeners() {
+    var messageManager = new WindowMessageManager();
+
     document.body.addEventListener('mouseover', function (event) {
         var target = event.target;
 
@@ -32,13 +34,10 @@ function addHoverEventListeners() {
             return;
         }
 
-        var message = JSON.stringify({
-            action: 'mouseOverProperty',
-            name: target.getAttribute('property-name'),
-            contentId: target.getAttribute('content-id')
-        });
+        var name = target.getAttribute('property-name');
+        var contentId = target.getAttribute('content-id');
 
-        parent.postMessage(message, '*');
+        messageManager.send('mouseOverProperty', { name, contentId });
     });
 
     document.body.addEventListener('mouseout', function (event) {
@@ -52,13 +51,10 @@ function addHoverEventListeners() {
             return;
         }
 
-        var message = JSON.stringify({
-            action: 'mouseOutProperty',
-            name: target.getAttribute('property-name'),
-            contentId: target.getAttribute('content-id')
-        });
+        var name = target.getAttribute('property-name');
+        var contentId = target.getAttribute('content-id');
 
-        parent.postMessage(message, '*');
+        messageManager.send('mouseOutProperty', { name, contentId });
     });
 };
 
@@ -72,16 +68,20 @@ if (document.readyState != 'loading') {
 
 /* UPDATE PROPERTY CONTAINERS */
 
-var updatePropertyContainers = throttle(function () {
-    var properties = [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty);
+function updatePropertyContainers() {
+    var messageManager = new WindowMessageManager();
 
-    var message = JSON.stringify({
-        action: 'updatePropertyContainers',
-        properties: properties
+    var update = throttle(() => {
+        var properties = [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty);
+
+        messageManager.send('updatePropertyContainers', { properties: properties });
     });
 
-    parent.postMessage(message, '*');
-});
+    update();
+
+    window.addEventListener('resize', update, true);
+}
+
 
 if (document.readyState != 'loading') {
     updatePropertyContainers();
@@ -89,30 +89,29 @@ if (document.readyState != 'loading') {
     document.addEventListener("DOMContentLoaded", updatePropertyContainers);
 }
 
-window.addEventListener('resize', updatePropertyContainers, true);
-
 
 
 /* UPDATE DOCUMENT HEIGHT */
 
-var updateDocumentHeight = throttle(function () {
-    var message = JSON.stringify({
-        action: 'updateDocumentHeight',
-        documentHeight: Math.max(document.documentElement.scrollHeight)
+function updateDocumentHeight() {
+    var messageManager = new WindowMessageManager();
+
+    var update = throttle(() => {
+        messageManager.send('updateDocumentHeight', { documentHeight: document.documentElement.scrollHeight });
+
+        setTimeout(update, 1000);
     });
 
-    parent.postMessage(message, '*');
+    update();
 
-    setTimeout(updateDocumentHeight, 1000);
-});
+    window.addEventListener('resize', update, true);
+}
 
 if (document.readyState != 'loading') {
     updateDocumentHeight();
 } else {
     document.addEventListener("DOMContentLoaded", updateDocumentHeight);
 }
-
-window.addEventListener('resize', updateDocumentHeight, true);
 
 
 
