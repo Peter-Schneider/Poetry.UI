@@ -12,7 +12,7 @@ namespace Website.ProductSupport
         {
             new Product
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "86707008-dfa4-4c04-bf43-e7260236eead",
                 ArticleNo = "10000-5",
                 Name = "Electric scooter",
                 CategoryId = "cade3bee-4165-40c5-89ed-6a1622642009",
@@ -21,7 +21,7 @@ namespace Website.ProductSupport
             },
             new Product
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "9552bad3-fc48-4cfe-9dca-e6a50fefe946",
                 ArticleNo = "10000-6",
                 Name = "Scoo' with GPS tracking",
                 CategoryId = "cade3bee-4165-40c5-89ed-6a1622642009",
