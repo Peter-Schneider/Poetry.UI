@@ -167,15 +167,17 @@ if (document.readyState != 'loading') {
 function updatePropertyContainers() {
     var messageManager = new WindowMessageManager();
 
-    var update = throttle(() => {
-        var properties = [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty);
-
-        messageManager.send('updatePropertyContainers', { properties: properties });
-    });
-
-    update();
+    var update = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty) }));
 
     window.addEventListener('resize', update, true);
+
+    var updateTimeout = () => {
+        update();
+
+        setTimeout(updateTimeout, 1000);
+    };
+
+    updateTimeout();
 }
 
 
