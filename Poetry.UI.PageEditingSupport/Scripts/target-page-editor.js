@@ -12,10 +12,12 @@ propertyEditorTypes['string'] = {
 
         element.classList.add('poetry-page-editing-property-editor');
 
-        var update = throttle(() => {
+        var update = () => {
             element.style.height = '';
             element.style.height = element.scrollHeight + 'px';
-        });
+
+            set(element.value);
+        };
 
         get()
             .then(value => {
@@ -26,8 +28,8 @@ propertyEditorTypes['string'] = {
                 update();
             });
 
-        element.addEventListener('change', () => set(element.value));
-        element.addEventListener('keyup', () => set(element.value));
+        element.addEventListener('change', update);
+        element.addEventListener('keyup', update);
 
         return element;
     }
@@ -78,8 +80,13 @@ function initEditors() {
 
         var name = element.getAttribute('property-name');
 
+        var sync = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty) }));
+
         var get = () => propertyGetter.getValue(name);
-        var set = value => messageManager.send('setPropertyValue', { name, value });
+        var set = value => {
+            messageManager.send('setPropertyValue', { name, value });
+            sync();
+        };
 
         var editor = editorType.createControl(get, set);
 
