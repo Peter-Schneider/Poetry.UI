@@ -19,7 +19,7 @@ context-menu-button {
     cursor: pointer;
 
     &.active {
-        background-image: url("data:image/svg+xml,%3Csvg height='10' width='10' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E  %3Cpath d='M0 4h2v2h-2z M4 4h2v2h-2z M8 4h2v2h-2z' fill='%230058ad'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg height='10' width='10' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E  %3Cpath d='M0 4h2v2h-2z M4 4h2v2h-2z M8 4h2v2h-2z' fill='%23bbbbbb'/%3E%3C/svg%3E");
     }
 }
 
@@ -30,8 +30,8 @@ context-menu {
     top: 100%;
     left: 0;
     display: block;
-    border: solid 2px #0058ad;
-    background: #f1f1f1;
+    border: solid 2px #bbb;
+    background: #ffffff;
     box-shadow: 0 0 0 2px white;
 
     &.context-menu-right {
@@ -66,7 +66,7 @@ context-menu {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 10px solid #0058ad;
+    border-bottom: 10px solid #bbb;
 }
 
 .context-menu-arrow-2 {
@@ -79,7 +79,7 @@ context-menu {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 10px solid #f1f1f1;
+    border-bottom: 10px solid #ffffff;
 }
 
 context-menu-item {
@@ -90,10 +90,10 @@ context-menu-item {
     cursor: pointer;
 
     &:hover {
-        background: darken(#f1f1f1, 5%);
+        background: #f1f1f1;
     }
 
     & + & {
-        border-top: solid 1px darken(#f1f1f1, 5%);
+        border-top: #eee;
     }
 }

@@ -13,7 +13,7 @@ context-menu-button {
   vertical-align: top;
   cursor: pointer; }
   context-menu-button.active {
-    background-image: url("data:image/svg+xml,%3Csvg height='10' width='10' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E  %3Cpath d='M0 4h2v2h-2z M4 4h2v2h-2z M8 4h2v2h-2z' fill='%230058ad'/%3E%3C/svg%3E"); }
+    background-image: url("data:image/svg+xml,%3Csvg height='10' width='10' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E  %3Cpath d='M0 4h2v2h-2z M4 4h2v2h-2z M8 4h2v2h-2z' fill='%23bbbbbb'/%3E%3C/svg%3E"); }
 
 context-menu {
   margin-top: 8px;
@@ -22,8 +22,8 @@ context-menu {
   top: 100%;
   left: 0;
   display: block;
-  border: solid 2px #0058ad;
-  background: #f1f1f1;
+  border: solid 2px #bbb;
+  background: #ffffff;
   box-shadow: 0 0 0 2px white; }
   context-menu.context-menu-right {
     margin-left: 0;
@@ -52,7 +52,7 @@ context-menu {
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 10px solid #0058ad; }
+  border-bottom: 10px solid #bbb; }
 
 .context-menu-arrow-2 {
   position: absolute;
@@ -64,7 +64,7 @@ context-menu {
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 10px solid #f1f1f1; }
+  border-bottom: 10px solid #ffffff; }
 
 context-menu-item {
   display: block;
@@ -73,7 +73,7 @@ context-menu-item {
   white-space: nowrap;
   cursor: pointer; }
   context-menu-item:hover {
-    background: #e4e4e4; }
+    background: #f1f1f1; }
   context-menu-item + context-menu-item {
-    border-top: solid 1px #e4e4e4; }
+    border-top: #eee; }
 
