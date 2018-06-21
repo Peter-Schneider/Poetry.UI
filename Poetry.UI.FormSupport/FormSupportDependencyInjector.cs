@@ -14,7 +14,6 @@ namespace Poetry.UI.FormSupport
             container.RegisterSingleton<IFormTypeProvider, FormTypeProvider>();
             container.RegisterSingleton<IFormFieldCreator, FormFieldCreator>();
             container.RegisterSingleton<IFormCreator, FormCreator>();
-            container.RegisterSingleton<IFormFieldProvider, FormFieldProvider>();
         }
     }
 }

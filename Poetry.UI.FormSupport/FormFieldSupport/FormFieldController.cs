@@ -1,6 +1,7 @@
 ﻿using Poetry.UI.ControllerSupport;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Poetry.UI.FormSupport.FormFieldSupport
@@ -8,17 +9,24 @@ namespace Poetry.UI.FormSupport.FormFieldSupport
     [Controller("Field")]
     public class FormFieldController
     {
-        IFormFieldProvider FormFieldProvider { get; }
+        IFormProvider FormProvider { get; }
 
-        public FormFieldController(IFormFieldProvider formFieldProvider)
+        public FormFieldController(IFormProvider formFieldProvider)
         {
-            FormFieldProvider = formFieldProvider;
+            FormProvider = formFieldProvider;
         }
 
         [Action("GetAllForForm")]
         public IEnumerable<FormField> GetAllForForm(string id)
         {
-            return FormFieldProvider.GetAllFor(id);
+            var form = FormProvider.GetAll().SingleOrDefault(f => f.Id == id);
+
+            if(form == null)
+            {
+                return null;
+            }
+
+            return form.Fields;
         }
     }
 }
