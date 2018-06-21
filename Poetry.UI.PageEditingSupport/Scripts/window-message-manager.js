@@ -10,10 +10,10 @@ class WindowMessageManager {
     }
 
     send(name, data) {
-        var message = JSON.stringify({
+        var message = {
             action: name,
             data: data,
-        });
+        };
 
         var frame = this.element && this.element.contentWindow ? this.element.contentWindow : parent;
 
@@ -26,11 +26,7 @@ class WindowMessageManager {
         }
 
         var func = function (event) {
-            if (event.data.indexOf(name) == -1) {
-                return;
-            }
-
-            var data = JSON.parse(event.data);
+            var data = event.data;
 
             if (data.action != name) {
                 return;
