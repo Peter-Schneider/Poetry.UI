@@ -96,7 +96,6 @@ namespace Poetry.UI.AspNetCore
             new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);
             new EmbeddedResourceSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new RoutingSupportDependencyInjector().InjectDependencies(poetryContainer);
             new AppSupportDependencyInjector().InjectDependencies(poetryContainer);
 
             var serviceProvider = ServiceCollection.BuildServiceProvider();

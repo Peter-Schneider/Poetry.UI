@@ -102,7 +102,6 @@ namespace Poetry.UI
             new DependencyInjectionSupportDependencyInjector().InjectDependencies(poetryContainer);
             new ControllerSupportDependencyInjector().InjectDependencies(poetryContainer);
             new EmbeddedResourceSupportDependencyInjector().InjectDependencies(poetryContainer);
-            new RoutingSupportDependencyInjector().InjectDependencies(poetryContainer);
             new AppSupportDependencyInjector().InjectDependencies(poetryContainer);
 
             foreach(var injector in Container.Resolve<IDependencyInjectorProvider>().GetAll())

@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.ControllerSupport\Poetry.UI.ControllerSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ReflectionSupport\Poetry.UI.ReflectionSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />
   </ItemGroup>
 
 </Project>
