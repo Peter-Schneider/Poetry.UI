@@ -17,7 +17,7 @@ namespace Poetry.UI.FormSupport.Tests
 
             var formCreator = Mock.Of<IFormCreator>();
 
-            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { new Form(key, value) });
+            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { new Form(key, typeof(object), value) });
 
             var result = new FormFieldProvider(formCreator).GetAllFor(key);
 

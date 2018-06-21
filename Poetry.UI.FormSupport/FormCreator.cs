@@ -25,7 +25,7 @@ namespace Poetry.UI.FormSupport
             {
                 var attribute = type.GetCustomAttribute<FormAttribute>();
 
-                result.Add(new Form(attribute.Id, FormFieldCreator.Create(type)));
+                result.Add(new Form(attribute.Id, type, FormFieldCreator.Create(type)));
             }
 
             return result;
