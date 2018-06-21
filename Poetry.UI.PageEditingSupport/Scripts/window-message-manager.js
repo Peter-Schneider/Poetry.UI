@@ -15,7 +15,9 @@ class WindowMessageManager {
             data: data,
         });
 
-        parent.postMessage(message, '*');
+        var frame = this.element && this.element.contentWindow ? this.element.contentWindow : parent;
+
+        frame.postMessage(message, '*');
     }
 
     on(name, callback) {
