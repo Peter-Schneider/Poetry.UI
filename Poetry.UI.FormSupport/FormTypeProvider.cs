@@ -16,7 +16,7 @@ namespace Poetry.UI.FormSupport
             Assemblies = assemblyProvider.GetAll().ToList().AsReadOnly();
         }
 
-        public IEnumerable<Type> GetTypes()
+        public IEnumerable<Type> GetAll()
         {
             return Assemblies.SelectMany(a => a.Types).Where(t => t.GetCustomAttribute<FormAttribute>() != null);
         }

@@ -5,6 +5,6 @@ namespace Poetry.UI.FormSupport
 {
     public interface IFormTypeProvider
     {
-        IEnumerable<Type> GetTypes();
+        IEnumerable<Type> GetAll();
     }
 }

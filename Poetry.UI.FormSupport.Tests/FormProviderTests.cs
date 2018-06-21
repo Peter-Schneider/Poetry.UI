@@ -15,7 +15,7 @@ namespace Poetry.UI.FormSupport.Tests
         {
             var formTypeProvider = Mock.Of<IFormTypeProvider>();
 
-            Mock.Get(formTypeProvider).Setup(p => p.GetTypes()).Returns(new List<Type> { typeof(object) });
+            Mock.Get(formTypeProvider).Setup(p => p.GetAll()).Returns(new List<Type> { typeof(object) });
 
             var form = new Form("lorem-ipsum", typeof(object), Enumerable.Empty<FormField>());
 

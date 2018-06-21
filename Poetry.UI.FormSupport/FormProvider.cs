@@ -13,7 +13,7 @@ namespace Poetry.UI.FormSupport
         {
             var forms = new Dictionary<Type, Form>();
 
-            foreach(var type in formTypeProvider.GetTypes())
+            foreach(var type in formTypeProvider.GetAll())
             {
                 forms[type] = formCreator.Create(type);
             }
