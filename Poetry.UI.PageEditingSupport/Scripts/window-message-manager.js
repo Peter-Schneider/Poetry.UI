@@ -26,6 +26,10 @@ class WindowMessageManager {
         }
 
         var func = function (event) {
+            if (!event.data) {
+                return;
+            }
+
             var data = event.data;
 
             if (data.action != name) {
