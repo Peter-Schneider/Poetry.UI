@@ -1,6 +1,102 @@
 ﻿
 
 
+/* PROPERTY EDITOR TYPES */
+
+var propertyEditorTypes = {};
+
+propertyEditorTypes['string'] = {
+    type: 'string',
+    createControl: function (get, set) {
+        var element = document.createElement('textarea');
+
+        element.classList.add('poetry-page-editing-property-editor');
+
+        var update = throttle(() => {
+            element.style.height = '';
+            element.style.height = element.scrollHeight + 'px';
+        });
+
+        get()
+            .then(value => {
+                if (typeof value != 'undefined' && typeof value != 'null') {
+                    element.value = value;
+                }
+
+                update();
+            });
+
+        element.addEventListener('change', () => set(element.value));
+        element.addEventListener('keyup', () => set(element.value));
+
+        return element;
+    }
+};
+
+
+
+/* PROPERTY GETTER */
+
+class PropertyGetter {
+    constructor() {
+        this.messageManager = new WindowMessageManager();
+    }
+
+    getValue(name) {
+        return new Promise(resolve => {
+            var uid = Math.random().toString(36).substr(2);
+
+            var callback = data => {
+                if (data.uid != uid) {
+                    return;
+                }
+
+                resolve(data.value);
+                this.messageManager.off('getPropertyValueCallback', callback);
+            };
+
+            this.messageManager.on('getPropertyValueCallback', callback);
+            this.messageManager.send('getPropertyValue', { uid, name });
+        });
+    }
+}
+
+
+
+/* INIT EDITORS */
+
+function initEditors() {
+    var messageManager = new WindowMessageManager();
+    var propertyGetter = new PropertyGetter();
+
+    [...document.querySelectorAll('.poetry-page-editing-property')].forEach(element => {
+        var editorType = propertyEditorTypes[element.getAttribute('field-type')];
+
+        if (!editorType) {
+            return;
+        }
+
+        var name = element.getAttribute('property-name');
+
+        var get = () => propertyGetter.getValue(name);
+        var set = value => messageManager.send('setPropertyValue', { name, value });
+
+        var editor = editorType.createControl(get, set);
+
+        [...element.childNodes].forEach(c => element.removeChild(c));
+
+        element.appendChild(editor);
+    });
+}
+
+if (document.readyState != 'loading') {
+    initEditors();
+} else {
+    document.addEventListener("DOMContentLoaded", initEditors);
+}
+
+
+
 /* GET PROPERTY */
 
 function getProperty(element) {

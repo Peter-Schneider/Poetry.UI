@@ -19,8 +19,10 @@ class PageEditor {
 
         this.containers = {};
 
-        var message = new WindowMessageManager(this.element);
+        var message = new WindowMessageManager(this.frame);
 
+        message.on('getPropertyValue', data => message.send('getPropertyValueCallback', { uid: data.uid, value: model[data.name] }));
+        message.on('setPropertyValue', data => model[data.name] = data.value);
         message.on('updateDocumentHeight', data => this.frame.style.height = data.documentHeight + 'px');
         message.on('updatePropertyContainers',
             data =>
