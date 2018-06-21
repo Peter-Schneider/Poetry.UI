@@ -46,7 +46,7 @@ namespace Poetry.UI.AspNetCore.PageEditingSupport
             return new HtmlString(PropertyForHtmlGenerator.GenerateHtml(html.ViewData.Model, expression, resultString));
         }
 
-        static IBasePathProvider BasePathProvider { get; set; }
+        static IAddPageEditingHtmlGenerator AddPageEditingHtmlGenerator { get; set; }
 
         public static IHtmlContent AddPageEditing(this IHtmlHelper html)
         {
@@ -60,12 +60,12 @@ namespace Poetry.UI.AspNetCore.PageEditingSupport
                 return null;
             }
 
-            if (BasePathProvider == null)
+            if (AddPageEditingHtmlGenerator == null)
             {
-                BasePathProvider = (IBasePathProvider)html.ViewContext.HttpContext.RequestServices.GetService(typeof(IBasePathProvider));
+                AddPageEditingHtmlGenerator = (IAddPageEditingHtmlGenerator)html.ViewContext.HttpContext.RequestServices.GetService(typeof(IAddPageEditingHtmlGenerator));
             }
 
-            return new HtmlString($"<script src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/target-page-editor.js\" async></script>");
+            return new HtmlString(AddPageEditingHtmlGenerator.GenerateHtml());
         }
     }
 }
