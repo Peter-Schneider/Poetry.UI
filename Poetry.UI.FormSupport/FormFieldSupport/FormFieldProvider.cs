@@ -10,9 +10,9 @@ namespace Poetry.UI.FormSupport.FormFieldSupport
     {
         IDictionary<string, IEnumerable<FormField>> FormFieldsByFormId { get; }
 
-        public FormFieldProvider(IFormTypeProvider formTypeProvider, IFormCreator formCreator)
+        public FormFieldProvider(IFormProvider formProvider)
         {
-            FormFieldsByFormId = new ReadOnlyDictionary<string, IEnumerable<FormField>>(formTypeProvider.GetTypes().Select(t => formCreator.Create(t)).ToDictionary(f => f.Id, f => f.Fields));
+            FormFieldsByFormId = new ReadOnlyDictionary<string, IEnumerable<FormField>>(formProvider.GetAll().ToDictionary(f => f.Id, f => f.Fields));
         }
 
         public IEnumerable<FormField> GetAllFor(string formId)

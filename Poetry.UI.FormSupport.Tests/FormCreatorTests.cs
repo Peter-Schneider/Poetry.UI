@@ -11,16 +11,12 @@ namespace Poetry.UI.FormSupport.Tests
     public class FormCreatorTests
     {
         [Fact]
-        public void CreatesForms()
+        public void CreatesForm()
         {
-            var formTypeProvider = Mock.Of<IFormTypeProvider>();
+            var result = new FormCreator(Mock.Of<IFormFieldCreator>()).Create(typeof(MyForm));
 
-            Mock.Get(formTypeProvider).Setup(p => p.GetTypes()).Returns(new List<Type> { typeof(MyForm) });
-
-            var result = new FormCreator(Mock.Of<IFormFieldCreator>(), formTypeProvider).Create();
-
-            Assert.Single(result);
-            Assert.Equal("lorem-ipsum", result.Single().Id);
+            Assert.Equal("lorem-ipsum", result.Id);
+            Assert.Equal(typeof(MyForm), result.Type);
         }
     }
 }

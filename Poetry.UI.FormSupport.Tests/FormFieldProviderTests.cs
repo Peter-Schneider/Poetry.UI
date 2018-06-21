@@ -15,11 +15,11 @@ namespace Poetry.UI.FormSupport.Tests
             var key = "lorem-ipsum";
             var value = Enumerable.Empty<FormField>();
 
-            var formCreator = Mock.Of<IFormCreator>();
+            var formProvider = Mock.Of<IFormProvider>();
 
-            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { new Form(key, typeof(object), value) });
+            Mock.Get(formProvider).Setup(c => c.GetAll()).Returns(new List<Form> { new Form(key, typeof(object), value) });
 
-            var result = new FormFieldProvider(formCreator).GetAllFor(key);
+            var result = new FormFieldProvider(formProvider).GetAllFor(key);
 
             Assert.Equal(value, result);
         }
@@ -27,11 +27,11 @@ namespace Poetry.UI.FormSupport.Tests
         [Fact]
         public void ReturnsNullIfMissing()
         {
-            var formCreator = Mock.Of<IFormCreator>();
+            var formProvider = Mock.Of<IFormProvider>();
 
-            Mock.Get(formCreator).Setup(c => c.Create()).Returns(new List<Form> { });
+            Mock.Get(formProvider).Setup(c => c.GetAll()).Returns(new List<Form> { });
 
-            Assert.Null(new FormFieldProvider(formCreator).GetAllFor("lorem-ipsum"));
+            Assert.Null(new FormFieldProvider(formProvider).GetAllFor("lorem-ipsum"));
         }
     }
 }
