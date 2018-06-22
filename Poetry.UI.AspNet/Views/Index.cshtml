@@ -42,7 +42,7 @@
             <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
         <script>
-        translations.add('@app.Name', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
+        translations.add('@app.Id', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
         </script>
     }
 </head>
