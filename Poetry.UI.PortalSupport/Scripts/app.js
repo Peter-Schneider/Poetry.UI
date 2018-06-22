@@ -40,7 +40,7 @@ class App {
         return promise;
     }
 
-    closeBlade(blade, data) {
+    closeBlade(blade, ...parameters) {
         if (!blade) {
             throw 'No blade specified';
         }
@@ -60,7 +60,7 @@ class App {
                 this.blades.splice(this.blades.indexOf(b), 1);
 
                 if (i == array.length - 1) {
-                    b.triggerOnClose(data);
+                    b.triggerOnClose(...parameters);
                     done();
                 } else {
                     b.triggerOnClose();

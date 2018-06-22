@@ -62,11 +62,11 @@ class Blade {
         return this;
     }
 
-    triggerOnClose(data) {
+    triggerOnClose(...parameters) {
         if (!this.onCloseCallback) {
             return;
         }
 
-        this.onCloseCallback(data);
+        this.onCloseCallback(...parameters);
     }
 }
