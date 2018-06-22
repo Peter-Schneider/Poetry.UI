@@ -11,15 +11,15 @@ namespace Poetry.UI.AppSupport
 {
     public class App
     {
-        public string Name { get; }
+        public string Id { get; }
         public AssemblyWrapper Assembly { get; }
         public IEnumerable<Script> Scripts { get; }
         public IEnumerable<Style> Styles { get; }
         public ITranslationRepository Translations { get; }
 
-        public App(string name, AssemblyWrapper assembly, IEnumerable<Script> scripts, IEnumerable<Style> styles, ITranslationRepository translations)
+        public App(string id, AssemblyWrapper assembly, IEnumerable<Script> scripts, IEnumerable<Style> styles, ITranslationRepository translations)
         {
-            Name = name;
+            Id = id;
             Assembly = assembly;
             Scripts = scripts.ToList().AsReadOnly();
             Styles = styles.ToList().AsReadOnly();

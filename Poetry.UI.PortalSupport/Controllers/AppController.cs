@@ -20,7 +20,7 @@ namespace Poetry.UI.PortalSupport.Controllers
         [Action("GetNames")]
         public Dictionary<string, string> GetNames()
         {
-            return AppRepository.GetAll().ToDictionary(app => app.Name, app => app.Translations.Get("name", "en") ?? app.Name);
+            return AppRepository.GetAll().ToDictionary(app => app.Id, app => app.Translations.Get("name", "en") ?? app.Id);
         }
     }
 }
