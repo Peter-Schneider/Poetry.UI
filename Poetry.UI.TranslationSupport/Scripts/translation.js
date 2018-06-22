@@ -20,14 +20,12 @@ class Translation {
         var target = translations;
 
         for (var i = this.scope ? 0 : 1; i < segments.length; i++) {
-            if (!target) {
-                return;
+            if (target) {
+                target = target[segments[i]];
             }
-
-            target = target[segments[i]];
         }
 
-        return target;
+        return target || path;
     }
 
     scopeTo(scope) {
