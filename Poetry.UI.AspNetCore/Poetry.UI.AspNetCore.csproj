@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poetry.UI.AppSupport\Poetry.UI.AppSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.BladeSupport\Poetry.UI.BladeSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.ContextMenuSupport\Poetry.UI.ContextMenuSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.DataTableSupport\Poetry.UI.DataTableSupport.csproj" />

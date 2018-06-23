@@ -155,6 +155,10 @@
       <Project>{d3a76a0c-5985-4480-b229-cb84fad94c68}</Project>
       <Name>Poetry.UI.AppSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.BladeSupport\Poetry.UI.BladeSupport.csproj">
+      <Project>{EC4DB17D-FB6E-4B7F-85D4-3121872732C9}</Project>
+      <Name>Poetry.UI.BladeSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj">
       <Project>{1C6120F8-E239-4F58-A292-618825632345}</Project>
       <Name>Poetry.UI.ComponentSupport</Name>

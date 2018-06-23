@@ -6,6 +6,7 @@ using Poetry.UI.AspNetCore.DependencyInjectionSupport;
 using Poetry.UI.AspNetCore.EmbeddedResourceSupport;
 using Poetry.UI.AspNetCore.LoggerSupport;
 using Poetry.UI.AspNetCore.PageEditingSupport;
+using Poetry.UI.BladeSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
@@ -40,6 +41,7 @@ namespace Poetry.UI.AspNetCore
             new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
             new AssemblyWrapper(typeof(TranslationComponent).Assembly),
             new AssemblyWrapper(typeof(PortalComponent).Assembly),
+            new AssemblyWrapper(typeof(BladeComponent).Assembly),
         };
         List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 
