@@ -91,3 +91,5 @@ class ContextMenuItem {
         return this;
     }
 }
+
+export default ContextMenu;

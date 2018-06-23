@@ -26,3 +26,5 @@ class FormBuilder {
         return root;
     }
 }
+
+export default FormBuilder;

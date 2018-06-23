@@ -70,3 +70,5 @@ class Blade {
         this.onCloseCallback(...parameters);
     }
 }
+
+export default Blade;

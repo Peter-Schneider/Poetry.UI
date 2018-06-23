@@ -17,3 +17,5 @@ class FormFieldProvider {
             });
     }
 }
+
+export default FormFieldProvider;

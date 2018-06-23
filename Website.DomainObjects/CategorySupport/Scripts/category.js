@@ -1,4 +1,15 @@
-﻿
+﻿import portal from '../../../Portal/Scripts/portal.js';
+import App from '../../../Portal/Scripts/app.js';
+import Blade from '../../../Portal/Scripts/blade.js';
+import translations from '../../../Translation/Scripts/translation.js';
+import BladeCloseButton from '../../../Portal/Scripts/close-button.js';
+import PortalButton from '../../../Portal/Scripts/button.js';
+import DataTable from '../../../DataTable/Scripts/data-table.js';
+import PageEditor from '../../../PageEditing/Scripts/page-editor.js';
+import FormBuilder from '../../../Form/Scripts/form-builder.js';
+import FormFieldProvider from '../../../Form/Scripts/form-field-provider.js';
+import formFieldTypes from '../../../Form/Scripts/form-field-types.js';
+
 
 
 /* APP */

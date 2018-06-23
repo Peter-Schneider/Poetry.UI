@@ -44,3 +44,5 @@ class FadeInEffect {
         this.onCompleteCallback = callback;
     }
 }
+
+export default FadeInEffect;

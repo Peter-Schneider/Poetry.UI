@@ -1,4 +1,5 @@
-﻿
+﻿import WindowMessageManager from './window-message-manager.js';
+
 
 
 /* PAGE EDITOR */
@@ -206,3 +207,5 @@ function updatePropertyContainers(properties, single) {
         propertyContainers[property.name].update(property);
     });
 }
+
+export default PageEditor;

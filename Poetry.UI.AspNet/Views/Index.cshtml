@@ -24,26 +24,27 @@
     {
         foreach (var script in component.Scripts)
         {
-            <script src="@script.Path"></script>
+    <script type="module" src="@script.Path"></script>
         }
         foreach (var style in component.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@style.Path" />
+    <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
     }
     @foreach (var app in AppRepository.GetAll())
     {
         foreach (var script in app.Scripts)
         {
-            <script src="@script.Path"></script>
+    <script type="module" src="@script.Path"></script>
         }
         foreach (var style in app.Styles)
         {
-            <link rel="stylesheet" type="text/css" href="@style.Path" />
+    <link rel="stylesheet" type="text/css" href="@style.Path" />
         }
-        <script>
+    <script type="module">
+        import translations from './Translation/Scripts/translation.js';
         translations.add('@app.Id', @Html.Raw(JsonConvert.SerializeObject(app.Translations.GetAll("en"))));
-        </script>
+    </script>
     }
 </head>
 <body>

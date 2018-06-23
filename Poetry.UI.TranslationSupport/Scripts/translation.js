@@ -33,4 +33,4 @@ class Translation {
     }
 }
 
-var translations = new Translation();
+export default new Translation();

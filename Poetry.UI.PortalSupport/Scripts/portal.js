@@ -62,4 +62,4 @@ class Portal {
     }
 }
 
-var portal = new Portal();
+export default new Portal();

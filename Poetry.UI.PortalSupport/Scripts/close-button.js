@@ -10,3 +10,5 @@ class BladeCloseButton {
         this.element.addEventListener('click', callback || (() => app.closeBlade(blade)));
     }
 }
+
+export default BladeCloseButton;

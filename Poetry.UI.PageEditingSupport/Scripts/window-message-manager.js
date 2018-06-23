@@ -54,3 +54,5 @@ class WindowMessageManager {
         this.callbacks[name].splice(this.callbacks[name].indexOf(item), 1);
     }
 }
+
+export default WindowMessageManager;

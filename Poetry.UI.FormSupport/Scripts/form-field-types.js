@@ -68,3 +68,5 @@ formFieldTypes['double'] = {
         return label;
     }
 };
+
+export default formFieldTypes;

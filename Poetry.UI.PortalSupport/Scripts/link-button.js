@@ -28,3 +28,5 @@ class PortalLinkButton {
         return this;
     }
 }
+
+export default PortalLinkButton;

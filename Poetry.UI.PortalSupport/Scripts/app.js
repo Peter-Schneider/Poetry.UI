@@ -1,4 +1,6 @@
-﻿
+﻿import FadeInEffect from './Effects/fade-in.js';
+import FadeOutEffect from './Effects/fade-out.js';
+
 
 
 /* APP */
@@ -71,3 +73,5 @@ class App {
         return promise;
     }
 }
+
+export default App;

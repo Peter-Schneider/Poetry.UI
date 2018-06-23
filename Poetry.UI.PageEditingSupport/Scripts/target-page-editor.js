@@ -1,4 +1,5 @@
-﻿
+﻿import WindowMessageManager from './window-message-manager.js';
+
 
 
 /* PROPERTY EDITOR TYPES */
@@ -224,8 +225,7 @@ if (document.readyState != 'loading') {
 
 /* THROTTLE */
 
-function throttle(fn, threshhold, scope) {
-    threshold = threshhold || 250;
+function throttle(fn, threshhold = 250, scope) {
     var last, deferTimer;
     return function () {
         var context = scope || this;

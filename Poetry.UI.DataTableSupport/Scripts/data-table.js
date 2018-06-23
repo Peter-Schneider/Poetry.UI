@@ -1,4 +1,4 @@
-﻿/// <reference path="../../Poetry.UI.PortalSupport/Scripts/button.js"/>
+﻿import PortalButton from '../../Portal/Scripts/button.js';
 
 
 
@@ -290,3 +290,5 @@ class DataTableCopyAsTabSeparated {
         return result.join('\t') + '\n';
     }
 }
+
+export default DataTable;

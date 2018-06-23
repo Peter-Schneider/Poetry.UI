@@ -18,8 +18,8 @@ namespace Poetry.UI.PageEditingSupport
         {
             return
                 $"<link rel=\"stylesheet\" type=\"text/css\" href=\"/{BasePathProvider.BasePath}/PageEditing/Styles/target-page-editor.css\" />" +
-                $"<script src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/window-message-manager.js?target-page\"></script>" +
-                $"<script src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/target-page-editor.js\"></script>";
+                $"<script type=\"module\" src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/window-message-manager.js?target-page\"></script>" +
+                $"<script type=\"module\" src=\"/{BasePathProvider.BasePath}/PageEditing/Scripts/target-page-editor.js\"></script>";
         }
     }
 }
