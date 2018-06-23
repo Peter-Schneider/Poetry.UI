@@ -43,20 +43,42 @@ td, th {
 portal {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  padding: 0;
-  margin: 0;
+  left: 0;
   background: #215b7d; }
 
 /* MAIN NAV */
+portal-nav-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: block;
+  width: 1rem;
+  height: 1.5rem;
+  padding: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  background-image: url("data:image/svg+xml,%3Csvg height='24' width='24' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' fill='%23ffffff'/%3E%3C/svg%3E");
+  cursor: pointer;
+  transition: background-color 0.2s; }
+  portal-nav-toggle:hover, portal-nav-toggle:focus, portal-nav-toggle.active {
+    background-color: rgba(255, 255, 255, 0.15); }
+  portal-nav-toggle:focus {
+    outline: none; }
+
 portal-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
   display: block;
-  background: #252525;
-  flex: 0 0 200px; }
+  width: 200px;
+  padding-top: 3.5rem;
+  background: #252525; }
 
 portal-nav-item {
   display: block;
@@ -70,34 +92,35 @@ portal-nav-item.active,
 portal-nav-item:hover {
   background: #3d3d3d; }
 
-@media (max-width: 500px) {
-  portal-nav {
-    display: none; } }
-
 /* APP */
 app {
-  flex: 1 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex; }
 
 /* VARIABLES */
 /* BLADE */
 blade {
   box-sizing: border-box;
-  flex: 0 0 25rem;
+  flex: 1 0 0;
   z-index: 1;
   display: flex;
-  flex-direction: column;
-  border-right: solid 2px #bbb; }
-  blade.blade-fullscreen {
-    flex-grow: 1;
-    border-right: none; }
+  flex-direction: column; }
 
-@media (max-width: 500px) {
+@media (max-width: 575px) {
+  blade:not(:last-child) {
+    display: none; } }
+
+@media (min-width: 576px) {
   blade {
-    flex: 1 0 0;
-    border-right: none; }
-    blade:not(:last-child) {
-      display: none; } }
+    flex: 0 0 25rem;
+    border-right: solid 2px #bbb; }
+    blade.blade-fullscreen {
+      flex-grow: 1;
+      border-right: none; } }
 
 /* TITLE */
 blade-title {
@@ -107,9 +130,13 @@ blade-title {
 
 blade-title-text {
   display: block;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 3.5rem;
   font-size: 1.1rem;
   color: white; }
+
+@media (min-width: 576px) {
+  blade:not(:first-child) blade-title-text {
+    padding-left: 1rem; } }
 
 blade-title-close {
   margin-left: auto;

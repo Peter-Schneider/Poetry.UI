@@ -1,3 +1,5 @@
+import FadeInEffect from "./Effects/fade-in.js";
+import FadeOutEffect from "./Effects/fade-out.js";
 
 
 
@@ -25,7 +27,34 @@ class Portal {
         }
 
         this.nav = document.createElement('portal-nav');
-        this.element.appendChild(this.nav);
+
+        var toggle = document.createElement('portal-nav-toggle');
+        var hideToggle = () => {
+            if (!toggle.classList.contains('active')) {
+                return;
+            }
+
+            toggle.classList.remove('active');
+
+            new FadeOutEffect(this.nav).onComplete(() => this.element.removeChild(this.nav));
+        };
+        toggle.addEventListener('click', () => {
+            if (!toggle.classList.contains('active')) {
+                toggle.classList.add('active');
+
+                this.element.appendChild(this.nav);
+
+                new FadeInEffect(this.nav);
+            } else {
+                hideToggle();
+            }
+        });
+        document.documentElement.addEventListener('click', event => {
+            if (!event.target.matches('portal-nav, portal-nav-toggle')) {
+                hideToggle();
+            }
+        });
+        this.element.appendChild(toggle);
     }
 
     addApp(app) {
