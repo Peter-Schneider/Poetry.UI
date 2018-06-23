@@ -18,6 +18,11 @@ namespace Website.ProductSupport
         {
             var category = CategoryRepository.Get(product.CategoryId);
 
+            if(category == null)
+            {
+                return null;
+            }
+
             return $"/{category.UrlSegment}/{product.ArticleNo}";
         }
     }
