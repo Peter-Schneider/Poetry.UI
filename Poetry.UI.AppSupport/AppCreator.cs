@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ComponentSupport;
 using Poetry.UI.ReflectionSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using Poetry.UI.TranslationSupport;
@@ -15,17 +16,19 @@ namespace Poetry.UI.AppSupport //
     {
         IComponentRepository ComponentRepository { get; }
         IAppTypeProvider AppTypeProvider { get; }
-        ITranslationRepositoryCreator TranslationRepositoryCreator { get; }
         IScriptCreator ScriptCreator { get; }
         IStyleCreator StyleCreator { get; }
+        IResourceCreator ResourceCreator { get; }
+        ITranslationRepositoryCreator TranslationRepositoryCreator { get; }
 
-        public AppCreator(IComponentRepository componentRepository, IAppTypeProvider appTypeProvider, ITranslationRepositoryCreator translationRepositoryCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
+        public AppCreator(IComponentRepository componentRepository, IAppTypeProvider appTypeProvider, IScriptCreator scriptCreator, IStyleCreator styleCreator, IResourceCreator resourceCreator, ITranslationRepositoryCreator translationRepositoryCreator)
         {
             ComponentRepository = componentRepository;
             AppTypeProvider = appTypeProvider;
-            TranslationRepositoryCreator = translationRepositoryCreator;
             ScriptCreator = scriptCreator;
             StyleCreator = styleCreator;
+            ResourceCreator = resourceCreator;
+            TranslationRepositoryCreator = translationRepositoryCreator;
         }
 
         public IEnumerable<App> Create()
@@ -44,6 +47,7 @@ namespace Poetry.UI.AppSupport //
                         component,
                         scripts: ScriptCreator.Create(component.Id, type),
                         styles: StyleCreator.Create(component.Id, type),
+                        resources: ResourceCreator.Create(component.Id, type),
                         translations: translations
                     );
                 }

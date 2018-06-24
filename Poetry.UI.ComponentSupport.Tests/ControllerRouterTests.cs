@@ -1,6 +1,7 @@
 using Moq;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -29,7 +30,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -53,7 +54,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("Action", null);
             var controller = new Controller("Controller", null, action);
-            var component = new Component("Component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("Component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -77,8 +78,8 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
-            var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
+            var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -102,9 +103,9 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
             var decoyController = new Controller("controller", null, new ControllerAction[0]);
-            var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { decoyController }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var decoyComponent = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { decoyController }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -128,7 +129,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -148,7 +149,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -172,7 +173,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -192,7 +193,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -212,7 +213,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
@@ -232,7 +233,7 @@ namespace Poetry.UI.RoutingSupport.Tests
 
             var action = new ControllerAction("action", null);
             var controller = new Controller("controller", null, action);
-            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("component", null, Enumerable.Empty<string>(), new List<Controller> { controller }, Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 

@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ControllerSupport;
 using Poetry.UI.ReflectionSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -23,8 +24,9 @@ namespace Poetry.UI.ComponentSupport
         public IEnumerable<Controller> Controllers { get; }
         public IEnumerable<Script> Scripts { get; }
         public IEnumerable<Style> Styles { get; }
+        public IEnumerable<Resource> Resources { get; }
 
-        public Component(string id, AssemblyWrapper assembly, IEnumerable<string> dependencies, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles)
+        public Component(string id, AssemblyWrapper assembly, IEnumerable<string> dependencies, IEnumerable<Controller> controllers, IEnumerable<Script> scripts, IEnumerable<Style> styles, IEnumerable<Resource> resources)
         {
             Id = id;
             Assembly = assembly;
@@ -32,6 +34,7 @@ namespace Poetry.UI.ComponentSupport
             Controllers = controllers.ToList().AsReadOnly();
             Scripts = scripts.ToList().AsReadOnly();
             Styles = styles.ToList().AsReadOnly();
+            Resources = resources.ToList().AsReadOnly();
         }
     }
 }

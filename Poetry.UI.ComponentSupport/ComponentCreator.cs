@@ -2,6 +2,7 @@
 using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.ReflectionSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -20,8 +21,9 @@ namespace Poetry.UI.ComponentSupport
         IComponentControllerCreator ComponentControllerCreator { get; }
         IScriptCreator ScriptCreator { get; }
         IStyleCreator StyleCreator { get; }
+        IResourceCreator ResourceCreator { get; }
 
-        public ComponentCreator(ILogger<ComponentCreator> logger, IComponentTypeProvider componentTypeProvider, IComponentDependencyCreator componentDependencyCreator, IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator)
+        public ComponentCreator(ILogger<ComponentCreator> logger, IComponentTypeProvider componentTypeProvider, IComponentDependencyCreator componentDependencyCreator, IComponentControllerCreator componentControllerCreator, IScriptCreator scriptCreator, IStyleCreator styleCreator, IResourceCreator resourceCreator)
         {
             Logger = logger;
             ComponentTypeProvider = componentTypeProvider;
@@ -29,6 +31,7 @@ namespace Poetry.UI.ComponentSupport
             ComponentControllerCreator = componentControllerCreator;
             ScriptCreator = scriptCreator;
             StyleCreator = styleCreator;
+            ResourceCreator = resourceCreator;
         }
 
         public IEnumerable<Component> Create()
@@ -44,7 +47,7 @@ namespace Poetry.UI.ComponentSupport
                     continue;
                 }
 
-                result.Add(new Component(attribute.Id, new AssemblyWrapper(type.Assembly), ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(attribute.Id, type), StyleCreator.Create(attribute.Id, type)));
+                result.Add(new Component(attribute.Id, new AssemblyWrapper(type.Assembly), ComponentDependencyCreator.Create(type), ComponentControllerCreator.Create(type), ScriptCreator.Create(attribute.Id, type), StyleCreator.Create(attribute.Id, type), ResourceCreator.Create(attribute.Id, type)));
             }
 
             if (Logger.IsEnabled(LogLevel.Information))

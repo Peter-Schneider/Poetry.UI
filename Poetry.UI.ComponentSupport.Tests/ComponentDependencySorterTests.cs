@@ -1,5 +1,6 @@
 ﻿using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -17,10 +18,10 @@ namespace Poetry.UI.ComponentSupport.Tests
         {
             var input = new List<Component>
             {
-                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("b", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
+                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("b", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
             };
 
             var expected = new List<string>
@@ -39,10 +40,10 @@ namespace Poetry.UI.ComponentSupport.Tests
         {
             var input = new List<Component>
             {
-                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("b", null, new List<string>{ "d" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
+                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("b", null, new List<string>{ "d" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
             };
 
             var expected = new List<string>
@@ -61,10 +62,10 @@ namespace Poetry.UI.ComponentSupport.Tests
         {
             var input = new List<Component>
             {
-                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("b", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("c", null, new List<string>{ "b" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
+                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("b", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("c", null, new List<string>{ "b" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
             };
 
             var expected = new List<string>
@@ -83,10 +84,10 @@ namespace Poetry.UI.ComponentSupport.Tests
         {
             var input = new List<Component>
             {
-                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("b", null, new List<string>{ "d", "c" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
+                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("b", null, new List<string>{ "d", "c" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("c", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
             };
 
             var expected = new List<string>
@@ -105,10 +106,10 @@ namespace Poetry.UI.ComponentSupport.Tests
         {
             var input = new List<Component>
             {
-                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("b", null, new List<string>{ "c" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("c", null, new List<string>{ "d" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
-                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>()),
+                new Component("a", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("b", null, new List<string>{ "c" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("c", null, new List<string>{ "d" }, Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
+                new Component("d", null, Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>()),
             };
 
             var expected = new List<string>

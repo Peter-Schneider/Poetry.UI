@@ -41,6 +41,10 @@ namespace Poetry.UI.AppSupport.EmbeddedResourceSupport
                 {
                     return EmbeddedResourceProvider.GetFile(path);
                 }
+                if (app.Resources.Any(s => s.LocalPath.Equals(localPath, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    return EmbeddedResourceProvider.GetFile(path);
+                }
             }
 
             return null;

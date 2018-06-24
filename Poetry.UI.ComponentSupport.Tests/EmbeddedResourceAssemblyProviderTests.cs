@@ -2,6 +2,7 @@
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.ReflectionSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
 using System;
@@ -17,7 +18,7 @@ namespace Poetry.UI.EmbeddedResourceSupport.Tests
         [Fact]
         public void UsesComponentRepository()
         {
-            var component = new Component("lorem", new AssemblyWrapper(new List<Type> { }), Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>());
+            var component = new Component("lorem", new AssemblyWrapper(new List<Type> { }), Enumerable.Empty<string>(), Enumerable.Empty<Controller>(), Enumerable.Empty<Script>(), Enumerable.Empty<Style>(), Enumerable.Empty<Resource>());
 
             var componentRepository = Mock.Of<IComponentRepository>();
 
