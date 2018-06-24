@@ -11,7 +11,7 @@ namespace Poetry.UI.ControllerSupport
     {
         public IEnumerable<Type> GetTypes(Type componentType)
         {
-            return componentType.Assembly.GetTypes().Where(t => t.Name.EndsWith("Controller")).Where(t => t.GetCustomAttribute<ControllerAttribute>() != null);
+            return componentType.Assembly.ExportedTypes.Where(t => t.Name.EndsWith("Controller")).Where(t => t.GetCustomAttribute<ControllerAttribute>() != null);
         }
     }
 }
