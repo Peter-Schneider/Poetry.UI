@@ -1,4 +1,6 @@
-﻿using Poetry.UI.EmbeddedResourceSupport;
+﻿using Poetry.UI.AppSupport.EmbeddedResourceSupport;
+using Poetry.UI.ComponentSupport.EmbeddedResourceSupport;
+using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.RoutingSupport;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,16 @@ namespace Poetry.UI.AspNet.EmbeddedResourceSupport
     public class EmbeddedResourceHandler : IHttpHandler
     {
         IEmbeddedResourceProvider EmbeddedResourceProvider { get; set; }
+        IPublicAppEmbeddedResourceProvider PublicAppEmbeddedResourceProvider { get; set; }
+        IPublicComponentEmbeddedResourceProvider PublicComponentEmbeddedResourceProvider { get; set; }
         IBasePathProvider BasePathProvider { get; set; }
         string Prefix { get; set; }
 
         public EmbeddedResourceHandler()
         {
             EmbeddedResourceProvider = DependencyResolver.Current.GetService<IEmbeddedResourceProvider>();
+            PublicAppEmbeddedResourceProvider = DependencyResolver.Current.GetService<IPublicAppEmbeddedResourceProvider>();
+            PublicComponentEmbeddedResourceProvider = DependencyResolver.Current.GetService<IPublicComponentEmbeddedResourceProvider>();
             BasePathProvider = DependencyResolver.Current.GetService<IBasePathProvider>();
             Prefix = $"/{BasePathProvider.BasePath}/";
         }
@@ -37,7 +43,7 @@ namespace Poetry.UI.AspNet.EmbeddedResourceSupport
 
             path = path.Substring(Prefix.Length);
 
-            var file = EmbeddedResourceProvider.GetFile(path);
+            var file = PublicAppEmbeddedResourceProvider.GetFile(path) ?? PublicComponentEmbeddedResourceProvider.GetFile(path);
 
             if (file == null)
             {

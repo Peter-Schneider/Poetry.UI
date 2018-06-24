@@ -53,7 +53,7 @@ namespace Poetry.UI.ComponentSupport.Tests
 
             Mock.Get(componentTypeProvider).Setup(p => p.GetTypes()).Returns(new List<Type> { typeof(MyComponentClass) });
 
-            var script = new Script("my-controller");
+            var script = new Script("lorem-ipsum", "script");
 
             var scriptCreator = Mock.Of<IScriptCreator>();
             Mock.Get(scriptCreator).Setup(c => c.Create("lorem-ipsum", typeof(MyComponentClass))).Returns(new List<Script> { script });
@@ -71,7 +71,7 @@ namespace Poetry.UI.ComponentSupport.Tests
 
             Mock.Get(componentTypeProvider).Setup(p => p.GetTypes()).Returns(new List<Type> { typeof(MyComponentClass) });
 
-            var style = new Style("my-controller");
+            var style = new Style("lorem-ipsum", "style");
 
             var styleCreator = Mock.Of<IStyleCreator>();
             Mock.Get(styleCreator).Setup(c => c.Create("lorem-ipsum", typeof(MyComponentClass))).Returns(new List<Style> { style });

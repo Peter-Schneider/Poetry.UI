@@ -7,10 +7,12 @@ namespace Poetry.UI.StyleSupport
     public class Style
     {
         public string Path { get; }
+        public string LocalPath { get; }
 
-        public Style(string path)
+        public Style(string componentId, string path)
         {
-            Path = path;
+            Path = componentId + "/" + path;
+            LocalPath = path;
         }
     }
 }

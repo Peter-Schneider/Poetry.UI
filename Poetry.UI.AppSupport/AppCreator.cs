@@ -41,7 +41,7 @@ namespace Poetry.UI.AppSupport //
 
                     yield return new App(
                         attribute.Id,
-                        new AssemblyWrapper(type.Assembly),
+                        component,
                         scripts: ScriptCreator.Create(component.Id, type),
                         styles: StyleCreator.Create(component.Id, type),
                         translations: translations

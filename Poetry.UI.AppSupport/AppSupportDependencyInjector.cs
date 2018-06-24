@@ -1,4 +1,5 @@
-﻿using Poetry.UI.DependencyInjectionSupport;
+﻿using Poetry.UI.AppSupport.EmbeddedResourceSupport;
+using Poetry.UI.DependencyInjectionSupport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Poetry.UI.AppSupport
             container.RegisterSingleton<IAppTypeProvider, AppTypeProvider>();
             container.RegisterSingleton<IAppCreator, AppCreator>();
             container.RegisterSingleton<IAppRepository, AppRepository>();
+            container.RegisterSingleton<IPublicAppEmbeddedResourceProvider, PublicAppEmbeddedResourceProvider>();
         }
     }
 }

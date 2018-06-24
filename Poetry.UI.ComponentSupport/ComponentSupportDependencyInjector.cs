@@ -1,8 +1,10 @@
 ﻿using Poetry.UI.ComponentSupport.DependencySupport;
+using Poetry.UI.ComponentSupport.EmbeddedResourceSupport;
 using Poetry.UI.ComponentSupport.InitializerSupport;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
+using Poetry.UI.ResourceSupport;
 using Poetry.UI.RoutingSupport;
 using Poetry.UI.ScriptSupport;
 using Poetry.UI.StyleSupport;
@@ -24,8 +26,10 @@ namespace Poetry.UI.ComponentSupport
             container.RegisterSingleton<IComponentDependencySorter, ComponentDependencySorter>();
             container.RegisterSingleton<IComponentRepository, ComponentRepository>();
             container.RegisterSingleton<IEmbeddedResourceAssemblyProvider, EmbeddedResourceAssemblyProvider>();
+            container.RegisterSingleton<IPublicComponentEmbeddedResourceProvider, PublicComponentEmbeddedResourceProvider>();
             container.RegisterSingleton<IScriptCreator, ScriptCreator>();
             container.RegisterSingleton<IStyleCreator, StyleCreator>();
+            container.RegisterSingleton<IResourceCreator, ResourceCreator>();
             container.RegisterSingleton<IControllerRouter, ControllerRouter>();
             container.RegisterSingleton<IInitializerProvider, InitializerProvider>();
             container.RegisterSingleton<IInitializerTypeProvider, InitializerTypeProvider>();

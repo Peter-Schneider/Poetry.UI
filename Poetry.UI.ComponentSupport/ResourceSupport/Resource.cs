@@ -1,11 +1,11 @@
-﻿namespace Poetry.UI.ScriptSupport
+﻿namespace Poetry.UI.ResourceSupport
 {
-    public class Script
+    public class Resource
     {
         public string Path { get; }
         public string LocalPath { get; }
 
-        public Script(string componentId, string path)
+        public Resource(string componentId, string path)
         {
             Path = componentId + "/" + path;
             LocalPath = path;
