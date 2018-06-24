@@ -39,7 +39,7 @@ namespace Poetry.UI
     public class PoetryConfigurator
     {
         IUnityContainer Container { get; }
-        public string BasePath { get; private set; } = "Admin";
+        string BasePath { get; private set; } = "Admin";
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
             new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
