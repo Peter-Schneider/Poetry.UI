@@ -41,6 +41,11 @@ namespace Poetry.UI.AspNetCore.EmbeddedResourceSupport
                 return;
             }
 
+            if (path.EndsWith(".js"))
+            {
+                httpContext.Response.ContentType = "application/javascript";
+            }
+
             using(var read = EmbeddedResourceProvider.Open(file))
             {
                 await read.CopyToAsync(httpContext.Response.Body);
