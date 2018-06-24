@@ -32,7 +32,7 @@ namespace Poetry.UI.AspNetCore
     public class PoetryConfigurator
     {
         IServiceCollection ServiceCollection { get; }
-        string BasePath { get; private set; } = "Admin";
+        string BasePath { get; set; } = "Admin";
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
             new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
