@@ -46,10 +46,12 @@ namespace Poetry.UI.EmbeddedResourceSupport
                     continue;
                 }
 
-                if (a != b)
+                if (a == b)
                 {
-                    return false;
+                    continue;
                 }
+
+                return false;
             }
 
             return true;
