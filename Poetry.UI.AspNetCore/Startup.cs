@@ -9,6 +9,7 @@ using Poetry.UI.AspNetCore.LoggerSupport;
 using Poetry.UI.AspNetCore.PageEditingSupport;
 using Poetry.UI.AspNetCore.RoutingSupport;
 using Poetry.UI.ComponentSupport;
+using Poetry.UI.ComponentSupport.InitializerSupport;
 using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
@@ -40,6 +41,11 @@ namespace Poetry.UI.AspNetCore
 
         public static void UsePoetryUI(this IApplicationBuilder app)
         {
+            foreach (var initializer in app.ApplicationServices.GetService<IInitializerProvider>().GetAll())
+            {
+                initializer.Initialize();
+            }
+
             app.UseMiddleware<StaticFilesMiddleware>();
             app.UseMiddleware<ControllerMiddleware>();
             app.UseMiddleware<PageEditingMiddleware>();

@@ -8,21 +8,7 @@ namespace Website.CategorySupport
 {
     class CategoryRepository : ICategoryRepository
     {
-        List<Category> Items { get; } = new List<Category>
-        {
-            new Category
-            {
-                Id = "cade3bee-4165-40c5-89ed-6a1622642009",
-                Name = "Scooters",
-                UrlSegment = "scooters",
-            },
-            new Category
-            {
-                Id = "7cba0b8d-9849-4be2-b17c-5e3f749e8c19",
-                Name = "Bikes",
-                UrlSegment = "bikes",
-            },
-        };
+        List<Category> Items { get; } = new List<Category>();
 
         public IEnumerable<Category> GetAll()
         {

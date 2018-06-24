@@ -8,6 +8,7 @@ using Poetry.UI.AspNetCore.LoggerSupport;
 using Poetry.UI.AspNetCore.PageEditingSupport;
 using Poetry.UI.BladeSupport;
 using Poetry.UI.ComponentSupport;
+using Poetry.UI.ComponentSupport.InitializerSupport;
 using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
@@ -111,6 +112,8 @@ namespace Poetry.UI.AspNetCore
             {
                 containerOverride(poetryContainer);
             }
+
+            serviceProvider = ServiceCollection.BuildServiceProvider();
 
             var t = serviceProvider.GetService<Microsoft.Extensions.FileProviders.IFileProvider>();
 

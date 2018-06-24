@@ -8,6 +8,7 @@ using Poetry.UI.AspNet.RoutingSupport;
 using Poetry.UI.BladeSupport;
 using Poetry.UI.ComponentSupport;
 using Poetry.UI.ComponentSupport.DependencySupport;
+using Poetry.UI.ComponentSupport.InitializerSupport;
 using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
 using Poetry.UI.DataTableSupport.BackendSupport;
@@ -125,6 +126,11 @@ namespace Poetry.UI
             );
             HostingEnvironment.RegisterVirtualPathProvider(Container.Resolve<EmbeddedResourceVirtualPathViewProvider>());
             RouteTable.Routes.Add(Container.Resolve<ControllerRoute>());
+
+            foreach(var initializer in Container.Resolve<IInitializerProvider>().GetAll())
+            {
+                initializer.Initialize();
+            }
         }
     }
 }
