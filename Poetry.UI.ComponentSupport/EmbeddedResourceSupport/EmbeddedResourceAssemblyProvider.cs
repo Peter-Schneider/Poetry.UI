@@ -13,11 +13,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
 
         public EmbeddedResourceAssemblyProvider(IComponentRepository componentRepository, IEmbeddedResourceAssemblyCreator embeddedResourceAssemblyCreator)
         {
-            var embeddedResourceAssemblies = new List<EmbeddedResourceAssembly>();
-
-            embeddedResourceAssemblies.AddRange(componentRepository.GetAll().Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)));
-
-            EmbeddedResourceAssemblies = embeddedResourceAssemblies.AsReadOnly();
+            EmbeddedResourceAssemblies = componentRepository.GetAll().Select(c => embeddedResourceAssemblyCreator.Create(c.Id, c.Assembly)).ToList().AsReadOnly();
         }
 
         public IEnumerable<EmbeddedResourceAssembly> GetAll()
