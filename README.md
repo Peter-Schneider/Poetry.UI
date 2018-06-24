@@ -7,7 +7,7 @@ Poetry UI is a home for your reusable functionality. It’s a web *portal* for *
 **Highlights:**
 
 * Runtimes for both .NET Framework and .NET Core
-* Written in modern, vanilla JS (no 💔 IE)
+* Written directly in ES6, using JS modules (no 💔 IE)
 
 Here’s how it works
 -----------
@@ -49,6 +49,9 @@ Something like this will do:
     }
 
 Create `/Scripts/lorem-ipsum.js` and insert something like this:
+
+    import App from '../../Portal/Scripts/app.js';
+    import Blade from '../../Poetry.UI.BladeSupport/Scripts/app.js';
 
     portal.addApp(new class extends App {
         constructor() {
