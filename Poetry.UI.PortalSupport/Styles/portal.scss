@@ -242,8 +242,13 @@ blade-title-close {
     transition: background-color 0.2s;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: #0058ad;
+    }
+
+    &:focus {
+        outline: none;
     }
 }
 
