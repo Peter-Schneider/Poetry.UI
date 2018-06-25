@@ -225,7 +225,7 @@ blade-title-text {
 
 @media(min-width: 576px) {
     blade-title-text {
-        blade:not(:first-child) & {
+        poetry-ui-blade-outer:not(:first-child) & {
             padding-left: 1rem;
         }
     }
