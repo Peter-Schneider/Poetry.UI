@@ -9,7 +9,7 @@ gulp.task('clean', () => {
   ]);
 });
 
-gulp.task('styles', () => {
+gulp.task('styles', ['clean'], () => {
   return gulp.src(['./Poetry.UI.*/**/*.scss'], { base: "./" })
     .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'compact' }).on('error', sass.logError))
@@ -21,4 +21,4 @@ gulp.task('watch', () => {
   gulp.watch('./Poetry.UI.*/**/*.scss', ['styles']);
 });
 
-gulp.task('build', ['clean', 'styles', 'watch']);
+gulp.task('build', ['styles', 'watch']);
