@@ -43,13 +43,13 @@ namespace Poetry.UI
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
             new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
-            new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
-            new AssemblyWrapper(typeof(FormComponent).Assembly),
-            new AssemblyWrapper(typeof(DataTableComponent).Assembly),
-            new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
-            new AssemblyWrapper(typeof(TranslationComponent).Assembly),
             new AssemblyWrapper(typeof(PortalComponent).Assembly),
             new AssemblyWrapper(typeof(BladeComponent).Assembly),
+            new AssemblyWrapper(typeof(TranslationComponent).Assembly),
+            new AssemblyWrapper(typeof(DataTableComponent).Assembly),
+            new AssemblyWrapper(typeof(FormComponent).Assembly),
+            new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
+            new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
         };
         List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 
