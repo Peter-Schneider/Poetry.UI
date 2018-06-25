@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Poetry.UI.DependencyInjectionSupport\Poetry.UI.DependencyInjectionSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.EmbeddedResourceSupport\Poetry.UI.EmbeddedResourceSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.FormSupport\Poetry.UI.FormSupport.csproj" />
+    <ProjectReference Include="..\Poetry.UI.NotificationSupport\Poetry.UI.NotificationSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.PageEditingSupport\Poetry.UI.PageEditingSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.PortalSupport\Poetry.UI.PortalSupport.csproj" />
     <ProjectReference Include="..\Poetry.UI.RoutingSupport\Poetry.UI.RoutingSupport.csproj" />

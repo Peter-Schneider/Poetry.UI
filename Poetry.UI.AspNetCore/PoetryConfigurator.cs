@@ -14,6 +14,7 @@ using Poetry.UI.ControllerSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
+using Poetry.UI.NotificationSupport;
 using Poetry.UI.PageEditingSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.ReflectionSupport;
@@ -43,6 +44,7 @@ namespace Poetry.UI.AspNetCore
             new AssemblyWrapper(typeof(FormComponent).Assembly),
             new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
             new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
+            new AssemblyWrapper(typeof(NotificationSupportComponent).Assembly),
         };
         List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 

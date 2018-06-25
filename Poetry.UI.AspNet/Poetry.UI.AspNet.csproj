@@ -187,6 +187,10 @@
       <Project>{4EE13429-3E83-41C7-95E4-68810DD85097}</Project>
       <Name>Poetry.UI.FormSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Poetry.UI.NotificationSupport\Poetry.UI.NotificationSupport.csproj">
+      <Project>{75F092ED-740F-4870-8E7F-F550F4A2082C}</Project>
+      <Name>Poetry.UI.NotificationSupport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Poetry.UI.PageEditingSupport\Poetry.UI.PageEditingSupport.csproj">
       <Project>{9F7B7F4B-AFF0-4783-AAC2-2D8278FE4E07}</Project>
       <Name>Poetry.UI.PageEditingSupport</Name>

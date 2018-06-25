@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\notification-manager.js" />
+    <None Remove="Scripts\notification.js" />
+    <None Remove="Styles\notification-manager.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\notification-manager.js" />
+    <EmbeddedResource Include="Scripts\notification.js" />
+    <EmbeddedResource Include="Styles\notification-manager.css">
+      <DependentUpon>notification-manager.scss</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+  </ItemGroup>
+
+</Project>

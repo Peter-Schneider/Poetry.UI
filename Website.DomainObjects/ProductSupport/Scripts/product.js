@@ -10,6 +10,7 @@ import PageEditor from '../../../PageEditing/Scripts/page-editor.js';
 import FormBuilder from '../../../Form/Scripts/form-builder.js';
 import FormFieldProvider from '../../../Form/Scripts/form-field-provider.js';
 import formFieldTypes from '../../../Form/Scripts/form-field-types.js';
+import notificationManager from '../../../Poetry.UI.NotificationSupport/Scripts/notification-manager.js';
 
 
 
@@ -20,6 +21,12 @@ portal.addApp(new class extends App {
         super('Product');
 
         this.translations = translations.scopeTo('Product');
+
+        function addNotification() {
+            notificationManager.addNotification(n => n.setContent('Lorem ipsum dolor sit amet, adipiscing consectetur elit').setSource('Products app').setButtons(new PortalButton('New', () => addNotification()), new PortalButton('Cancel', () => n.close())));
+        }
+
+        addNotification();
     }
 
     open() {

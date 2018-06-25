@@ -16,6 +16,7 @@ using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
 using Poetry.UI.FormSupport;
 using Poetry.UI.FormSupport.FormFieldSupport;
+using Poetry.UI.NotificationSupport;
 using Poetry.UI.PageEditingSupport;
 using Poetry.UI.PortalSupport;
 using Poetry.UI.ReflectionSupport;
@@ -50,6 +51,7 @@ namespace Poetry.UI
             new AssemblyWrapper(typeof(FormComponent).Assembly),
             new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
             new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
+            new AssemblyWrapper(typeof(NotificationSupportComponent).Assembly),
         };
         List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 
