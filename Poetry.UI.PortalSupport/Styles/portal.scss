@@ -343,6 +343,11 @@ portal-button,
         background: darken(#0058ad, 10%);
     }
 
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba(#0058ad, 0.25);
+    }
+
     &.portal-button-active {
         background: darken(#0058ad, 15%);
     }
