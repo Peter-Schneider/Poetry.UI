@@ -35,7 +35,7 @@ namespace Poetry.UI.AspNetCore
         string BasePath { get; set; } = "Admin";
         List<AssemblyWrapper> Assemblies { get; } = new List<AssemblyWrapper>
         {
-            new AssemblyWrapper(typeof(PoetryConfigurator).Assembly),
+            new AssemblyWrapper(typeof(CoreComponent).Assembly),
             new AssemblyWrapper(typeof(PortalComponent).Assembly),
             new AssemblyWrapper(typeof(BladeComponent).Assembly),
             new AssemblyWrapper(typeof(TranslationComponent).Assembly),
