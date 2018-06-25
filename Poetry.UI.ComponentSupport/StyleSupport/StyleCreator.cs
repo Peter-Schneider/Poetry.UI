@@ -9,7 +9,7 @@ namespace Poetry.UI.StyleSupport
     {
         public IEnumerable<Style> Create(string componentId, Type ownerType)
         {
-            return ownerType.GetCustomAttributes<StyleAttribute>().Select(a => new Style(componentId, a.Path)).ToList();
+            return ownerType.GetCustomAttributes<StyleAttribute>().Select(a => new Style(componentId, a.Path)).ToList().AsReadOnly();
         }
     }
 }
