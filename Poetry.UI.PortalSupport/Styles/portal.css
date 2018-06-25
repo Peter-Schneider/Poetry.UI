@@ -106,7 +106,8 @@ app {
 /* BLADE */
 poetry-ui-blade-outer {
   flex: 1 0 0;
-  display: flex; }
+  display: flex;
+  max-width: 100vw; }
 
 @media (max-width: 575px) {
   poetry-ui-blade-outer:not(:last-child) {
@@ -122,7 +123,8 @@ poetry-ui-blade-outer {
 blade {
   flex: 1;
   flex-direction: column;
-  display: flex; }
+  display: flex;
+  max-width: 100vw; }
 
 @media (min-width: 576px) {
   blade {

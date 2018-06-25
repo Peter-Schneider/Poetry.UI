@@ -152,6 +152,7 @@ $small-font: 0.9rem;
 poetry-ui-blade-outer {
     flex: 1 0 0;
     display: flex;
+    max-width: 100vw;
 }
 
 @media(max-width: (576px - 1)) {
@@ -177,6 +178,7 @@ blade {
     flex: 1;
     flex-direction: column;
     display: flex;
+    max-width: 100vw;
 }
 
 @media(min-width: 576px) {
