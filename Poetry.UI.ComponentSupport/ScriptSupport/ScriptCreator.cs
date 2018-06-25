@@ -10,7 +10,7 @@ namespace Poetry.UI.ScriptSupport
     {
         public IEnumerable<Script> Create(string componentId, Type ownerType)
         {
-            return ownerType.GetCustomAttributes<ScriptAttribute>().Select(a => new Script(componentId, a.Path)).ToList();
+            return ownerType.GetCustomAttributes<ScriptAttribute>().Select(a => new Script(componentId, a.Path)).ToList().AsReadOnly();
         }
     }
 }
