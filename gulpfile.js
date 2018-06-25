@@ -18,7 +18,7 @@ gulp.task('styles', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch('./styles/**/*.scss', ['styles']);
+  gulp.watch('./Poetry.UI.*/**/*.scss', ['styles']);
 });
 
 gulp.task('build', ['clean', 'styles', 'watch']);
