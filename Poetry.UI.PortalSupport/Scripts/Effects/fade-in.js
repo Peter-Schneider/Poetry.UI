@@ -4,11 +4,7 @@
 /* FADE IN EFFECT */
 
 class FadeInEffect {
-    constructor(element, delay) {
-        if (!delay) {
-            delay = 0;
-        }
-
+    constructor(element, delay = 0) {
         var old = {
             opacity: element.style.opacity,
             transform: element.style.transform,
