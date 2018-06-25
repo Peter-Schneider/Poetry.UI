@@ -103,23 +103,32 @@ app {
 
 /* VARIABLES */
 /* BLADE */
-blade {
-  box-sizing: border-box;
+poetry-ui-blade-outer {
   flex: 1 0 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column; }
+  display: flex; }
 
 @media (max-width: 575px) {
-  blade:not(:last-child) {
+  poetry-ui-blade-outer:not(:last-child) {
     display: none; } }
 
 @media (min-width: 576px) {
+  poetry-ui-blade-outer {
+    flex: 0 0 auto;
+    width: 25rem; }
+    poetry-ui-blade-outer.poetry-ui-blade-fullscreen {
+      flex-grow: 1; } }
+
+blade {
+  flex: 1;
+  flex-direction: column;
+  display: flex; }
+
+@media (min-width: 576px) {
   blade {
-    flex: 0 0 25rem;
-    border-right: solid 2px #bbb; }
-    blade.blade-fullscreen {
-      flex-grow: 1;
+    width: 25rem;
+    border-right: solid 2px #bbb;
+    box-sizing: border-box; }
+    poetry-ui-blade-outer.poetry-ui-blade-fullscreen blade {
       border-right: none; } }
 
 /* TITLE */

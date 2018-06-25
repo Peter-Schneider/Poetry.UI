@@ -1,4 +1,5 @@
-﻿import FadeInEffect from './Effects/fade-in.js';
+﻿import SlideEffect from './Effects/slide.js';
+import FadeInEffect from './Effects/fade-in.js';
 import FadeOutEffect from './Effects/fade-out.js';
 
 
@@ -28,7 +29,13 @@ class App {
                 behavior: 'smooth'
             });
 
-            new FadeInEffect(blade.element).onComplete(done);
+            blade.element.style.overflow = 'hidden';
+
+            new FadeInEffect(blade.inner).onComplete(() => {
+                blade.element.style.overflow = '';
+
+                done();
+            });
         }
 
         var bladesAfterParentBlade = parentBlade ? this.blades.slice(this.blades.indexOf(parentBlade) + 1) : [];
@@ -57,16 +64,21 @@ class App {
         var promise = new Promise(resolve => done = resolve);
 
         this.blades.slice(index).reverse().forEach((b, i, array) => {
-            new FadeOutEffect(b.element, i * 200).onComplete(() => {
-                this.element.removeChild(b.element);
-                this.blades.splice(this.blades.indexOf(b), 1);
+            b.element.style.overflow = 'hidden';
+            new FadeOutEffect(b.inner, i * 200).onComplete(() => {
+                b.element.removeChild(b.inner);
 
-                if (i == array.length - 1) {
-                    b.triggerOnClose(...parameters);
-                    done();
-                } else {
-                    b.triggerOnClose();
-                }
+                new SlideEffect(b.element, '25rem', '0').onComplete(() => {
+                    this.element.removeChild(b.element);
+                    this.blades.splice(this.blades.indexOf(b), 1);
+
+                    if (i == array.length - 1) {
+                        b.triggerOnClose(...parameters);
+                        done();
+                    } else {
+                        b.triggerOnClose();
+                    }
+                });
             });
         });
 

@@ -5,18 +5,20 @@
 
 class Blade {
     constructor() {
-        this.element = document.createElement('blade');
+        this.element = document.createElement('poetry-ui-blade-outer');
+        this.inner = document.createElement('blade');
+        this.element.appendChild(this.inner);
         this.containers = {};
     }
 
     setFullscreen() {
-        this.element.classList.add('blade-fullscreen');
+        this.element.classList.add('poetry-ui-blade-fullscreen');
     }
 
     setItems(id, items) {
         if (!this.containers[id]) {
             this.containers[id] = document.createElement(id);
-            this.element.appendChild(this.containers[id]);
+            this.inner.appendChild(this.containers[id]);
         } else {
             [...this.containers[id].children].forEach(this.containers[id].removeChild);
         }

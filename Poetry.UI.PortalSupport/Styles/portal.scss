@@ -148,16 +148,13 @@ $small-font: 0.9rem;
 
 /* BLADE */
 
-blade {
-    box-sizing: border-box;
+poetry-ui-blade-outer {
     flex: 1 0 0;
-    z-index: 1;
     display: flex;
-    flex-direction: column;
 }
 
 @media(max-width: (576px - 1)) {
-    blade {
+    poetry-ui-blade-outer {
         &:not(:last-child) {
             display: none;
         }
@@ -165,12 +162,29 @@ blade {
 }
 
 @media(min-width: 576px) {
-    blade {
-        flex: 0 0 25rem;
-        border-right: solid 2px #bbb;
+    poetry-ui-blade-outer {
+        flex: 0 0 auto;
+        width: 25rem;
 
-        &.blade-fullscreen {
+        &.poetry-ui-blade-fullscreen {
             flex-grow: 1;
+        }
+    }
+}
+
+blade {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+}
+
+@media(min-width: 576px) {
+    blade {
+        width: 25rem;
+        border-right: solid 2px #bbb;
+        box-sizing: border-box;
+
+        poetry-ui-blade-outer.poetry-ui-blade-fullscreen & {
             border-right: none;
         }
     }
