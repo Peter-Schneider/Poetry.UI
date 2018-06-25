@@ -34,6 +34,8 @@ class App {
             new FadeInEffect(blade.inner).onComplete(() => {
                 blade.element.style.overflow = '';
 
+                blade.element.focus();
+
                 done();
             });
         }

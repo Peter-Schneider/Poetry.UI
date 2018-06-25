@@ -6,6 +6,7 @@
 class Blade {
     constructor() {
         this.element = document.createElement('poetry-ui-blade-outer');
+        this.element.setAttribute('tabindex', '0');
         this.inner = document.createElement('blade');
         this.element.appendChild(this.inner);
         this.containers = {};

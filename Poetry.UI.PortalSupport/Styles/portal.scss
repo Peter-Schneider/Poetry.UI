@@ -166,6 +166,10 @@ poetry-ui-blade-outer {
     flex: 1 0 0;
     display: flex;
     max-width: 100vw;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 @media(max-width: (576px - 1)) {
