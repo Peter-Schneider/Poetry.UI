@@ -26,16 +26,6 @@
       <DependentUpon>portal.scss</DependentUpon>
     </EmbeddedResource>
     <None Remove="Styles\portal.min.css" />
-    <EmbeddedResource Include="Styles\portal.min.css">
-      <DependentUpon>portal.css</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

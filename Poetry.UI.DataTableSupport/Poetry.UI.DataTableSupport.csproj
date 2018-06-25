@@ -13,9 +13,6 @@
       <DependentUpon>data-table.scss</DependentUpon>
     </EmbeddedResource>
     <None Remove="Styles\data-table.min.css" />
-    <EmbeddedResource Include="Styles\data-table.min.css">
-      <DependentUpon>data-table.css</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

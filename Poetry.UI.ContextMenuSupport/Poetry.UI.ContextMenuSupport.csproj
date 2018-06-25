@@ -13,9 +13,6 @@
       <DependentUpon>context-menu.scss</DependentUpon>
     </EmbeddedResource>
     <None Remove="Styles\context-menu.min.css" />
-    <EmbeddedResource Include="Styles\context-menu.min.css">
-      <DependentUpon>context-menu.css</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
