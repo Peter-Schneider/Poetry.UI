@@ -13,6 +13,7 @@ gulp.task('styles', ['clean'], () => {
   return gulp.src(['./Poetry.UI.*/**/*.scss'], { base: "./" })
     .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'compact' }).on('error', sass.logError))
+    .pipe(sourcemaps.mapSources(path => '../' + path.substr(path.indexOf('/'))))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('.'));
 });
