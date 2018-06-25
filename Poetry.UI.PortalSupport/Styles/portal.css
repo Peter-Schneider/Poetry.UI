@@ -1,4 +1,12 @@
 ﻿/* GLOBAL ELEMENTS */
+@media (max-width: 319px) {
+  html {
+    font-size: 14px; } }
+
+@media (max-width: 239px) {
+  html {
+    font-size: 12px; } }
+
 body {
   margin: 0;
   background: white;

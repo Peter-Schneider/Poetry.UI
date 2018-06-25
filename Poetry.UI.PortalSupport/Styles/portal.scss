@@ -3,6 +3,18 @@
 
 /* GLOBAL ELEMENTS */
 
+@media(max-width: (320px - 1)) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: (240px - 1)) {
+    html {
+        font-size: 12px;
+    }
+}
+
 body {
     margin: 0;
     background: white;
