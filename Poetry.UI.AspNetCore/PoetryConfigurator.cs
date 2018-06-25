@@ -117,7 +117,7 @@ namespace Poetry.UI.AspNetCore
 
             var t = serviceProvider.GetService<Microsoft.Extensions.FileProviders.IFileProvider>();
 
-            var instantiator = new Instantiator(serviceProvider);
+            var instantiator = serviceProvider.GetService<IInstantiator>();
 
             ServiceCollection.Configure<RazorViewEngineOptions>(opts =>
                 opts.FileProviders.Add((EmbeddedFileProvider)instantiator.Instantiate(typeof(EmbeddedFileProvider)))
