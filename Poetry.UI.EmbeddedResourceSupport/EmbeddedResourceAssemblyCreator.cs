@@ -17,7 +17,7 @@ namespace Poetry.UI.EmbeddedResourceSupport
                 name: assembly.Assembly.GetName().Name, 
                 basePath: basePath,
                 openEmbeddedResourceStream: r => assembly.Assembly.GetManifestResourceStream(r.Name),
-                embeddedResources: assembly.Assembly.GetManifestResourceNames().Select(resourceName => new EmbeddedResource(resourceName)).ToArray()
+                embeddedResources: assembly.Assembly.GetManifestResourceNames().Select(resourceName => new EmbeddedResource(resourceName))
             );
         }
     }
