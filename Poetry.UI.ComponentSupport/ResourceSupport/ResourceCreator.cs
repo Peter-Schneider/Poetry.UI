@@ -10,7 +10,7 @@ namespace Poetry.UI.ResourceSupport
     {
         public IEnumerable<Resource> Create(string componentId, Type ownerType)
         {
-            return ownerType.GetCustomAttributes<ResourceAttribute>().Select(a => new Resource(componentId, a.Path)).ToList();
+            return ownerType.GetCustomAttributes<ResourceAttribute>().Select(a => new Resource(componentId, a.Path)).ToList().AsReadOnly();
         }
     }
 }
