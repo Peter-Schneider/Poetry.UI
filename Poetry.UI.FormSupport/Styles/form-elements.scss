@@ -29,4 +29,9 @@
     &:focus {
         background: #f3f3f3;
     }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px #f3f3f3;
+    }
 }
