@@ -18,7 +18,25 @@ class Portal {
                 return response.json();
             });
 
-        var bootstrap = () => { document.body.appendChild(this.element); }
+        var bootstrap = () => {
+            document.body.appendChild(this.element);
+
+            if (location.hash) {
+                var match = location.hash.substr(1).match(/^[a-z0-9]+/i);
+
+                if (match) {
+                    var appId = match[0].toLowerCase();
+
+                    var app = this.apps.find(a => a.name.toLowerCase() == appId);
+
+                    if (app) {
+                        this.openApp(app);
+                    } else {
+                        this.startApp = appId;
+                    }
+                }
+            }
+        }
 
         if (document.readyState != 'loading') {
             bootstrap();
@@ -69,15 +87,23 @@ class Portal {
         this.appNames.then(translations => item.innerText = translations[app.name] ? translations[app.name] : app.name);
 
         this.nav.appendChild(item);
+
+        if (this.startApp && this.startApp == app.name.toLowerCase()) {
+            setTimeout(() => this.openApp(app, false), 1);
+        }
     }
 
-    openApp(app) {
+    openApp(app, updateHash = true) {
         [...this.nav.children].forEach(c => c.classList.remove('active'));
         [...this.element.querySelectorAll('app')].forEach(a => this.element.removeChild(a));
 
         this.nav.querySelector(`[app-id="${app.name}"]`).classList.add('active');
 
         this.element.appendChild(app.element);
+
+        if (updateHash) {
+            history.pushState(null, null, `#${app.name.toLowerCase()}`);
+        }
 
         app.open();
     }
