@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\control-message.js" />
+    <None Remove="Styles\control-message.css" />
+    <EmbeddedResource Include="Scripts\control-message.js" />
+    <EmbeddedResource Include="Styles\control-message.css">
+      <DependentUpon>control-message.scss</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poetry.UI.ComponentSupport\Poetry.UI.ComponentSupport.csproj" />
+  </ItemGroup>
+
+</Project>

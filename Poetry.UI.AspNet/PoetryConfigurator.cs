@@ -11,6 +11,7 @@ using Poetry.UI.ComponentSupport.DependencySupport;
 using Poetry.UI.ComponentSupport.InitializerSupport;
 using Poetry.UI.ContextMenu;
 using Poetry.UI.ControllerSupport;
+using Poetry.UI.ControlMessageSupport;
 using Poetry.UI.DataTableSupport.BackendSupport;
 using Poetry.UI.DependencyInjectionSupport;
 using Poetry.UI.EmbeddedResourceSupport;
@@ -52,6 +53,7 @@ namespace Poetry.UI
             new AssemblyWrapper(typeof(ContextMenuComponent).Assembly),
             new AssemblyWrapper(typeof(PageEditingComponent).Assembly),
             new AssemblyWrapper(typeof(NotificationSupportComponent).Assembly),
+            new AssemblyWrapper(typeof(ControlMessageSupportComponent).Assembly),
         };
         List<Action<IContainer>> ContainerOverrides { get; } = new List<Action<IContainer>>();
 

@@ -11,6 +11,7 @@ import FormBuilder from '../../../Form/Scripts/form-builder.js';
 import FormFieldProvider from '../../../Form/Scripts/form-field-provider.js';
 import formFieldTypes from '../../../Form/Scripts/form-field-types.js';
 import notificationManager from '../../../Poetry.UI.NotificationSupport/Scripts/notification-manager.js';
+import ControlMessage from '../../../Poetry.UI.ControlMessageSupport/Scripts/control-message.js';
 
 
 
@@ -50,9 +51,13 @@ class ListProducts extends Blade {
 
         var dataTable;
 
+        var button = new PortalButton(app.translations.get('New'), () => app.openBlade(new EditProduct(app).onClose(message => dataTable.update()), this));
+
         this.setToolbar(
-            new PortalButton(app.translations.get('New'), () => app.openBlade(new EditProduct(app).onClose(message => dataTable.update()), this)),
+            button
         );
+
+        new ControlMessage(button.element, 'This is a message');
 
         this.setContent(
             dataTable = new DataTable()
