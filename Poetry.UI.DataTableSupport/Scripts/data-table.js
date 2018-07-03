@@ -87,6 +87,16 @@ class DataTable {
 
                             sorter.addEventListener('click', () => {
                                 [...this.columnHeaderRow.querySelectorAll('poetry-ui-data-table-sorter')].forEach(e => e.classList.remove('poetry-ui-active', 'poetry-ui-descending'));
+
+                                if (this.sortBy == column.sorting && this.sortDirection == 'descending') {
+                                    this.sortBy = null;
+                                    this.sortDirection = null;
+
+                                    this.update();
+
+                                    return;
+                                }
+
                                 sorter.classList.add('poetry-ui-active');
 
                                 if (this.sortBy != column.sorting) {
