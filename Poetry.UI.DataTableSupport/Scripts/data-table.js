@@ -51,12 +51,18 @@ class DataTable {
     }
 
     update() {
+        this.element.classList.add('poetry-ui-loading');
+        this.element.classList.remove('poetry-ui-not-loading');
+
         this.backend.load({
             page: this.page,
             sortBy: this.sortBy,
             sortDirection: this.sortDirection,
         })
             .then(response => {
+                this.element.classList.remove('poetry-ui-loading');
+                this.element.classList.add('poetry-ui-not-loading');
+
                 if (!this.columnHeaderRow.children.length) {
                     this.columns.forEach(column => {
                         var element = document.createElement('th');
