@@ -9,14 +9,14 @@ class DataTable {
         this.columns = [];
         this.page = 1;
 
-        this.element = document.createElement('data-table');
+        this.element = document.createElement('poetry-ui-data-table');
 
         this.tableOuter = document.createElement('div');
-        this.tableOuter.classList.add('data-table-outer');
+        this.tableOuter.classList.add('poetry-ui-data-table-outer');
         this.element.appendChild(this.tableOuter);
 
         var table = document.createElement('table');
-        table.classList.add('data-table');
+        table.classList.add('poetry-ui-data-table');
         this.tableOuter.appendChild(table);
 
         var tableHeader = document.createElement('thead');
@@ -28,7 +28,7 @@ class DataTable {
         this.tableBody = document.createElement('tbody');
         table.appendChild(this.tableBody);
 
-        this.paging = document.createElement('data-table-paging');
+        this.paging = document.createElement('poetry-ui-data-table-paging');
         this.element.appendChild(this.paging);
     }
 
@@ -70,24 +70,24 @@ class DataTable {
                             } else if (result.element instanceof Node) {
                                 element.appendChild(result.element);
                             } else {
-                                var text = document.createElement(`data-table-header-text`);
+                                var text = document.createElement(`poetry-ui-data-table-header-text`);
                                 text.innerText = result;
                                 element.appendChild(text);
                             }
                         }
 
                         if (column.sorting) {
-                            var sorter = document.createElement('data-table-sorter');
+                            var sorter = document.createElement('poetry-ui-data-table-sorter');
 
                             sorter.addEventListener('click', () => {
-                                [...this.columnHeaderRow.querySelectorAll('data-table-sorter')].forEach(e => e.classList.remove('active', 'descending'));
-                                sorter.classList.add('active');
+                                [...this.columnHeaderRow.querySelectorAll('poetry-ui-data-table-sorter')].forEach(e => e.classList.remove('poetry-ui-active', 'poetry-ui-descending'));
+                                sorter.classList.add('poetry-ui-active');
 
                                 if (this.sortBy != column.sorting) {
                                     this.sortBy = column.sorting;
                                     this.sortDirection = 'ascending';
 
-                                    sorter.classList.remove('descending');
+                                    sorter.classList.remove('poetry-ui-descending');
 
                                     this.update();
 
@@ -97,7 +97,7 @@ class DataTable {
                                 this.sortDirection = this.sortDirection == 'ascending' ? 'descending' : 'ascending';
 
                                 if (this.sortDirection == 'descending') {
-                                    sorter.classList.add('descending');
+                                    sorter.classList.add('poetry-ui-descending');
                                 }
 
                                 this.update();
@@ -120,7 +120,7 @@ class DataTable {
                         var element = document.createElement('td');
 
                         if (column.actionColumn) {
-                            element.classList.add('data-table-edit-column');
+                            element.classList.add('poetry-ui-data-table-edit-column');
                         }
 
                         var result = column.contentGenerator(item, this, element);
@@ -130,7 +130,7 @@ class DataTable {
                         } else if (result.element instanceof Node) {
                             element.appendChild(result.element);
                         } else {
-                            var text = document.createElement(`data-table-text`);
+                            var text = document.createElement(`poetry-ui-data-table-text`);
                             text.innerText = result;
                             element.appendChild(text);
                         }
@@ -146,7 +146,7 @@ class DataTable {
                         new PortalButton(page, () => {
                             dataTable.page = page;
                             dataTable.update();
-                        }).addClass('portal-button-active', page == dataTable.page).appendTo(dataTable.paging);
+                        }).addClass('poetry-ui-portal-button-active', page == dataTable.page).appendTo(dataTable.paging);
                     })(this, i);
                 }
             });

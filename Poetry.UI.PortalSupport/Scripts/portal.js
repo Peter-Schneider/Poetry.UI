@@ -8,7 +8,7 @@ import FadeOutEffect from "./Effects/fade-out.js";
 class Portal {
     constructor() {
         this.apps = [];
-        this.element = document.createElement('portal');
+        this.element = document.createElement('poetry-ui-portal');
         this.appNames = fetch('Portal/App/GetNames', { credentials: 'include' })
             .then(response => {
                 if (!response.ok) {
@@ -44,21 +44,21 @@ class Portal {
             document.addEventListener('DOMContentLoaded', bootstrap);
         }
 
-        this.nav = document.createElement('portal-nav');
+        this.nav = document.createElement('poetry-ui-portal-nav');
 
-        var toggle = document.createElement('portal-nav-toggle');
+        var toggle = document.createElement('poetry-ui-portal-nav-toggle');
         var hideToggle = () => {
-            if (!toggle.classList.contains('active')) {
+            if (!toggle.classList.contains('poetry-ui-active')) {
                 return;
             }
 
-            toggle.classList.remove('active');
+            toggle.classList.remove('poetry-ui-active');
 
             new FadeOutEffect(this.nav).onComplete(() => this.element.removeChild(this.nav));
         };
         toggle.addEventListener('click', () => {
-            if (!toggle.classList.contains('active')) {
-                toggle.classList.add('active');
+            if (!toggle.classList.contains('poetry-ui-active')) {
+                toggle.classList.add('poetry-ui-active');
 
                 this.element.appendChild(this.nav);
 
@@ -68,7 +68,7 @@ class Portal {
             }
         });
         document.documentElement.addEventListener('click', event => {
-            if (!event.target.matches('portal-nav, portal-nav-toggle')) {
+            if (!event.target.matches('poetry-ui-portal-nav, poetry-ui-portal-nav-toggle')) {
                 hideToggle();
             }
         });
@@ -78,10 +78,10 @@ class Portal {
     addApp(app) {
         this.apps.push(app);
         
-        var item = document.createElement('portal-nav-item');
+        var item = document.createElement('poetry-ui-portal-nav-item');
 
         item.innerText = '...';
-        item.setAttribute('app-id', app.name);
+        item.setAttribute('poetry-ui-app-id', app.name);
         item.addEventListener('click', () => this.openApp(app));
 
         this.appNames.then(translations => item.innerText = translations[app.name] ? translations[app.name] : app.name);
@@ -94,10 +94,10 @@ class Portal {
     }
 
     openApp(app, updateHash = true) {
-        [...this.nav.children].forEach(c => c.classList.remove('active'));
-        [...this.element.querySelectorAll('app')].forEach(a => this.element.removeChild(a));
+        [...this.nav.children].forEach(c => c.classList.remove('poetry-ui-active'));
+        [...this.element.querySelectorAll('poetry-ui-app')].forEach(a => this.element.removeChild(a));
 
-        this.nav.querySelector(`[app-id="${app.name}"]`).classList.add('active');
+        this.nav.querySelector(`[poetry-ui-app-id="${app.name}"]`).classList.add('poetry-ui-active');
 
         this.element.appendChild(app.element);
 

@@ -69,7 +69,7 @@ td, th {
 
 /* PORTAL */
 
-portal {
+poetry-ui-portal {
     overflow: auto;
     position: absolute;
     top: 0;
@@ -83,7 +83,7 @@ portal {
 
 /* MAIN NAV */
 
-portal-nav-toggle {
+poetry-ui-portal-nav-toggle {
     position: absolute;
     top: 0;
     left: 0;
@@ -101,7 +101,7 @@ portal-nav-toggle {
 
     &:hover,
     &:focus,
-    &.active {
+    &.poetry-ui-active {
         background-color: rgba(255, 255, 255, 0.15);
     }
 
@@ -110,7 +110,7 @@ portal-nav-toggle {
     }
 }
 
-portal-nav {
+poetry-ui-portal-nav {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -123,7 +123,7 @@ portal-nav {
     background: #252525;
 }
 
-portal-nav-item {
+poetry-ui-portal-nav-item {
     display: block;
     padding: 0.5em;
     padding-left: 1em;
@@ -132,8 +132,8 @@ portal-nav-item {
     cursor: pointer;
 }
 
-portal-nav-item.active,
-portal-nav-item:hover {
+poetry-ui-portal-nav-item.poetry-ui-active,
+poetry-ui-portal-nav-item:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
@@ -141,7 +141,7 @@ portal-nav-item:hover {
 
 /* APP */
 
-app {
+poetry-ui-app {
     position: absolute;
     top: 0;
     right: 0;
@@ -191,7 +191,7 @@ poetry-ui-blade-outer {
     }
 }
 
-blade {
+poetry-ui-blade {
     flex: 1;
     flex-direction: column;
     display: flex;
@@ -199,7 +199,7 @@ blade {
 }
 
 @media(min-width: 576px) {
-    blade {
+    poetry-ui-blade {
         width: 25rem;
         border-right: solid 2px #bbb;
         box-sizing: border-box;
@@ -214,13 +214,13 @@ blade {
 
 /* TITLE */
 
-blade-title {
+poetry-ui-blade-title {
     flex: 0 0 auto;
     display: flex;
     background: #252525;
 }
 
-blade-title-text {
+poetry-ui-blade-title-text {
     display: block;
     padding: 1rem 1rem 1rem 3.5rem;
     font-size: $large-font;
@@ -228,14 +228,14 @@ blade-title-text {
 }
 
 @media(min-width: 576px) {
-    blade-title-text {
+    poetry-ui-blade-title-text {
         poetry-ui-blade-outer:not(:first-child) & {
             padding-left: 1rem;
         }
     }
 }
 
-blade-title-close {
+poetry-ui-blade-title-close {
     margin-left: auto;
     display: block;
     width: 3rem;
@@ -260,7 +260,7 @@ blade-title-close {
 
 /* TOOLBAR */
 
-blade-toolbar {
+poetry-ui-blade-toolbar {
     flex: 0 0 auto;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -279,7 +279,7 @@ blade-toolbar {
         }
     }
 
-    blade-content + & {
+    poetry-ui-blade-content + & {
         flex-grow: 1;
         border-top: solid 1px #ccc;
         border-bottom: none;
@@ -291,7 +291,7 @@ blade-toolbar {
 
 /* CONTENT */
 
-blade-content {
+poetry-ui-blade-content {
     position: relative;
     flex: 1 1 auto;
     overflow: auto;
@@ -304,7 +304,7 @@ blade-content {
 
 /* CUSTOM CONTENT */
 
-blade-custom-content {
+poetry-ui-blade-custom-content {
     position: relative;
     flex-grow: 1;
     display: flex;
@@ -316,11 +316,11 @@ blade-custom-content {
 
 /* LOADING STATE */
 
-.blade-not-loading {
+.poetry-ui-blade-not-loading {
     transition: opacity 0.2s, filter 0.2s;
 }
 
-.blade-loading {
+.poetry-ui-blade-loading {
     opacity: 0.5;
     filter: grayscale(100%);
     transition: opacity 0.2s, filter 0.2s;
@@ -330,8 +330,8 @@ blade-custom-content {
 
 /* BUTTON */
 
-portal-button,
-.portal-button {
+poetry-ui-portal-button,
+.poetry-ui-portal-button {
     display: inline-block;
     padding: 0.5em 0.75em;
     background: #0058ad;
@@ -348,7 +348,7 @@ portal-button,
         box-shadow: 0 0 0 0.25rem rgba(#0058ad, 0.25);
     }
 
-    &.portal-button-active {
+    &.poetry-ui-portal-button-active {
         background: darken(#0058ad, 15%);
     }
 }

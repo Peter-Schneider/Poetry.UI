@@ -10,7 +10,7 @@ class App {
     constructor(name) {
         this.name = name;
         this.blades = [];
-        this.element = document.createElement('app');
+        this.element = document.createElement('poetry-ui-app');
     }
 
     open() {

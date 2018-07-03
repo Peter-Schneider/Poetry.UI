@@ -7,7 +7,7 @@ class Blade {
     constructor() {
         this.element = document.createElement('poetry-ui-blade-outer');
         this.element.setAttribute('tabindex', '0');
-        this.inner = document.createElement('blade');
+        this.inner = document.createElement('poetry-ui-blade');
         this.element.appendChild(this.inner);
         this.containers = {};
     }
@@ -44,19 +44,19 @@ class Blade {
     }
 
     setTitle(...items) {
-        this.setItems('blade-title', items);
+        this.setItems('poetry-ui-blade-title', items);
     }
 
     setToolbar(...items) {
-        this.setItems('blade-toolbar', items);
+        this.setItems('poetry-ui-blade-toolbar', items);
     }
 
     setContent(...items) {
-        this.setItems('blade-content', items);
+        this.setItems('poetry-ui-blade-content', items);
     }
 
     setCustomContent(...items) {
-        this.setItems('blade-custom-content', items);
+        this.setItems('poetry-ui-blade-custom-content', items);
     }
 
     onClose(callback) {

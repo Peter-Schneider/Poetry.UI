@@ -7,22 +7,22 @@ class ContextMenu {
     constructor() {
         this.element = document.createElement('div');
 
-        this.element.classList.add('context-menu-outer');
+        this.element.classList.add('poetry-ui-context-menu-outer');
 
-        var button = document.createElement('context-menu-button');
+        var button = document.createElement('poetry-ui-context-menu-button');
 
         button.tabindex = 0;
 
         button.addEventListener('click', () => {
-            button.classList.add('active');
+            button.classList.add('poetry-ui-active');
             this.menu.style.display = '';
-            this.menu.classList.remove('context-menu-right');
+            this.menu.classList.remove('poetry-ui-context-menu-right');
 
             var rectangle = this.menu.getBoundingClientRect();
             var containerRectangle = this.element.offsetParent.getBoundingClientRect();
 
             if (rectangle.right > containerRectangle.right) {
-                this.menu.classList.add('context-menu-right');
+                this.menu.classList.add('poetry-ui-context-menu-right');
             }
         });
 
@@ -31,25 +31,25 @@ class ContextMenu {
                 return;
             }
 
-            button.classList.remove('active');
+            button.classList.remove('poetry-ui-active');
             this.menu.style.display = 'none';
         });
 
         this.element.appendChild(button);
 
-        this.menu = document.createElement('context-menu');
+        this.menu = document.createElement('poetry-ui-context-menu');
         this.menu.style.display = 'none';
 
         var arrowOuter = document.createElement('div');
-        arrowOuter.classList.add('context-menu-arrow-outer');
+        arrowOuter.classList.add('poetry-ui-context-menu-arrow-outer');
         this.menu.appendChild(arrowOuter);
 
         var arrow1 = document.createElement('div');
-        arrow1.classList.add('context-menu-arrow-1');
+        arrow1.classList.add('poetry-ui-context-menu-arrow-1');
         arrowOuter.appendChild(arrow1);
 
         var arrow2 = document.createElement('div');
-        arrow2.classList.add('context-menu-arrow-2');
+        arrow2.classList.add('poetry-ui-context-menu-arrow-2');
         arrowOuter.appendChild(arrow2);
 
         this.element.appendChild(this.menu);
@@ -70,7 +70,7 @@ class ContextMenu {
 
 class ContextMenuItem {
     constructor() {
-        this.element = document.createElement('context-menu-item');
+        this.element = document.createElement('poetry-ui-context-menu-item');
     }
 
     setText(text) {

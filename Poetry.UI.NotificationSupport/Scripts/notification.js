@@ -10,7 +10,7 @@ class Notification {
         this.element = document.createElement('poetry-ui-notification');
         this.element.setAttribute('tabindex', 0);
         this.element.addEventListener('click', event => {
-            if (event.target.matches('portal-button')) {
+            if (event.target.matches('poetry-ui-portal-button')) {
                 return;
             }
 

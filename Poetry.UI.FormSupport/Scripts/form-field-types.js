@@ -4,15 +4,15 @@ formFieldTypes['string'] = {
     type: 'string',
     createControl: function (field, get, set) {
         var label = document.createElement('label');
-        label.classList.add('form-label');
+        label.classList.add('poetry-ui-form-label');
 
         var labelText = document.createElement('div');
-        labelText.classList.add('form-label-text');
+        labelText.classList.add('poetry-ui-form-label-text');
         labelText.innerText = field.Name;
         label.appendChild(labelText);
 
         var input = document.createElement('input');
-        input.classList.add('form-input');
+        input.classList.add('poetry-ui-form-input');
         label.appendChild(input);
 
         input.type = 'text';
@@ -38,15 +38,15 @@ formFieldTypes['double'] = {
     type: 'double',
     createControl: function (field, get, set) {
         var label = document.createElement('label');
-        label.classList.add('form-label');
+        label.classList.add('poetry-ui-form-label');
 
         var labelText = document.createElement('div');
-        labelText.classList.add('form-label-text');
+        labelText.classList.add('poetry-ui-form-label-text');
         labelText.innerText = field.Name;
         label.appendChild(labelText);
 
         var input = document.createElement('input');
-        input.classList.add('form-input');
+        input.classList.add('poetry-ui-form-input');
         label.appendChild(input);
 
         input.type = 'number';

@@ -6,7 +6,7 @@
 class PortalLinkButton {
     constructor(text, url, target) {
         this.element = document.createElement('a');
-        this.element.classList.add('portal-button');
+        this.element.classList.add('poetry-ui-portal-button');
         this.element.href = url;
         this.element.target = target;
         this.element.innerText = text;

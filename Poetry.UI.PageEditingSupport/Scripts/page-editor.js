@@ -10,10 +10,10 @@ class PageEditor {
             url = url.substr(1);
         }
 
-        this.element = document.createElement('page-editor');
+        this.element = document.createElement('poetry-ui-page-editor');
 
         this.frame = document.createElement('iframe');
-        this.frame.classList.add('page-editor-frame');
+        this.frame.classList.add('poetry-ui-page-editor-frame');
 
         this.frame.src = 'PageEditing/EditPage/' + url;
         this.element.appendChild(this.frame);
@@ -31,8 +31,8 @@ class PageEditor {
                     (this.containers[property.name] || (this.containers[property.name] = new PropertyContainer(property).appendTo(this.element))).update(property)
                 )
         );
-        message.on('mouseOverProperty', data => this.containers[data.name] && this.containers[data.name].element.classList.add('hover'));
-        message.on('mouseOutProperty', data => this.containers[data.name] && this.containers[data.name].element.classList.remove('hover'));
+        message.on('mouseOverProperty', data => this.containers[data.name] && this.containers[data.name].element.classList.add('poetry-ui-hover'));
+        message.on('mouseOutProperty', data => this.containers[data.name] && this.containers[data.name].element.classList.remove('poetry-ui-hover'));
     }
 
     appendTo(element) {
@@ -48,16 +48,16 @@ class PropertyContainer {
     constructor(property, container) {
         this.element = document.createElement('div');
 
-        this.element.classList.add('property');
-        this.element.setAttribute('property-name', property.name);
+        this.element.classList.add('poetry-ui-property');
+        this.element.setAttribute('poetry-ui-property-name', property.name);
 
         var title = document.createElement('div');
-        title.className = 'property-title';
+        title.className = 'poetry-ui-property-title';
         title.innerText = property.name;
         this.element.appendChild(title);
 
         var border = document.createElement('div');
-        border.className = 'property-border';
+        border.className = 'poetry-ui-property-border';
         this.element.appendChild(border);
     }
 
@@ -109,7 +109,7 @@ window.addEventListener('message', function (event) {
 
     if (!propertyBlurDetector) {
         propertyBlurDetector = document.createElement('div');
-        propertyBlurDetector.classList.add('property-blur-detector');
+        propertyBlurDetector.classList.add('poetry-ui-property-blur-detector');
         propertyBlurDetector.addEventListener('click', function () {
             if (currentEditor) {
                 currentEditor.hide();

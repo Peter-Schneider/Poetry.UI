@@ -11,7 +11,7 @@ propertyEditorTypes['string'] = {
     createControl: function (get, set) {
         var element = document.createElement('textarea');
 
-        element.classList.add('poetry-page-editing-property-editor');
+        element.classList.add('poetry-ui-page-editing-property-editor');
 
         var update = () => {
             element.style.height = '';
@@ -72,16 +72,16 @@ function initEditors() {
     var messageManager = new WindowMessageManager();
     var propertyGetter = new PropertyGetter();
 
-    [...document.querySelectorAll('.poetry-page-editing-property')].forEach(element => {
-        var editorType = propertyEditorTypes[element.getAttribute('field-type')];
+    [...document.querySelectorAll('.poetry-ui-page-editing-property')].forEach(element => {
+        var editorType = propertyEditorTypes[element.getAttribute('poetry-ui-field-type')];
 
         if (!editorType) {
             return;
         }
 
-        var name = element.getAttribute('property-name');
+        var name = element.getAttribute('poetry-ui-property-name');
 
-        var sync = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty) }));
+        var sync = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-ui-page-editing-property')].map(getProperty) }));
 
         var get = () => propertyGetter.getValue(name);
         var set = value => {
@@ -111,8 +111,8 @@ function getProperty(element) {
     var elementBoundingClientRect = element.getBoundingClientRect();
 
     return {
-        name: element.getAttribute('property-name'),
-        objectId: element.getAttribute('object-id'),
+        name: element.getAttribute('poetry-ui-property-name'),
+        objectId: element.getAttribute('poetry-ui-object-id'),
         left: elementBoundingClientRect.left,
         top: elementBoundingClientRect.top,
         width: elementBoundingClientRect.width,
@@ -130,7 +130,7 @@ function addHoverEventListeners() {
     document.body.addEventListener('mouseover', function (event) {
         var target = event.target;
 
-        while (target && !target.getAttribute('property-name')) {
+        while (target && !target.getAttribute('poetry-ui-property-name')) {
             target = target.parentElement;
         }
 
@@ -138,8 +138,8 @@ function addHoverEventListeners() {
             return;
         }
 
-        var name = target.getAttribute('property-name');
-        var contentId = target.getAttribute('content-id');
+        var name = target.getAttribute('poetry-ui-property-name');
+        var contentId = target.getAttribute('poetry-ui-content-id');
 
         messageManager.send('mouseOverProperty', { name, contentId });
     });
@@ -147,7 +147,7 @@ function addHoverEventListeners() {
     document.body.addEventListener('mouseout', function (event) {
         var target = event.target;
 
-        while (target && !target.getAttribute('property-name')) {
+        while (target && !target.getAttribute('poetry-ui-property-name')) {
             target = target.parentElement;
         }
 
@@ -155,8 +155,8 @@ function addHoverEventListeners() {
             return;
         }
 
-        var name = target.getAttribute('property-name');
-        var contentId = target.getAttribute('content-id');
+        var name = target.getAttribute('poetry-ui-property-name');
+        var contentId = target.getAttribute('poetry-ui-content-id');
 
         messageManager.send('mouseOutProperty', { name, contentId });
     });
@@ -175,7 +175,7 @@ if (document.readyState != 'loading') {
 function updatePropertyContainers() {
     var messageManager = new WindowMessageManager();
 
-    var update = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-page-editing-property')].map(getProperty) }));
+    var update = throttle(() => messageManager.send('updatePropertyContainers', { properties: [...document.querySelectorAll('.poetry-ui-page-editing-property')].map(getProperty) }));
 
     window.addEventListener('resize', update, true);
 

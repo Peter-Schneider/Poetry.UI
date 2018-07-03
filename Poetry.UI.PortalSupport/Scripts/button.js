@@ -5,7 +5,7 @@
 
 class PortalButton {
     constructor(text, callback) {
-        this.element = document.createElement('portal-button');
+        this.element = document.createElement('poetry-ui-portal-button');
         this.element.tabIndex = 0;
         this.element.innerText = text;
 

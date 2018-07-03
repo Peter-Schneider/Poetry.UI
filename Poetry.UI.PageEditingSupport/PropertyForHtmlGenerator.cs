@@ -31,7 +31,7 @@ namespace Poetry.UI.PageEditingSupport
             var field = form.Fields.SingleOrDefault(f => f.Id == metaData.PropertyName);
 
             return 
-                $"<span class=\"poetry-page-editing-property\" form-id=\"{form.Id}\" field-type=\"{field.Type}\" property-name=\"{metaData.PropertyName}\" object-id=\"{ObjectIdentifier.GetId(instance)}\">" +
+                $"<span class=\"poetry-ui-page-editing-property\" poetry-ui-form-id=\"{form.Id}\" poetry-ui-field-type=\"{field.Type}\" poetry-ui-property-name=\"{metaData.PropertyName}\" poetry-ui-object-id=\"{ObjectIdentifier.GetId(instance)}\">" +
                 contents +
                 "</span>";
         }

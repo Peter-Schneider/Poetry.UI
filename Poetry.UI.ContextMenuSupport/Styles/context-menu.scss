@@ -3,12 +3,12 @@
 
 /* BUTTON */
 
-.context-menu-outer {
+.poetry-ui-context-menu-outer {
     position: relative;
     display: inline-block;
 }
 
-context-menu-button {
+poetry-ui-context-menu-button {
     display: block;
     width: 20px;
     height: 20px;
@@ -18,12 +18,12 @@ context-menu-button {
     vertical-align: top;
     cursor: pointer;
 
-    &.active {
+    &.poetry-ui-active {
         background-image: url("data:image/svg+xml,%3Csvg height='10' width='10' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E  %3Cpath d='M0 4h2v2h-2z M4 4h2v2h-2z M8 4h2v2h-2z' fill='%23bbbbbb'/%3E%3C/svg%3E");
     }
 }
 
-context-menu {
+poetry-ui-context-menu {
     margin-top: 8px;
     margin-left: -10px;
     position: absolute;
@@ -34,7 +34,7 @@ context-menu {
     background: #ffffff;
     box-shadow: 0 0 0 2px white;
 
-    &.context-menu-right {
+    &.poetry-ui-context-menu-right {
         margin-left: 0;
         margin-right: -10px;
         left: auto;
@@ -42,7 +42,7 @@ context-menu {
     }
 }
 
-.context-menu-arrow-outer {
+.poetry-ui-context-menu-arrow-outer {
     position: absolute;
     bottom: 100%;
     left: 3px;
@@ -50,13 +50,13 @@ context-menu {
     width: 30px;
     height: 10px;
 
-    .context-menu-right & {
+    .poetry-ui-context-menu-right & {
         left: auto;
         right: 3px;
     }
 }
 
-.context-menu-arrow-1 {
+.poetry-ui-context-menu-arrow-1 {
     position: absolute;
     top: 0;
     left: 50%;
@@ -69,7 +69,7 @@ context-menu {
     border-bottom: 10px solid #bbb;
 }
 
-.context-menu-arrow-2 {
+.poetry-ui-context-menu-arrow-2 {
     position: absolute;
     top: 2px;
     left: 50%;
@@ -82,7 +82,7 @@ context-menu {
     border-bottom: 10px solid #ffffff;
 }
 
-context-menu-item {
+poetry-ui-context-menu-item {
     display: block;
     padding: 5px;
     font-size: 0.9rem;
