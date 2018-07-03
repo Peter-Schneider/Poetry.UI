@@ -50,7 +50,7 @@ namespace Website.DomainObjects
             });
             ProductRepository.Save(new Product
             {
-                Id = "9552bad3-fc48-4cfe-9dca-e6a50fefe946",
+                Id = "cade3bee-4165-40c5-89ed-6a1622642009",
                 ArticleNo = "10000-6",
                 Name = "Scoo' with GPS tracking",
                 CategoryId = scooterCategory.Id,
