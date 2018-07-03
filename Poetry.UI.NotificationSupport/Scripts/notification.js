@@ -91,6 +91,8 @@ function setContents(container, items) {
     items.forEach(item => {
         if (item instanceof Node) {
             container.appendChild(item);
+        } else if (item.appendTo) {
+            item.appendTo(container);
         } else if (item.element instanceof Node) {
             container.appendChild(item.element);
         } else {

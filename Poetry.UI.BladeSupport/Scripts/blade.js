@@ -33,6 +33,8 @@ class Blade {
         items.forEach(item => {
             if (item instanceof Node) {
                 this.containers[id].appendChild(item);
+            } else if (item.appendTo) {
+                item.appendTo(this.containers[id]);
             } else if (item.element instanceof Node) {
                 this.containers[id].appendChild(item.element);
             } else {
