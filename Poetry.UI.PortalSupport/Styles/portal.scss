@@ -316,11 +316,11 @@ poetry-ui-blade-custom-content {
 
 /* LOADING STATE */
 
-.poetry-ui-blade-not-loading {
+.poetry-ui-not-loading {
     transition: opacity 0.2s, filter 0.2s;
 }
 
-.poetry-ui-blade-loading {
+.poetry-ui-loading {
     opacity: 0.5;
     filter: grayscale(100%) blur(2px);
     transition: opacity 0.2s, filter 0.2s;
