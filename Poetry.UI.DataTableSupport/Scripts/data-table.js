@@ -157,6 +157,37 @@ class DataTable {
 
                 [...this.paging.children].forEach(c => this.paging.removeChild(c));
 
+                response.PageCount = 16;
+
+                var pages = Array(response.PageCount).fill().map((a, i) => i + 1);
+                var pagination = [];
+
+                var startIndex = 0;
+
+                if (this.page > 3) {
+                    pagination.push(pages[0]);
+                    pagination.push('...');
+                    startIndex = this.page - 2;
+                    startIndex = Math.max(startIndex, 2);
+                    startIndex = Math.min(startIndex, pages.length - 4);
+                }
+
+                var stopIndex = Math.min(startIndex + 3, pages.length - 1);
+
+                for (var i = startIndex; i <= stopIndex; i++) {
+                    pagination.push(pages[i]);
+                }
+
+                if (stopIndex < pages.length - 3) {
+                    pagination.push('...');
+                    pagination.push(pages[pages.length - 1]);
+                } else {
+
+                    for (var i = stopIndex + 1; i < pages.length; i++) {
+                        pagination.push(pages[i]);
+                    }
+                }
+
                 new PortalButton('', () => {
                     if (this.page == 1) {
                         return;
@@ -166,14 +197,16 @@ class DataTable {
                     this.update();
                 }).addClass('poetry-ui-data-table-paging-previous').setDisabled(this.page == 1).appendTo(this.paging);
 
-                for (var i = 1; i <= response.PageCount; i++) {
-                    (function (dataTable, page) {
-                        new PortalButton(page, () => {
-                            dataTable.page = page;
-                            dataTable.update();
-                        }).addClass('poetry-ui-portal-button-active', dataTable.page == page).appendTo(dataTable.paging);
-                    })(this, i);
-                }
+                pagination.forEach(page => {
+                    new PortalButton(page, () => {
+                        if (page == '...') {
+                            return;
+                        }
+
+                        this.page = page;
+                        this.update();
+                    }).addClass('poetry-ui-portal-button-active', this.page == page).appendTo(this.paging);
+                });
 
                 new PortalButton('', () => {
                     if (this.page == response.PageCount) {
