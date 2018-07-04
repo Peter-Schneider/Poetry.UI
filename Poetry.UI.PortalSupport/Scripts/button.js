@@ -23,7 +23,7 @@ class PortalButton {
         }
     }
 
-    addClass(value, test) {
+    addClass(value, test = true) {
         if (test) {
             this.element.classList.add(value);
         } else {
