@@ -157,14 +157,32 @@ class DataTable {
 
                 [...this.paging.children].forEach(c => this.paging.removeChild(c));
 
+                new PortalButton('', () => {
+                    if (this.page == 1) {
+                        return;
+                    }
+
+                    this.page = this.page - 1;
+                    this.update();
+                }).addClass('poetry-ui-data-table-paging-previous').setDisabled(this.page == 1).appendTo(this.paging);
+
                 for (var i = 1; i <= response.PageCount; i++) {
                     (function (dataTable, page) {
                         new PortalButton(page, () => {
                             dataTable.page = page;
                             dataTable.update();
-                        }).addClass('poetry-ui-portal-button-active', page == dataTable.page).appendTo(dataTable.paging);
+                        }).addClass('poetry-ui-portal-button-active', dataTable.page == page).appendTo(dataTable.paging);
                     })(this, i);
                 }
+
+                new PortalButton('', () => {
+                    if (this.page == response.PageCount) {
+                        return;
+                    }
+
+                    this.page = this.page + 1;
+                    this.update();
+                }).addClass('poetry-ui-data-table-paging-next').setDisabled(this.page == response.PageCount).appendTo(this.paging);
             });
     }
 
