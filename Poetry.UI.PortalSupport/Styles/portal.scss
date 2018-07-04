@@ -338,6 +338,7 @@ poetry-ui-portal-button,
     color: white;
     line-height: 1;
     cursor: pointer;
+    transition: filter 0.2s;
 
     &:hover {
         background: darken(#0058ad, 10%);
@@ -350,5 +351,18 @@ poetry-ui-portal-button,
 
     &.poetry-ui-portal-button-active {
         background: darken(#0058ad, 15%);
+    }
+
+    &[disabled] {
+        filter: grayscale(100%);
+        cursor: default;
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:hover {
+            background: #0058ad;
+        }
     }
 }

@@ -33,6 +33,18 @@ class PortalButton {
         return this;
     }
 
+    setDisabled(test = true) {
+        if (test) {
+            this.element.setAttribute('disabled', '');
+            this.element.removeAttribute('tabindex');
+        } else {
+            this.element.removeAttribute('disabled');
+            this.element.tabIndex = 0;
+        }
+
+        return this;
+    }
+
     appendTo(element) {
         element.appendChild(this.element);
 
