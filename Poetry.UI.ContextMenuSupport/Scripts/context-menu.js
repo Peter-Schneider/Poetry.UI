@@ -13,9 +13,11 @@ class ContextMenu {
 
         button.tabindex = 0;
 
-        button.addEventListener('click', () => {
-            button.classList.add('poetry-ui-active');
-            this.menu.style.display = '';
+        var update = throttle(() => {
+            if (!this.element.offsetParent) {
+                return;
+            }
+
             this.menu.classList.remove('poetry-ui-context-menu-right');
 
             var rectangle = this.menu.getBoundingClientRect();
@@ -24,6 +26,24 @@ class ContextMenu {
             if (rectangle.right > containerRectangle.right) {
                 this.menu.classList.add('poetry-ui-context-menu-right');
             }
+        }, 100);
+
+        this.resizeCallback = update;
+
+        window.addEventListener('resize', this.resizeCallback);
+
+        function setTimer() {
+            update();
+            setTimeout(setTimer, 1000);
+        };
+
+        setTimer();
+
+        button.addEventListener('click', () => {
+            button.classList.add('poetry-ui-active');
+            this.menu.style.display = '';
+
+            update();
         });
 
         document.addEventListener('click', event => {
@@ -93,3 +113,28 @@ class ContextMenuItem {
 }
 
 export default ContextMenu;
+
+
+
+/* THROTTLE */
+
+function throttle(fn, threshhold = 250, scope) {
+    var last, deferTimer;
+    return function () {
+        var context = scope || this;
+
+        var now = +new Date,
+            args = arguments;
+        if (last && now < last + threshhold) {
+            // hold on to it
+            clearTimeout(deferTimer);
+            deferTimer = setTimeout(function () {
+                last = now;
+                fn.apply(context, args);
+            }, threshhold);
+        } else {
+            last = now;
+            fn.apply(context, args);
+        }
+    };
+}
