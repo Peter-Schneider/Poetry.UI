@@ -157,8 +157,6 @@ class DataTable {
 
                 [...this.paging.children].forEach(c => this.paging.removeChild(c));
 
-                response.PageCount = 16;
-
                 var pages = Array(response.PageCount).fill().map((a, i) => i + 1);
                 var pagination = [];
 
