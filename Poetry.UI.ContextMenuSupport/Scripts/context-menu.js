@@ -13,8 +13,8 @@ class ContextMenu {
 
         button.tabindex = 0;
 
-        var update = throttle(() => {
-            if (!this.element.offsetParent) {
+        this.update = throttle(() => {
+            if (!this.element.offsetParent) { // hidden or detached
                 return;
             }
 
@@ -28,32 +28,21 @@ class ContextMenu {
             }
         }, 100);
 
-        this.resizeCallback = update;
-
-        window.addEventListener('resize', this.resizeCallback);
-
-        function setTimer() {
-            update();
-            setTimeout(setTimer, 1000);
-        };
-
-        setTimer();
-
         button.addEventListener('click', () => {
             button.classList.add('poetry-ui-active');
             this.menu.style.display = '';
 
-            update();
+            this.update();
         });
 
-        document.addEventListener('click', event => {
+        this.documentClickCallback = event => {
             if (event.target == button || event.target == this.menu || event.target.offsetParent == this.menu) {
                 return;
             }
 
             button.classList.remove('poetry-ui-active');
             this.menu.style.display = 'none';
-        });
+        };
 
         this.element.appendChild(button);
 
@@ -85,6 +74,49 @@ class ContextMenu {
         item.appendTo(this.menu);
 
         return this;
+    }
+
+    clearTimer() {
+        clearTimeout(this.setTimerReference);
+    }
+
+    setTimer() {
+        this.update();
+        this.setTimerReference = setTimeout(() => this.setTimer(), 1000);
+    }
+
+    appendTo(element) {
+        element.appendChild(this.element);
+
+        window.addEventListener('resize', this.update);
+        document.addEventListener('click', this.documentClickCallback);
+        this.setTimer();
+
+        new RemoveElementListener(this.element, () => {
+            window.removeEventListener('resize', this.update);
+            document.removeEventListener('click', this.documentClickCallback);
+            this.clearTimer();
+        });
+    }
+}
+
+class RemoveElementListener {
+    constructor(element, callback) {
+        var observer = new MutationObserver(mutations => mutations.forEach(mutation => {
+            mutation.removedNodes.forEach(node => {
+                if (node != element && !node.contains(element)) {
+                    return;
+                }
+
+                callback();
+                observer.disconnect();
+            });
+        }));
+
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+        });
     }
 }
 
