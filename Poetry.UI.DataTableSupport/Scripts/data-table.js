@@ -73,6 +73,8 @@ class DataTable {
 
                             if (result instanceof Node) {
                                 element.appendChild(result);
+                            } else if (result.appendTo) {
+                                result.appendTo(element);
                             } else if (result.element instanceof Node) {
                                 element.appendChild(result.element);
                             } else {
@@ -143,6 +145,8 @@ class DataTable {
 
                         if (result instanceof Node) {
                             element.appendChild(result);
+                        } else if (result.appendTo) {
+                            result.appendTo(element);
                         } else if (result.element instanceof Node) {
                             element.appendChild(result.element);
                         } else {
